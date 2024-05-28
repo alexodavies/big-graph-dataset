@@ -2,6 +2,7 @@ import os
 import networkx as nx
 import pandas as pd
 import torch
+from torch.nn.functional import one_hot
 from tqdm import tqdm
 import torch_geometric as pyg
 from torch_geometric.data import InMemoryDataset, Data
@@ -14,10 +15,13 @@ import wget
 import matplotlib.pyplot as plt
 import numpy as np
 from utils import ESWR
+import json
 
 import inspect
 from littleballoffur.exploration_sampling import *
 import littleballoffur.exploration_sampling as samplers
+
+from utils import describe_one_dataset
 
 print(os.getcwd())
 # from utils import vis_from_pyg
@@ -53,64 +57,64 @@ def vis_from_pyg(data, filename = None):
         plt.savefig(filename)
         plt.close()
 
-def download_reddit(visualise = False):
-    graph_url = "https://snap.stanford.edu/data/soc-redditHyperlinks-title.tsv"
-    embedding_url = "http://snap.stanford.edu/data/web-redditEmbeddings-subreddits.csv"
+# def download_reddit(visualise = False):
+#     graph_url = "https://snap.stanford.edu/data/soc-redditHyperlinks-title.tsv"
+#     embedding_url = "http://snap.stanford.edu/data/web-redditEmbeddings-subreddits.csv"
 
-    start_dir = os.getcwd()
-    # for _ in range(3):
-    #     os.chdir('../')
-    # print(os.getcwd(), os.listdir())
-    os.chdir("original_datasets")
+#     start_dir = os.getcwd()
+#     # for _ in range(3):
+#     #     os.chdir('../')
+#     # print(os.getcwd(), os.listdir())
+#     os.chdir("original_datasets")
 
-    if "reddit-graph.npz" in os.listdir():
-        with open("reddit-graph.npz", "rb") as f:
-            graph = pickle.load(f)
-        os.chdir('../')
-        return graph
+#     if "reddit-graph.npz" in os.listdir():
+#         with open("reddit-graph.npz", "rb") as f:
+#             graph = pickle.load(f)
+#         os.chdir('../')
+#         return graph
 
-    if "soc-redditHyperlinks-title.tsv" not in os.listdir():
-        graph_data = wget.download(graph_url)
-    if "web-redditEmbeddings-subreddits.csv" not in os.listdir():
-        embedding_data = wget.download(embedding_url)
-
-
-    embedding_column_names = ["COMPONENT", *[i for i in range(300)]]
-    embeddings = pd.read_csv("web-redditEmbeddings-subreddits.csv", names=embedding_column_names).transpose()
-    graph_data = pd.read_csv("soc-redditHyperlinks-title.tsv", sep = "\t")
-
-    embeddings.columns = embeddings.iloc[0]
-    embeddings = embeddings.drop(["COMPONENT"], axis = 0)
+#     if "soc-redditHyperlinks-title.tsv" not in os.listdir():
+#         graph_data = wget.download(graph_url)
+#     if "web-redditEmbeddings-subreddits.csv" not in os.listdir():
+#         embedding_data = wget.download(embedding_url)
 
 
-    graph = nx.Graph()
+#     embedding_column_names = ["COMPONENT", *[i for i in range(300)]]
+#     embeddings = pd.read_csv("web-redditEmbeddings-subreddits.csv", names=embedding_column_names).transpose()
+#     graph_data = pd.read_csv("soc-redditHyperlinks-title.tsv", sep = "\t")
 
-    for col in embeddings.columns:
-        graph.add_node(col, attrs=embeddings[col].to_numpy().astype(float))
+#     embeddings.columns = embeddings.iloc[0]
+#     embeddings = embeddings.drop(["COMPONENT"], axis = 0)
 
-    sources = graph_data["SOURCE_SUBREDDIT"].to_numpy()
-    targets = graph_data["TARGET_SUBREDDIT"].to_numpy()
 
-    for i in range(sources.shape[0]):
-        graph.add_edge(sources[i], targets[i])
+#     graph = nx.Graph()
 
-    for node in list(graph.nodes(data=True)):
-        data = node[1]
-        if len(data) == 0:
-            graph.remove_node(node[0])
+#     for col in embeddings.columns:
+#         graph.add_node(col, attrs=embeddings[col].to_numpy().astype(float))
 
-    graph = nx.convert_node_labels_to_integers(graph)
-    CGs = [graph.subgraph(c) for c in nx.connected_components(graph)]
-    CGs = sorted(CGs, key=lambda x: x.number_of_nodes(), reverse=True)
-    graph = CGs[0]
-    graph = nx.convert_node_labels_to_integers(graph)
+#     sources = graph_data["SOURCE_SUBREDDIT"].to_numpy()
+#     targets = graph_data["TARGET_SUBREDDIT"].to_numpy()
 
-    with open("reddit-graph.npz", "wb") as f:
-        pickle.dump(graph, f)
+#     for i in range(sources.shape[0]):
+#         graph.add_edge(sources[i], targets[i])
 
-    os.chdir(start_dir)
+#     for node in list(graph.nodes(data=True)):
+#         data = node[1]
+#         if len(data) == 0:
+#             graph.remove_node(node[0])
 
-    return graph
+#     graph = nx.convert_node_labels_to_integers(graph)
+#     CGs = [graph.subgraph(c) for c in nx.connected_components(graph)]
+#     CGs = sorted(CGs, key=lambda x: x.number_of_nodes(), reverse=True)
+#     graph = CGs[0]
+#     graph = nx.convert_node_labels_to_integers(graph)
+
+#     with open("reddit-graph.npz", "wb") as f:
+#         pickle.dump(graph, f)
+
+#     os.chdir(start_dir)
+
+#     return graph
 
 def download_facebook(visualise = False):
     zip_url = "https://snap.stanford.edu/data/facebook_large.zip"
@@ -137,26 +141,30 @@ def download_facebook(visualise = False):
     edgelist = pd.read_csv("musae_facebook_edges.csv")
 
     labels = pd.read_csv("musae_facebook_target.csv")
+
+    with open("musae_facebook_features.json", 'r', encoding='utf-8') as file:
+            features = json.load(file)
+
+
+
     # print(labels.head())
     # print(np.unique(labels["page_type"]))
 
-    conversion_dict = {"company":       torch.Tensor([1]), #, 0, 0, 0, 0, 0, 0, 0, 0]),
-                       "government":    torch.Tensor([2]), #, 0, 0, 0, 0, 0, 0, 0, 0]),
-                       "politician":    torch.Tensor([3]), #, 0, 0, 0, 0, 0, 0, 0, 0]),
-                       "tvshow":        torch.Tensor([4])} #, 0, 0, 0, 0, 0, 0, 0, 0]),
+    conversion_dict = {"company":       torch.Tensor([0]), #, 0, 0, 0, 0, 0, 0, 0, 0]),
+                       "government":    torch.Tensor([1]), #, 0, 0, 0, 0, 0, 0, 0, 0]),
+                       "politician":    torch.Tensor([2]), #, 0, 0, 0, 0, 0, 0, 0, 0]),
+                       "tvshow":        torch.Tensor([3])} #, 0, 0, 0, 0, 0, 0, 0, 0]),
 
 
     graph = nx.Graph()
     label_specific = labels["page_type"]
     for col in labels["id"]:
-        graph.add_node(int(col), attrs = conversion_dict[label_specific[col]]) # one_hot_embeddings[col].astype(float))
-    # print(edgelist)
+        graph.add_node(int(col))
+        # Turns out the facebook data has attributes of varying length
+        graph.nodes[int(col)]["attrs"] = torch.Tensor([1]) # features[str(col)])
+        graph.nodes[int(col)]["label"] = conversion_dict[label_specific[col]]
     sources = edgelist["id_1"].to_numpy().astype("int")
     targets = edgelist["id_2"].to_numpy().astype("int")
-    #
-    # for i in range(sources):
-    #     source =
-
 
     for i in range(sources.shape[0]):
         graph.add_edge(sources[i], targets[i], attr = torch.Tensor([1]))
@@ -175,34 +183,43 @@ def download_facebook(visualise = False):
     graph = nx.convert_node_labels_to_integers(graph)
     graph.remove_edges_from(nx.selfloop_edges(graph))
 
-    with open("reddit-graph.npz", "wb") as f:
-        pickle.dump(graph, f)
+    # with open("reddit-graph.npz", "wb") as f:
+    #     pickle.dump(graph, f)
 
     os.chdir(start_dir)
     # print(graph)
     # quit()
     return graph
 
-# def ESWR(graph, n_graphs, size):
-#
-#     # possible_samplers = inspect.getmembers(samplers, inspect.isclass)
-#     #
-#     # possible_samplers = [item[1] for item in possible_samplers]
-#     # possible_samplers = [MetropolisHastingsRandomWalkSampler, DiffusionSampler, DepthFirstSearchSampler]
-#     # # selected_sampler = possible_samplers[np.random.randint(len(possible_samplers))]
-#     #
-#     #
-#     # print(f"Sampling {n_graphs} graphs from {graph}")
-#     # graphs = []
-#     # for i in tqdm(range(n_graphs), leave = False):
-#     #     selected_sampler = possible_samplers[np.random.randint(len(possible_samplers))]
-#     #     sampler = selected_sampler(number_of_nodes=np.random.randint(12, 48))
-#     #     graphs.append(nx.convert_node_labels_to_integers(sampler.sample(graph)))
-#     # sampler = selected_sampler(number_of_nodes=np.random.randint(12, 36))
-#     sampler = MetropolisHastingsRandomWalkSampler(48)
-#     graphs = [nx.convert_node_labels_to_integers(sampler.sample(graph)) for i in tqdm(range(n_graphs))]
-#
-#     return graphs
+def specific_from_networkx(graph):
+    node_labels = []
+    node_attrs = []
+    edge_indices = []
+    # Collect node labels and attributes
+    for n in list(graph.nodes(data=True)):
+        node_labels.append(n[1]["label"])
+        node_attrs.append(n[1]["attrs"])
+
+    # Collect edge indices and attributes
+    for e in graph.edges(data=True):
+        edge_indices.append((e[0], e[1]))
+
+        # uncomment for edge attributes:
+        # edge_attrs.append(e[2]["attr"]) 
+
+    # Convert to PyTorch tensors
+    node_labels = torch.stack(node_labels).flatten()
+
+    # Specific to classification on nodes! Hard coding num classes as this happens on a per-graph basis
+    node_labels = one_hot(node_labels.to(int), num_classes = 4)
+
+    node_attrs = torch.stack(node_attrs)
+    edge_indices = torch.tensor(edge_indices, dtype=torch.long).t().contiguous()
+
+    # Create PyG Data object
+    data = Data(x=node_attrs, edge_index=edge_indices, edge_attr = None,  y=node_labels)
+
+    return data
 
 def get_fb_dataset(num = 2000, targets = False):
     fb_graph = download_facebook()
@@ -212,15 +229,17 @@ def get_fb_dataset(num = 2000, targets = False):
 
     # loader = pyg.loader.DataLoader([pyg.utils.from_networkx(g, group_node_attrs=all, group_edge_attrs=all) for g in nx_graph_list],
     #                                           batch_size=batch_size)
-    data_objects = [pyg.utils.from_networkx(g, group_node_attrs=all, group_edge_attrs=all) for g in nx_graph_list]
+    # data_objects = [pyg.utils.from_networkx(g, group_node_attrs=all, group_edge_attrs=all) for g in nx_graph_list]
 
 
 
-    for i_data, data in enumerate(tqdm(data_objects, desc="Calculating clustering values for FB", leave=False)):
-        if targets:
-            data.y = torch.tensor(nx.average_clustering(nx_graph_list[i_data])) # None # torch.Tensor([[0,0]])
-        else:
-            data.y = torch.tensor([1.])
+    # for i_data, data in enumerate(tqdm(data_objects, desc="Calculating clustering values for FB", leave=False)):
+    #     if targets:
+    #         data.y = torch.tensor(nx.average_clustering(nx_graph_list[i_data])) # None # torch.Tensor([[0,0]])
+    #     else:
+    #         data.y = torch.tensor([1.])
+
+    data_objects = [specific_from_networkx(g) for g in nx_graph_list]
 
     return data_objects# loader
 
@@ -231,7 +250,7 @@ class FacebookDataset(InMemoryDataset):
         self.stage_to_index = {"train":0,
                                "val":1,
                                "test":2}
-        _ = download_facebook()
+        # _ = download_facebook()
         super().__init__(root, transform, pre_transform, pre_filter)
         self.data, self.slices = torch.load(self.processed_paths[self.stage_to_index[self.stage]])
 
@@ -310,10 +329,9 @@ class FacebookDataset(InMemoryDataset):
 
 
 if __name__ == "__main__":
-    # fb_graph = download_cora()
-    # print(fb_graph.nodes(data=True))
-    # graphs = ESWR(fb_graph, 200, 100)
-    # G = download_cora()
-    # print(G)
-    os.chdir('../')
+    dataset = FacebookDataset(os.getcwd()+'/original_datasets/'+'facebook_large', stage = "train")
+    describe_one_dataset(dataset)
     dataset = FacebookDataset(os.getcwd()+'/original_datasets/'+'facebook_large', stage = "val")
+    describe_one_dataset(dataset)
+    dataset = FacebookDataset(os.getcwd()+'/original_datasets/'+'facebook_large', stage = "test")
+    describe_one_dataset(dataset)

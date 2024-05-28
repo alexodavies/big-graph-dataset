@@ -8,6 +8,8 @@ from torch_geometric.io import read_npz
 from torch.nn.functional import one_hot
 import wget
 import matplotlib.pyplot as plt
+from utils import describe_one_dataset
+import pickle
 
 if __name__ == "__main__":
     print(os.getcwd())
@@ -45,8 +47,38 @@ def vis_from_pyg(data, filename = None):
         plt.savefig(filename)
         plt.close()
 
+def specific_from_networkx(graph):
+    node_labels = []
+    node_attrs = []
+    edge_indices = []
+    # Collect node labels and attributes
+    for n in list(graph.nodes(data=True)):
+        node_labels.append(n[1]["label"])
+        node_attrs.append(n[1]["attrs"])
+
+    # Collect edge indices and attributes
+    for e in graph.edges(data=True):
+        edge_indices.append((e[0], e[1]))
+
+        # uncomment for edge attributes:
+        # edge_attrs.append(e[2]["attr"]) 
+
+    # Convert to PyTorch tensors
+    node_labels = torch.stack(node_labels).flatten()
+
+    # Specific to classification on nodes! Hard coding num classes as this happens on a per-graph basis
+    node_labels = one_hot(node_labels.to(int), num_classes = 7)
+
+    node_attrs = torch.stack(node_attrs)
+    edge_indices = torch.tensor(edge_indices, dtype=torch.long).t().contiguous()
+
+    # Create PyG Data object
+    data = Data(x=node_attrs, edge_index=edge_indices, edge_attr = None,  y=node_labels)
+
+    return data
+
 def download_cora(visualise = False):
-    print("\n Downloading CORA graph")
+    # Ideally we'd save and reload graphs - but cora has massive feature dims
     zip_url = "https://github.com/abojchevski/graph2gauss/raw/master/data/cora_ml.npz"
 
     start_dir = os.getcwd()
@@ -62,8 +94,6 @@ def download_cora(visualise = False):
         os.chdir("cora")
 
     edges = read_npz("cora_ml.npz")
-
-    print(edges)
 
     G = to_networkx(edges, to_undirected=True)
 
@@ -92,38 +122,10 @@ def download_cora(visualise = False):
     graph = nx.convert_node_labels_to_integers(graph)
 
     os.chdir(start_dir)
+
     return graph
 
-def specific_from_networkx(graph):
-    node_labels = []
-    node_attrs = []
-    edge_indices = []
-    # Collect node labels and attributes
-    for n in list(graph.nodes(data=True)):
-        node_labels.append(n[1]["label"])
-        node_attrs.append(n[1]["attrs"])
 
-    # Collect edge indices and attributes
-    for e in graph.edges(data=True):
-        edge_indices.append((e[0], e[1]))
-
-        # uncomment for edge attributes:
-        # edge_attrs.append(e[2]["attr"]) 
-
-    # Convert to PyTorch tensors
-    node_labels = torch.stack(node_labels).flatten()
-
-    # Specific to classification on nodes! Hard coding num classes as this happens on a per-graph basis
-    node_labels = one_hot(node_labels.to(int), num_classes = 7)
-
-    node_attrs = torch.stack(node_attrs)
-    edge_indices = torch.tensor(edge_indices, dtype=torch.long).t().contiguous()
-
-    # Create PyG Data object
-    data = Data(x=node_attrs, edge_index=edge_indices, edge_attr = None,  y=node_labels)
-    print(data.y.shape)
-
-    return data
 
 
 
@@ -157,7 +159,6 @@ class CoraDataset(InMemoryDataset):
         self.stage_to_index = {"train":0,
                                "val":1,
                                "test":2}
-        _ = download_cora()
         super().__init__(root, transform, pre_transform, pre_filter)
         self.data, self.slices = torch.load(self.processed_paths[self.stage_to_index[self.stage]])
 
@@ -221,4 +222,9 @@ class CoraDataset(InMemoryDataset):
 
 
 if __name__ == "__main__":
-    dataset = CoraDataset(os.getcwd()+'/original_datasets/'+'cora')
+    dataset = CoraDataset(os.getcwd()+'/original_datasets/'+'cora', stage = "train")
+    describe_one_dataset(dataset)
+    dataset = CoraDataset(os.getcwd()+'/original_datasets/'+'cora', stage = "val")
+    describe_one_dataset(dataset)
+    dataset = CoraDataset(os.getcwd()+'/original_datasets/'+'cora', stage = "test")
+    describe_one_dataset(dataset)

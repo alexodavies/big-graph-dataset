@@ -5,29 +5,9 @@ import numpy as np
 import torch
 from torch_geometric.transforms import Compose
 from tqdm import tqdm
-from utils import better_to_nx, initialize_edge_weight, clean_graph, prettify_metric_name
+# from utils import better_to_nx, initialize_edge_weight, clean_graph, prettify_metric_name
 from datasets import get_train_datasets, get_val_datasets, get_test_datasets
-from metrics import *
-
-
-
-
-def get_metric_values(dataset):
-
-
-    val_data = [better_to_nx(data)[0] for data in dataset]
-    for i, item in enumerate(val_data):
-        # item.remove_edges_from(nx.selfloop_edges(item))
-        val_data[i] = clean_graph(item)
-
-    # Metrics can be added here - should take an nx graph as input and return a numerical value
-    metrics = [nx.number_of_nodes, nx.number_of_edges, safe_diameter,
-               nx.average_clustering,] #, average_degree, ]
-    metric_names = [prettify_metric_name(metric) for metric in metrics]
-    # Compute metrics for all graphs
-    metric_arrays = [np.array([metric(g) for g in tqdm(val_data, leave=False, desc=metric_names[i_metric])]) for i_metric, metric in enumerate(metrics)]
-
-    return metric_arrays, metrics,  metric_names
+from utils import *
 
 
 def desc_datasets(datasets, stage, dataset_names):
