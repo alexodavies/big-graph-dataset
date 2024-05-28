@@ -1,1 +1,5 @@
 /.DS_Store
+/original_datasets
+/__pycache__
+/datasets/__pycache__
+fruit_fly/Supplementary-Data-S1/.DS_Store

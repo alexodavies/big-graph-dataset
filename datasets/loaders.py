@@ -63,11 +63,11 @@ def get_social_datasets(transforms, num, stage = "train", exclude = None):
 
     if stage == "train":
         social_datasets = [
-            transforms(FacebookDataset(os.getcwd() + '/original_datasets/' + 'facebook_large', num=num)),
+            transforms(FacebookDataset(os.getcwd() + '/original_datasets/' + 'facebook_large', num=num, stage = stage)),
             transforms(EgoDataset(os.getcwd() + '/original_datasets/' + 'twitch_egos', num=num, stage=stage)),
-            transforms(CoraDataset(os.getcwd() + '/original_datasets/' + 'cora', num=num)),
-            transforms(RoadDataset(os.getcwd() + '/original_datasets/' + 'roads', stage=stage, num=num)),
-            transforms(NeuralDataset(os.getcwd() + '/original_datasets/' + 'fruit_fly', stage=stage, num=num))]
+            transforms(CoraDataset(os.getcwd() + '/original_datasets/' + 'cora', num=num, stage = stage)),
+            transforms(RoadDataset(os.getcwd() + '/original_datasets/' + 'roads', num=num, stage=stage)),
+            transforms(NeuralDataset(os.getcwd() + '/original_datasets/' + 'fruit_fly', num=num, stage=stage))]
         names = ["facebook_large", "twitch_egos", "cora", "roads", "fruit_fly"]
 
         if exclude is None:
@@ -123,154 +123,6 @@ def get_social_datasets(transforms, num, stage = "train", exclude = None):
 
     return social_datasets, names
 
-def get_random_datasets(transforms, num, stage = "train"):
-    if "original_datasets" not in os.listdir():
-        os.mkdir("original_datasets")
-
-    if stage == "train":
-        social_datasets = [transforms(RandomDataset(os.getcwd() + '/original_datasets/' + 'random', stage=stage, num=10 * num))]
-        names = ["random"]
-    elif stage == "val":
-        social_datasets = [
-            transforms(FacebookDataset(os.getcwd() + '/original_datasets/' + 'facebook_large', stage=stage, num=num)),
-            transforms(EgoDataset(os.getcwd() + '/original_datasets/' + 'twitch_egos', stage=stage, num=num)),
-            transforms(CoraDataset(os.getcwd() + '/original_datasets/' + 'cora', stage=stage, num=num)),
-            transforms(RoadDataset(os.getcwd() + '/original_datasets/' + 'roads', stage=stage, num=num)),
-            transforms(NeuralDataset(os.getcwd() + '/original_datasets/' + 'fruit_fly', stage=stage, num=num)),
-            transforms(TreeDataset(os.getcwd() + '/original_datasets/' + 'trees', stage=stage, num=num)),
-            transforms(RandomDataset(os.getcwd() + '/original_datasets/' + 'random', stage=stage, num=num)),
-            transforms(CommunityDataset(os.getcwd() + '/original_datasets/' + 'community', stage=stage, num=num))
-            ]
-        names = ["facebook_large", "twitch_egos", "cora", "roads", "fruit_fly", "trees", "random", "community"]
-    else:
-        social_datasets = [
-            transforms(FacebookDataset(os.getcwd() + '/original_datasets/' + 'facebook_large', stage=stage, num=num)),
-            transforms(EgoDataset(os.getcwd() + '/original_datasets/' + 'twitch_egos', stage=stage, num=num)),
-            transforms(CoraDataset(os.getcwd() + '/original_datasets/' + 'cora', stage=stage, num=num)),
-            transforms(RoadDataset(os.getcwd() + '/original_datasets/' + 'roads', stage=stage, num=num)),
-            transforms(NeuralDataset(os.getcwd() + '/original_datasets/' + 'fruit_fly', stage=stage, num=num)),
-            transforms(TreeDataset(os.getcwd() + '/original_datasets/' + 'trees', stage=stage, num=num)),
-            transforms(RandomDataset(os.getcwd() + '/original_datasets/' + 'random', stage=stage, num=num)),
-            transforms(CommunityDataset(os.getcwd() + '/original_datasets/' + 'community', stage=stage, num=num))
-            ]
-        names = ["facebook_large", "twitch_egos", "cora", "roads", "fruit_fly", "trees", "random", "community"]
-
-    return social_datasets, names
-
-def get_train_loader(batch_size, transforms,
-                     subset = ["chemical", "social"],
-                     num_social = 50000,
-                     social_excludes = None,
-                     for_adgcl = False):
-    """
-    Prepare a torch concat dataset dataloader
-    Args:
-        dataset: original dataset - hangover from early code, will be removed in future version
-        batch_size: batch size for dataloader
-        transforms: transforms applied to each dataset
-        num_social: number of graphs to sample for each dataset
-
-    Returns:
-        dataloader for concat dataset
-    """
-
-    # Need a dataset with all features included for adgcl pre-training
-    if for_adgcl:
-        datasets, _ = get_chemical_datasets(transforms, -1, stage="train-adgcl")
-        combined = []
-        for data in datasets:
-            combined += data
-        return DataLoader(combined, batch_size=batch_size, shuffle=True)
-
-    if "chemical" in subset:
-        datasets, _ = get_chemical_datasets(transforms, num_social, stage="train")
-    else:
-        print("Skipping chemicals")
-        datasets = []
-
-    if "social" in subset:
-        social_datasets, _ = get_social_datasets(transforms, num_social, stage="train", exclude=social_excludes)
-    else:
-        print("Skipping socials")
-        social_datasets = []
-    print(subset)
-
-    if subset == ["dummy", "dummy"]:
-        datasets, _ = get_random_datasets(transforms, num_social, stage = "train")
-        social_datasets = []
-
-    print(datasets, social_datasets)
-    datasets += social_datasets
-    combined = []
-    # Concat dataset
-    print(datasets)
-    for data in datasets:
-        combined += data
-
-    return DataLoader(combined, batch_size=batch_size, shuffle=True)
-
-def get_test_loaders(batch_size, transforms, num = 2000):
-    """
-    Get a list of validation loaders
-
-    Args:
-        dataset: the -starting dataset-, a hangover from previous code, likely to be gone in the next refactor
-        batch_size: batch size for loaders
-        transforms: a set of transforms applied to the data
-        num: the maximum number of samples in each dataset (and therefore dataloader)
-
-    Returns:
-        datasets: list of dataloaders
-        names: name of each loaders' respective dataset
-
-    """
-
-    datasets, names = get_test_datasets(transforms, num=num)
-    datasets = [DataLoader(data, batch_size=batch_size) for data in datasets]
-
-    return datasets, names
-
-def get_mol_test_loaders(batch_size, transforms, num = 2000):
-    """
-    Get a list of validation loaders
-
-    Args:
-        dataset: the -starting dataset-, a hangover from previous code, likely to be gone in the next refactor
-        batch_size: batch size for loaders
-        transforms: a set of transforms applied to the data
-        num: the maximum number of samples in each dataset (and therefore dataloader)
-
-    Returns:
-        datasets: list of dataloaders
-        names: name of each loaders' respective dataset
-
-    """
-
-    datasets, names = get_test_datasets(transforms, num=-1, mol_only = True)
-    datasets = [DataLoader(data, batch_size=batch_size) for data in datasets]
-
-    return datasets, names
-
-def get_mol_val_loaders(batch_size, transforms, num = 5000):
-    """
-    Get a list of validation loaders
-
-    Args:
-        batch_size: batch size for loaders
-        transforms: a set of transforms applied to the data
-        num: the maximum number of samples in each dataset (and therefore dataloader)
-
-    Returns:
-        datasets: list of dataloaders
-        names: name of each loaders' respective dataset
-
-    """
-
-    datasets, names = get_val_datasets(transforms, num = -1, mol_only = True)
-    datasets = [DataLoader(data, batch_size=batch_size) for data in datasets]
-
-    return datasets, names
-
 def get_test_datasets(transforms, num = 2000, mol_only = False):
 
     chemical_datasets, ogbg_names = get_chemical_datasets(transforms, num, stage="test")
@@ -284,25 +136,6 @@ def get_test_datasets(transforms, num = 2000, mol_only = False):
 
     return datasets, ogbg_names + social_names
 
-def get_val_loaders(batch_size, transforms, num = 5000):
-    """
-    Get a list of validation loaders
-
-    Args:
-        batch_size: batch size for loaders
-        transforms: a set of transforms applied to the data
-        num: the maximum number of samples in each dataset (and therefore dataloader)
-
-    Returns:
-        datasets: list of dataloaders
-        names: name of each loaders' respective dataset
-
-    """
-
-    datasets, names = get_val_datasets(transforms, num = num)
-    datasets = [DataLoader(data, batch_size=batch_size) for data in datasets]
-
-    return datasets, names
 
 def get_val_datasets(transforms, num = 2000, mol_only = False):
     print("Getting val datasets")
@@ -317,7 +150,7 @@ def get_val_datasets(transforms, num = 2000, mol_only = False):
 
     return datasets, ogbg_names + social_names
 
-def get_train_datasets(transforms, num = 2000):
+def get_train_datasets(transforms, num = 2000, mol_only = False):
     
     chemical_datasets, ogbg_names = get_chemical_datasets(transforms, num, stage="train")
     if not mol_only:

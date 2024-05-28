@@ -93,7 +93,7 @@ class FromOGBDataset(InMemoryDataset):
         # Read data into huge `Data` list.
         # print(f"Looking for OGB processed files at {self.processed_paths[self.stage_to_index[self.stage]]}")
         if os.path.isfile(self.processed_paths[self.stage_to_index[self.stage]]):
-            print(f"OGB files exist at {self.processed_paths[self.stage_to_index[self.stage]]}")
+            print(f"\nOGB files exist at {self.processed_paths[self.stage_to_index[self.stage]]}")
             return
         data_list = self.ogb_dataset# get_fb_dataset(num=self.num)
 
