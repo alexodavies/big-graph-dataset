@@ -2,15 +2,11 @@ import os
 import networkx as nx
 import torch
 from tqdm import tqdm
-import torch_geometric as pyg
 from torch_geometric.data import InMemoryDataset, Data
 from torch_geometric.utils.convert import to_networkx
 from torch_geometric.io import read_npz
-# import osmnx as ox
-from littleballoffur.exploration_sampling import MetropolisHastingsRandomWalkSampler
-# from ToyDatasets import *
+from torch.nn.functional import one_hot
 import wget
-# from utils import vis_from_pyg
 import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
@@ -50,6 +46,7 @@ def vis_from_pyg(data, filename = None):
         plt.close()
 
 def download_cora(visualise = False):
+    print("\n Downloading CORA graph")
     zip_url = "https://github.com/abojchevski/graph2gauss/raw/master/data/cora_ml.npz"
 
     start_dir = os.getcwd()
@@ -65,10 +62,13 @@ def download_cora(visualise = False):
         os.chdir("cora")
 
     edges = read_npz("cora_ml.npz")
+
+    print(edges)
+
     G = to_networkx(edges, to_undirected=True)
 
     node_classes = {n: int(edges.y[i].item()) for i, n in enumerate(list(G.nodes()))}
-
+    node_attrs = {n: edges.x[i] for i, n in enumerate(list(G.nodes()))}
     # print(node_classes)
 
     # base_tensor = torch.Tensor([0])
@@ -76,10 +76,12 @@ def download_cora(visualise = False):
     for node in list(G.nodes()):
         # class_tensor = base_tensor.clone()
         class_tensor = torch.Tensor([node_classes[node]])#node_classes[node]
+        node_attr = node_attrs[node]
 
         # print(class_tensor, node_classes[node])
 
-        G.nodes[node]["attrs"] = class_tensor
+        G.nodes[node]["attrs"] = node_attr
+        G.nodes[node]["label"] = class_tensor
 
     for edge in list(G.edges()):
         G.edges[edge]["attrs"] = torch.Tensor([1])
@@ -92,21 +94,59 @@ def download_cora(visualise = False):
     os.chdir(start_dir)
     return graph
 
+def specific_from_networkx(graph):
+    node_labels = []
+    node_attrs = []
+    edge_indices = []
+    # Collect node labels and attributes
+    for n in list(graph.nodes(data=True)):
+        node_labels.append(n[1]["label"])
+        node_attrs.append(n[1]["attrs"])
+
+    # Collect edge indices and attributes
+    for e in graph.edges(data=True):
+        edge_indices.append((e[0], e[1]))
+
+        # uncomment for edge attributes:
+        # edge_attrs.append(e[2]["attr"]) 
+
+    # Convert to PyTorch tensors
+    node_labels = torch.stack(node_labels).flatten()
+
+    # Specific to classification on nodes! Hard coding num classes as this happens on a per-graph basis
+    node_labels = one_hot(node_labels.to(int), num_classes = 7)
+
+    node_attrs = torch.stack(node_attrs)
+    edge_indices = torch.tensor(edge_indices, dtype=torch.long).t().contiguous()
+
+    # Create PyG Data object
+    data = Data(x=node_attrs, edge_index=edge_indices, edge_attr = None,  y=node_labels)
+    print(data.y.shape)
+
+    return data
+
+
 
 def get_cora_dataset(num = 2000, targets = False):
-    fb_graph = download_cora()
+    cora_graph = download_cora()
     # print(fb_graph.nodes(data=True))
-    nx_graph_list = ESWR(fb_graph, num, 48)
+    nx_graph_list = ESWR(cora_graph, num, 48)
 
     # loader = pyg.loader.DataLoader([pyg.utils.from_networkx(g, group_node_attrs=all, group_edge_attrs=all) for g in nx_graph_list],
     #                                           batch_size=batch_size)
+    # nx_graph_list = [specific_from_networkx(g) for g in tqdm(nx_graph_list, desc="re-separating features")]
+    # labels = [graph[1] for graph in nx_graph_list]
+    # nx_graph_list = [graph[0] for graph in nx_graph_list]
+    # data_objects = [pyg.utils.from_networkx(g, group_node_attrs=all) for g in tqdm(nx_graph_list, desc = "moving to pyg objects")]
+    
+    # for i_data, data in enumerate(tqdm(data_objects, desc="Calculating five cycle values for cora", leave=False)):
+    #     data.y = labels[i_data]
+    #     # if targets:
+    #     #     data.y = torch.tensor(five_cycle_worker(nx_graph_list[i_data]) * 0.01) # None # torch.Tensor([[0,0]])
+    #     # else:
+    #     #     data.y = torch.tensor([1])
 
-    data_objects = [pyg.utils.from_networkx(g, group_node_attrs=all, group_edge_attrs=all) for g in nx_graph_list]
-    for i_data, data in enumerate(tqdm(data_objects, desc="Calculating five cycle values for cora", leave=False)):
-        if targets:
-            data.y = torch.tensor(five_cycle_worker(nx_graph_list[i_data]) * 0.01) # None # torch.Tensor([[0,0]])
-        else:
-            data.y = torch.tensor([1])
+    data_objects = [specific_from_networkx(graph) for graph in tqdm(nx_graph_list, desc = "Converting back to pyg graphs")]
 
     return  data_objects# loader
 
@@ -153,11 +193,6 @@ class CoraDataset(InMemoryDataset):
                             edge_attr=torch.ones(n_edges).to(torch.int).reshape((-1,1)),
                             y = None)
 
-                # data = Data(x = item.x[:,0].reshape((-1, 1)), edge_index=item.edge_index,
-                #             edge_attr=item.edge_attr, y = None)
-                # print(f"Train x shape {data.x.shape}, edge index {data.edge_index.shape}, edge attr {data.edge_attr.shape}")
-                # print(data)
-                # vis_from_pyg(data, filename=self.root + '/processed/' + i + '.png')
                 new_data_list.append(data)
             data_list = new_data_list
         else:
@@ -166,16 +201,11 @@ class CoraDataset(InMemoryDataset):
                 n_nodes, n_edges = item.x.shape[0], item.edge_index.shape[1]
 
 
-                data = Data(x = item.x,# torch.ones(n_nodes).to(torch.int).reshape((-1, 1)),
+                data = Data(x = item.x,
                             edge_index=item.edge_index,
                             edge_attr=torch.ones(n_edges).to(torch.int).reshape((-1,1)),
                             y = item.y)
 
-                # data = Data(x = item.x[:,0].reshape((-1, 1)), edge_index=item.edge_index,
-                #             edge_attr=item.edge_attr, y = item.y)
-                # print(f"Val x shape {data.x.shape}, edge index {data.edge_index.shape}")
-                # print(data)
-                # vis_from_pyg(data, filename=self.root + '/processed/' + i + '.png')
                 new_data_list.append(data)
             data_list = new_data_list
 
@@ -185,20 +215,10 @@ class CoraDataset(InMemoryDataset):
         if self.pre_transform is not None:
             data_list = [self.pre_transform(data) for data in data_list]
 
-        # if self.stage != "train":
-        #     for i, data in enumerate(data_list):
-        #         vis_from_pyg(data, filename=self.root + f'/processed/{self.stage}-{i}.png')
 
         data, slices = self.collate(data_list)
         torch.save((data, slices), self.processed_paths[self.stage_to_index[self.stage]])
 
 
 if __name__ == "__main__":
-    # fb_graph = download_cora()
-    # print(fb_graph.nodes(data=True))
-    # graphs = ESWR(fb_graph, 200, 100)
-    # G = download_cora()
-    # print(G)
-    o
-
     dataset = CoraDataset(os.getcwd()+'/original_datasets/'+'cora')

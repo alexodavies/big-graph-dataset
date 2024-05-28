@@ -125,7 +125,7 @@ def get_social_datasets(transforms, num, stage = "train", exclude = None):
 
 def get_test_datasets(transforms, num = 2000, mol_only = False):
 
-    chemical_datasets, ogbg_names = get_chemical_datasets(transforms, num, stage="test")
+    chemical_datasets, ogbg_names = get_chemical_datasets(transforms, -1, stage="test")
     if not mol_only:
         social_datasets, social_names = get_social_datasets(transforms, num, stage="test")
     else:
@@ -139,7 +139,7 @@ def get_test_datasets(transforms, num = 2000, mol_only = False):
 
 def get_val_datasets(transforms, num = 2000, mol_only = False):
     print("Getting val datasets")
-    chemical_datasets, ogbg_names = get_chemical_datasets(transforms, num, stage="val")
+    chemical_datasets, ogbg_names = get_chemical_datasets(transforms, -1, stage="val")
     if not mol_only:
         social_datasets, social_names = get_social_datasets(transforms, num, stage="val")
     else:
