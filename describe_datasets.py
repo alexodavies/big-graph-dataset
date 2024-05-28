@@ -73,7 +73,7 @@ def latex_to_markdown(strings):
         txt = txt.replace("$", "")
         txt = txt.replace("\pm", "±")
 
-        print(txt)
+        print("|" + txt + "|")
 
     
 
