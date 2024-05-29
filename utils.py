@@ -13,6 +13,7 @@ import concurrent.futures
 import networkx as nx
 import numpy as np
 from tqdm import tqdm
+import matplotlib.pyplot as plt
 
 def get_metric_values(dataset):
 
@@ -122,7 +123,12 @@ def better_to_nx(data):
         labels: torch.Tensor of node labels
     """
     edges = data.edge_index.T.cpu().numpy()
-    labels = data.x[:,0].cpu().numpy()
+    if data.y is None or len(data.y.shape) < 2:
+        labels = data.x[:,0].cpu().numpy()
+    elif torch.sum(torch.unique(data.y)) == 1:
+        labels = torch.argmax(data.y, dim = 1).cpu().numpy()
+    else:
+        labels = data.y.cpu().numpy()
 
     g = nx.Graph()
     g.add_edges_from(edges)
@@ -219,7 +225,7 @@ def process_chunk(chunk, sampler_list, graph):
 
 def ESWR(graph, n_graphs, size):
     possible_samplers = [MetropolisHastingsRandomWalkSampler, DiffusionSampler, ForestFireSampler]
-    sampler_list = [sampler(i) for sampler in possible_samplers for i in range(24, 96)]
+    sampler_list = [sampler(i) for sampler in possible_samplers for i in range(24, size)]
 
     max_workers = os.cpu_count() // 2  # Use half the available CPU cores
 
@@ -260,6 +266,123 @@ def describe_one_dataset(dataset):
         value, dev = np.mean(arrays[i_name]), np.std(arrays[i_name])
         value = float('%.3g' % value)
         dev = float('%.3g' % dev)
-        print_string += f"& {value} $\pm$ {dev}"
+        print_string += f"& {value} $\pm$ {dev} "
 
     print(print_string + r"\\")
+
+
+def vis_from_pyg(data, filename = None, ax = None, save = True):
+    """
+    Visualise a pytorch_geometric.data.Data object
+    Args:
+        data: pytorch_geometric.data.Data object
+        filename: if passed, this is the filename for the saved image. Ignored if ax is not None
+        ax: matplotlib axis object, which is returned if passed
+
+    Returns:
+
+    """
+    g, labels = better_to_nx(data)
+    if ax is None:
+        fig, ax = plt.subplots(figsize = (2,2))
+        ax_was_none = True
+    else:
+        ax_was_none = False
+
+    if "ogbg" not in filename:
+        pos = nx.kamada_kawai_layout(g)
+
+        nx.draw_networkx_edges(g, pos = pos, ax = ax)
+        if np.unique(labels).shape[0] != 1:
+            nx.draw_networkx_nodes(g, pos=pos, node_color=labels,
+                                   edgecolors="black",
+                                   cmap="Dark2", node_size=64,
+                                   vmin=0, vmax=10, ax=ax)
+    else:
+        im = vis_molecule(nx_to_rdkit(g, labels))
+        ax.imshow(im)
+
+    ax.axis('off')
+    # ax.set_title(f"|V|: {g.order()}, |E|: {g.number_of_edges()}")
+
+    plt.tight_layout()
+
+    if not ax_was_none:
+        return ax
+    elif filename is None:
+        plt.show()
+    else:
+        plt.savefig(filename, dpi = 300)
+        plt.close()
+
+    plt.close()
+
+def lowres_vis_from_pyg(data, filename = None, ax = None, save = True):
+    """
+    Visualise a pytorch_geometric.data.Data object
+    Args:
+        data: pytorch_geometric.data.Data object
+        filename: if passed, this is the filename for the saved image. Ignored if ax is not None
+        ax: matplotlib axis object, which is returned if passed
+
+    Returns:
+
+    """
+    g, labels = better_to_nx(data)
+    if ax is None:
+        fig, ax = plt.subplots(figsize = (2,2))
+        ax_was_none = True
+    else:
+        ax_was_none = False
+
+    pos = nx.kamada_kawai_layout(g)
+
+    nx.draw_networkx_edges(g, pos = pos, ax = ax)
+    if np.unique(labels).shape[0] != 1:
+        nx.draw_networkx_nodes(g, pos=pos, node_color=labels,
+                                edgecolors="black",
+                                cmap="Dark2", node_size=64,
+                                vmin=0, vmax=10, ax=ax)
+
+
+    ax.axis('off')
+    # ax.set_title(f"|V|: {g.order()}, |E|: {g.number_of_edges()}")
+
+    plt.tight_layout()
+
+    if not ax_was_none:
+        return ax
+    elif filename is None:
+        plt.show()
+    else:
+        plt.savefig(filename, dpi = 50)
+        plt.close()
+
+    plt.close()
+
+
+
+def vis_grid(datalist, filename):
+    """
+    Visualise a set of graphs, from pytorch_geometric.data.Data objects
+    Args:
+        datalist: list of pyg.data.Data objects
+        filename: the visualised grid is saved to this path
+
+    Returns:
+        None
+    """
+
+    # Trim to square root to ensure square grid
+    grid_dim = int(np.sqrt(len(datalist)))
+
+    fig, axes = plt.subplots(grid_dim, grid_dim, figsize=(8,8))
+
+    # Unpack axes
+    axes = [num for sublist in axes for num in sublist]
+
+    for i_axis, ax in enumerate(axes):
+        ax = vis_from_pyg(datalist[i_axis], ax = ax, filename=filename, save = False)
+
+    plt.savefig(filename)
+    plt.close()

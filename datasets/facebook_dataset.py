@@ -3,59 +3,21 @@ import networkx as nx
 import pandas as pd
 import torch
 from torch.nn.functional import one_hot
-from tqdm import tqdm
-import torch_geometric as pyg
 from torch_geometric.data import InMemoryDataset, Data
-# import osmnx as ox
-from littleballoffur.exploration_sampling import MetropolisHastingsRandomWalkSampler
-# from ToyDatasets import *
 import pickle
 import zipfile
 import wget
-import matplotlib.pyplot as plt
 import numpy as np
 from utils import ESWR
 import json
 
-import inspect
 from littleballoffur.exploration_sampling import *
-import littleballoffur.exploration_sampling as samplers
 
-from utils import describe_one_dataset
+from utils import describe_one_dataset, vis_grid
 
 print(os.getcwd())
 # from utils import vis_from_pyg
 
-
-def vis_from_pyg(data, filename = None):
-    edges = data.edge_index.T.cpu().numpy()
-    labels = data.x[:,0].cpu().numpy()
-
-    g = nx.Graph()
-    g.add_edges_from(edges)
-
-    # dropped_nodes = np.ones(labels.shape[0]).astype(bool)
-    for ilabel in range(labels.shape[0]):
-        if ilabel not in np.unique(edges):
-            g.add_node(ilabel)
-    # labels = labels[dropped_nodes]
-
-    fig, ax = plt.subplots(figsize = (6,6))
-
-    pos = nx.kamada_kawai_layout(g)
-
-    nx.draw_networkx_edges(g, pos = pos, ax = ax)
-    nx.draw_networkx_nodes(g, pos = pos, node_color=labels, cmap="tab20",
-                           vmin = 0, vmax = 20, ax = ax)
-
-    ax.axis('off')
-
-    plt.tight_layout()
-    if filename is None:
-        plt.show()
-    else:
-        plt.savefig(filename)
-        plt.close()
 
 # def download_reddit(visualise = False):
 #     graph_url = "https://snap.stanford.edu/data/soc-redditHyperlinks-title.tsv"
@@ -224,20 +186,8 @@ def specific_from_networkx(graph):
 def get_fb_dataset(num = 2000, targets = False):
     fb_graph = download_facebook()
     # print(fb_graph.nodes(data=True))
-    nx_graph_list = ESWR(fb_graph, num, 48)
+    nx_graph_list = ESWR(fb_graph, num, 96)
 
-
-    # loader = pyg.loader.DataLoader([pyg.utils.from_networkx(g, group_node_attrs=all, group_edge_attrs=all) for g in nx_graph_list],
-    #                                           batch_size=batch_size)
-    # data_objects = [pyg.utils.from_networkx(g, group_node_attrs=all, group_edge_attrs=all) for g in nx_graph_list]
-
-
-
-    # for i_data, data in enumerate(tqdm(data_objects, desc="Calculating clustering values for FB", leave=False)):
-    #     if targets:
-    #         data.y = torch.tensor(nx.average_clustering(nx_graph_list[i_data])) # None # torch.Tensor([[0,0]])
-    #     else:
-    #         data.y = torch.tensor([1.])
 
     data_objects = [specific_from_networkx(g) for g in nx_graph_list]
 
@@ -250,6 +200,9 @@ class FacebookDataset(InMemoryDataset):
         self.stage_to_index = {"train":0,
                                "val":1,
                                "test":2}
+        
+        self.task = "node-classification"
+
         # _ = download_facebook()
         super().__init__(root, transform, pre_transform, pre_filter)
         self.data, self.slices = torch.load(self.processed_paths[self.stage_to_index[self.stage]])
@@ -287,11 +240,6 @@ class FacebookDataset(InMemoryDataset):
                             edge_attr=torch.ones(n_edges).to(torch.int).reshape((-1,1)),
                             y = None)
 
-                # data = Data(x = item.x[:,0].reshape((-1, 1)), edge_index=item.edge_index,
-                #             edge_attr=item.edge_attr, y = None)
-                # print(f"Train x shape {data.x.shape}, edge index {data.edge_index.shape}, edge attr {data.edge_attr.shape}")
-                # print(data)
-                # vis_from_pyg(data, filename=self.root + '/processed/' + i + '.png')
                 new_data_list.append(data)
             data_list = new_data_list
         else:
@@ -305,11 +253,6 @@ class FacebookDataset(InMemoryDataset):
                             edge_attr=torch.ones(n_edges).to(torch.int).reshape((-1,1)),
                             y = item.y)
 
-                # data = Data(x = item.x[:,0].reshape((-1, 1)), edge_index=item.edge_index,
-                #             edge_attr=item.edge_attr, y = item.y)
-                # print(f"Val x shape {data.x.shape}, edge index {data.edge_index.shape}")
-                # print(data)
-                # vis_from_pyg(data, filename=self.root + '/processed/' + i + '.png')
                 new_data_list.append(data)
             data_list = new_data_list
 
@@ -320,9 +263,6 @@ class FacebookDataset(InMemoryDataset):
         if self.pre_transform is not None:
             data_list = [self.pre_transform(data) for data in data_list]
 
-        # if self.stage != "train":
-        #     for i, data in enumerate(data_list):
-        #         vis_from_pyg(data, filename=self.root + f'/processed/{self.stage}-{i}.png')
 
         data, slices = self.collate(data_list)
         torch.save((data, slices), self.processed_paths[self.stage_to_index[self.stage]])
@@ -331,7 +271,12 @@ class FacebookDataset(InMemoryDataset):
 if __name__ == "__main__":
     dataset = FacebookDataset(os.getcwd()+'/original_datasets/'+'facebook_large', stage = "train")
     describe_one_dataset(dataset)
+    vis_grid(dataset[:16], os.getcwd()+"/original_datasets/facebook_large/train.png")
+    
     dataset = FacebookDataset(os.getcwd()+'/original_datasets/'+'facebook_large', stage = "val")
     describe_one_dataset(dataset)
+    vis_grid(dataset[:16], os.getcwd()+"/original_datasets/facebook_large/val.png")
+    
     dataset = FacebookDataset(os.getcwd()+'/original_datasets/'+'facebook_large', stage = "test")
     describe_one_dataset(dataset)
+    vis_grid(dataset[:16], os.getcwd()+"/original_datasets/facebook_large/test.png")
