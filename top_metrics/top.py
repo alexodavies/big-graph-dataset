@@ -15,6 +15,7 @@ from sklearn.decomposition import PCA
 import matplotlib
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import normalize, StandardScaler
+from matplotlib.legend_handler import HandlerPathCollection
 
 from tqdm import tqdm
 
@@ -130,7 +131,7 @@ class GeneralEmbeddingEvaluation():
         return all_embeddings, separate_embeddings
 
     def vis(self, all_embeddings, separate_embeddings, names):
-        fig, (ax1, ax2) = plt.subplots(ncols=2, figsize=(18, 9))
+        fig, (ax1, ax2) = plt.subplots(ncols=2, figsize=(12, 8))
 
         cmap = plt.get_cmap('viridis')
         unique_categories = np.unique(names)
@@ -159,7 +160,6 @@ class GeneralEmbeddingEvaluation():
                         label=f"{names[i]}", # - {proj.shape[0]} graphs",
                         c = color, marker = plot_marker)
 
-        ax1.legend(shadow=True)
         ax1.set_title("UMAP Embedding")
 
         embedder = PCA(n_components=2).fit(all_embeddings)
@@ -185,19 +185,19 @@ class GeneralEmbeddingEvaluation():
 
         handles, labels = ax2.get_legend_handles_labels()
 
+
+
         # Create a new legend with increased size for scatter points
         new_handles = []
         for ihandle, handle in enumerate(handles):
             new_handle = plt.Line2D([0], [0],
              marker="^" if "ogb" in labels[ihandle] else "o", color='w',
-               markerfacecolor=handle.get_facecolor()[0], markersize=30)
+               markerfacecolor=handle.get_facecolor()[0], markersize=3000)
             new_handles.append(new_handle)
 
-        # Add legend to the axis
-        # ax.legend(handles=new_handles, labels=labels)
-
         fig.legend(handles = new_handles, labels = labels,
-                   bbox_to_anchor=(0.05, -0.2), loc='lower left',
+                    bbox_transform = fig.transFigure,
+                     loc='center bottom',
                      ncol = 8, frameon = False)
         
         

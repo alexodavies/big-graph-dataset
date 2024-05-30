@@ -69,7 +69,7 @@ def run(args):
     # Get datasets
     my_transforms = Compose([initialize_edge_weight])
 
-    train_datasets, train_names = get_test_datasets(my_transforms, num = args.num_train)
+    train_datasets, train_names = get_all_datasets(my_transforms, num = args.num_train)
     compute_scores(train_datasets, train_names)
 
     train_datasets, train_names = get_train_datasets(my_transforms, num = args.num_train)
