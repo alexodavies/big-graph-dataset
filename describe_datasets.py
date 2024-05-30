@@ -6,8 +6,9 @@ import torch
 from torch_geometric.transforms import Compose
 from tqdm import tqdm
 # from utils import better_to_nx, initialize_edge_weight, clean_graph, prettify_metric_name
-from datasets import get_train_datasets, get_val_datasets, get_test_datasets
+from datasets import get_train_datasets, get_val_datasets, get_test_datasets, get_all_datasets
 from utils import *
+from top_metrics import compute_scores
 
 
 def desc_datasets(datasets, stage, dataset_names):
@@ -64,10 +65,15 @@ def run(args):
     logging.info("Seed: %d" % args.seed)
     logging.info(args)
 
+
     # Get datasets
     my_transforms = Compose([initialize_edge_weight])
 
+    train_datasets, train_names = get_test_datasets(my_transforms, num = args.num_train)
+    compute_scores(train_datasets, train_names)
+
     train_datasets, train_names = get_train_datasets(my_transforms, num = args.num_train)
+
     val_datasets, val_names = get_val_datasets(my_transforms, num = args.num_val)
     test_datasets, test_names = get_test_datasets(my_transforms, num = args.num_test)
     print_strings = [r"Name  &  Stage  &  Num  &  X shape  &  E shape  &  Y shape  &  Num. Nodes  &  Num. Edges  &  Diameter  &  Clustering \\"]
@@ -78,6 +84,8 @@ def run(args):
     print_strings += desc_datasets(test_datasets, "Test", test_names)
 
     latex_to_markdown(print_strings)
+
+
 
 
 

@@ -204,7 +204,50 @@ def clean_graph(g):
 
 #     return graphs
 
+def normalize_l2(input_tensor):
+    """
+    Normalize an (N x D) tensor with the L2 norm.
 
+    Parameters:
+    input_tensor (torch.Tensor): Input tensor of shape (N, D)
+
+    Returns:
+    torch.Tensor: Normalized tensor of shape (N, D)
+    """
+    # Uncomment to actually normalize
+        # # Compute the L2 norm for each vector
+        # l2_norm = torch.linalg.vector_norm(input_tensor, ord=2, dim=1, keepdim=True)
+        
+        # # Avoid division by zero by creating a mask
+        # l2_norm = l2_norm + (l2_norm == 0) * 1e-10
+        
+        # # Normalize the input tensor
+        # normalized_tensor = input_tensor / l2_norm
+        
+        # return normalized_tensor
+
+    return input_tensor
+
+def wandb_cfg_to_actual_cfg(original_cfg, wandb_cfg):
+    """
+    Retrive wandb config from saved file
+    Args:
+        original_cfg: the config from this run
+        wandb_cfg: the saved config from the training run
+
+    Returns:
+        a config with values updated to those from the saved training run
+    """
+    original_keys = list(vars(original_cfg).keys())
+    wandb_keys = list(wandb_cfg.keys())
+
+    for key in original_keys:
+        if key not in wandb_keys:
+            continue
+
+        vars(original_cfg)[key] = wandb_cfg[key]['value']
+
+    return original_cfg
 
 def sample_graph(sampler, graph):
     return nx.convert_node_labels_to_integers(sampler.sample(graph))

@@ -163,3 +163,45 @@ def get_train_datasets(transforms, num = 2000, mol_only = False):
 
     return datasets, ogbg_names + social_names
 
+def remove_duplicates_in_place(list1, list2):
+    seen = set()
+    i = 0
+    
+    while i < len(list2):
+        if list2[i] in seen:
+            del list1[i]
+            del list2[i]
+        else:
+            seen.add(list2[i])
+            i += 1
+
+def get_all_datasets(transforms, num = 5000, mol_only = False):
+    
+    # All the train datasets
+    chemical_datasets, ogbg_names = get_chemical_datasets(transforms, num, stage="train")
+    if not mol_only:
+        social_datasets, social_names = get_social_datasets(transforms, num, stage="train")
+    else:
+        social_datasets = []
+        social_names = []
+
+    datasets = chemical_datasets + social_datasets
+
+
+    val_chemical_datasets, val_ogbg_names = get_chemical_datasets(transforms, -1, stage="val")
+    if not mol_only:
+        val_social_datasets, val_social_names = get_social_datasets(transforms, num, stage="val")
+    else:
+        val_social_datasets = []
+        val_social_names = []
+
+    datasets = datasets + val_chemical_datasets + val_social_datasets
+    all_names = ogbg_names + social_names + val_ogbg_names + val_social_names
+
+    remove_duplicates_in_place(datasets, all_names)
+
+
+
+
+    return datasets, all_names
+
