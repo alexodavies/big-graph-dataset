@@ -9,16 +9,20 @@ Each dataset comprises many small graphs.
 
 The basics:
  - Create your own git branch
- - Copy the `example_dataset.py`
+ - Copy the `datasets/example_dataset.py`
+ - Have a look through
  - Re-tool it for your own dataset
 
  I've provided code for sub-sampling graphs and producing statistics.
 
- A few rules:
+ A few rules, demonstrated in `datasets/example_dataset.py`:
  - The datasets need at least a train/val/test split
  - The training set should have _**no node or edge features**_
  - Datasets should be many small (<200 node) graphs
  - Ideally the number of graphs in each dataset should be controllable
+ - Data should be downloaded in-code to keep the repo small. If this isn't possible let me know.
+ - Please cite your sources for data in documentation
+ - Where possible start from existing datasets that have been used in-literature, or if using generators, use generators that are well-understood
 
 --- 
 
