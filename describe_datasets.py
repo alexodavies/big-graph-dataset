@@ -42,16 +42,46 @@ def desc_datasets(datasets, stage, dataset_names):
     return these_print_strings
 
 def latex_to_markdown(strings):
-    new_strings = []
-    for txt in strings:
+    new_string = ""
+    for itxt, txt in enumerate(strings):
+        
         txt = txt.replace("&", "|")
         txt = txt.replace(r"\\", "")
         txt = txt.replace("$", "")
         txt = txt.replace("\pm", "±")
 
-        print("|" + txt + "|")
+        print("| " + txt + " |")
+        new_string += "| " + txt + " | \n"
 
+        if itxt == 0:
+            print("|---|---|---|---|---|---|---|---|---|---|")
+            new_string += "|---|---|---|---|---|---|---|---|---|---| \n"
+
+    return new_string
+
+def update_readme_table(readme_path, new_table):
+    with open(readme_path, 'r') as file:
+        readme = file.readlines()
+
+    # Find the start and end of the table
+    table_start = None
+    table_end = None
+    for i, line in enumerate(readme):
+        if ' Name  ' in line:
+            table_start = i - 1
+        elif table_start is not None and line.strip() == '':
+            table_end = i
+            break
+
+    if table_start is None or table_end is None:
+        raise ValueError('Could not find table in README')
+
+    # Replace the table with the new table
+    readme = readme[:table_start] + new_table.split('\n') + readme[table_end:]
     
+    # Write the updated README back to the file
+    with open(readme_path, 'w') as file:
+        file.write(''.join(readme))
 
 def run(args):
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S')
@@ -75,7 +105,8 @@ def run(args):
     print_strings += desc_datasets(val_datasets, "Val", val_names)
     print_strings += desc_datasets(test_datasets, "Test", test_names)
 
-    latex_to_markdown(print_strings)
+    md_string = latex_to_markdown(print_strings)
+    update_readme_table("README.md", md_string)
 
     train_datasets, train_names = get_all_datasets(my_transforms, num = args.num_train)
 

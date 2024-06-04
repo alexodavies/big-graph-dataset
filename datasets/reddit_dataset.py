@@ -29,8 +29,8 @@ def download_reddit():
     if "reddit-graph.npz" in os.listdir():
         with open("reddit-graph.npz", "rb") as f:
             graph = pickle.load(f)
-    else:
-        os.chdir("reddit")
+        os.chdir(start_dir)
+        return graph
 
     if "soc-redditHyperlinks-title.tsv" not in os.listdir():
         graph_data = wget.download(graph_url)

@@ -131,6 +131,32 @@ def get_example_dataset(num = 2000):
     return  data_objects
 
 class ExampleDataset(InMemoryDataset):
+    # Documentation is essential! Without the sources listed I won't be able to include the dataset
+    r"""
+    Academic citation graphs from the ML community, sampled from a large original graph using ESWR.
+    The original graph is sourced from:
+
+         `Yang, Zhilin, William Cohen, and Ruslan Salakhudinov. "Revisiting semi-supervised learning with graph embeddings." International conference on machine learning. PMLR, 2016.`
+
+    The original data has one-hot bag-of-words over paper abstract as node features.
+
+    The task is node classification for the category of each paper, one-hot encoded for seven categories.
+
+     - Task: Node classification
+     - Num node features: 2879
+     - Num edge features: None
+     - Num target values: 7
+     - Target shape: N Nodes
+     - Num graphs: Parameterised by `num`
+
+    Args:
+        root (str): Root directory where the dataset should be saved.
+        stage (str): The stage of the dataset to load. One of "train", "val", "test". (default: :obj:`"train"`)
+        transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before every access. (default: :obj:`None`)
+        pre_transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before being saved to disk. (default: :obj:`None`)
+        pre_filter (callable, optional): A function that takes in an :obj:`torch_geometric.data.Data` object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: :obj:`None`)
+        num (int): The number of samples to take from the original dataset. (default: :obj:`2000`).
+    """
     def __init__(self, root, stage = "train", transform=None, pre_transform=None, pre_filter=None, num = 2000):
         self.num = num
         self.stage = stage
