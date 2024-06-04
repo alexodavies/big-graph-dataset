@@ -73,11 +73,17 @@ def update_readme_table(readme_path, new_table):
             table_end = i
             break
 
+    if table_end is None:
+        table_end = len(readme)
+        
     if table_start is None or table_end is None:
         raise ValueError('Could not find table in README')
 
+    # Split the new table into lines and add the newline character back to the end of each line
+    new_table_lines = [line + '\n' for line in new_table.split('\n') if line]
+
     # Replace the table with the new table
-    readme = readme[:table_start] + new_table.split('\n') + readme[table_end:]
+    readme = readme[:table_start] + new_table_lines + readme[table_end:]
     
     # Write the updated README back to the file
     with open(readme_path, 'w') as file:

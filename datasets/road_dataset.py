@@ -98,10 +98,9 @@ def add_attrs_to_graph(g):
 def get_road_dataset(num = 2000, targets = False):
     fb_graph = download_roads()
     nx_graph_list = ESWR(fb_graph, num, 96)
-    nx_graph_list = [add_attrs_to_graph(g) for g in nx_graph_list]
 
 
-    data_objects = [pyg.utils.from_networkx(g, group_node_attrs=all, group_edge_attrs=all) for g in nx_graph_list]
+    data_objects = [pyg.utils.from_networkx(g) for g in nx_graph_list]
 
     for i, data in enumerate(tqdm(data_objects, desc="Calculating diameter values for roads", leave=False)):
         data.y = torch.tensor(int(is_planar(nx_graph_list[i])))
@@ -167,31 +166,31 @@ class RoadDataset(InMemoryDataset):
 
         data_list = get_road_dataset(num=self.num, targets=self.stage != "train")
 
-        if self.stage == "train":
-            print("Found stage train, dropping targets")
-            new_data_list = []
-            for i, item in enumerate(data_list):
-                n_nodes, n_edges = item.x.shape[0], item.edge_index.shape[1]
+        # if self.stage == "train":
+        #     print("Found stage train, dropping targets")
+        #     new_data_list = []
+        #     for i, item in enumerate(data_list):
+        #         n_nodes, n_edges = item.x.shape[0], item.edge_index.shape[1]
 
-                data = Data(x = torch.ones(n_nodes).to(torch.int).reshape((-1, 1)),
-                            edge_index=item.edge_index,
-                            edge_attr=torch.ones(n_edges).to(torch.int).reshape((-1,1)),
-                            y = None)
-                new_data_list.append(data)
-            data_list = new_data_list
-        else:
-            new_data_list = []
-            for i, item in enumerate(data_list):
-                n_nodes, n_edges = item.x.shape[0], item.edge_index.shape[1]
+        #         data = Data(x = torch.ones(n_nodes).to(torch.int).reshape((-1, 1)),
+        #                     edge_index=item.edge_index,
+        #                     edge_attr=torch.ones(n_edges).to(torch.int).reshape((-1,1)),
+        #                     y = None)
+        #         new_data_list.append(data)
+        #     data_list = new_data_list
+        # else:
+        #     new_data_list = []
+        #     for i, item in enumerate(data_list):
+        #         n_nodes, n_edges = item.x.shape[0], item.edge_index.shape[1]
 
 
-                data = Data(x = item.x,
-                            edge_index=item.edge_index,
-                            edge_attr=torch.ones(n_edges).to(torch.int).reshape((-1,1)),
-                            y = item.y)
+        #         data = Data(x = item.x,
+        #                     edge_index=item.edge_index,
+        #                     edge_attr=torch.ones(n_edges).to(torch.int).reshape((-1,1)),
+        #                     y = item.y)
 
-                new_data_list.append(data)
-            data_list = new_data_list
+        #         new_data_list.append(data)
+        #     data_list = new_data_list
 
         if self.pre_filter is not None:
             data_list = [data for data in data_list if self.pre_filter(data)]
