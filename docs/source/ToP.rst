@@ -1,7 +1,7 @@
 ToP (Topology only Pre-training)
 ================
 
-.. automodule:: datasets
+.. automodule:: top
     :members:
     :undoc-members:
     :private-members:
