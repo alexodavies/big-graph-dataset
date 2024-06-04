@@ -101,16 +101,18 @@ class GeneralEmbeddingEvaluation():
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
 
     def embedding_evaluation(self, encoder, train_loaders, names):
-        train_all_embeddings, train_separate_embeddings = self.get_embeddings(encoder, train_loaders)
+        train_all_embeddings, train_separate_embeddings = self.get_embeddings(encoder, train_loaders, names)
         self.centroid_similarities(train_separate_embeddings, names)
         self.vis(train_all_embeddings, train_separate_embeddings, names)
 
-    def get_embeddings(self, encoder, loaders):
+    def get_embeddings(self, encoder, loaders, names):
         encoder.eval()
         all_embeddings = None
         separate_embeddings = []
         # colours = []
-        for i, loader in enumerate(tqdm(loaders, leave = False, desc = "Getting embeddings")):
+        pbar = tqdm(loaders, desc = "Getting embeddings")
+        for i, loader in enumerate(pbar):
+            pbar.set_description(names[i])
             train_emb, train_y = get_emb_y(loader, encoder, self.device, is_rand_label=False, every=1, node_features = False)
             
             separate_embeddings.append(train_emb)
@@ -197,14 +199,14 @@ class GeneralEmbeddingEvaluation():
 
         fig.legend(handles = new_handles, labels = labels,
                     bbox_transform = fig.transFigure,
-                     loc='center bottom',
-                     ncol = 8, frameon = False)
+                     loc='lower center',
+                     ncol = 5, frameon = False, bbox_to_anchor = (0.5, 0.))
         
         
         
         
         plt.tight_layout()
-        plt.subplots_adjust(bottom=0.25)
+        plt.subplots_adjust(bottom=0.2)
         plt.savefig("outputs/embedding.png")
         plt.close()
 
@@ -242,7 +244,7 @@ class GeneralEmbeddingEvaluation():
         # mean_separation = pairwise_sum / ((pairwise_similarities.shape[0]**2)/2 - pairwise_similarities.shape[0])
     plt.show()
 
-def compute_scores(datasets, names):
+def compute_top_scores(datasets, names):
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S')
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     # setup_seed(args.seed)
@@ -269,7 +271,9 @@ def compute_scores(datasets, names):
     train_loaders = [DataLoader(data, batch_size=128) for data in datasets]
     
     model = GInfoMinMax(
-        Encoder(emb_dim=args["emb_dim"]["value"], num_gc_layers=args["num_gc_layers"]["value"], drop_ratio=args["drop_ratio"]["value"],
+        Encoder(emb_dim=args["emb_dim"]["value"],
+                 num_gc_layers=args["num_gc_layers"]["value"], 
+                 drop_ratio=args["drop_ratio"]["value"],
                 pooling_type="standard"),
         proj_hidden_dim=args["emb_dim"]["value"]).to(device)
 

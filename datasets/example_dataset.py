@@ -8,44 +8,10 @@ from torch_geometric.io import read_npz
 from torch.nn.functional import one_hot
 import wget
 import matplotlib.pyplot as plt
-from utils import describe_one_dataset, vis_grid
-import pickle
-
-if __name__ == "__main__":
-    print(os.getcwd())
-
+from utils import describe_one_dataset, vis_grid, ESWR
 from utils import ESWR
 
-def five_cycle_worker(g):
-    """
-    Returns the number of 5-cycles in a graph, normalised by the number of nodes
-    """
-    cycles = nx.simple_cycles(g, length_bound = 5)
-    return len(list(cycles))
 
-def vis_from_pyg(data, filename = None):
-    edges = data.edge_index.T.cpu().numpy()
-    labels = data.x[:,0].cpu().numpy()
-
-    g = nx.Graph()
-    g.add_edges_from(edges)
-
-    fig, ax = plt.subplots(figsize = (6,6))
-
-    pos = nx.kamada_kawai_layout(g)
-
-    nx.draw_networkx_edges(g, pos = pos, ax = ax)
-    nx.draw_networkx_nodes(g, pos = pos, node_color=labels, cmap="tab20",
-                           vmin = 0, vmax = 20, ax = ax)
-
-    ax.axis('off')
-
-    plt.tight_layout()
-    if filename is None:
-        plt.show()
-    else:
-        plt.savefig(filename)
-        plt.close()
 
 def specific_from_networkx(graph):
     # Turns a graph into a pytorch geometric object
@@ -158,7 +124,7 @@ def get_example_dataset(num = 2000):
     # ESWR samples a load of graphs from a large input graph
     # Doesn't handle graph labels! See download_example for how to deal with this
     # Arguments are networkx.Graph, num graphs to sample, size doesn't currently do anything
-    nx_graph_list = ESWR(cora_graph, num, 48)
+    nx_graph_list = ESWR(cora_graph, num, 96)
 
     data_objects = [specific_from_networkx(graph) for graph in tqdm(nx_graph_list, desc = "Converting back to pyg graphs")]
 
@@ -197,43 +163,27 @@ class ExampleDataset(InMemoryDataset):
         # Read data into huge `Data` list.
 
         if os.path.isfile(self.processed_paths[self.stage_to_index[self.stage]]):
-            print("DATASET files exist")
+            print(f"Cora files exist")
             return
 
         # Get a list of num pytorch_geometric.data.Data objects
         data_list = get_example_dataset(num=self.num)
 
-        if self.stage == "train":
-            # For pre-training we don't want any features or labels!
-            print("Found stage train, dropping targets")
-            new_data_list = []
-            for i, item in enumerate(tqdm(data_list, desc = "Removing features for train")):
-                n_nodes, n_edges = item.x.shape[0], item.edge_index.shape[1]
-                 
-                data = Data(x = torch.ones(n_nodes).to(torch.int).reshape((-1, 1)),
-                            edge_index=item.edge_index,
-                            edge_attr=torch.ones(n_edges).to(torch.int).reshape((-1,1)),
-                            y = None)
+        # You can iterate over the data objects if necessary:
+        # ===================================================
+        # new_data_list = []
+        # for i, item in enumerate(data_list):
+        #     n_nodes, n_edges = item.x.shape[0], item.edge_index.shape[1]
 
-                new_data_list.append(data)
-            data_list = new_data_list
+        #     data = Data(x = item.x,
+        #                 edge_index=item.edge_index,
+        #                 # Here we don't have any edge features so we use just 1s
+        #                 edge_attr=None,
+        #                 y = item.y)
 
-        else:
-            # Keep features for any other stage
-            # If you don't have node features or edge features or labels,
-            # use a dummy value (1s) instead.
-            new_data_list = []
-            for i, item in enumerate(data_list):
-                n_nodes, n_edges = item.x.shape[0], item.edge_index.shape[1]
-
-                data = Data(x = item.x,
-                            edge_index=item.edge_index,
-                            # Here we don't have any edge features so we use just 1s
-                            edge_attr=torch.ones(n_edges).to(torch.int).reshape((-1,1)),
-                            y = item.y)
-
-                new_data_list.append(data)
-            data_list = new_data_list
+        #     new_data_list.append(data)
+        # data_list = new_data_list
+        # ===================================================
 
         # Torch geometric stuff
         if self.pre_filter is not None:
@@ -258,7 +208,7 @@ if __name__ == "__main__":
     dataset = ExampleDataset(os.getcwd()+'/original_datasets/'+'example', stage = "val")
     describe_one_dataset(dataset)
     vis_grid(dataset[:16], os.getcwd()+"/original_datasets/example/val.png")
-    
+
     dataset = ExampleDataset(os.getcwd()+'/original_datasets/'+'example', stage = "test")
     describe_one_dataset(dataset)
     vis_grid(dataset[:16], os.getcwd()+"/original_datasets/example/test.png")

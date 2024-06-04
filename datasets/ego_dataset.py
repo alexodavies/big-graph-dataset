@@ -6,48 +6,19 @@ import pandas as pd
 import torch
 import torch_geometric as pyg
 from torch_geometric.data import InMemoryDataset
-# import osmnx as ox
-# from ToyDatasets import *
-import zipfile
 import wget
-# from utils import vis_from_pyg
-import matplotlib.pyplot as plt
 from tqdm import tqdm
-
-def vis_from_pyg(data, filename = None):
-    edges = data.edge_index.T.cpu().numpy()
-    labels = data.x[:,0].cpu().numpy()
-
-    g = nx.Graph()
-    g.add_edges_from(edges)
-
-    fig, ax = plt.subplots(figsize = (6,6))
-
-    pos = nx.kamada_kawai_layout(g)
-
-    nx.draw_networkx_edges(g, pos = pos, ax = ax)
-    nx.draw_networkx_nodes(g, pos = pos, node_color=labels, cmap="tab20",
-                           vmin = 0, vmax = 20, ax = ax)
-
-    ax.axis('off')
-
-    plt.tight_layout()
-    if filename is None:
-        plt.show()
-    else:
-        plt.savefig(filename)
-        plt.close()
+from utils import describe_one_dataset
+import zipfile
+from .top_dataset import ToPDataset
 
 def get_twitch(num = 49152, include_targets = False):
-    # zip_url = "https://snap.stanford.edu/data/deezer_ego_nets.zip"
     print("\nProcessing twitch egos dataset")
     zip_url = "https://snap.stanford.edu/data/twitch_egos.zip"
     start_dir = os.getcwd()
-    # print(os.getcwd(), os.listdir())
     os.chdir("original_datasets")
 
-
-    if "twitch_egos" not in os.listdir():
+    if "twitch_edges.json" not in os.listdir("twitch_egos"):
         print("Downloading Twitch Egos")
         _ = wget.download(zip_url)
         with zipfile.ZipFile("twitch_egos.zip", 'r') as zip_ref:
@@ -59,10 +30,9 @@ def get_twitch(num = 49152, include_targets = False):
     with open("twitch_edges.json", "r") as f:
         all_edges = json.load(f)
 
-    if include_targets:
-        twitch_targets = pd.read_csv("twitch_target.csv")
-        ids, targets = twitch_targets["id"], twitch_targets["target"]
-        id_to_target = {ids[i]:targets[i] for i in range(len(ids))}
+    twitch_targets = pd.read_csv("twitch_target.csv")
+    ids, targets = twitch_targets["id"], twitch_targets["target"]
+    id_to_target = {ids[i]:targets[i] for i in range(len(ids))}
 
 
     graph_ids = list(all_edges.keys())
@@ -78,29 +48,25 @@ def get_twitch(num = 49152, include_targets = False):
         nodes = np.unique(edges).tolist()
 
         for node in nodes:
-            g.add_node(node, attr = torch.Tensor([1])) #, 0, 0, 0, 0, 0, 0, 0, 0]))
+            g.add_node(node) #, attr = torch.Tensor([1]))
 
         for edge in edges:
-            g.add_edge(edge[0], edge[1], attr=torch.Tensor([1]))
+            g.add_edge(edge[0], edge[1]) #, attr=torch.Tensor([1]))
         graphs.append(g)
 
-    # loader = pyg.loader.DataLoader([pyg.utils.from_networkx(g, group_node_attrs=all, group_edge_attrs=all) for g in graphs],
-    #                                           batch_size=batch_size)
     os.chdir(start_dir)
-    # return loader
-    data_objects = [pyg.utils.from_networkx(g, group_node_attrs=all, group_edge_attrs=all) for g in graphs]
-
+    # data_objects = [pyg.utils.from_networkx(g, group_node_attrs=all, group_edge_attrs=all) for g in graphs]
+    data_objects = [pyg.utils.from_networkx(g) for g in graphs]
 
     for id, data in enumerate(data_objects):
-        if include_targets:
-            data.y = id_to_target[id]
-        else:
-            data.y = None # torch.Tensor([[0,0]])
+        print(id_to_target[id])
+        data.y = torch.Tensor([id_to_target[id]])
+        print(data.y)
 
-    return  data_objects# loader
+    return  data_objects
 
 class EgoDataset(InMemoryDataset):
-    def __init__(self, root, stage = "train", transform=None, pre_transform=None, pre_filter=None, num = 2000):
+    def __init__(self, root, stage = "train", transform=None, pre_transform=None, pre_filter=None, num = 5000):
         self.num = num
         self.stage = stage
         self.stage_to_index = {"train":0,
@@ -108,7 +74,6 @@ class EgoDataset(InMemoryDataset):
                                "test":2}
 
 
-        # _ = get_twitch(num = 1)
         super().__init__(root, transform, pre_transform, pre_filter)
         self.data, self.slices = torch.load(self.processed_paths[self.stage_to_index[self.stage]])
 
@@ -126,11 +91,9 @@ class EgoDataset(InMemoryDataset):
 
     def process(self):
         # Read data into huge `Data` list.
-
         if os.path.isfile(self.processed_paths[self.stage_to_index[self.stage]]):
             print("Ego files exist")
             return
-        print(f"Aiming for {self.num} graphs")
         data_list = get_twitch(num=self.num, include_targets =self.stage != "train")
 
         if self.pre_filter is not None:
@@ -139,18 +102,13 @@ class EgoDataset(InMemoryDataset):
         if self.pre_transform is not None:
             data_list = [self.pre_transform(data) for data in data_list]
 
-        # if self.stage != "train":
-        #     for i, data in enumerate(data_list):
-        #         vis_from_pyg(data, filename=self.root + f'/processed/{self.stage}-{i}.png')
 
         data, slices = self.collate(data_list)
         torch.save((data, slices), self.processed_paths[self.stage_to_index[self.stage]])
 
 
 if __name__ == "__main__":
-    # fb_graph = download_cora()
-    # print(fb_graph.nodes(data=True))
-    # graphs = ESWR(fb_graph, 200, 100)
-    # G = download_cora()
-    # print(G)
-    dataset = EgoDataset(os.getcwd()+'/original_datasets/'+'twitch_egos')
+    dataset = EgoDataset(os.getcwd()+'/original_datasets/'+'twitch_egos', stage = "train")
+    describe_one_dataset(dataset)
+    dataset = ToPDataset(dataset.root, dataset)
+    describe_one_dataset(dataset)

@@ -27,21 +27,15 @@ def four_cycles(g):
     return len(list(cycles))
 
 def load_fly(return_tensor = False):
-    pwd = os.getcwd()
-    zip_url = "https://www.kaggle.com/datasets/alexanderowendavies/fruit-fly-larva-brain/download" #?datasetVersionNumber=1"
-
     start_dir = os.getcwd()
     os.chdir("fruit_fly")
     os.chdir("Supplementary-Data-S1")
-
-
 
     data_path = os.path.join(os.getcwd(), "all-all_connectivity_matrix.csv")
     fly_mat = pd.read_csv(
         data_path).drop(
         columns=['Unnamed: 0'])
     fly_mat = fly_mat.to_numpy()
-    #
 
     os.chdir(start_dir)
     os.chdir("original_datasets")
@@ -51,9 +45,8 @@ def load_fly(return_tensor = False):
         os.chdir("fruit_fly")
 
     # Could be fun to trim only to multiple-synapse connections?
-
-    fly_mat[fly_mat <= 2] = 0
-    fly_mat[fly_mat > 2] = 1
+    # fly_mat[fly_mat <= 2] = 0
+    # fly_mat[fly_mat > 2] = 1
     fly_mat[np.identity(fly_mat.shape[0], dtype=bool)] = 0.
     fly_graph = fly_mat
 
@@ -64,46 +57,78 @@ def load_fly(return_tensor = False):
     nx_graph = CGs[0]
     nx_graph = nx.convert_node_labels_to_integers(nx_graph)
     nx_graph.remove_edges_from(nx.selfloop_edges(nx_graph))
-
-
     os.chdir(start_dir)
 
     return nx_graph
 
-def add_attrs_to_graph(g):
-    dummy_label = torch.Tensor([1])
-    nx.set_edge_attributes(g, dummy_label, "attrs")
-    nx.set_node_attributes(g, dummy_label, "attrs")
+def specific_from_networkx(graph):
+    # Turns a graph into a pytorch geometric object
+    # Mostly by unpacking dictionaries on nodes and edges
+    # Here edge labels are the target
+    edge_labels = []
+    edge_indices = []
 
-    return g
+    # Collect edge indices and attributes
+    for e in graph.edges(data=True):
+        # graph.edges(data=True) is a generator producing (node_id1, node_id2, {attribute dictionary})
+        edge_indices.append((e[0], e[1]))
+        edge_labels.append(torch.Tensor([e[2]["weight"]]))
 
 
-def get_fly_dataset(num = 2000, targets = False):
+    # Specific to classification on edges! This is a binary edge classification (pos/neg) task
+    edge_labels = torch.Tensor(edge_labels).reshape(-1,1)
+    edge_indices = torch.tensor(edge_indices, dtype=torch.long).t().contiguous()
+
+    # Create PyG Data object
+    # Can pass:
+    # x:            node features, shape (n nodes x n features)
+    # edge_index:   the list of edges in the graph, shape (2, n_edges). Entries edge_index[i, :] are [node_id1, node_id2].
+    # edge_attr:    edge features, shape (n_edges, n_features), same order as edgelist
+    # y:            targets. Graph regression shape (n_variables), graph classification (n_classes), node classification (n_nodes, n_classes), edge classification (n_edges, n_classes)
+    data = Data(x=None, edge_index=edge_indices, edge_attr = None,  y=edge_labels)
+
+    return data
+
+def get_fly_dataset(num = 2000):
     fb_graph = load_fly()
-    # print(fb_graph.nodes(data=True))
     nx_graph_list = ESWR(fb_graph, num, 96)
-    nx_graph_list = [add_attrs_to_graph(g) for g in nx_graph_list]
 
-    datalist = [pyg.utils.from_networkx(item, group_edge_attrs=all, group_node_attrs=all) for item in nx_graph_list]
+    datalist = [specific_from_networkx(item) for item in nx_graph_list]
 
-    for i, data in enumerate(datalist):
-        if targets:
-            data.y = torch.tensor(four_cycles(nx_graph_list[i]) * 0.01, dtype=float)
-        else:
-            data.y = None 
-        data.edge_attr = data.edge_attr[:,0].reshape(-1,1)
-        datalist[i] = data
-
-
-    return datalist# loader
+    return datalist
 
 class NeuralDataset(InMemoryDataset):
+    r"""
+    A dataset of the connectome of a fruit fly larvae.
+    The original graph is sourced from:
+
+         Michael Winding et al. , The connectome of an insect brain.Science379,eadd9330(2023).DOI:10.1126/science.add9330
+
+    We process the original multigraph into ESWR samples of this neural network, with predicting the strength of the connection (number of synapses) between two neurons as the target.
+
+     - Task: Edge regression
+     - Num node features: 0
+     - Num edge features: 0
+     - Num target values: 1
+     - Target shape: (N Edges, 1)
+
+    Args:
+        root (str): Root directory where the dataset should be saved.
+        stage (str): The stage of the dataset to load. One of "train", "val", "test".
+        transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before every access. (default: :obj:`None`)
+        pre_transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before being saved to disk. (default: :obj:`None`)
+        pre_filter (callable, optional): A function that takes in an :obj:`torch_geometric.data.Data` object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: :obj:`None`)
+        num (int): The number of samples to take from the original dataset. (default: :obj:`2000`).
+    """
+    
     def __init__(self, root, stage="train", transform=None, pre_transform=None, pre_filter=None, num = 2000):
         self.num = num
         self.stage = stage
         self.stage_to_index = {"train":0,
                                "val":1,
                                "test":2}
+        
+        self.task = "edge-regression"
         _ = load_fly()
         del _
         super().__init__(root, transform, pre_transform, pre_filter)
@@ -128,33 +153,33 @@ class NeuralDataset(InMemoryDataset):
             print("Connectome files exist")
             return
 
-        data_list = get_fly_dataset(num=self.num, targets=self.stage != "train")
+        data_list = get_fly_dataset(num=self.num)
 
-        if self.stage == "train":
-            print("Found stage train, dropping targets")
-            new_data_list = []
-            for i, item in enumerate(data_list):
-                n_nodes, n_edges = item.x.shape[0], item.edge_index.shape[1]
+        # if self.stage == "train":
+        #     print("Found stage train, dropping targets")
+            # new_data_list = []
+            # for i, item in enumerate(data_list):
+            #     n_nodes, n_edges = item.x.shape[0], item.edge_index.shape[1]
 
-                data = Data(x = torch.ones(n_nodes).to(torch.int).reshape((-1, 1)),
-                            edge_index=item.edge_index,
-                            edge_attr=torch.ones(n_edges).to(torch.int).reshape((-1,1)),
-                            y = None)
+            #     data = Data(x = torch.ones(n_nodes).to(torch.int).reshape((-1, 1)),
+            #                 edge_index=item.edge_index,
+            #                 edge_attr=torch.ones(n_edges).to(torch.int).reshape((-1,1)),
+            #                 y = None)
 
-                new_data_list.append(data)
-            data_list = new_data_list
-        else:
-            new_data_list = []
-            for i, item in enumerate(data_list):
-                n_nodes, n_edges = item.x.shape[0], item.edge_index.shape[1]
+            #     new_data_list.append(data)
+            # data_list = new_data_list
+        # else:
+        # new_data_list = []
+        # for i, item in enumerate(data_list):
+        #     n_nodes, n_edges = item.x.shape[0], item.edge_index.shape[1]
 
 
-                data = Data(x = item.x,
-                            edge_index=item.edge_index,
-                            edge_attr=torch.ones(n_edges).to(torch.int).reshape((-1,1)),
-                            y = item.y)
-                new_data_list.append(data)
-            data_list = new_data_list
+        #     data = Data(x = None,
+        #                 edge_index=item.edge_index,
+        #                 edge_attr=None,
+        #                 y = item.y)
+        #     new_data_list.append(data)
+        # data_list = new_data_list
 
         if self.pre_filter is not None:
             data_list = [data for data in data_list if self.pre_filter(data)]

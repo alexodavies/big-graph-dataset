@@ -10,8 +10,11 @@ from datasets.random_dataset import RandomDataset
 from datasets.neural_dataset import NeuralDataset
 from datasets.road_dataset import RoadDataset
 from datasets.tree_dataset import TreeDataset
+from datasets.reddit_dataset import RedditDataset
 from datasets.lattice_dataset import LatticeDataset
 from datasets.from_ogb_dataset import FromOGBDataset
+from datasets.top_dataset import ToPDataset
+
 
 
 
@@ -67,8 +70,9 @@ def get_social_datasets(transforms, num, stage = "train", exclude = None):
             transforms(EgoDataset(os.getcwd() + '/original_datasets/' + 'twitch_egos', num=num, stage=stage)),
             transforms(CoraDataset(os.getcwd() + '/original_datasets/' + 'cora', num=num, stage = stage)),
             transforms(RoadDataset(os.getcwd() + '/original_datasets/' + 'roads', num=num, stage=stage)),
-            transforms(NeuralDataset(os.getcwd() + '/original_datasets/' + 'fruit_fly', num=num, stage=stage))]
-        names = ["facebook_large", "twitch_egos", "cora", "roads", "fruit_fly"]
+            transforms(NeuralDataset(os.getcwd() + '/original_datasets/' + 'fruit_fly', num=num, stage=stage)),
+            transforms(RedditDataset(os.getcwd() + '/original_datasets/' + 'reddit', num=num, stage=stage))]
+        names = ["facebook_large", "twitch_egos", "cora", "roads", "fruit_fly", "reddit"]
 
         if exclude is None:
             print(f"Not excluding any social datasets")
@@ -103,11 +107,12 @@ def get_social_datasets(transforms, num, stage = "train", exclude = None):
             transforms(CoraDataset(os.getcwd() + '/original_datasets/' + 'cora', stage=stage, num=num)),
             transforms(RoadDataset(os.getcwd() + '/original_datasets/' + 'roads', stage=stage, num=num)),
             transforms(NeuralDataset(os.getcwd() + '/original_datasets/' + 'fruit_fly', stage=stage, num=num)),
+            transforms(RedditDataset(os.getcwd() + '/original_datasets/' + 'reddit', num=num, stage=stage)),
             transforms(TreeDataset(os.getcwd() + '/original_datasets/' + 'trees', stage=stage, num=num)),
             transforms(RandomDataset(os.getcwd() + '/original_datasets/' + 'random', stage=stage, num=num)),
             transforms(CommunityDataset(os.getcwd() + '/original_datasets/' + 'community', stage=stage, num=num))
             ]
-        names = ["facebook_large", "twitch_egos", "cora", "roads", "fruit_fly", "trees", "random", "community"]
+        names = ["facebook_large", "twitch_egos", "cora", "roads", "fruit_fly", "reddit", "trees", "random", "community"]
     else:
         social_datasets = [
             transforms(FacebookDataset(os.getcwd() + '/original_datasets/' + 'facebook_large', stage=stage, num=num)),
@@ -115,11 +120,12 @@ def get_social_datasets(transforms, num, stage = "train", exclude = None):
             transforms(CoraDataset(os.getcwd() + '/original_datasets/' + 'cora', stage=stage, num=num)),
             transforms(RoadDataset(os.getcwd() + '/original_datasets/' + 'roads', stage=stage, num=num)),
             transforms(NeuralDataset(os.getcwd() + '/original_datasets/' + 'fruit_fly', stage=stage, num=num)),
+            transforms(RedditDataset(os.getcwd() + '/original_datasets/' + 'reddit', num=num, stage=stage)),
             transforms(TreeDataset(os.getcwd() + '/original_datasets/' + 'trees', stage=stage, num=num)),
             transforms(RandomDataset(os.getcwd() + '/original_datasets/' + 'random', stage=stage, num=num)),
             transforms(CommunityDataset(os.getcwd() + '/original_datasets/' + 'community', stage=stage, num=num))
             ]
-        names = ["facebook_large", "twitch_egos", "cora", "roads", "fruit_fly", "trees", "random", "community"]
+        names = ["facebook_large", "twitch_egos", "cora", "roads", "fruit_fly", "reddit", "trees", "random", "community"]
 
     return social_datasets, names
 
@@ -199,9 +205,6 @@ def get_all_datasets(transforms, num = 5000, mol_only = False):
     all_names = ogbg_names + social_names + val_ogbg_names + val_social_names
 
     remove_duplicates_in_place(datasets, all_names)
-
-
-
 
     return datasets, all_names
 

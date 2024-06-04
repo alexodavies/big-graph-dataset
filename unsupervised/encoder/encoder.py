@@ -187,6 +187,12 @@ class Encoder(torch.nn.Module):
 				if x is None:
 					x = torch.ones((batch.shape[0], 1)).to(device)
 
+				# print(x) 
+				# print(edge_index.shape)
+				# print(torch.min(edge_index))
+				# print(torch.max(edge_index))
+				# print(edge_attr.shape)
+
 				x, _ = self.forward(batch, x, edge_index, edge_attr, edge_weight)
 
 				ret.append(x.cpu().numpy())

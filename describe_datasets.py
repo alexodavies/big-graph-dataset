@@ -1,22 +1,17 @@
 import argparse
 import logging
-import networkx as nx
 import numpy as np
 import torch
 from torch_geometric.transforms import Compose
-from tqdm import tqdm
-# from utils import better_to_nx, initialize_edge_weight, clean_graph, prettify_metric_name
-from datasets import get_train_datasets, get_val_datasets, get_test_datasets, get_all_datasets
+from datasets import get_train_datasets, get_val_datasets, get_test_datasets, get_all_datasets, ToPDataset
 from utils import *
-from top_metrics import compute_scores
+from top_metrics import compute_top_scores
 
 
 def desc_datasets(datasets, stage, dataset_names):
     these_print_strings = []
     for i_dataset, dataset in enumerate(datasets):
         arrays, metrics, names = get_metric_values(dataset)
-
-        # print_string = f"{train_names[i_dataset]} & {stage} & {len(dataset)}"
         print_string = f"{dataset_names[i_dataset]} & {stage} & {len(dataset)}"
 
         one_sample = dataset[0]
@@ -69,9 +64,6 @@ def run(args):
     # Get datasets
     my_transforms = Compose([initialize_edge_weight])
 
-    train_datasets, train_names = get_all_datasets(my_transforms, num = args.num_train)
-    compute_scores(train_datasets, train_names)
-
     train_datasets, train_names = get_train_datasets(my_transforms, num = args.num_train)
 
     val_datasets, val_names = get_val_datasets(my_transforms, num = args.num_val)
@@ -85,79 +77,25 @@ def run(args):
 
     latex_to_markdown(print_strings)
 
+    train_datasets, train_names = get_all_datasets(my_transforms, num = args.num_train)
+
+    roots = []
+    for idataset, dataset in enumerate(train_datasets):
+        try:
+            roots.append(dataset.root)
+        except AttributeError:
+            train_datasets[idataset] = dataset.datasets[0]
+            roots.append(train_datasets[idataset].root)
+            # roots.append(dataset.datasets[0].root)
+
+    for i, dataset in enumerate(train_datasets):
+        print(dataset, train_names[i], roots[i])
+        vis_grid(dataset[:25], f"{roots[i]}/{train_names[i]}.png")
+
+    train_datasets = [ToPDataset(roots[i], dataset, stage = "train") for i, dataset in enumerate(train_datasets)]
+    compute_top_scores(train_datasets, train_names)
 
 
-
-
-    # for i_dataset, dataset in enumerate(train_datasets):
-    #     arrays, metrics, names = get_metric_values(dataset)
-
-    #     print_string = f"{train_names[i_dataset]} & Train & {len(dataset)}"
-
-    #     one_sample = dataset[0]
-    #     x_shape, edge_shape, y_shape = one_sample.x, one_sample.edge_attr, one_sample.y
-    #     x_shape = x_shape.shape[1] if x_shape is not None else "none" 
-    #     edge_shape = edge_shape.shape[1] if edge_shape is not None else "none" 
-    #     try:
-    #         y_shape = y_shape.shape[0] if y_shape is not None else "none" 
-    #     except:
-    #         y_shape = "none"
-
-    #     print_string += f" & {x_shape} & {edge_shape} & {y_shape}"
-    #     for i_name, name in enumerate(names):
-    #         value, dev = np.mean(arrays[i_name]), np.std(arrays[i_name])
-    #         value = float('%.3g' % value)
-    #         dev = float('%.3g' % dev)
-    #         print_string += f"& {value} $\pm$ {dev}"
-    #     print(print_string + r"\\")
-
-    # print("\n")
-
-    # for i_dataset, dataset in enumerate(val_datasets):
-    #     arrays, metrics, names = get_metric_values(dataset)
-
-    #     print_string = f"{val_names[i_dataset]} & Val & {len(dataset)}"
-
-    #     one_sample = dataset[0]
-    #     x_shape, edge_shape, y_shape = one_sample.x, one_sample.edge_attr, one_sample.y
-    #     x_shape = x_shape.shape[1] if x_shape is not None else "none" 
-    #     edge_shape = edge_shape.shape[1] if edge_shape is not None else "none" 
-    #     try:
-    #         y_shape = y_shape.shape[0] if y_shape is not None else "none" 
-    #     except:
-    #         y_shape = "none"
-        
-    #     print_string += f" & {x_shape} & {edge_shape} & {y_shape}"
-    #     for i_name, name in enumerate(names):
-    #         value, dev = np.mean(arrays[i_name]), np.std(arrays[i_name])
-    #         value = float('%.3g' % value)
-    #         dev = float('%.3g' % dev)
-    #         print_string += f"& {value} $\pm$ {dev}"
-    #     print(print_string + r"\\")
-
-    # print("\n")
-
-    # for i_dataset, dataset in enumerate(test_datasets):
-    #     arrays, metrics, names = get_metric_values(dataset)
-
-    #     print_string = f"{val_names[i_dataset]} & Val & {len(dataset)}"
-
-    #     one_sample = dataset[0]
-    #     x_shape, edge_shape, y_shape = one_sample.x, one_sample.edge_attr, one_sample.y
-    #     x_shape = x_shape.shape[1] if x_shape is not None else "none" 
-    #     edge_shape = edge_shape.shape[1] if edge_shape is not None else "none" 
-    #     try:
-    #         y_shape = y_shape.shape[0] if y_shape is not None else "none" 
-    #     except:
-    #         y_shape = "none"
-        
-    #     print_string += f" & {x_shape} & {edge_shape} & {y_shape}"
-    #     for i_name, name in enumerate(names):
-    #         value, dev = np.mean(arrays[i_name]), np.std(arrays[i_name])
-    #         value = float('%.3g' % value)
-    #         dev = float('%.3g' % dev)
-    #         print_string += f"& {value} $\pm$ {dev}"
-    #     print(print_string + r"\\")
 
 def arg_parse():
     parser = argparse.ArgumentParser(description='AD-GCL ogbg-mol*')

@@ -1,1 +1,1 @@
-from .top import compute_scores
+from .top import compute_top_scores

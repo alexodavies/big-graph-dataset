@@ -14,6 +14,8 @@ import networkx as nx
 import numpy as np
 from tqdm import tqdm
 import matplotlib.pyplot as plt
+from torch.utils.data.dataset import ConcatDataset
+
 
 def get_metric_values(dataset):
 
@@ -123,10 +125,16 @@ def better_to_nx(data):
         labels: torch.Tensor of node labels
     """
     edges = data.edge_index.T.cpu().numpy()
+
     if data.y is None or len(data.y.shape) < 2:
-        labels = data.x[:,0].cpu().numpy()
+        if data.x is not None:
+            labels = data.x[:,0].cpu().numpy()
+        else:
+            labels = np.ones(data.num_nodes)
+
     elif torch.sum(torch.unique(data.y)) == 1:
         labels = torch.argmax(data.y, dim = 1).cpu().numpy()
+
     else:
         labels = data.y.cpu().numpy()
 
@@ -332,18 +340,18 @@ def vis_from_pyg(data, filename = None, ax = None, save = True):
     else:
         ax_was_none = False
 
-    if "ogbg" not in filename:
-        pos = nx.kamada_kawai_layout(g)
+    # if "ogbg" not in filename:
+    pos = nx.kamada_kawai_layout(g)
 
-        nx.draw_networkx_edges(g, pos = pos, ax = ax)
-        if np.unique(labels).shape[0] != 1:
-            nx.draw_networkx_nodes(g, pos=pos, node_color=labels,
-                                   edgecolors="black",
-                                   cmap="Dark2", node_size=64,
-                                   vmin=0, vmax=10, ax=ax)
-    else:
-        im = vis_molecule(nx_to_rdkit(g, labels))
-        ax.imshow(im)
+    nx.draw_networkx_edges(g, pos = pos, ax = ax)
+    if np.unique(labels).shape[0] != 1:
+        nx.draw_networkx_nodes(g, pos=pos, node_color=labels,
+                                edgecolors="black",
+                                cmap="Dark2", node_size=64,
+                                vmin=0, vmax=10, ax=ax)
+    # else:
+    #     im = vis_molecule(nx_to_rdkit(g, labels))
+    #     ax.imshow(im)
 
     ax.axis('off')
     # ax.set_title(f"|V|: {g.order()}, |E|: {g.number_of_edges()}")
@@ -405,7 +413,7 @@ def lowres_vis_from_pyg(data, filename = None, ax = None, save = True):
 
 
 
-def vis_grid(datalist, filename):
+def vis_grid(datalist, filename, show_plot = False):
     """
     Visualise a set of graphs, from pytorch_geometric.data.Data objects
     Args:
@@ -416,6 +424,14 @@ def vis_grid(datalist, filename):
         None
     """
 
+    new_data_list = []
+    if type(datalist) == ConcatDataset:
+        print("Found concat dataset in ToP conversion")
+        for dataset in datalist.datasets:
+            for item in dataset:
+                new_data_list.append(item)
+        datalist = new_data_list
+
     # Trim to square root to ensure square grid
     grid_dim = int(np.sqrt(len(datalist)))
 
@@ -424,8 +440,17 @@ def vis_grid(datalist, filename):
     # Unpack axes
     axes = [num for sublist in axes for num in sublist]
 
+
+    try:
+        example = datalist[0].x
+    except:
+        datalist = datalist.datasets[0]
+
     for i_axis, ax in enumerate(axes):
         ax = vis_from_pyg(datalist[i_axis], ax = ax, filename=filename, save = False)
 
-    plt.savefig(filename)
-    plt.close()
+    if show_plot:
+        plt.show()
+    else:
+        plt.savefig(filename)
+        plt.close()
