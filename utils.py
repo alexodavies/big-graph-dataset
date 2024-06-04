@@ -136,7 +136,11 @@ def better_to_nx(data):
         labels = torch.argmax(data.y, dim = 1).cpu().numpy()
 
     else:
-        labels = data.y.cpu().numpy()
+        # Some tasks are edge classification/regression
+        if data.y.shape[0] == data.num_nodes:
+            labels = data.y.cpu().numpy()
+        else:
+            labels = np.ones(data.num_nodes)
 
     g = nx.Graph()
     g.add_edges_from(edges)

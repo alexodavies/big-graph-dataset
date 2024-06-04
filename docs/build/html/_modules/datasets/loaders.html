@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>datasets.loaders &#8212; big-graph-dataset 0.01 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for datasets.loaders</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">torch_geometric.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
+
+<span class="kn">from</span> <span class="nn">ogb.graphproppred</span> <span class="kn">import</span> <span class="n">PygGraphPropPredDataset</span>
+<span class="kn">from</span> <span class="nn">datasets.facebook_dataset</span> <span class="kn">import</span> <span class="n">FacebookDataset</span>
+<span class="kn">from</span> <span class="nn">datasets.ego_dataset</span> <span class="kn">import</span> <span class="n">EgoDataset</span>
+<span class="kn">from</span> <span class="nn">datasets.community_dataset</span> <span class="kn">import</span> <span class="n">CommunityDataset</span>
+<span class="kn">from</span> <span class="nn">datasets.cora_dataset</span> <span class="kn">import</span> <span class="n">CoraDataset</span>
+<span class="kn">from</span> <span class="nn">datasets.random_dataset</span> <span class="kn">import</span> <span class="n">RandomDataset</span>
+<span class="kn">from</span> <span class="nn">datasets.neural_dataset</span> <span class="kn">import</span> <span class="n">NeuralDataset</span>
+<span class="kn">from</span> <span class="nn">datasets.road_dataset</span> <span class="kn">import</span> <span class="n">RoadDataset</span>
+<span class="kn">from</span> <span class="nn">datasets.tree_dataset</span> <span class="kn">import</span> <span class="n">TreeDataset</span>
+<span class="kn">from</span> <span class="nn">datasets.reddit_dataset</span> <span class="kn">import</span> <span class="n">RedditDataset</span>
+<span class="kn">from</span> <span class="nn">datasets.lattice_dataset</span> <span class="kn">import</span> <span class="n">LatticeDataset</span>
+<span class="kn">from</span> <span class="nn">datasets.from_ogb_dataset</span> <span class="kn">import</span> <span class="n">FromOGBDataset</span>
+<span class="kn">from</span> <span class="nn">datasets.top_dataset</span> <span class="kn">import</span> <span class="n">ToPDataset</span>
+
+
+
+
+
+<span class="k">def</span> <span class="nf">get_chemical_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s2">&quot;original_datasets&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">():</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s2">&quot;original_datasets&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;stage: </span><span class="si">{</span><span class="n">stage</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">stage</span> <span class="o">==</span> <span class="s2">&quot;train&quot;</span> <span class="ow">or</span> <span class="n">stage</span> <span class="o">==</span> <span class="s2">&quot;train-adgcl&quot;</span><span class="p">:</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ogbg-molpcba&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Not train stage&quot;</span><span class="p">)</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ogbg-molesol&quot;</span><span class="p">,</span> <span class="s2">&quot;ogbg-molclintox&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;ogbg-molfreesolv&quot;</span><span class="p">,</span> <span class="s2">&quot;ogbg-mollipo&quot;</span><span class="p">,</span> <span class="s2">&quot;ogbg-molhiv&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ogbg-molbbbp&quot;</span><span class="p">,</span> <span class="s2">&quot;ogbg-molbace&quot;</span><span class="p">,</span>
+                 <span class="p">]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Molecular datasets: </span><span class="si">{</span><span class="n">names</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">datasets</span> <span class="o">=</span> <span class="p">[</span><span class="n">PygGraphPropPredDataset</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">root</span><span class="o">=</span><span class="s1">&#39;./original_datasets/&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span>
+    <span class="n">split_idx</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">get_idx_split</span><span class="p">()</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">stage</span> <span class="o">==</span> <span class="s2">&quot;val&quot;</span><span class="p">:</span>
+        <span class="n">train_datasets</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">split_idx</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;train&quot;</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">datasets</span><span class="p">)]</span>
+        <span class="n">val_datasets</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">split_idx</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;valid&quot;</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">datasets</span><span class="p">)]</span>
+
+    <span class="k">elif</span> <span class="n">stage</span> <span class="o">==</span> <span class="s2">&quot;train-adgcl&quot;</span><span class="p">:</span>
+        <span class="n">datasets</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">split_idx</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;train&quot;</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">datasets</span><span class="p">)]</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">datasets</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">split_idx</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">stage</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">datasets</span><span class="p">)]</span>
+
+    <span class="c1"># Need to convert to pyg inmemorydataset</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="n">num</span> <span class="k">if</span> <span class="n">stage</span> <span class="o">!=</span> <span class="s2">&quot;train&quot;</span> <span class="k">else</span> <span class="mi">5</span><span class="o">*</span><span class="n">num</span>
+    <span class="k">if</span> <span class="n">stage</span> <span class="o">!=</span> <span class="s2">&quot;val&quot;</span><span class="p">:</span>
+        <span class="n">datasets</span> <span class="o">=</span> <span class="p">[</span><span class="n">FromOGBDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;/original_datasets/&#39;</span><span class="o">+</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">data</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">stage</span> <span class="o">=</span> <span class="n">stage</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">datasets</span><span class="p">)]</span> <span class="c1">#  if names[i] != &quot;ogbg-molpcba&quot; else 5*num, stage=stage</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Include train data in validation for fine tuning if dataset is evaluation only (ie not molpcba)</span>
+        <span class="n">datasets</span> <span class="o">=</span> <span class="p">[</span><span class="n">FromOGBDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;/original_datasets/&#39;</span><span class="o">+</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">data</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;train&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">FromOGBDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;/original_datasets/&#39;</span><span class="o">+</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">val_datasets</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;val&quot;</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">train_datasets</span><span class="p">)]</span> <span class="c1">#  if names[i] != &quot;ogbg-molpcba&quot; else 5*num, stage=stage</span>
+
+    <span class="k">return</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">names</span>
+
+<span class="k">def</span> <span class="nf">get_social_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">exclude</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s2">&quot;original_datasets&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">():</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s2">&quot;original_datasets&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">stage</span> <span class="o">==</span> <span class="s2">&quot;train&quot;</span><span class="p">:</span>
+        <span class="n">social_datasets</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">FacebookDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;facebook_large&#39;</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">stage</span> <span class="o">=</span> <span class="n">stage</span><span class="p">)),</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">EgoDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;twitch_egos&#39;</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">)),</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">CoraDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;cora&#39;</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">stage</span> <span class="o">=</span> <span class="n">stage</span><span class="p">)),</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">RoadDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;roads&#39;</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">)),</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">NeuralDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;fruit_fly&#39;</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">)),</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">RedditDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;reddit&#39;</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">))]</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;facebook_large&quot;</span><span class="p">,</span> <span class="s2">&quot;twitch_egos&quot;</span><span class="p">,</span> <span class="s2">&quot;cora&quot;</span><span class="p">,</span> <span class="s2">&quot;roads&quot;</span><span class="p">,</span> <span class="s2">&quot;fruit_fly&quot;</span><span class="p">,</span> <span class="s2">&quot;reddit&quot;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">exclude</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Not excluding any social datasets&quot;</span><span class="p">)</span>
+            <span class="k">pass</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">exclude</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Excluding </span><span class="si">{</span><span class="n">exclude</span><span class="si">}</span><span class="s2"> as list&quot;</span><span class="p">)</span>
+            <span class="n">out_data</span><span class="p">,</span> <span class="n">out_names</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+            <span class="k">for</span> <span class="n">iname</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exclude</span><span class="p">:</span>
+                    <span class="n">out_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">social_datasets</span><span class="p">[</span><span class="n">iname</span><span class="p">])</span>
+                    <span class="n">out_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">exclude</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Excluding </span><span class="si">{</span><span class="n">exclude</span><span class="si">}</span><span class="s2"> as string&quot;</span><span class="p">)</span>
+            <span class="n">out_data</span><span class="p">,</span> <span class="n">out_names</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">iname</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">exclude</span><span class="p">]:</span>
+                    <span class="n">out_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">social_datasets</span><span class="p">[</span><span class="n">iname</span><span class="p">])</span>
+                    <span class="n">out_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Passing dataset&quot;</span><span class="p">)</span>
+
+            <span class="n">social_datasets</span> <span class="o">=</span> <span class="n">out_data</span>
+            <span class="n">names</span> <span class="o">=</span> <span class="n">out_names</span>
+
+    <span class="k">elif</span> <span class="n">stage</span> <span class="o">==</span> <span class="s2">&quot;val&quot;</span><span class="p">:</span>
+        <span class="n">social_datasets</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">FacebookDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;facebook_large&#39;</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">)),</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">EgoDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;twitch_egos&#39;</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">)),</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">CoraDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;cora&#39;</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">)),</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">RoadDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;roads&#39;</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">)),</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">NeuralDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;fruit_fly&#39;</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">)),</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">RedditDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;reddit&#39;</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">)),</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">TreeDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;trees&#39;</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">)),</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">RandomDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;random&#39;</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">)),</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">CommunityDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;community&#39;</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">))</span>
+            <span class="p">]</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;facebook_large&quot;</span><span class="p">,</span> <span class="s2">&quot;twitch_egos&quot;</span><span class="p">,</span> <span class="s2">&quot;cora&quot;</span><span class="p">,</span> <span class="s2">&quot;roads&quot;</span><span class="p">,</span> <span class="s2">&quot;fruit_fly&quot;</span><span class="p">,</span> <span class="s2">&quot;reddit&quot;</span><span class="p">,</span> <span class="s2">&quot;trees&quot;</span><span class="p">,</span> <span class="s2">&quot;random&quot;</span><span class="p">,</span> <span class="s2">&quot;community&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">social_datasets</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">FacebookDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;facebook_large&#39;</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">)),</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">EgoDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;twitch_egos&#39;</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">)),</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">CoraDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;cora&#39;</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">)),</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">RoadDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;roads&#39;</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">)),</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">NeuralDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;fruit_fly&#39;</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">)),</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">RedditDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;reddit&#39;</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">)),</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">TreeDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;trees&#39;</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">)),</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">RandomDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;random&#39;</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">)),</span>
+            <span class="n">transforms</span><span class="p">(</span><span class="n">CommunityDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/original_datasets/&#39;</span> <span class="o">+</span> <span class="s1">&#39;community&#39;</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">))</span>
+            <span class="p">]</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;facebook_large&quot;</span><span class="p">,</span> <span class="s2">&quot;twitch_egos&quot;</span><span class="p">,</span> <span class="s2">&quot;cora&quot;</span><span class="p">,</span> <span class="s2">&quot;roads&quot;</span><span class="p">,</span> <span class="s2">&quot;fruit_fly&quot;</span><span class="p">,</span> <span class="s2">&quot;reddit&quot;</span><span class="p">,</span> <span class="s2">&quot;trees&quot;</span><span class="p">,</span> <span class="s2">&quot;random&quot;</span><span class="p">,</span> <span class="s2">&quot;community&quot;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">social_datasets</span><span class="p">,</span> <span class="n">names</span>
+
+<div class="viewcode-block" id="get_test_datasets">
+<a class="viewcode-back" href="../../datasets.html#datasets.get_test_datasets">[docs]</a>
+<span class="k">def</span> <span class="nf">get_test_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span> <span class="n">mol_only</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+
+    <span class="n">chemical_datasets</span><span class="p">,</span> <span class="n">ogbg_names</span> <span class="o">=</span> <span class="n">get_chemical_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">mol_only</span><span class="p">:</span>
+        <span class="n">social_datasets</span><span class="p">,</span> <span class="n">social_names</span> <span class="o">=</span> <span class="n">get_social_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">social_datasets</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">social_names</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">datasets</span> <span class="o">=</span> <span class="n">chemical_datasets</span> <span class="o">+</span> <span class="n">social_datasets</span>
+
+    <span class="k">return</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">ogbg_names</span> <span class="o">+</span> <span class="n">social_names</span></div>
+
+
+
+<div class="viewcode-block" id="get_val_datasets">
+<a class="viewcode-back" href="../../datasets.html#datasets.get_val_datasets">[docs]</a>
+<span class="k">def</span> <span class="nf">get_val_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span> <span class="n">mol_only</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Getting val datasets&quot;</span><span class="p">)</span>
+    <span class="n">chemical_datasets</span><span class="p">,</span> <span class="n">ogbg_names</span> <span class="o">=</span> <span class="n">get_chemical_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="s2">&quot;val&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">mol_only</span><span class="p">:</span>
+        <span class="n">social_datasets</span><span class="p">,</span> <span class="n">social_names</span> <span class="o">=</span> <span class="n">get_social_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="s2">&quot;val&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">social_datasets</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">social_names</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">datasets</span> <span class="o">=</span> <span class="n">chemical_datasets</span> <span class="o">+</span> <span class="n">social_datasets</span>
+
+    <span class="k">return</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">ogbg_names</span> <span class="o">+</span> <span class="n">social_names</span></div>
+
+
+<div class="viewcode-block" id="get_train_datasets">
+<a class="viewcode-back" href="../../datasets.html#datasets.get_train_datasets">[docs]</a>
+<span class="k">def</span> <span class="nf">get_train_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span> <span class="n">mol_only</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    
+    <span class="n">chemical_datasets</span><span class="p">,</span> <span class="n">ogbg_names</span> <span class="o">=</span> <span class="n">get_chemical_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">mol_only</span><span class="p">:</span>
+        <span class="n">social_datasets</span><span class="p">,</span> <span class="n">social_names</span> <span class="o">=</span> <span class="n">get_social_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">social_datasets</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">social_names</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">datasets</span> <span class="o">=</span> <span class="n">chemical_datasets</span> <span class="o">+</span> <span class="n">social_datasets</span>
+
+    <span class="k">return</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">ogbg_names</span> <span class="o">+</span> <span class="n">social_names</span></div>
+
+
+<span class="k">def</span> <span class="nf">remove_duplicates_in_place</span><span class="p">(</span><span class="n">list1</span><span class="p">,</span> <span class="n">list2</span><span class="p">):</span>
+    <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">list2</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">list2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+            <span class="k">del</span> <span class="n">list1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">del</span> <span class="n">list2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">list2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<div class="viewcode-block" id="get_all_datasets">
+<a class="viewcode-back" href="../../datasets.html#datasets.get_all_datasets">[docs]</a>
+<span class="k">def</span> <span class="nf">get_all_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">mol_only</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    
+    <span class="c1"># All the train datasets</span>
+    <span class="n">chemical_datasets</span><span class="p">,</span> <span class="n">ogbg_names</span> <span class="o">=</span> <span class="n">get_chemical_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">mol_only</span><span class="p">:</span>
+        <span class="n">social_datasets</span><span class="p">,</span> <span class="n">social_names</span> <span class="o">=</span> <span class="n">get_social_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">social_datasets</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">social_names</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">datasets</span> <span class="o">=</span> <span class="n">chemical_datasets</span> <span class="o">+</span> <span class="n">social_datasets</span>
+
+
+    <span class="n">val_chemical_datasets</span><span class="p">,</span> <span class="n">val_ogbg_names</span> <span class="o">=</span> <span class="n">get_chemical_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="s2">&quot;val&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">mol_only</span><span class="p">:</span>
+        <span class="n">val_social_datasets</span><span class="p">,</span> <span class="n">val_social_names</span> <span class="o">=</span> <span class="n">get_social_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="s2">&quot;val&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">val_social_datasets</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">val_social_names</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">datasets</span> <span class="o">=</span> <span class="n">datasets</span> <span class="o">+</span> <span class="n">val_chemical_datasets</span> <span class="o">+</span> <span class="n">val_social_datasets</span>
+    <span class="n">all_names</span> <span class="o">=</span> <span class="n">ogbg_names</span> <span class="o">+</span> <span class="n">social_names</span> <span class="o">+</span> <span class="n">val_ogbg_names</span> <span class="o">+</span> <span class="n">val_social_names</span>
+
+    <span class="n">remove_duplicates_in_place</span><span class="p">(</span><span class="n">datasets</span><span class="p">,</span> <span class="n">all_names</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">all_names</span></div>
+
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">big-graph-dataset</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../datasets.html">datasets</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Alex O. Davies.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
