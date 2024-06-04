@@ -10,7 +10,6 @@ import wget
 from tqdm import tqdm
 from utils import describe_one_dataset
 import zipfile
-from .top_dataset import ToPDataset
 
 def get_twitch(num = 49152, include_targets = False):
     print("\nProcessing twitch egos dataset")
@@ -133,6 +132,4 @@ class EgoDataset(InMemoryDataset):
 
 if __name__ == "__main__":
     dataset = EgoDataset(os.getcwd()+'/original_datasets/'+'twitch_egos', stage = "train")
-    describe_one_dataset(dataset)
-    dataset = ToPDataset(dataset.root, dataset)
     describe_one_dataset(dataset)

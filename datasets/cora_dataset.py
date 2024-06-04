@@ -9,7 +9,6 @@ from torch.nn.functional import one_hot
 import wget
 import matplotlib.pyplot as plt
 from utils import describe_one_dataset
-from .top_dataset import ToPDataset
 
 if __name__ == "__main__":
     print(os.getcwd())
@@ -221,8 +220,6 @@ class CoraDataset(InMemoryDataset):
 
 if __name__ == "__main__":
     dataset = CoraDataset(os.getcwd()+'/original_datasets/'+'cora', stage = "train")
-    describe_one_dataset(dataset)
-    dataset = ToPDataset(dataset.root, dataset)
     describe_one_dataset(dataset)
 
 

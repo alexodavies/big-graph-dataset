@@ -3,9 +3,9 @@ import logging
 import numpy as np
 import torch
 from torch_geometric.transforms import Compose
-from datasets import get_train_datasets, get_val_datasets, get_test_datasets, get_all_datasets, ToPDataset
+from datasets import get_train_datasets, get_val_datasets, get_test_datasets, get_all_datasets
 from utils import *
-from top_metrics import compute_top_scores
+from top import compute_top_scores, ToPDataset
 
 
 def desc_datasets(datasets, stage, dataset_names):
@@ -75,7 +75,7 @@ def update_readme_table(readme_path, new_table):
 
     if table_end is None:
         table_end = len(readme)
-        
+
     if table_start is None or table_end is None:
         raise ValueError('Could not find table in README')
 

@@ -13,7 +13,6 @@ from datasets.tree_dataset import TreeDataset
 from datasets.reddit_dataset import RedditDataset
 from datasets.lattice_dataset import LatticeDataset
 from datasets.from_ogb_dataset import FromOGBDataset
-from datasets.top_dataset import ToPDataset
 
 
 

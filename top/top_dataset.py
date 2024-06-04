@@ -6,9 +6,28 @@ from torch.utils.data.dataset import ConcatDataset
 
 
 class ToPDataset(InMemoryDataset):
-    def __init__(self, root, original_dataset, stage = "train", num = -1, transform=None, pre_transform=None, pre_filter=None):
+    r"""
+    Processes an InMemoryDataset into a ToP dataset by removing node and edge features.
+    
+    Based on the paper:
+
+         `Towards Generalised Pre-Training of Graph Models, Davies, A. O., Green, R. W., Ajmeri, N. S., and Silva Filho, T. M.,  arXiv e-prints, 2024. doi:10.48550/arXiv.2311.03976.`
+
+    The resulting dataset is topology-only, intended for pre-training with ToP, and as such this module does not produce validation/test splits.
+
+    Args:
+        root (str): Root directory where the dataset should be saved. The dataset will be saved in `root`/train-top.pt
+        original_dataset (InMemoryDataset): The original dataset to convert to ToP format.
+        num (int): The number of samples to take from the original dataset. `num=-1` will convert all available samples from the original. (default: :obj:`-1`).
+        transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before every access. (default: :obj:`None`)
+        pre_transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before being saved to disk. (default: :obj:`None`)
+        pre_filter (callable, optional): A function that takes in an :obj:`torch_geometric.data.Data` object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: :obj:`None`)
+
+    """
+
+    def __init__(self, root, original_dataset, num = -1, transform=None, pre_transform=None, pre_filter=None):
         self.original_dataset = original_dataset
-        self.stage = stage
+        self.stage = "train"
         self.stage_to_index = {"train":0}
         self.num = num
         print(f"\n\nConverting original dataset {original_dataset} at {root}")
