@@ -133,28 +133,38 @@ def download_cora(visualise = False):
 
 def get_cora_dataset(num = 2000, targets = False):
     cora_graph = download_cora()
-    # print(fb_graph.nodes(data=True))
     nx_graph_list = ESWR(cora_graph, num, 96)
-
-    # loader = pyg.loader.DataLoader([pyg.utils.from_networkx(g, group_node_attrs=all, group_edge_attrs=all) for g in nx_graph_list],
-    #                                           batch_size=batch_size)
-    # nx_graph_list = [specific_from_networkx(g) for g in tqdm(nx_graph_list, desc="re-separating features")]
-    # labels = [graph[1] for graph in nx_graph_list]
-    # nx_graph_list = [graph[0] for graph in nx_graph_list]
-    # data_objects = [pyg.utils.from_networkx(g, group_node_attrs=all) for g in tqdm(nx_graph_list, desc = "moving to pyg objects")]
-    
-    # for i_data, data in enumerate(tqdm(data_objects, desc="Calculating five cycle values for cora", leave=False)):
-    #     data.y = labels[i_data]
-    #     # if targets:
-    #     #     data.y = torch.tensor(five_cycle_worker(nx_graph_list[i_data]) * 0.01) # None # torch.Tensor([[0,0]])
-    #     # else:
-    #     #     data.y = torch.tensor([1])
 
     data_objects = [specific_from_networkx(graph) for graph in tqdm(nx_graph_list, desc = "Converting back to pyg graphs")]
 
-    return  data_objects# loader
+    return  data_objects
 
 class CoraDataset(InMemoryDataset):
+    r"""
+    Academic citation graphs from the ML community, sampled from a large original graph using ESWR.
+    The original graph is sourced from:
+
+         `Yang, Zhilin, William Cohen, and Ruslan Salakhudinov. "Revisiting semi-supervised learning with graph embeddings." International conference on machine learning. PMLR, 2016.`
+
+    The original data has one-hot bag-of-words over paper abstract as node features.
+
+    The task is node classification for the category of each paper, one-hot encoded for seven categories.
+
+     - Task: Node classification
+     - Num node features: 2879
+     - Num edge features: None
+     - Num target values: 7
+     - Target shape: N Nodes
+     - Num graphs: Parameterised by `num`
+
+    Args:
+        root (str): Root directory where the dataset should be saved.
+        stage (str): The stage of the dataset to load. One of "train", "val", "test". (default: :obj:`"train"`)
+        transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before every access. (default: :obj:`None`)
+        pre_transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before being saved to disk. (default: :obj:`None`)
+        pre_filter (callable, optional): A function that takes in an :obj:`torch_geometric.data.Data` object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: :obj:`None`)
+        num (int): The number of samples to take from the original dataset. (default: :obj:`2000`).
+    """
     def __init__(self, root, stage = "train", transform=None, pre_transform=None, pre_filter=None, num = 2000):
         self.num = num
         self.stage = stage
@@ -185,20 +195,6 @@ class CoraDataset(InMemoryDataset):
 
         data_list = get_cora_dataset(num=self.num, targets=self.stage != "train")
 
-        # if self.stage == "train":
-        #     print("Found stage train, dropping targets")
-        #     new_data_list = []
-        #     for i, item in enumerate(data_list):
-        #         n_nodes, n_edges = item.x.shape[0], item.edge_index.shape[1]
-
-        #         data = Data(x = torch.ones(n_nodes).to(torch.int).reshape((-1, 1)),
-        #                     edge_index=item.edge_index,
-        #                     edge_attr=torch.ones(n_edges).to(torch.int).reshape((-1,1)),
-        #                     y = None)
-
-        #         new_data_list.append(data)
-        #     data_list = new_data_list
-        # else:
         new_data_list = []
         for i, item in enumerate(data_list):
             n_nodes, n_edges = item.x.shape[0], item.edge_index.shape[1]
@@ -206,7 +202,7 @@ class CoraDataset(InMemoryDataset):
 
             data = Data(x = item.x,
                         edge_index=item.edge_index,
-                        edge_attr=None, # torch.ones(n_edges).to(torch.int).reshape((-1,1)),
+                        edge_attr=None,
                         y = item.y)
 
             new_data_list.append(data)

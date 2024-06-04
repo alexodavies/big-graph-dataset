@@ -14,7 +14,6 @@ import json
 from littleballoffur.exploration_sampling import *
 
 from utils import describe_one_dataset, vis_grid
-# from utils import vis_from_pyg
 
 
 def download_facebook(visualise = False):
@@ -57,6 +56,7 @@ def download_facebook(visualise = False):
         graph.add_node(int(col))
         # Turns out the facebook data has attributes of varying length
         graph.nodes[int(col)]["label"] = conversion_dict[label_specific[col]]
+        # graph.nodes[int(col)]["attrs"] = torch.Tensor(features[str(col)])
 
     sources = edgelist["id_1"].to_numpy().astype("int")
     targets = edgelist["id_2"].to_numpy().astype("int")
@@ -83,9 +83,12 @@ def download_facebook(visualise = False):
 def specific_from_networkx(graph):
     node_labels = []
     edge_indices = []
+    # node_attrs = []
+
     # Collect node labels and attributes
     for n in list(graph.nodes(data=True)):
         node_labels.append(n[1]["label"])
+        # Weird features, different sizes, so not including
         # node_attrs.append(n[1]["attrs"])
 
     # Collect edge indices and attributes
@@ -118,6 +121,32 @@ def get_fb_dataset(num = 2000, targets = False):
     return data_objects# loader
 
 class FacebookDataset(InMemoryDataset):
+    r"""
+    Facebook page-to-page interaction graphs, sampled from a large original graph using ESWR.
+    The original graph is sourced from:
+
+         `Benedek Rozemberczki, Carl Allen, and Rik Sarkar. Multi-Scale Attributed Node Embedding.  Journal of Complex Networks 2021`
+
+    The original data has node features, but as they are of varying length, we don't include them here.
+
+    The task is node classification for the category of each Facebook page in a given graph, one-hot encoded for four categories.
+
+     - Task: Node classification
+     - Num node features: None
+     - Num edge features: None
+     - Num target values: 4
+     - Target shape: N Nodes
+     - Num graphs: Parameterised by `num`
+
+    Args:
+        root (str): Root directory where the dataset should be saved.
+        stage (str): The stage of the dataset to load. One of "train", "val", "test". (default: :obj:`"train"`)
+        transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before every access. (default: :obj:`None`)
+        pre_transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before being saved to disk. (default: :obj:`None`)
+        pre_filter (callable, optional): A function that takes in an :obj:`torch_geometric.data.Data` object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: :obj:`None`)
+        num (int): The number of samples to take from the original dataset. (default: :obj:`2000`).
+    """
+        
     def __init__(self, root, stage="train", transform=None, pre_transform=None, pre_filter=None, num = 2000):
         self.num = num
         self.stage = stage
@@ -153,34 +182,6 @@ class FacebookDataset(InMemoryDataset):
 
         data_list = get_fb_dataset(num=self.num, targets=self.stage != "train")
 
-        # if self.stage == "train":
-        #     print("Found stage train, dropping targets")
-        #     new_data_list = []
-        #     for i, item in enumerate(data_list):
-        #         n_nodes, n_edges = item.x.shape[0], item.edge_index.shape[1]
-
-        #         data = Data(x = torch.ones(n_nodes).to(torch.int).reshape((-1, 1)),
-        #                     edge_index=item.edge_index,
-        #                     edge_attr=torch.ones(n_edges).to(torch.int).reshape((-1,1)),
-        #                     y = None)
-
-        #         new_data_list.append(data)
-        #     data_list = new_data_list
-        # else:
-            # new_data_list = []
-            # for i, item in enumerate(data_list):
-            #     n_nodes, n_edges = item.x.shape[0], item.edge_index.shape[1]
-
-
-            #     data = Data(x = item.x,
-            #                 edge_index=item.edge_index,
-            #                 edge_attr=None, # torch.ones(n_edges).to(torch.int).reshape((-1,1)),
-            #                 y = item.y)
-
-            #     new_data_list.append(data)
-            # data_list = new_data_list
-
-
         if self.pre_filter is not None:
             data_list = [data for data in data_list if self.pre_filter(data)]
 
@@ -193,14 +194,14 @@ class FacebookDataset(InMemoryDataset):
 
 
 if __name__ == "__main__":
-    dataset = FacebookDataset(os.getcwd()+'/original_datasets/'+'facebook_large', stage = "train")
+    dataset = FacebookDataset(os.getcwd()+'/original_datasets/'+'facebook_large', stage = "train", num = 5000)
     describe_one_dataset(dataset)
     vis_grid(dataset[:16], os.getcwd()+"/original_datasets/facebook_large/train.png")
     
-    dataset = FacebookDataset(os.getcwd()+'/original_datasets/'+'facebook_large', stage = "val")
+    dataset = FacebookDataset(os.getcwd()+'/original_datasets/'+'facebook_large', stage = "val", num = 1000)
     describe_one_dataset(dataset)
     vis_grid(dataset[:16], os.getcwd()+"/original_datasets/facebook_large/val.png")
     
-    dataset = FacebookDataset(os.getcwd()+'/original_datasets/'+'facebook_large', stage = "test")
+    dataset = FacebookDataset(os.getcwd()+'/original_datasets/'+'facebook_large', stage = "test", num = 1000)
     describe_one_dataset(dataset)
     vis_grid(dataset[:16], os.getcwd()+"/original_datasets/facebook_large/test.png")

@@ -136,6 +136,32 @@ def specific_from_networkx(graph):
 
 
 class RedditDataset(InMemoryDataset):
+    r"""
+    Reddit hyperlink graphs - ie graphs of subreddits interacting with one another.
+    The original graph is sourced from:
+
+         `Kumar, Srijan, et al. "Community interaction and conflict on the web." Proceedings of the 2018 world wide web conference. 2018.`
+
+    The data has text embeddings as node features for each subreddit and text features for the cross-post edges.
+
+    The task is edge classification for the sentiment of the interaction between subreddits.
+
+     - Task: Edge classification
+     - Num node features: 300
+     - Num edge features: 86
+     - Num target values: 1
+     - Target shape: N Edges
+     - Num graphs: Parameterised by `num`
+
+    Args:
+        root (str): Root directory where the dataset should be saved.
+        stage (str): The stage of the dataset to load. One of "train", "val", "test". (default: :obj:`"train"`)
+        transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before every access. (default: :obj:`None`)
+        pre_transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before being saved to disk. (default: :obj:`None`)
+        pre_filter (callable, optional): A function that takes in an :obj:`torch_geometric.data.Data` object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: :obj:`None`)
+        num (int): The number of samples to take from the original dataset. (default: :obj:`2000`).
+    """
+
     def __init__(self, root,  stage = "train", transform=None, pre_transform=None, pre_filter=None, num = 2000):
         self.num = num
         self.stage = stage

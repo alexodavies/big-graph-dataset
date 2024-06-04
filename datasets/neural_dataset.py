@@ -102,7 +102,7 @@ class NeuralDataset(InMemoryDataset):
     A dataset of the connectome of a fruit fly larvae.
     The original graph is sourced from:
 
-         Michael Winding et al. , The connectome of an insect brain.Science379,eadd9330(2023).DOI:10.1126/science.add9330
+         `Michael Winding et al. , The connectome of an insect brain.Science379,eadd9330(2023).DOI:10.1126/science.add9330`
 
     We process the original multigraph into ESWR samples of this neural network, with predicting the strength of the connection (number of synapses) between two neurons as the target.
 
@@ -110,17 +110,18 @@ class NeuralDataset(InMemoryDataset):
      - Num node features: 0
      - Num edge features: 0
      - Num target values: 1
-     - Target shape: (N Edges, 1)
+     - Target shape: N Edges
+     - Num graphs: Parameterised by `num`
 
     Args:
         root (str): Root directory where the dataset should be saved.
-        stage (str): The stage of the dataset to load. One of "train", "val", "test".
+        stage (str): The stage of the dataset to load. One of "train", "val", "test". (default: :obj:`"train"`)
         transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before every access. (default: :obj:`None`)
         pre_transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before being saved to disk. (default: :obj:`None`)
         pre_filter (callable, optional): A function that takes in an :obj:`torch_geometric.data.Data` object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: :obj:`None`)
         num (int): The number of samples to take from the original dataset. (default: :obj:`2000`).
     """
-    
+
     def __init__(self, root, stage="train", transform=None, pre_transform=None, pre_filter=None, num = 2000):
         self.num = num
         self.stage = stage

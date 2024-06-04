@@ -66,6 +66,30 @@ def get_twitch(num = 49152, include_targets = False):
     return  data_objects
 
 class EgoDataset(InMemoryDataset):
+    r"""
+    Ego networks from the streaming platform Twitch.
+    The original graph is sourced from:
+
+         `B. Rozemberczki, O. Kiss, R. Sarkar: An API Oriented Open-source Python Framework for Unsupervised Learning on Graphs 2019.`
+
+    The task is predicting whether a given streamer plays multiple different games.
+
+     - Task: Graph classification
+     - Num node features: None
+     - Num edge features: None
+     - Num target values: 1
+     - Target shape: 1
+     - Num graphs: 127094
+
+    Args:
+        root (str): Root directory where the dataset should be saved.
+        stage (str): The stage of the dataset to load. One of "train", "val", "test". (default: :obj:`"train"`)
+        transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before every access. (default: :obj:`None`)
+        pre_transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before being saved to disk. (default: :obj:`None`)
+        pre_filter (callable, optional): A function that takes in an :obj:`torch_geometric.data.Data` object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: :obj:`None`)
+        num (int): The number of samples to take from the original dataset. (default: :obj:`2000`).
+    """
+
     def __init__(self, root, stage = "train", transform=None, pre_transform=None, pre_filter=None, num = 5000):
         self.num = num
         self.stage = stage

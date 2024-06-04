@@ -111,6 +111,30 @@ def get_road_dataset(num = 2000, targets = False):
     return data_objects# loader
 
 class RoadDataset(InMemoryDataset):
+    r"""
+    Road graphs from Pennsylvania, sampled from a large original graph using ESWR.
+    The original graph is sourced from:
+
+         `J. Leskovec, K. Lang, A. Dasgupta, M. Mahoney. Community Structure in Large Networks: Natural Cluster Sizes and the Absence of Large Well-Defined Clusters. Internet Mathematics 6(1) 29--123, 2009.`
+
+    The task is predicting whether a given graph is planar (can be laid out with no crossing edges).
+
+     - Task: Graph classification
+     - Num node features: None
+     - Num edge features: None
+     - Num target values: 1
+     - Target shape: 1
+     - Num graphs: Parameterised by `num`
+
+    Args:
+        root (str): Root directory where the dataset should be saved.
+        stage (str): The stage of the dataset to load. One of "train", "val", "test". (default: :obj:`"train"`)
+        transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before every access. (default: :obj:`None`)
+        pre_transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before being saved to disk. (default: :obj:`None`)
+        pre_filter (callable, optional): A function that takes in an :obj:`torch_geometric.data.Data` object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: :obj:`None`)
+        num (int): The number of samples to take from the original dataset. (default: :obj:`2000`).
+    """
+
     def __init__(self, root, stage="train", transform=None, pre_transform=None, pre_filter=None, num = 2000):
         self.num = num
         self.stage = stage
@@ -179,9 +203,6 @@ class RoadDataset(InMemoryDataset):
         torch.save((data, slices), self.processed_paths[self.stage_to_index[self.stage]])
 
         del data_list
-
-
-
 
 if __name__ == "__main__":
     dataset = RoadDataset(os.getcwd()+'/original_datasets/'+'roads', stage = "train")
