@@ -64,6 +64,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="top.html">ToP (Topology only Pre-training)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Big Graph Dataset!</a></li>
 </ul>
 
         </div>
@@ -746,7 +747,7 @@ Data(x=[54, 300], edge_index=[2, 249], edge_attr=[249, 86], y=[249, 1])
 <p>Please note that in-code this whole notebook will be in functions - see <code class="docutils literal notranslate"><span class="pre">datasets/example_dataset.py</span></code>.</p>
 <p>This means that the <code class="docutils literal notranslate"><span class="pre">datalist</span></code> argument wouldn’t actually exist below - instead you’d call something like <code class="docutils literal notranslate"><span class="pre">get_reddit_dataset()</span></code> within your <code class="docutils literal notranslate"><span class="pre">.process</span></code> method.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch_geometric.data</span> <span class="kn">import</span> <span class="n">InMemoryDataset</span>
@@ -834,7 +835,7 @@ Data(x=[54, 300], edge_index=[2, 249], edge_attr=[249, 86], y=[249, 1])
 <span class="n">pyg_graphs</span> <span class="o">=</span> <span class="p">[</span><span class="n">specific_from_networkx</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">nx_graph_list</span><span class="p">,</span> <span class="n">desc</span> <span class="o">=</span> <span class="s2">&quot;Converting data to PyG data objects&quot;</span><span class="p">)]</span>
 
 <span class="c1"># The visualisation doesn&#39;t work in documentation :( uncomment to see the graphs</span>
-<span class="c1"># vis_grid(pyg_graphs[:16], os.getcwd() + &quot;/original_datasets/reddit/example.png&quot;, show_plot = True)</span>
+<span class="n">vis_grid</span><span class="p">(</span><span class="n">pyg_graphs</span><span class="p">[:</span><span class="mi">16</span><span class="p">],</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/original_datasets/reddit/example.png&quot;</span><span class="p">,</span> <span class="n">show_plot</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">RedditDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/original_datasets/reddit&quot;</span><span class="p">,</span>
                               <span class="n">pyg_graphs</span><span class="p">)</span>
@@ -846,8 +847,17 @@ Data(x=[54, 300], edge_index=[2, 249], edge_attr=[249, 86], y=[249, 1])
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Converting data to PyG data objects: 100%|██████████| 1000/1000 [00:01&lt;00:00, 968.50it/s]
+Converting data to PyG data objects: 100%|██████████| 1000/1000 [00:01&lt;00:00, 991.15it/s]
+/home/alex/Projects/big-graph-dataset/utils.py:398: UserWarning: The figure layout has changed to tight
+  plt.tight_layout()
 </pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/reddit-dataset-example_22_1.png" src="_images/reddit-dataset-example_22_1.png" />
+</div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
@@ -862,7 +872,6 @@ Cora files exist
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-
 Processing...
 Done!
 </pre></div></div>
