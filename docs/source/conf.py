@@ -24,6 +24,7 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.napoleon',  # For Google and NumPy style docstrings
     'sphinx_autodoc_typehints',  # For type hints support
+    'nbsphinx'
 ]
 
 # Optional: Configure autodoc

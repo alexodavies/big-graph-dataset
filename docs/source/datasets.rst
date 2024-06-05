@@ -1,4 +1,4 @@
-datasets
+Datasets
 ================
 
 .. automodule:: datasets

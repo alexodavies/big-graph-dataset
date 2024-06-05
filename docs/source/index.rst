@@ -6,14 +6,12 @@
 Welcome to big-graph-dataset's documentation!
 =============================================
 
-.. image:: outputs/embedding.png
-  :width: 900
-  :alt: UMAP and PCA embeddings, using ToP, of the graph datasets in big-graph-dataset.
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+   reddit-dataset-example
    datasets
    top
 
