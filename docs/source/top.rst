@@ -1,5 +1,5 @@
 ToP (Topology only Pre-training)
-================
+=================================
 
 .. automodule:: top
     :members:

@@ -17,11 +17,11 @@ The basics:
 
  A few rules, demonstrated in `datasets/example_dataset.py`:
  - The datasets need at least a train/val/test split
- - Datasets should be many small (<200 node) graphs
+ - Datasets should be many small (<400 node) graphs
  - Ideally the number of graphs in each dataset should be controllable
  - Data should be downloaded in-code to keep the repo small. If this isn't possible let me know.
  - Please cite your sources for data in documentation - see the existing datasets for example documentation
- - Where possible start from existing datasets that have been used in-literature, or if using generators, use generators that are well-understood
+ - Where possible start from existing datasets that have been used in-literature, or if using generators, use generators that are well-understood (for example Erdos-Renyi graphs)
 
 | Name  |  Stage  |  Num  |  X shape  |  E shape  |  Y shape  |  Num. Nodes  |  Num. Edges  |  Diameter  |  Clustering  | 
 |---|---|---|---|---|---|---|---|---|---| 

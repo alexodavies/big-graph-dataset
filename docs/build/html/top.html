@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ToP (Topology only Pre-training) &mdash; big-graph-dataset 0.01 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
 
   
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=6ca3c713"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -46,6 +47,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="reddit-dataset-example.html">Reddit Example Dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasets</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">ToP (Topology only Pre-training)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#top.GeneralEmbeddingEvaluation"><code class="docutils literal notranslate"><span class="pre">GeneralEmbeddingEvaluation</span></code></a><ul>
@@ -124,51 +126,51 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="top-topology-only-pre-training">
-<h1>ToP (Topology only Pre-training)<a class="headerlink" href="#top-topology-only-pre-training" title="Link to this heading"></a></h1>
-<dl class="py class" id="module-top">
+  <section id="module-top">
+<span id="top-topology-only-pre-training"></span><h1>ToP (Topology only Pre-training)<a class="headerlink" href="#module-top" title="Permalink to this heading"></a></h1>
+<dl class="py class">
 <dt class="sig sig-object py" id="top.GeneralEmbeddingEvaluation">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">top.</span></span><span class="sig-name descname"><span class="pre">GeneralEmbeddingEvaluation</span></span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.GeneralEmbeddingEvaluation" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">top.</span></span><span class="sig-name descname"><span class="pre">GeneralEmbeddingEvaluation</span></span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.GeneralEmbeddingEvaluation" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class for evaluating embeddings and visualizing the results.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="top.GeneralEmbeddingEvaluation.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.GeneralEmbeddingEvaluation.__init__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.GeneralEmbeddingEvaluation.__init__" title="Permalink to this definition"></a></dt>
 <dd><p>Initializes the GeneralEmbeddingEvaluation object.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="top.GeneralEmbeddingEvaluation.embedding_evaluation">
-<span class="sig-name descname"><span class="pre">embedding_evaluation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_loaders</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.embedding_evaluation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.GeneralEmbeddingEvaluation.embedding_evaluation" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">embedding_evaluation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_loaders</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.embedding_evaluation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.GeneralEmbeddingEvaluation.embedding_evaluation" title="Permalink to this definition"></a></dt>
 <dd><p>Performs embedding evaluation using the given encoder, train loaders, and names.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="top.GeneralEmbeddingEvaluation.get_embeddings">
-<span class="sig-name descname"><span class="pre">get_embeddings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loaders</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.get_embeddings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.GeneralEmbeddingEvaluation.get_embeddings" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_embeddings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loaders</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.get_embeddings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.GeneralEmbeddingEvaluation.get_embeddings" title="Permalink to this definition"></a></dt>
 <dd><p>Retrieves the embeddings from the encoder and loaders.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="top.GeneralEmbeddingEvaluation.vis">
-<span class="sig-name descname"><span class="pre">vis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_embeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">separate_embeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.vis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.GeneralEmbeddingEvaluation.vis" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">vis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_embeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">separate_embeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.vis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.GeneralEmbeddingEvaluation.vis" title="Permalink to this definition"></a></dt>
 <dd><p>Visualizes the embeddings using UMAP and PCA projections.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="top.GeneralEmbeddingEvaluation.centroid_similarities">
-<span class="sig-name descname"><span class="pre">centroid_similarities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.centroid_similarities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.GeneralEmbeddingEvaluation.centroid_similarities" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">centroid_similarities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.centroid_similarities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.GeneralEmbeddingEvaluation.centroid_similarities" title="Permalink to this definition"></a></dt>
 <dd><p>Calculates the pairwise similarities between the centroids of the embeddings.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="id1">
-<span class="sig-name descname"><span class="pre">centroid_similarities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.centroid_similarities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">centroid_similarities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.centroid_similarities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
 <dd><p>Calculate centroid similarities for a given set of embeddings and names.</p>
 <p>Parameters:
 embeddings (list of numpy arrays): List of embeddings, where each embedding is a numpy array.
@@ -183,7 +185,7 @@ the plot as “outputs/pairwise-similarity.png”.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="id2">
-<span class="sig-name descname"><span class="pre">embedding_evaluation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_loaders</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.embedding_evaluation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">embedding_evaluation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_loaders</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.embedding_evaluation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Permalink to this definition"></a></dt>
 <dd><p>Evaluate the embeddings generated by the encoder.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -201,7 +203,7 @@ the plot as “outputs/pairwise-similarity.png”.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="id3">
-<span class="sig-name descname"><span class="pre">get_embeddings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loaders</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.get_embeddings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_embeddings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loaders</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.get_embeddings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Permalink to this definition"></a></dt>
 <dd><p>Get embeddings for the given encoder and loaders.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -219,7 +221,7 @@ the plot as “outputs/pairwise-similarity.png”.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="id4">
-<span class="sig-name descname"><span class="pre">vis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_embeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">separate_embeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.vis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id4" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">vis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_embeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">separate_embeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.vis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id4" title="Permalink to this definition"></a></dt>
 <dd><p>Visualizes the embeddings using UMAP and PCA projections.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -239,7 +241,7 @@ the plot as “outputs/pairwise-similarity.png”.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="top.ToPDataset">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">top.</span></span><span class="sig-name descname"><span class="pre">ToPDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">original_dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top_dataset.html#ToPDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.ToPDataset" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">top.</span></span><span class="sig-name descname"><span class="pre">ToPDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">original_dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top_dataset.html#ToPDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.ToPDataset" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">InMemoryDataset</span></code></p>
 <p>Processes an InMemoryDataset into a ToP dataset by removing node and edge features.</p>
 <p>Based on the paper:</p>
@@ -261,22 +263,22 @@ the plot as “outputs/pairwise-similarity.png”.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="top.ToPDataset.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">original_dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top_dataset.html#ToPDataset.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.ToPDataset.__init__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">original_dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top_dataset.html#ToPDataset.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.ToPDataset.__init__" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="top.ToPDataset._abc_impl">
-<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#top.ToPDataset._abc_impl" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#top.ToPDataset._abc_impl" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="top.ToPDataset._download">
-<span class="sig-name descname"><span class="pre">_download</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset._download" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">_download</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset._download" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="top.ToPDataset._infer_num_classes">
-<span class="sig-name descname"><span class="pre">_infer_num_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset._infer_num_classes" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">_infer_num_classes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset._infer_num_classes" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
@@ -286,17 +288,17 @@ the plot as “outputs/pairwise-similarity.png”.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="top.ToPDataset._is_protocol">
-<span class="sig-name descname"><span class="pre">_is_protocol</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#top.ToPDataset._is_protocol" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">_is_protocol</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#top.ToPDataset._is_protocol" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="top.ToPDataset._process">
-<span class="sig-name descname"><span class="pre">_process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset._process" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">_process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset._process" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="top.ToPDataset.collate">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">collate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.collate" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">collate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.collate" title="Permalink to this definition"></a></dt>
 <dd><p>Collates a Python list of <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> objects
 to the internal storage format of
 <code class="xref py py-class docutils literal notranslate"><span class="pre">InMemoryDataset</span></code>.</p>
@@ -309,7 +311,7 @@ to the internal storage format of
 
 <dl class="py method">
 <dt class="sig sig-object py" id="top.ToPDataset.copy">
-<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.copy" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.copy" title="Permalink to this definition"></a></dt>
 <dd><p>Performs a deep-copy of the dataset. If <code class="xref py py-obj docutils literal notranslate"><span class="pre">idx</span></code> is not given,
 will clone the full dataset. Otherwise, will only clone a subset of the
 dataset from indices <code class="xref py py-obj docutils literal notranslate"><span class="pre">idx</span></code>.
@@ -324,18 +326,18 @@ Indices can be slices, lists, tuples, and a <code class="xref py py-obj docutils
 
 <dl class="py property">
 <dt class="sig sig-object py" id="top.ToPDataset.data">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span></em><a class="headerlink" href="#top.ToPDataset.data" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span></em><a class="headerlink" href="#top.ToPDataset.data" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="top.ToPDataset.download">
-<span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.download" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.download" title="Permalink to this definition"></a></dt>
 <dd><p>Downloads the dataset to the <code class="xref py py-obj docutils literal notranslate"><span class="pre">self.raw_dir</span></code> folder.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="top.ToPDataset.get">
-<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.get" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.get" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Data</span></code></span></p>
@@ -345,25 +347,25 @@ Indices can be slices, lists, tuples, and a <code class="xref py py-obj docutils
 
 <dl class="py method">
 <dt class="sig sig-object py" id="top.ToPDataset.get_summary">
-<span class="sig-name descname"><span class="pre">get_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.get_summary" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.get_summary" title="Permalink to this definition"></a></dt>
 <dd><p>Collects summary statistics for the dataset.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="top.ToPDataset.has_download">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">has_download</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#top.ToPDataset.has_download" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">has_download</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#top.ToPDataset.has_download" title="Permalink to this definition"></a></dt>
 <dd><p>Checks whether the dataset defines a <a class="reference internal" href="#top.ToPDataset.download" title="top.ToPDataset.download"><code class="xref py py-meth docutils literal notranslate"><span class="pre">download()</span></code></a> method.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="top.ToPDataset.has_process">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">has_process</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#top.ToPDataset.has_process" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">has_process</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#top.ToPDataset.has_process" title="Permalink to this definition"></a></dt>
 <dd><p>Checks whether the dataset defines a <a class="reference internal" href="#top.ToPDataset.process" title="top.ToPDataset.process"><code class="xref py py-meth docutils literal notranslate"><span class="pre">process()</span></code></a> method.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="top.ToPDataset.index_select">
-<span class="sig-name descname"><span class="pre">index_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.index_select" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">index_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.index_select" title="Permalink to this definition"></a></dt>
 <dd><p>Creates a subset of the dataset from specified indices <code class="xref py py-obj docutils literal notranslate"><span class="pre">idx</span></code>.
 Indices <code class="xref py py-obj docutils literal notranslate"><span class="pre">idx</span></code> can be a slicing object, <em>e.g.</em>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">[2:5]</span></code>, a
 list, a tuple, or a <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch.Tensor</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">np.ndarray</span></code> of type
@@ -377,7 +379,7 @@ long or bool.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="top.ToPDataset.indices">
-<span class="sig-name descname"><span class="pre">indices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.indices" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">indices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.indices" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></span></p>
@@ -387,7 +389,7 @@ long or bool.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="top.ToPDataset.len">
-<span class="sig-name descname"><span class="pre">len</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.len" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">len</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.len" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span></p>
@@ -397,76 +399,76 @@ long or bool.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="top.ToPDataset.num_classes">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_classes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#top.ToPDataset.num_classes" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_classes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#top.ToPDataset.num_classes" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="top.ToPDataset.num_edge_features">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_edge_features</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#top.ToPDataset.num_edge_features" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_edge_features</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#top.ToPDataset.num_edge_features" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the number of features per edge in the dataset.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="top.ToPDataset.num_features">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_features</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#top.ToPDataset.num_features" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_features</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#top.ToPDataset.num_features" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the number of features per node in the dataset.
 Alias for <a class="reference internal" href="#top.ToPDataset.num_node_features" title="top.ToPDataset.num_node_features"><code class="xref py py-attr docutils literal notranslate"><span class="pre">num_node_features</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="top.ToPDataset.num_node_features">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_node_features</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#top.ToPDataset.num_node_features" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_node_features</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#top.ToPDataset.num_node_features" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the number of features per node in the dataset.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="top.ToPDataset.print_summary">
-<span class="sig-name descname"><span class="pre">print_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.print_summary" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">print_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.print_summary" title="Permalink to this definition"></a></dt>
 <dd><p>Prints summary statistics of the dataset to the console.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="top.ToPDataset.process">
-<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top_dataset.html#ToPDataset.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.ToPDataset.process" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top_dataset.html#ToPDataset.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.ToPDataset.process" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="top.ToPDataset.processed_dir">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">processed_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#top.ToPDataset.processed_dir" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">processed_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#top.ToPDataset.processed_dir" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="top.ToPDataset.processed_file_names">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">processed_file_names</span></span><a class="headerlink" href="#top.ToPDataset.processed_file_names" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">processed_file_names</span></span><a class="headerlink" href="#top.ToPDataset.processed_file_names" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="top.ToPDataset.processed_paths">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">processed_paths</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#top.ToPDataset.processed_paths" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">processed_paths</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#top.ToPDataset.processed_paths" title="Permalink to this definition"></a></dt>
 <dd><p>The absolute filepaths that must be present in order to skip
 processing.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="top.ToPDataset.raw_dir">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">raw_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#top.ToPDataset.raw_dir" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">raw_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#top.ToPDataset.raw_dir" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="top.ToPDataset.raw_file_names">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">raw_file_names</span></span><a class="headerlink" href="#top.ToPDataset.raw_file_names" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">raw_file_names</span></span><a class="headerlink" href="#top.ToPDataset.raw_file_names" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="top.ToPDataset.raw_paths">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">raw_paths</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#top.ToPDataset.raw_paths" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">raw_paths</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#top.ToPDataset.raw_paths" title="Permalink to this definition"></a></dt>
 <dd><p>The absolute filepaths that must be present in order to skip
 downloading.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="top.ToPDataset.shuffle">
-<span class="sig-name descname"><span class="pre">shuffle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">return_perm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.shuffle" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">shuffle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">return_perm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.shuffle" title="Permalink to this definition"></a></dt>
 <dd><p>Randomly shuffles the examples in the dataset.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -482,7 +484,7 @@ return the random permutation used to shuffle the dataset.
 
 <dl class="py method">
 <dt class="sig sig-object py" id="top.ToPDataset.to_datapipe">
-<span class="sig-name descname"><span class="pre">to_datapipe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.to_datapipe" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">to_datapipe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#top.ToPDataset.to_datapipe" title="Permalink to this definition"></a></dt>
 <dd><p>Converts the dataset into a <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.DataPipe</span></code>.</p>
 <p>The returned instance can then be used with <a href="#id5"><span class="problematic" id="id6">:pyg:`PyG's`</span></a> built-in
 <code class="xref py py-class docutils literal notranslate"><span class="pre">DataPipes</span></code> for baching graphs as follows:</p>
@@ -503,7 +505,7 @@ on DataPipes.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="top.compute_top_scores">
-<span class="sig-prename descclassname"><span class="pre">top.</span></span><span class="sig-name descname"><span class="pre">compute_top_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datasets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#compute_top_scores"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.compute_top_scores" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">top.</span></span><span class="sig-name descname"><span class="pre">compute_top_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datasets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#compute_top_scores"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.compute_top_scores" title="Permalink to this definition"></a></dt>
 <dd><p>Computes the top scores for graph structures using the ToP encoder.</p>
 <p>ToP scores use a pre-trained ToP model to compute the similarity between graphs across datasets.</p>
 <p>This function will also produce embedding visualisations using GeneralEmbeddingEvaluation.</p>

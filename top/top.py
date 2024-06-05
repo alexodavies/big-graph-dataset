@@ -4,6 +4,8 @@ import random
 import numpy as np
 import torch
 import yaml
+import os
+import wget
 
 from unsupervised.encoder import Encoder
 from unsupervised.learning import GInfoMinMax
@@ -284,6 +286,22 @@ class GeneralEmbeddingEvaluation:
         annotate_heatmap(im, valfmt="{x:.3f}")
 
         plt.savefig("outputs/pairwise-similarity.png")
+
+def get_top_model():
+    checkpoint_url = "https://github.com/neutralpronoun/big-graph-dataset/blob/main/outputs/all-100.pt"
+    config_url = "https://github.com/neutralpronoun/big-graph-dataset/blob/main/outputs/all-100.yaml"
+
+    if "outputs" not in os.listdir():
+        os.mkdir("outputs")
+    os.chdir("outputs")
+
+    if "all-100.pt" not in os.listdir("outputs"):
+        checkpoint = wget.download(checkpoint_url)
+    if "all-100.yaml" not in os.listdir("outputs"):
+        config = wget.download(config_url)
+
+    os.chdir("../")
+
 
 
 def compute_top_scores(datasets, names):

@@ -103,10 +103,10 @@ def five_cycles(graphs):
     return sample_ref
 
 
-def warn(*args, **kwargs):
-    pass
-import warnings
-warnings.warn = warn
+# def warn(*args, **kwargs):
+#     pass
+# import warnings
+# warnings.warn = warn
 
 def initialize_edge_weight(data):
 	data.edge_weight = torch.ones(data.edge_index.shape[1], dtype=torch.float)
@@ -282,7 +282,7 @@ def ESWR(graph, n_graphs, size):
     possible_samplers = [MetropolisHastingsRandomWalkSampler, DiffusionSampler, ForestFireSampler]
     sampler_list = [sampler(i) for sampler in possible_samplers for i in range(24, size)]
 
-    max_workers = os.cpu_count() // 2  # Use half the available CPU cores
+    max_workers = os.cpu_count() // 4  # Use half the available CPU cores
 
     # Chunk the tasks to reduce the overhead
     chunk_size = n_graphs // max_workers or 1
@@ -325,6 +325,41 @@ def describe_one_dataset(dataset):
 
     print(print_string + r"\\")
 
+def vis_networkx(g, filename = None):
+    """
+    Visualise a networkx.Graph object
+    Args:
+        g: networkx.Graph object
+        filename: if passed, this is the filename for the saved image. If not passed, calls plt.show()
+
+    Returns:
+
+    """
+    fig, ax = plt.subplots(figsize = (2,2))
+
+    # if "ogbg" not in filename:
+    pos = nx.spring_layout(g)
+
+    nx.draw_networkx_edges(g, pos = pos, ax = ax)
+    nx.draw_networkx_nodes(g, pos=pos, node_color=np.arange(g.number_of_nodes()),
+                            edgecolors="black",
+                            cmap="Dark2", node_size=5,
+                            vmin=0, vmax=g.number_of_nodes(), ax=ax)
+    # else:
+    #     im = vis_molecule(nx_to_rdkit(g, labels))
+    #     ax.imshow(im)
+
+    ax.axis('off')
+    # ax.set_title(f"|V|: {g.order()}, |E|: {g.number_of_edges()}")
+
+    plt.tight_layout()
+    if filename is None:
+        plt.show()
+    else:
+        plt.savefig(filename, dpi = 300)
+        plt.close()
+
+    plt.close()
 
 def vis_from_pyg(data, filename = None, ax = None, save = True):
     """

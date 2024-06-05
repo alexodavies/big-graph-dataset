@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>top.top &mdash; big-graph-dataset 0.01 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
 
   
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=6ca3c713"></script>
-        <script src="../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -44,6 +45,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../reddit-dataset-example.html">Reddit Example Dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../datasets.html">Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../top.html">ToP (Topology only Pre-training)</a></li>
 </ul>
@@ -79,6 +81,8 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">wget</span>
 
 <span class="kn">from</span> <span class="nn">unsupervised.encoder</span> <span class="kn">import</span> <span class="n">Encoder</span>
 <span class="kn">from</span> <span class="nn">unsupervised.learning</span> <span class="kn">import</span> <span class="n">GInfoMinMax</span>
@@ -171,9 +175,7 @@
 
     <span class="k">return</span> <span class="n">texts</span>
 
-<div class="viewcode-block" id="GeneralEmbeddingEvaluation">
-<a class="viewcode-back" href="../../top.html#top.GeneralEmbeddingEvaluation">[docs]</a>
-<span class="k">class</span> <span class="nc">GeneralEmbeddingEvaluation</span><span class="p">:</span>
+<div class="viewcode-block" id="GeneralEmbeddingEvaluation"><a class="viewcode-back" href="../../top.html#top.GeneralEmbeddingEvaluation">[docs]</a><span class="k">class</span> <span class="nc">GeneralEmbeddingEvaluation</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class for evaluating embeddings and visualizing the results.</span>
 
@@ -184,15 +186,10 @@
 <span class="sd">        vis(all_embeddings, separate_embeddings, names): Visualizes the embeddings using UMAP and PCA projections.</span>
 <span class="sd">        centroid_similarities(embeddings, names): Calculates the pairwise similarities between the centroids of the embeddings.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="GeneralEmbeddingEvaluation.__init__">
-<a class="viewcode-back" href="../../top.html#top.GeneralEmbeddingEvaluation.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="GeneralEmbeddingEvaluation.__init__"><a class="viewcode-back" href="../../top.html#top.GeneralEmbeddingEvaluation.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span></div>
 
-
-<div class="viewcode-block" id="GeneralEmbeddingEvaluation.embedding_evaluation">
-<a class="viewcode-back" href="../../top.html#top.GeneralEmbeddingEvaluation.embedding_evaluation">[docs]</a>
-    <span class="k">def</span> <span class="nf">embedding_evaluation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encoder</span><span class="p">,</span> <span class="n">train_loaders</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+<div class="viewcode-block" id="GeneralEmbeddingEvaluation.embedding_evaluation"><a class="viewcode-back" href="../../top.html#top.GeneralEmbeddingEvaluation.embedding_evaluation">[docs]</a>    <span class="k">def</span> <span class="nf">embedding_evaluation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encoder</span><span class="p">,</span> <span class="n">train_loaders</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Evaluate the embeddings generated by the encoder.</span>
 
@@ -208,10 +205,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">centroid_similarities</span><span class="p">(</span><span class="n">train_separate_embeddings</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vis</span><span class="p">(</span><span class="n">train_all_embeddings</span><span class="p">,</span> <span class="n">train_separate_embeddings</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="GeneralEmbeddingEvaluation.get_embeddings">
-<a class="viewcode-back" href="../../top.html#top.GeneralEmbeddingEvaluation.get_embeddings">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_embeddings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encoder</span><span class="p">,</span> <span class="n">loaders</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+<div class="viewcode-block" id="GeneralEmbeddingEvaluation.get_embeddings"><a class="viewcode-back" href="../../top.html#top.GeneralEmbeddingEvaluation.get_embeddings">[docs]</a>    <span class="k">def</span> <span class="nf">get_embeddings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encoder</span><span class="p">,</span> <span class="n">loaders</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get embeddings for the given encoder and loaders.</span>
 
@@ -247,10 +241,7 @@
 
         <span class="k">return</span> <span class="n">all_embeddings</span><span class="p">,</span> <span class="n">separate_embeddings</span></div>
 
-
-<div class="viewcode-block" id="GeneralEmbeddingEvaluation.vis">
-<a class="viewcode-back" href="../../top.html#top.GeneralEmbeddingEvaluation.vis">[docs]</a>
-    <span class="k">def</span> <span class="nf">vis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_embeddings</span><span class="p">,</span> <span class="n">separate_embeddings</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+<div class="viewcode-block" id="GeneralEmbeddingEvaluation.vis"><a class="viewcode-back" href="../../top.html#top.GeneralEmbeddingEvaluation.vis">[docs]</a>    <span class="k">def</span> <span class="nf">vis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_embeddings</span><span class="p">,</span> <span class="n">separate_embeddings</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Visualizes the embeddings using UMAP and PCA projections.</span>
 
@@ -337,10 +328,7 @@
         <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
 
-
-<div class="viewcode-block" id="GeneralEmbeddingEvaluation.centroid_similarities">
-<a class="viewcode-back" href="../../top.html#top.GeneralEmbeddingEvaluation.centroid_similarities">[docs]</a>
-    <span class="k">def</span> <span class="nf">centroid_similarities</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+<div class="viewcode-block" id="GeneralEmbeddingEvaluation.centroid_similarities"><a class="viewcode-back" href="../../top.html#top.GeneralEmbeddingEvaluation.centroid_similarities">[docs]</a>    <span class="k">def</span> <span class="nf">centroid_similarities</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate centroid similarities for a given set of embeddings and names.</span>
 
@@ -374,14 +362,26 @@
 
         <span class="n">annotate_heatmap</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">valfmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{x:.3f}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;outputs/pairwise-similarity.png&quot;</span><span class="p">)</span></div>
-</div>
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;outputs/pairwise-similarity.png&quot;</span><span class="p">)</span></div></div>
+
+<span class="k">def</span> <span class="nf">get_top_model</span><span class="p">():</span>
+    <span class="n">checkpoint_url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/neutralpronoun/big-graph-dataset/blob/main/outputs/all-100.pt&quot;</span>
+    <span class="n">config_url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/neutralpronoun/big-graph-dataset/blob/main/outputs/all-100.yaml&quot;</span>
+
+    <span class="k">if</span> <span class="s2">&quot;outputs&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">():</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s2">&quot;outputs&quot;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;outputs&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s2">&quot;all-100.pt&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;outputs&quot;</span><span class="p">):</span>
+        <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">checkpoint_url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&quot;all-100.yaml&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;outputs&quot;</span><span class="p">):</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">config_url</span><span class="p">)</span>
+
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;../&quot;</span><span class="p">)</span>
 
 
 
-<div class="viewcode-block" id="compute_top_scores">
-<a class="viewcode-back" href="../../top.html#top.compute_top_scores">[docs]</a>
-<span class="k">def</span> <span class="nf">compute_top_scores</span><span class="p">(</span><span class="n">datasets</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+<div class="viewcode-block" id="compute_top_scores"><a class="viewcode-back" href="../../top.html#top.compute_top_scores">[docs]</a><span class="k">def</span> <span class="nf">compute_top_scores</span><span class="p">(</span><span class="n">datasets</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the top scores for graph structures using the ToP encoder.</span>
 
@@ -437,7 +437,6 @@
     <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
 
     <span class="n">general_ee</span><span class="o">.</span><span class="n">embedding_evaluation</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">encoder</span><span class="p">,</span> <span class="n">train_loaders</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span></div>
-
 
             
 </pre></div>

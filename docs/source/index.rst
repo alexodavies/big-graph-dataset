@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to big-graph-dataset's documentation!
-=============================================
+===============================================
 
 
 .. toctree::
@@ -15,7 +15,7 @@ Welcome to big-graph-dataset's documentation!
    datasets
    top
 
-
+   
 
 Indices and tables
 ==================
