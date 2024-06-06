@@ -42,15 +42,12 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Examples:</span></p>
-<ul>
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../reddit-dataset-example.html">Reddit Example Dataset</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Many-graph datasets:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../datasets.html">Many-Graph Datasets</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Topology Only Pre-Training:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../top.html">ToP (Topology only Pre-training)</a></li>
 </ul>
@@ -212,7 +209,20 @@
 
 <div class="viewcode-block" id="get_test_datasets">
 <a class="viewcode-back" href="../../datasets.html#datasets.get_test_datasets">[docs]</a>
-<span class="k">def</span> <span class="nf">get_test_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span> <span class="n">mol_only</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">get_test_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">mol_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the test split of each dataset.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        transforms (list): List of data transformations to apply.</span>
+<span class="sd">        num (int): Number of samples in non-molecule datasets to include (default is 2000).</span>
+<span class="sd">        mol_only (bool): Flag indicating whether to include only chemical datasets (default is False).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing two elements:</span>
+<span class="sd">            - datasets (list): List of test datasets.</span>
+<span class="sd">            - names (list): List of dataset names.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">chemical_datasets</span><span class="p">,</span> <span class="n">ogbg_names</span> <span class="o">=</span> <span class="n">get_chemical_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">mol_only</span><span class="p">:</span>
@@ -229,8 +239,20 @@
 
 <div class="viewcode-block" id="get_val_datasets">
 <a class="viewcode-back" href="../../datasets.html#datasets.get_val_datasets">[docs]</a>
-<span class="k">def</span> <span class="nf">get_val_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span> <span class="n">mol_only</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Getting val datasets&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">get_val_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">mol_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get validation splits for each dataset.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        transforms (list): List of data transformations to apply.</span>
+<span class="sd">        num (int, optional): Number of samples in non-molecule datasets to include. Defaults to 2000.</span>
+<span class="sd">        mol_only (bool, optional): Flag indicating whether to include only chemical datasets. Defaults to False.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing two elements:</span>
+<span class="sd">            - datasets (list): List of validation datasets.</span>
+<span class="sd">            - names (list): List of dataset names.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">chemical_datasets</span><span class="p">,</span> <span class="n">ogbg_names</span> <span class="o">=</span> <span class="n">get_chemical_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="s2">&quot;val&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">mol_only</span><span class="p">:</span>
         <span class="n">social_datasets</span><span class="p">,</span> <span class="n">social_names</span> <span class="o">=</span> <span class="n">get_social_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="s2">&quot;val&quot;</span><span class="p">)</span>
@@ -245,8 +267,19 @@
 
 <div class="viewcode-block" id="get_train_datasets">
 <a class="viewcode-back" href="../../datasets.html#datasets.get_train_datasets">[docs]</a>
-<span class="k">def</span> <span class="nf">get_train_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span> <span class="n">mol_only</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
-    
+<span class="k">def</span> <span class="nf">get_train_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">mol_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the training splits of each dataset.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        transforms (list): List of data transformations to apply.</span>
+<span class="sd">        num (int): Number of datasets to retrieve.</span>
+<span class="sd">        mol_only (bool): Flag indicating whether to retrieve only chemical datasets.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing the datasets and their names.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">chemical_datasets</span><span class="p">,</span> <span class="n">ogbg_names</span> <span class="o">=</span> <span class="n">get_chemical_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">mol_only</span><span class="p">:</span>
         <span class="n">social_datasets</span><span class="p">,</span> <span class="n">social_names</span> <span class="o">=</span> <span class="n">get_social_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
@@ -273,7 +306,20 @@
 
 <div class="viewcode-block" id="get_all_datasets">
 <a class="viewcode-back" href="../../datasets.html#datasets.get_all_datasets">[docs]</a>
-<span class="k">def</span> <span class="nf">get_all_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">mol_only</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">get_all_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">mol_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get all datasets for training and validation, in that order.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        transforms (list): List of data transformations to apply to the datasets.</span>
+<span class="sd">        num (int, optional): Number of samples to load from each dataset. Defaults to 5000.</span>
+<span class="sd">        mol_only (bool, optional): Flag indicating whether to include only chemical datasets. Defaults to False.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: A tuple containing two elements:</span>
+<span class="sd">            - datasets (list): A list of all the datasets.</span>
+<span class="sd">            - all_names (list): A list of names corresponding to each dataset.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="c1"># All the train datasets</span>
     <span class="n">chemical_datasets</span><span class="p">,</span> <span class="n">ogbg_names</span> <span class="o">=</span> <span class="n">get_chemical_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
@@ -284,7 +330,6 @@
         <span class="n">social_names</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="n">datasets</span> <span class="o">=</span> <span class="n">chemical_datasets</span> <span class="o">+</span> <span class="n">social_datasets</span>
-
 
     <span class="n">val_chemical_datasets</span><span class="p">,</span> <span class="n">val_ogbg_names</span> <span class="o">=</span> <span class="n">get_chemical_datasets</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="s2">&quot;val&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">mol_only</span><span class="p">:</span>

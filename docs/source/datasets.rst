@@ -1,5 +1,5 @@
 Many-Graph Datasets
-================
+===================
 
 These datsets are composed of many small graphs.
 Each is presented as a `torch_geometric.data.InMemoryDataset` object.
