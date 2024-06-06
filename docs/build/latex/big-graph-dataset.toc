@@ -10,8 +10,8 @@
 \contentsline {subsubsection}{Other datsets}{11}{subsubsection*.7}%
 \contentsline {section}{\numberline {3}Datasets}{11}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Datasets}{11}{subsection.3.1}%
-\contentsline {section}{\numberline {4}ToP (Topology Only Pre\sphinxhyphen {}Training)}{27}{section.4}%
-\contentsline {subsection}{\numberline {4.1}ToP (Topology only Pre\sphinxhyphen {}training)}{28}{subsection.4.1}%
-\contentsline {section}{\numberline {5}Indices and tables}{32}{section.5}%
-\contentsline {section}{Python Module Index}{33}{section*.248}%
-\contentsline {section}{Index}{34}{section*.249}%
+\contentsline {section}{\numberline {4}ToP (Topology Only Pre\sphinxhyphen {}Training)}{16}{section.4}%
+\contentsline {subsection}{\numberline {4.1}ToP (Topology only Pre\sphinxhyphen {}training)}{16}{subsection.4.1}%
+\contentsline {section}{\numberline {5}Indices and tables}{19}{section.5}%
+\contentsline {section}{Python Module Index}{20}{section*.66}%
+\contentsline {section}{Index}{21}{section*.67}%

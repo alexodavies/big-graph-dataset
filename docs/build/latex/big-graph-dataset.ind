@@ -8,306 +8,108 @@
 
   \lettergroupDefault{default}
   \item \spxentry{\_\_init\_\_()}\spxextra{datasets.CoraDataset method}, \hyperpage{11}
-  \item \spxentry{\_\_init\_\_()}\spxextra{datasets.EgoDataset method}, \hyperpage{14}
-  \item \spxentry{\_\_init\_\_()}\spxextra{datasets.FacebookDataset method}, \hyperpage{17}
-  \item \spxentry{\_\_init\_\_()}\spxextra{datasets.NeuralDataset method}, \hyperpage{20}
-  \item \spxentry{\_\_init\_\_()}\spxextra{datasets.RedditDataset method}, \hyperpage{22}
-  \item \spxentry{\_\_init\_\_()}\spxextra{datasets.RoadDataset method}, \hyperpage{25}
-  \item \spxentry{\_\_init\_\_()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{28}
-  \item \spxentry{\_\_init\_\_()}\spxextra{top.ToPDataset method}, \hyperpage{29}
+  \item \spxentry{\_\_init\_\_()}\spxextra{datasets.EgoDataset method}, \hyperpage{12}
+  \item \spxentry{\_\_init\_\_()}\spxextra{datasets.FacebookDataset method}, \hyperpage{13}
+  \item \spxentry{\_\_init\_\_()}\spxextra{datasets.NeuralDataset method}, \hyperpage{14}
+  \item \spxentry{\_\_init\_\_()}\spxextra{datasets.RedditDataset method}, \hyperpage{15}
+  \item \spxentry{\_\_init\_\_()}\spxextra{datasets.RoadDataset method}, \hyperpage{16}
+  \item \spxentry{\_\_init\_\_()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{16}, \hyperpage{17}
+  \item \spxentry{\_\_init\_\_()}\spxextra{top.ToPDataset method}, \hyperpage{18}
   \item \spxentry{\_abc\_impl}\spxextra{datasets.CoraDataset attribute}, \hyperpage{11}
-  \item \spxentry{\_abc\_impl}\spxextra{datasets.EgoDataset attribute}, \hyperpage{14}
-  \item \spxentry{\_abc\_impl}\spxextra{datasets.FacebookDataset attribute}, \hyperpage{17}
-  \item \spxentry{\_abc\_impl}\spxextra{datasets.NeuralDataset attribute}, \hyperpage{20}
-  \item \spxentry{\_abc\_impl}\spxextra{datasets.RedditDataset attribute}, \hyperpage{22}
-  \item \spxentry{\_abc\_impl}\spxextra{datasets.RoadDataset attribute}, \hyperpage{25}
-  \item \spxentry{\_abc\_impl}\spxextra{top.ToPDataset attribute}, \hyperpage{29}
-  \item \spxentry{\_download()}\spxextra{datasets.CoraDataset method}, \hyperpage{12}
-  \item \spxentry{\_download()}\spxextra{datasets.EgoDataset method}, \hyperpage{14}
-  \item \spxentry{\_download()}\spxextra{datasets.FacebookDataset method}, \hyperpage{17}
-  \item \spxentry{\_download()}\spxextra{datasets.NeuralDataset method}, \hyperpage{20}
-  \item \spxentry{\_download()}\spxextra{datasets.RedditDataset method}, \hyperpage{22}
-  \item \spxentry{\_download()}\spxextra{datasets.RoadDataset method}, \hyperpage{25}
-  \item \spxentry{\_download()}\spxextra{top.ToPDataset method}, \hyperpage{29}
-  \item \spxentry{\_infer\_num\_classes()}\spxextra{datasets.CoraDataset method}, \hyperpage{12}
-  \item \spxentry{\_infer\_num\_classes()}\spxextra{datasets.EgoDataset method}, \hyperpage{14}
-  \item \spxentry{\_infer\_num\_classes()}\spxextra{datasets.FacebookDataset method}, \hyperpage{17}
-  \item \spxentry{\_infer\_num\_classes()}\spxextra{datasets.NeuralDataset method}, \hyperpage{20}
-  \item \spxentry{\_infer\_num\_classes()}\spxextra{datasets.RedditDataset method}, \hyperpage{22}
-  \item \spxentry{\_infer\_num\_classes()}\spxextra{datasets.RoadDataset method}, \hyperpage{25}
-  \item \spxentry{\_infer\_num\_classes()}\spxextra{top.ToPDataset method}, \hyperpage{29}
-  \item \spxentry{\_is\_protocol}\spxextra{datasets.CoraDataset attribute}, \hyperpage{12}
-  \item \spxentry{\_is\_protocol}\spxextra{datasets.EgoDataset attribute}, \hyperpage{14}
-  \item \spxentry{\_is\_protocol}\spxextra{datasets.FacebookDataset attribute}, \hyperpage{17}
-  \item \spxentry{\_is\_protocol}\spxextra{datasets.NeuralDataset attribute}, \hyperpage{20}
-  \item \spxentry{\_is\_protocol}\spxextra{datasets.RedditDataset attribute}, \hyperpage{22}
-  \item \spxentry{\_is\_protocol}\spxextra{datasets.RoadDataset attribute}, \hyperpage{25}
-  \item \spxentry{\_is\_protocol}\spxextra{top.ToPDataset attribute}, \hyperpage{30}
-  \item \spxentry{\_process()}\spxextra{datasets.CoraDataset method}, \hyperpage{12}
-  \item \spxentry{\_process()}\spxextra{datasets.EgoDataset method}, \hyperpage{14}
-  \item \spxentry{\_process()}\spxextra{datasets.FacebookDataset method}, \hyperpage{17}
-  \item \spxentry{\_process()}\spxextra{datasets.NeuralDataset method}, \hyperpage{20}
-  \item \spxentry{\_process()}\spxextra{datasets.RedditDataset method}, \hyperpage{23}
-  \item \spxentry{\_process()}\spxextra{datasets.RoadDataset method}, \hyperpage{25}
-  \item \spxentry{\_process()}\spxextra{top.ToPDataset method}, \hyperpage{30}
+  \item \spxentry{\_abc\_impl}\spxextra{datasets.EgoDataset attribute}, \hyperpage{12}
+  \item \spxentry{\_abc\_impl}\spxextra{datasets.FacebookDataset attribute}, \hyperpage{13}
+  \item \spxentry{\_abc\_impl}\spxextra{datasets.NeuralDataset attribute}, \hyperpage{14}
+  \item \spxentry{\_abc\_impl}\spxextra{datasets.RedditDataset attribute}, \hyperpage{15}
+  \item \spxentry{\_abc\_impl}\spxextra{datasets.RoadDataset attribute}, \hyperpage{16}
+  \item \spxentry{\_abc\_impl}\spxextra{top.ToPDataset attribute}, \hyperpage{18}
 
   \indexspace
 
   \lettergroup{C}
-  \item \spxentry{centroid\_similarities()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{28}
-  \item \spxentry{collate()}\spxextra{datasets.CoraDataset static method}, \hyperpage{12}
-  \item \spxentry{collate()}\spxextra{datasets.EgoDataset static method}, \hyperpage{14}
-  \item \spxentry{collate()}\spxextra{datasets.FacebookDataset static method}, \hyperpage{17}
-  \item \spxentry{collate()}\spxextra{datasets.NeuralDataset static method}, \hyperpage{20}
-  \item \spxentry{collate()}\spxextra{datasets.RedditDataset static method}, \hyperpage{23}
-  \item \spxentry{collate()}\spxextra{datasets.RoadDataset static method}, \hyperpage{25}
-  \item \spxentry{collate()}\spxextra{top.ToPDataset static method}, \hyperpage{30}
-  \item \spxentry{compute\_top\_scores()}\spxextra{in module top}, \hyperpage{31}
-  \item \spxentry{copy()}\spxextra{datasets.CoraDataset method}, \hyperpage{12}
-  \item \spxentry{copy()}\spxextra{datasets.EgoDataset method}, \hyperpage{15}
-  \item \spxentry{copy()}\spxextra{datasets.FacebookDataset method}, \hyperpage{17}
-  \item \spxentry{copy()}\spxextra{datasets.NeuralDataset method}, \hyperpage{20}
-  \item \spxentry{copy()}\spxextra{datasets.RedditDataset method}, \hyperpage{23}
-  \item \spxentry{copy()}\spxextra{datasets.RoadDataset method}, \hyperpage{25}
-  \item \spxentry{copy()}\spxextra{top.ToPDataset method}, \hyperpage{30}
+  \item \spxentry{centroid\_similarities()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{17}
+  \item \spxentry{compute\_top\_scores()}\spxextra{in module top}, \hyperpage{18}
   \item \spxentry{CoraDataset}\spxextra{class in datasets}, \hyperpage{11}
 
   \indexspace
 
   \lettergroup{D}
-  \item \spxentry{data}\spxextra{datasets.CoraDataset property}, \hyperpage{12}
-  \item \spxentry{data}\spxextra{datasets.EgoDataset property}, \hyperpage{15}
-  \item \spxentry{data}\spxextra{datasets.FacebookDataset property}, \hyperpage{17}
-  \item \spxentry{data}\spxextra{datasets.NeuralDataset property}, \hyperpage{20}
-  \item \spxentry{data}\spxextra{datasets.RedditDataset property}, \hyperpage{23}
-  \item \spxentry{data}\spxextra{datasets.RoadDataset property}, \hyperpage{26}
-  \item \spxentry{data}\spxextra{top.ToPDataset property}, \hyperpage{30}
   \item \spxentry{datasets}
     \subitem \spxentry{module}, \hyperpage{11}
-  \item \spxentry{download()}\spxextra{datasets.CoraDataset method}, \hyperpage{12}
-  \item \spxentry{download()}\spxextra{datasets.EgoDataset method}, \hyperpage{15}
-  \item \spxentry{download()}\spxextra{datasets.FacebookDataset method}, \hyperpage{17}
-  \item \spxentry{download()}\spxextra{datasets.NeuralDataset method}, \hyperpage{20}
-  \item \spxentry{download()}\spxextra{datasets.RedditDataset method}, \hyperpage{23}
-  \item \spxentry{download()}\spxextra{datasets.RoadDataset method}, \hyperpage{26}
-  \item \spxentry{download()}\spxextra{top.ToPDataset method}, \hyperpage{30}
 
   \indexspace
 
   \lettergroup{E}
-  \item \spxentry{EgoDataset}\spxextra{class in datasets}, \hyperpage{13}
-  \item \spxentry{embedding\_evaluation()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{28}
+  \item \spxentry{EgoDataset}\spxextra{class in datasets}, \hyperpage{12}
+  \item \spxentry{embedding\_evaluation()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{16}, \hyperpage{17}
 
   \indexspace
 
   \lettergroup{F}
-  \item \spxentry{FacebookDataset}\spxextra{class in datasets}, \hyperpage{16}
+  \item \spxentry{FacebookDataset}\spxextra{class in datasets}, \hyperpage{12}
 
   \indexspace
 
   \lettergroup{G}
-  \item \spxentry{GeneralEmbeddingEvaluation}\spxextra{class in top}, \hyperpage{28}
-  \item \spxentry{get()}\spxextra{datasets.CoraDataset method}, \hyperpage{12}
-  \item \spxentry{get()}\spxextra{datasets.EgoDataset method}, \hyperpage{15}
-  \item \spxentry{get()}\spxextra{datasets.FacebookDataset method}, \hyperpage{17}
-  \item \spxentry{get()}\spxextra{datasets.NeuralDataset method}, \hyperpage{20}
-  \item \spxentry{get()}\spxextra{datasets.RedditDataset method}, \hyperpage{23}
-  \item \spxentry{get()}\spxextra{datasets.RoadDataset method}, \hyperpage{26}
-  \item \spxentry{get()}\spxextra{top.ToPDataset method}, \hyperpage{30}
-  \item \spxentry{get\_all\_datasets()}\spxextra{in module datasets}, \hyperpage{27}
-  \item \spxentry{get\_embeddings()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{28}
-  \item \spxentry{get\_summary()}\spxextra{datasets.CoraDataset method}, \hyperpage{12}
-  \item \spxentry{get\_summary()}\spxextra{datasets.EgoDataset method}, \hyperpage{15}
-  \item \spxentry{get\_summary()}\spxextra{datasets.FacebookDataset method}, \hyperpage{18}
-  \item \spxentry{get\_summary()}\spxextra{datasets.NeuralDataset method}, \hyperpage{20}
-  \item \spxentry{get\_summary()}\spxextra{datasets.RedditDataset method}, \hyperpage{23}
-  \item \spxentry{get\_summary()}\spxextra{datasets.RoadDataset method}, \hyperpage{26}
-  \item \spxentry{get\_summary()}\spxextra{top.ToPDataset method}, \hyperpage{30}
-  \item \spxentry{get\_test\_datasets()}\spxextra{in module datasets}, \hyperpage{27}
-  \item \spxentry{get\_train\_datasets()}\spxextra{in module datasets}, \hyperpage{27}
-  \item \spxentry{get\_val\_datasets()}\spxextra{in module datasets}, \hyperpage{27}
-
-  \indexspace
-
-  \lettergroup{H}
-  \item \spxentry{has\_download}\spxextra{datasets.CoraDataset property}, \hyperpage{12}
-  \item \spxentry{has\_download}\spxextra{datasets.EgoDataset property}, \hyperpage{15}
-  \item \spxentry{has\_download}\spxextra{datasets.FacebookDataset property}, \hyperpage{18}
-  \item \spxentry{has\_download}\spxextra{datasets.NeuralDataset property}, \hyperpage{20}
-  \item \spxentry{has\_download}\spxextra{datasets.RedditDataset property}, \hyperpage{23}
-  \item \spxentry{has\_download}\spxextra{datasets.RoadDataset property}, \hyperpage{26}
-  \item \spxentry{has\_download}\spxextra{top.ToPDataset property}, \hyperpage{30}
-  \item \spxentry{has\_process}\spxextra{datasets.CoraDataset property}, \hyperpage{12}
-  \item \spxentry{has\_process}\spxextra{datasets.EgoDataset property}, \hyperpage{15}
-  \item \spxentry{has\_process}\spxextra{datasets.FacebookDataset property}, \hyperpage{18}
-  \item \spxentry{has\_process}\spxextra{datasets.NeuralDataset property}, \hyperpage{20}
-  \item \spxentry{has\_process}\spxextra{datasets.RedditDataset property}, \hyperpage{23}
-  \item \spxentry{has\_process}\spxextra{datasets.RoadDataset property}, \hyperpage{26}
-  \item \spxentry{has\_process}\spxextra{top.ToPDataset property}, \hyperpage{30}
-
-  \indexspace
-
-  \lettergroup{I}
-  \item \spxentry{index\_select()}\spxextra{datasets.CoraDataset method}, \hyperpage{12}
-  \item \spxentry{index\_select()}\spxextra{datasets.EgoDataset method}, \hyperpage{15}
-  \item \spxentry{index\_select()}\spxextra{datasets.FacebookDataset method}, \hyperpage{18}
-  \item \spxentry{index\_select()}\spxextra{datasets.NeuralDataset method}, \hyperpage{20}
-  \item \spxentry{index\_select()}\spxextra{datasets.RedditDataset method}, \hyperpage{23}
-  \item \spxentry{index\_select()}\spxextra{datasets.RoadDataset method}, \hyperpage{26}
-  \item \spxentry{index\_select()}\spxextra{top.ToPDataset method}, \hyperpage{30}
-  \item \spxentry{indices()}\spxextra{datasets.CoraDataset method}, \hyperpage{12}
-  \item \spxentry{indices()}\spxextra{datasets.EgoDataset method}, \hyperpage{15}
-  \item \spxentry{indices()}\spxextra{datasets.FacebookDataset method}, \hyperpage{18}
-  \item \spxentry{indices()}\spxextra{datasets.NeuralDataset method}, \hyperpage{20}
-  \item \spxentry{indices()}\spxextra{datasets.RedditDataset method}, \hyperpage{23}
-  \item \spxentry{indices()}\spxextra{datasets.RoadDataset method}, \hyperpage{26}
-  \item \spxentry{indices()}\spxextra{top.ToPDataset method}, \hyperpage{30}
-
-  \indexspace
-
-  \lettergroup{L}
-  \item \spxentry{len()}\spxextra{datasets.CoraDataset method}, \hyperpage{12}
-  \item \spxentry{len()}\spxextra{datasets.EgoDataset method}, \hyperpage{15}
-  \item \spxentry{len()}\spxextra{datasets.FacebookDataset method}, \hyperpage{18}
-  \item \spxentry{len()}\spxextra{datasets.NeuralDataset method}, \hyperpage{21}
-  \item \spxentry{len()}\spxextra{datasets.RedditDataset method}, \hyperpage{23}
-  \item \spxentry{len()}\spxextra{datasets.RoadDataset method}, \hyperpage{26}
-  \item \spxentry{len()}\spxextra{top.ToPDataset method}, \hyperpage{30}
+  \item \spxentry{GeneralEmbeddingEvaluation}\spxextra{class in top}, \hyperpage{16}
+  \item \spxentry{get\_all\_datasets()}\spxextra{in module datasets}, \hyperpage{16}
+  \item \spxentry{get\_embeddings()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{16}, \hyperpage{17}
+  \item \spxentry{get\_test\_datasets()}\spxextra{in module datasets}, \hyperpage{16}
+  \item \spxentry{get\_train\_datasets()}\spxextra{in module datasets}, \hyperpage{16}
+  \item \spxentry{get\_val\_datasets()}\spxextra{in module datasets}, \hyperpage{16}
 
   \indexspace
 
   \lettergroup{M}
   \item \spxentry{module}
     \subitem \spxentry{datasets}, \hyperpage{11}
-    \subitem \spxentry{top}, \hyperpage{28}
+    \subitem \spxentry{top}, \hyperpage{16}
 
   \indexspace
 
   \lettergroup{N}
-  \item \spxentry{NeuralDataset}\spxextra{class in datasets}, \hyperpage{19}
-  \item \spxentry{num\_classes}\spxextra{datasets.CoraDataset property}, \hyperpage{13}
-  \item \spxentry{num\_classes}\spxextra{datasets.EgoDataset property}, \hyperpage{15}
-  \item \spxentry{num\_classes}\spxextra{datasets.FacebookDataset property}, \hyperpage{18}
-  \item \spxentry{num\_classes}\spxextra{datasets.NeuralDataset property}, \hyperpage{21}
-  \item \spxentry{num\_classes}\spxextra{datasets.RedditDataset property}, \hyperpage{23}
-  \item \spxentry{num\_classes}\spxextra{datasets.RoadDataset property}, \hyperpage{26}
-  \item \spxentry{num\_classes}\spxextra{top.ToPDataset property}, \hyperpage{30}
-  \item \spxentry{num\_edge\_features}\spxextra{datasets.CoraDataset property}, \hyperpage{13}
-  \item \spxentry{num\_edge\_features}\spxextra{datasets.EgoDataset property}, \hyperpage{15}
-  \item \spxentry{num\_edge\_features}\spxextra{datasets.FacebookDataset property}, \hyperpage{18}
-  \item \spxentry{num\_edge\_features}\spxextra{datasets.NeuralDataset property}, \hyperpage{21}
-  \item \spxentry{num\_edge\_features}\spxextra{datasets.RedditDataset property}, \hyperpage{23}
-  \item \spxentry{num\_edge\_features}\spxextra{datasets.RoadDataset property}, \hyperpage{26}
-  \item \spxentry{num\_edge\_features}\spxextra{top.ToPDataset property}, \hyperpage{31}
-  \item \spxentry{num\_features}\spxextra{datasets.CoraDataset property}, \hyperpage{13}
-  \item \spxentry{num\_features}\spxextra{datasets.EgoDataset property}, \hyperpage{15}
-  \item \spxentry{num\_features}\spxextra{datasets.FacebookDataset property}, \hyperpage{18}
-  \item \spxentry{num\_features}\spxextra{datasets.NeuralDataset property}, \hyperpage{21}
-  \item \spxentry{num\_features}\spxextra{datasets.RedditDataset property}, \hyperpage{23}
-  \item \spxentry{num\_features}\spxextra{datasets.RoadDataset property}, \hyperpage{26}
-  \item \spxentry{num\_features}\spxextra{top.ToPDataset property}, \hyperpage{31}
-  \item \spxentry{num\_node\_features}\spxextra{datasets.CoraDataset property}, \hyperpage{13}
-  \item \spxentry{num\_node\_features}\spxextra{datasets.EgoDataset property}, \hyperpage{15}
-  \item \spxentry{num\_node\_features}\spxextra{datasets.FacebookDataset property}, \hyperpage{18}
-  \item \spxentry{num\_node\_features}\spxextra{datasets.NeuralDataset property}, \hyperpage{21}
-  \item \spxentry{num\_node\_features}\spxextra{datasets.RedditDataset property}, \hyperpage{24}
-  \item \spxentry{num\_node\_features}\spxextra{datasets.RoadDataset property}, \hyperpage{26}
-  \item \spxentry{num\_node\_features}\spxextra{top.ToPDataset property}, \hyperpage{31}
+  \item \spxentry{NeuralDataset}\spxextra{class in datasets}, \hyperpage{13}
 
   \indexspace
 
   \lettergroup{P}
-  \item \spxentry{print\_summary()}\spxextra{datasets.CoraDataset method}, \hyperpage{13}
-  \item \spxentry{print\_summary()}\spxextra{datasets.EgoDataset method}, \hyperpage{15}
-  \item \spxentry{print\_summary()}\spxextra{datasets.FacebookDataset method}, \hyperpage{18}
-  \item \spxentry{print\_summary()}\spxextra{datasets.NeuralDataset method}, \hyperpage{21}
-  \item \spxentry{print\_summary()}\spxextra{datasets.RedditDataset method}, \hyperpage{24}
-  \item \spxentry{print\_summary()}\spxextra{datasets.RoadDataset method}, \hyperpage{26}
-  \item \spxentry{print\_summary()}\spxextra{top.ToPDataset method}, \hyperpage{31}
-  \item \spxentry{process()}\spxextra{datasets.CoraDataset method}, \hyperpage{13}
-  \item \spxentry{process()}\spxextra{datasets.EgoDataset method}, \hyperpage{15}
-  \item \spxentry{process()}\spxextra{datasets.FacebookDataset method}, \hyperpage{18}
-  \item \spxentry{process()}\spxextra{datasets.NeuralDataset method}, \hyperpage{21}
-  \item \spxentry{process()}\spxextra{datasets.RedditDataset method}, \hyperpage{24}
-  \item \spxentry{process()}\spxextra{datasets.RoadDataset method}, \hyperpage{26}
-  \item \spxentry{process()}\spxextra{top.ToPDataset method}, \hyperpage{31}
-  \item \spxentry{processed\_dir}\spxextra{datasets.CoraDataset property}, \hyperpage{13}
-  \item \spxentry{processed\_dir}\spxextra{datasets.EgoDataset property}, \hyperpage{16}
-  \item \spxentry{processed\_dir}\spxextra{datasets.FacebookDataset property}, \hyperpage{18}
-  \item \spxentry{processed\_dir}\spxextra{datasets.NeuralDataset property}, \hyperpage{21}
-  \item \spxentry{processed\_dir}\spxextra{datasets.RedditDataset property}, \hyperpage{24}
-  \item \spxentry{processed\_dir}\spxextra{datasets.RoadDataset property}, \hyperpage{26}
-  \item \spxentry{processed\_dir}\spxextra{top.ToPDataset property}, \hyperpage{31}
-  \item \spxentry{processed\_file\_names}\spxextra{datasets.CoraDataset property}, \hyperpage{13}
-  \item \spxentry{processed\_file\_names}\spxextra{datasets.EgoDataset property}, \hyperpage{16}
-  \item \spxentry{processed\_file\_names}\spxextra{datasets.FacebookDataset property}, \hyperpage{18}
-  \item \spxentry{processed\_file\_names}\spxextra{datasets.NeuralDataset property}, \hyperpage{21}
-  \item \spxentry{processed\_file\_names}\spxextra{datasets.RedditDataset property}, \hyperpage{24}
-  \item \spxentry{processed\_file\_names}\spxextra{datasets.RoadDataset property}, \hyperpage{26}
-  \item \spxentry{processed\_file\_names}\spxextra{top.ToPDataset property}, \hyperpage{31}
-  \item \spxentry{processed\_paths}\spxextra{datasets.CoraDataset property}, \hyperpage{13}
-  \item \spxentry{processed\_paths}\spxextra{datasets.EgoDataset property}, \hyperpage{16}
-  \item \spxentry{processed\_paths}\spxextra{datasets.FacebookDataset property}, \hyperpage{18}
-  \item \spxentry{processed\_paths}\spxextra{datasets.NeuralDataset property}, \hyperpage{21}
-  \item \spxentry{processed\_paths}\spxextra{datasets.RedditDataset property}, \hyperpage{24}
-  \item \spxentry{processed\_paths}\spxextra{datasets.RoadDataset property}, \hyperpage{26}
-  \item \spxentry{processed\_paths}\spxextra{top.ToPDataset property}, \hyperpage{31}
+  \item \spxentry{process()}\spxextra{datasets.CoraDataset method}, \hyperpage{12}
+  \item \spxentry{process()}\spxextra{datasets.EgoDataset method}, \hyperpage{12}
+  \item \spxentry{process()}\spxextra{datasets.FacebookDataset method}, \hyperpage{13}
+  \item \spxentry{process()}\spxextra{datasets.NeuralDataset method}, \hyperpage{14}
+  \item \spxentry{process()}\spxextra{datasets.RedditDataset method}, \hyperpage{15}
+  \item \spxentry{process()}\spxextra{datasets.RoadDataset method}, \hyperpage{16}
+  \item \spxentry{process()}\spxextra{top.ToPDataset method}, \hyperpage{18}
+  \item \spxentry{processed\_file\_names}\spxextra{datasets.CoraDataset property}, \hyperpage{12}
+  \item \spxentry{processed\_file\_names}\spxextra{datasets.EgoDataset property}, \hyperpage{12}
+  \item \spxentry{processed\_file\_names}\spxextra{datasets.FacebookDataset property}, \hyperpage{13}
+  \item \spxentry{processed\_file\_names}\spxextra{datasets.NeuralDataset property}, \hyperpage{14}
+  \item \spxentry{processed\_file\_names}\spxextra{datasets.RedditDataset property}, \hyperpage{15}
+  \item \spxentry{processed\_file\_names}\spxextra{datasets.RoadDataset property}, \hyperpage{16}
+  \item \spxentry{processed\_file\_names}\spxextra{top.ToPDataset property}, \hyperpage{18}
 
   \indexspace
 
   \lettergroup{R}
-  \item \spxentry{raw\_dir}\spxextra{datasets.CoraDataset property}, \hyperpage{13}
-  \item \spxentry{raw\_dir}\spxextra{datasets.EgoDataset property}, \hyperpage{16}
-  \item \spxentry{raw\_dir}\spxextra{datasets.FacebookDataset property}, \hyperpage{18}
-  \item \spxentry{raw\_dir}\spxextra{datasets.NeuralDataset property}, \hyperpage{21}
-  \item \spxentry{raw\_dir}\spxextra{datasets.RedditDataset property}, \hyperpage{24}
-  \item \spxentry{raw\_dir}\spxextra{datasets.RoadDataset property}, \hyperpage{27}
-  \item \spxentry{raw\_dir}\spxextra{top.ToPDataset property}, \hyperpage{31}
-  \item \spxentry{raw\_file\_names}\spxextra{datasets.CoraDataset property}, \hyperpage{13}
-  \item \spxentry{raw\_file\_names}\spxextra{datasets.EgoDataset property}, \hyperpage{16}
-  \item \spxentry{raw\_file\_names}\spxextra{datasets.FacebookDataset property}, \hyperpage{18}
-  \item \spxentry{raw\_file\_names}\spxextra{datasets.NeuralDataset property}, \hyperpage{21}
-  \item \spxentry{raw\_file\_names}\spxextra{datasets.RedditDataset property}, \hyperpage{24}
-  \item \spxentry{raw\_file\_names}\spxextra{datasets.RoadDataset property}, \hyperpage{27}
-  \item \spxentry{raw\_file\_names}\spxextra{top.ToPDataset property}, \hyperpage{31}
-  \item \spxentry{raw\_paths}\spxextra{datasets.CoraDataset property}, \hyperpage{13}
-  \item \spxentry{raw\_paths}\spxextra{datasets.EgoDataset property}, \hyperpage{16}
-  \item \spxentry{raw\_paths}\spxextra{datasets.FacebookDataset property}, \hyperpage{18}
-  \item \spxentry{raw\_paths}\spxextra{datasets.NeuralDataset property}, \hyperpage{21}
-  \item \spxentry{raw\_paths}\spxextra{datasets.RedditDataset property}, \hyperpage{24}
-  \item \spxentry{raw\_paths}\spxextra{datasets.RoadDataset property}, \hyperpage{27}
-  \item \spxentry{raw\_paths}\spxextra{top.ToPDataset property}, \hyperpage{31}
-  \item \spxentry{RedditDataset}\spxextra{class in datasets}, \hyperpage{22}
-  \item \spxentry{RoadDataset}\spxextra{class in datasets}, \hyperpage{24}
-
-  \indexspace
-
-  \lettergroup{S}
-  \item \spxentry{shuffle()}\spxextra{datasets.CoraDataset method}, \hyperpage{13}
-  \item \spxentry{shuffle()}\spxextra{datasets.EgoDataset method}, \hyperpage{16}
-  \item \spxentry{shuffle()}\spxextra{datasets.FacebookDataset method}, \hyperpage{18}
-  \item \spxentry{shuffle()}\spxextra{datasets.NeuralDataset method}, \hyperpage{21}
-  \item \spxentry{shuffle()}\spxextra{datasets.RedditDataset method}, \hyperpage{24}
-  \item \spxentry{shuffle()}\spxextra{datasets.RoadDataset method}, \hyperpage{27}
-  \item \spxentry{shuffle()}\spxextra{top.ToPDataset method}, \hyperpage{31}
+  \item \spxentry{raw\_file\_names}\spxextra{datasets.CoraDataset property}, \hyperpage{12}
+  \item \spxentry{raw\_file\_names}\spxextra{datasets.EgoDataset property}, \hyperpage{12}
+  \item \spxentry{raw\_file\_names}\spxextra{datasets.FacebookDataset property}, \hyperpage{13}
+  \item \spxentry{raw\_file\_names}\spxextra{datasets.NeuralDataset property}, \hyperpage{14}
+  \item \spxentry{raw\_file\_names}\spxextra{datasets.RedditDataset property}, \hyperpage{15}
+  \item \spxentry{raw\_file\_names}\spxextra{datasets.RoadDataset property}, \hyperpage{16}
+  \item \spxentry{raw\_file\_names}\spxextra{top.ToPDataset property}, \hyperpage{18}
+  \item \spxentry{RedditDataset}\spxextra{class in datasets}, \hyperpage{14}
+  \item \spxentry{RoadDataset}\spxextra{class in datasets}, \hyperpage{15}
 
   \indexspace
 
   \lettergroup{T}
-  \item \spxentry{to\_datapipe()}\spxextra{datasets.CoraDataset method}, \hyperpage{13}
-  \item \spxentry{to\_datapipe()}\spxextra{datasets.EgoDataset method}, \hyperpage{16}
-  \item \spxentry{to\_datapipe()}\spxextra{datasets.FacebookDataset method}, \hyperpage{19}
-  \item \spxentry{to\_datapipe()}\spxextra{datasets.NeuralDataset method}, \hyperpage{21}
-  \item \spxentry{to\_datapipe()}\spxextra{datasets.RedditDataset method}, \hyperpage{24}
-  \item \spxentry{to\_datapipe()}\spxextra{datasets.RoadDataset method}, \hyperpage{27}
-  \item \spxentry{to\_datapipe()}\spxextra{top.ToPDataset method}, \hyperpage{31}
   \item \spxentry{top}
-    \subitem \spxentry{module}, \hyperpage{28}
-  \item \spxentry{ToPDataset}\spxextra{class in top}, \hyperpage{29}
+    \subitem \spxentry{module}, \hyperpage{16}
+  \item \spxentry{ToPDataset}\spxextra{class in top}, \hyperpage{18}
 
   \indexspace
 
   \lettergroup{V}
-  \item \spxentry{vis()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{28}, \hyperpage{29}
+  \item \spxentry{vis()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{17}
 
 \end{sphinxtheindex}

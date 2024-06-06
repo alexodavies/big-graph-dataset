@@ -51,7 +51,6 @@ My environment is under `docs/requirements.txt`, use `pip install -r requirement
 
 .. toctree::
    :maxdepth: 2
-   :caption: Examples:
 
    reddit-dataset-example
 
@@ -62,7 +61,6 @@ Documentation for the datsets currently in the Big Graph Dataset project.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Many-graph datasets:
 
    datasets
 
@@ -75,7 +73,6 @@ Very much a work-in-progress!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Topology Only Pre-Training:
 
    top
 

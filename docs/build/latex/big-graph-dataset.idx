@@ -3,242 +3,60 @@
 \indexentry{CoraDataset (class in datasets)@\spxentry{CoraDataset}\spxextra{class in datasets}}{11}
 \indexentry{\_\_init\_\_() (datasets.CoraDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.CoraDataset method}}{11}
 \indexentry{\_abc\_impl (datasets.CoraDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.CoraDataset attribute}}{11}
-\indexentry{\_download() (datasets.CoraDataset method)@\spxentry{\_download()}\spxextra{datasets.CoraDataset method}}{12}
-\indexentry{\_infer\_num\_classes() (datasets.CoraDataset method)@\spxentry{\_infer\_num\_classes()}\spxextra{datasets.CoraDataset method}}{12}
-\indexentry{\_is\_protocol (datasets.CoraDataset attribute)@\spxentry{\_is\_protocol}\spxextra{datasets.CoraDataset attribute}}{12}
-\indexentry{\_process() (datasets.CoraDataset method)@\spxentry{\_process()}\spxextra{datasets.CoraDataset method}}{12}
-\indexentry{collate() (datasets.CoraDataset static method)@\spxentry{collate()}\spxextra{datasets.CoraDataset static method}}{12}
-\indexentry{copy() (datasets.CoraDataset method)@\spxentry{copy()}\spxextra{datasets.CoraDataset method}}{12}
-\indexentry{data (datasets.CoraDataset property)@\spxentry{data}\spxextra{datasets.CoraDataset property}}{12}
-\indexentry{download() (datasets.CoraDataset method)@\spxentry{download()}\spxextra{datasets.CoraDataset method}}{12}
-\indexentry{get() (datasets.CoraDataset method)@\spxentry{get()}\spxextra{datasets.CoraDataset method}}{12}
-\indexentry{get\_summary() (datasets.CoraDataset method)@\spxentry{get\_summary()}\spxextra{datasets.CoraDataset method}}{12}
-\indexentry{has\_download (datasets.CoraDataset property)@\spxentry{has\_download}\spxextra{datasets.CoraDataset property}}{12}
-\indexentry{has\_process (datasets.CoraDataset property)@\spxentry{has\_process}\spxextra{datasets.CoraDataset property}}{12}
-\indexentry{index\_select() (datasets.CoraDataset method)@\spxentry{index\_select()}\spxextra{datasets.CoraDataset method}}{12}
-\indexentry{indices() (datasets.CoraDataset method)@\spxentry{indices()}\spxextra{datasets.CoraDataset method}}{12}
-\indexentry{len() (datasets.CoraDataset method)@\spxentry{len()}\spxextra{datasets.CoraDataset method}}{12}
-\indexentry{num\_classes (datasets.CoraDataset property)@\spxentry{num\_classes}\spxextra{datasets.CoraDataset property}}{13}
-\indexentry{num\_edge\_features (datasets.CoraDataset property)@\spxentry{num\_edge\_features}\spxextra{datasets.CoraDataset property}}{13}
-\indexentry{num\_features (datasets.CoraDataset property)@\spxentry{num\_features}\spxextra{datasets.CoraDataset property}}{13}
-\indexentry{num\_node\_features (datasets.CoraDataset property)@\spxentry{num\_node\_features}\spxextra{datasets.CoraDataset property}}{13}
-\indexentry{print\_summary() (datasets.CoraDataset method)@\spxentry{print\_summary()}\spxextra{datasets.CoraDataset method}}{13}
-\indexentry{process() (datasets.CoraDataset method)@\spxentry{process()}\spxextra{datasets.CoraDataset method}}{13}
-\indexentry{processed\_dir (datasets.CoraDataset property)@\spxentry{processed\_dir}\spxextra{datasets.CoraDataset property}}{13}
-\indexentry{processed\_file\_names (datasets.CoraDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.CoraDataset property}}{13}
-\indexentry{processed\_paths (datasets.CoraDataset property)@\spxentry{processed\_paths}\spxextra{datasets.CoraDataset property}}{13}
-\indexentry{raw\_dir (datasets.CoraDataset property)@\spxentry{raw\_dir}\spxextra{datasets.CoraDataset property}}{13}
-\indexentry{raw\_file\_names (datasets.CoraDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.CoraDataset property}}{13}
-\indexentry{raw\_paths (datasets.CoraDataset property)@\spxentry{raw\_paths}\spxextra{datasets.CoraDataset property}}{13}
-\indexentry{shuffle() (datasets.CoraDataset method)@\spxentry{shuffle()}\spxextra{datasets.CoraDataset method}}{13}
-\indexentry{to\_datapipe() (datasets.CoraDataset method)@\spxentry{to\_datapipe()}\spxextra{datasets.CoraDataset method}}{13}
-\indexentry{EgoDataset (class in datasets)@\spxentry{EgoDataset}\spxextra{class in datasets}}{13}
-\indexentry{\_\_init\_\_() (datasets.EgoDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.EgoDataset method}}{14}
-\indexentry{\_abc\_impl (datasets.EgoDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.EgoDataset attribute}}{14}
-\indexentry{\_download() (datasets.EgoDataset method)@\spxentry{\_download()}\spxextra{datasets.EgoDataset method}}{14}
-\indexentry{\_infer\_num\_classes() (datasets.EgoDataset method)@\spxentry{\_infer\_num\_classes()}\spxextra{datasets.EgoDataset method}}{14}
-\indexentry{\_is\_protocol (datasets.EgoDataset attribute)@\spxentry{\_is\_protocol}\spxextra{datasets.EgoDataset attribute}}{14}
-\indexentry{\_process() (datasets.EgoDataset method)@\spxentry{\_process()}\spxextra{datasets.EgoDataset method}}{14}
-\indexentry{collate() (datasets.EgoDataset static method)@\spxentry{collate()}\spxextra{datasets.EgoDataset static method}}{14}
-\indexentry{copy() (datasets.EgoDataset method)@\spxentry{copy()}\spxextra{datasets.EgoDataset method}}{15}
-\indexentry{data (datasets.EgoDataset property)@\spxentry{data}\spxextra{datasets.EgoDataset property}}{15}
-\indexentry{download() (datasets.EgoDataset method)@\spxentry{download()}\spxextra{datasets.EgoDataset method}}{15}
-\indexentry{get() (datasets.EgoDataset method)@\spxentry{get()}\spxextra{datasets.EgoDataset method}}{15}
-\indexentry{get\_summary() (datasets.EgoDataset method)@\spxentry{get\_summary()}\spxextra{datasets.EgoDataset method}}{15}
-\indexentry{has\_download (datasets.EgoDataset property)@\spxentry{has\_download}\spxextra{datasets.EgoDataset property}}{15}
-\indexentry{has\_process (datasets.EgoDataset property)@\spxentry{has\_process}\spxextra{datasets.EgoDataset property}}{15}
-\indexentry{index\_select() (datasets.EgoDataset method)@\spxentry{index\_select()}\spxextra{datasets.EgoDataset method}}{15}
-\indexentry{indices() (datasets.EgoDataset method)@\spxentry{indices()}\spxextra{datasets.EgoDataset method}}{15}
-\indexentry{len() (datasets.EgoDataset method)@\spxentry{len()}\spxextra{datasets.EgoDataset method}}{15}
-\indexentry{num\_classes (datasets.EgoDataset property)@\spxentry{num\_classes}\spxextra{datasets.EgoDataset property}}{15}
-\indexentry{num\_edge\_features (datasets.EgoDataset property)@\spxentry{num\_edge\_features}\spxextra{datasets.EgoDataset property}}{15}
-\indexentry{num\_features (datasets.EgoDataset property)@\spxentry{num\_features}\spxextra{datasets.EgoDataset property}}{15}
-\indexentry{num\_node\_features (datasets.EgoDataset property)@\spxentry{num\_node\_features}\spxextra{datasets.EgoDataset property}}{15}
-\indexentry{print\_summary() (datasets.EgoDataset method)@\spxentry{print\_summary()}\spxextra{datasets.EgoDataset method}}{15}
-\indexentry{process() (datasets.EgoDataset method)@\spxentry{process()}\spxextra{datasets.EgoDataset method}}{15}
-\indexentry{processed\_dir (datasets.EgoDataset property)@\spxentry{processed\_dir}\spxextra{datasets.EgoDataset property}}{16}
-\indexentry{processed\_file\_names (datasets.EgoDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.EgoDataset property}}{16}
-\indexentry{processed\_paths (datasets.EgoDataset property)@\spxentry{processed\_paths}\spxextra{datasets.EgoDataset property}}{16}
-\indexentry{raw\_dir (datasets.EgoDataset property)@\spxentry{raw\_dir}\spxextra{datasets.EgoDataset property}}{16}
-\indexentry{raw\_file\_names (datasets.EgoDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.EgoDataset property}}{16}
-\indexentry{raw\_paths (datasets.EgoDataset property)@\spxentry{raw\_paths}\spxextra{datasets.EgoDataset property}}{16}
-\indexentry{shuffle() (datasets.EgoDataset method)@\spxentry{shuffle()}\spxextra{datasets.EgoDataset method}}{16}
-\indexentry{to\_datapipe() (datasets.EgoDataset method)@\spxentry{to\_datapipe()}\spxextra{datasets.EgoDataset method}}{16}
-\indexentry{FacebookDataset (class in datasets)@\spxentry{FacebookDataset}\spxextra{class in datasets}}{16}
-\indexentry{\_\_init\_\_() (datasets.FacebookDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.FacebookDataset method}}{17}
-\indexentry{\_abc\_impl (datasets.FacebookDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.FacebookDataset attribute}}{17}
-\indexentry{\_download() (datasets.FacebookDataset method)@\spxentry{\_download()}\spxextra{datasets.FacebookDataset method}}{17}
-\indexentry{\_infer\_num\_classes() (datasets.FacebookDataset method)@\spxentry{\_infer\_num\_classes()}\spxextra{datasets.FacebookDataset method}}{17}
-\indexentry{\_is\_protocol (datasets.FacebookDataset attribute)@\spxentry{\_is\_protocol}\spxextra{datasets.FacebookDataset attribute}}{17}
-\indexentry{\_process() (datasets.FacebookDataset method)@\spxentry{\_process()}\spxextra{datasets.FacebookDataset method}}{17}
-\indexentry{collate() (datasets.FacebookDataset static method)@\spxentry{collate()}\spxextra{datasets.FacebookDataset static method}}{17}
-\indexentry{copy() (datasets.FacebookDataset method)@\spxentry{copy()}\spxextra{datasets.FacebookDataset method}}{17}
-\indexentry{data (datasets.FacebookDataset property)@\spxentry{data}\spxextra{datasets.FacebookDataset property}}{17}
-\indexentry{download() (datasets.FacebookDataset method)@\spxentry{download()}\spxextra{datasets.FacebookDataset method}}{17}
-\indexentry{get() (datasets.FacebookDataset method)@\spxentry{get()}\spxextra{datasets.FacebookDataset method}}{17}
-\indexentry{get\_summary() (datasets.FacebookDataset method)@\spxentry{get\_summary()}\spxextra{datasets.FacebookDataset method}}{18}
-\indexentry{has\_download (datasets.FacebookDataset property)@\spxentry{has\_download}\spxextra{datasets.FacebookDataset property}}{18}
-\indexentry{has\_process (datasets.FacebookDataset property)@\spxentry{has\_process}\spxextra{datasets.FacebookDataset property}}{18}
-\indexentry{index\_select() (datasets.FacebookDataset method)@\spxentry{index\_select()}\spxextra{datasets.FacebookDataset method}}{18}
-\indexentry{indices() (datasets.FacebookDataset method)@\spxentry{indices()}\spxextra{datasets.FacebookDataset method}}{18}
-\indexentry{len() (datasets.FacebookDataset method)@\spxentry{len()}\spxextra{datasets.FacebookDataset method}}{18}
-\indexentry{num\_classes (datasets.FacebookDataset property)@\spxentry{num\_classes}\spxextra{datasets.FacebookDataset property}}{18}
-\indexentry{num\_edge\_features (datasets.FacebookDataset property)@\spxentry{num\_edge\_features}\spxextra{datasets.FacebookDataset property}}{18}
-\indexentry{num\_features (datasets.FacebookDataset property)@\spxentry{num\_features}\spxextra{datasets.FacebookDataset property}}{18}
-\indexentry{num\_node\_features (datasets.FacebookDataset property)@\spxentry{num\_node\_features}\spxextra{datasets.FacebookDataset property}}{18}
-\indexentry{print\_summary() (datasets.FacebookDataset method)@\spxentry{print\_summary()}\spxextra{datasets.FacebookDataset method}}{18}
-\indexentry{process() (datasets.FacebookDataset method)@\spxentry{process()}\spxextra{datasets.FacebookDataset method}}{18}
-\indexentry{processed\_dir (datasets.FacebookDataset property)@\spxentry{processed\_dir}\spxextra{datasets.FacebookDataset property}}{18}
-\indexentry{processed\_file\_names (datasets.FacebookDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.FacebookDataset property}}{18}
-\indexentry{processed\_paths (datasets.FacebookDataset property)@\spxentry{processed\_paths}\spxextra{datasets.FacebookDataset property}}{18}
-\indexentry{raw\_dir (datasets.FacebookDataset property)@\spxentry{raw\_dir}\spxextra{datasets.FacebookDataset property}}{18}
-\indexentry{raw\_file\_names (datasets.FacebookDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.FacebookDataset property}}{18}
-\indexentry{raw\_paths (datasets.FacebookDataset property)@\spxentry{raw\_paths}\spxextra{datasets.FacebookDataset property}}{18}
-\indexentry{shuffle() (datasets.FacebookDataset method)@\spxentry{shuffle()}\spxextra{datasets.FacebookDataset method}}{18}
-\indexentry{to\_datapipe() (datasets.FacebookDataset method)@\spxentry{to\_datapipe()}\spxextra{datasets.FacebookDataset method}}{19}
-\indexentry{NeuralDataset (class in datasets)@\spxentry{NeuralDataset}\spxextra{class in datasets}}{19}
-\indexentry{\_\_init\_\_() (datasets.NeuralDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.NeuralDataset method}}{20}
-\indexentry{\_abc\_impl (datasets.NeuralDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.NeuralDataset attribute}}{20}
-\indexentry{\_download() (datasets.NeuralDataset method)@\spxentry{\_download()}\spxextra{datasets.NeuralDataset method}}{20}
-\indexentry{\_infer\_num\_classes() (datasets.NeuralDataset method)@\spxentry{\_infer\_num\_classes()}\spxextra{datasets.NeuralDataset method}}{20}
-\indexentry{\_is\_protocol (datasets.NeuralDataset attribute)@\spxentry{\_is\_protocol}\spxextra{datasets.NeuralDataset attribute}}{20}
-\indexentry{\_process() (datasets.NeuralDataset method)@\spxentry{\_process()}\spxextra{datasets.NeuralDataset method}}{20}
-\indexentry{collate() (datasets.NeuralDataset static method)@\spxentry{collate()}\spxextra{datasets.NeuralDataset static method}}{20}
-\indexentry{copy() (datasets.NeuralDataset method)@\spxentry{copy()}\spxextra{datasets.NeuralDataset method}}{20}
-\indexentry{data (datasets.NeuralDataset property)@\spxentry{data}\spxextra{datasets.NeuralDataset property}}{20}
-\indexentry{download() (datasets.NeuralDataset method)@\spxentry{download()}\spxextra{datasets.NeuralDataset method}}{20}
-\indexentry{get() (datasets.NeuralDataset method)@\spxentry{get()}\spxextra{datasets.NeuralDataset method}}{20}
-\indexentry{get\_summary() (datasets.NeuralDataset method)@\spxentry{get\_summary()}\spxextra{datasets.NeuralDataset method}}{20}
-\indexentry{has\_download (datasets.NeuralDataset property)@\spxentry{has\_download}\spxextra{datasets.NeuralDataset property}}{20}
-\indexentry{has\_process (datasets.NeuralDataset property)@\spxentry{has\_process}\spxextra{datasets.NeuralDataset property}}{20}
-\indexentry{index\_select() (datasets.NeuralDataset method)@\spxentry{index\_select()}\spxextra{datasets.NeuralDataset method}}{20}
-\indexentry{indices() (datasets.NeuralDataset method)@\spxentry{indices()}\spxextra{datasets.NeuralDataset method}}{20}
-\indexentry{len() (datasets.NeuralDataset method)@\spxentry{len()}\spxextra{datasets.NeuralDataset method}}{21}
-\indexentry{num\_classes (datasets.NeuralDataset property)@\spxentry{num\_classes}\spxextra{datasets.NeuralDataset property}}{21}
-\indexentry{num\_edge\_features (datasets.NeuralDataset property)@\spxentry{num\_edge\_features}\spxextra{datasets.NeuralDataset property}}{21}
-\indexentry{num\_features (datasets.NeuralDataset property)@\spxentry{num\_features}\spxextra{datasets.NeuralDataset property}}{21}
-\indexentry{num\_node\_features (datasets.NeuralDataset property)@\spxentry{num\_node\_features}\spxextra{datasets.NeuralDataset property}}{21}
-\indexentry{print\_summary() (datasets.NeuralDataset method)@\spxentry{print\_summary()}\spxextra{datasets.NeuralDataset method}}{21}
-\indexentry{process() (datasets.NeuralDataset method)@\spxentry{process()}\spxextra{datasets.NeuralDataset method}}{21}
-\indexentry{processed\_dir (datasets.NeuralDataset property)@\spxentry{processed\_dir}\spxextra{datasets.NeuralDataset property}}{21}
-\indexentry{processed\_file\_names (datasets.NeuralDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.NeuralDataset property}}{21}
-\indexentry{processed\_paths (datasets.NeuralDataset property)@\spxentry{processed\_paths}\spxextra{datasets.NeuralDataset property}}{21}
-\indexentry{raw\_dir (datasets.NeuralDataset property)@\spxentry{raw\_dir}\spxextra{datasets.NeuralDataset property}}{21}
-\indexentry{raw\_file\_names (datasets.NeuralDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.NeuralDataset property}}{21}
-\indexentry{raw\_paths (datasets.NeuralDataset property)@\spxentry{raw\_paths}\spxextra{datasets.NeuralDataset property}}{21}
-\indexentry{shuffle() (datasets.NeuralDataset method)@\spxentry{shuffle()}\spxextra{datasets.NeuralDataset method}}{21}
-\indexentry{to\_datapipe() (datasets.NeuralDataset method)@\spxentry{to\_datapipe()}\spxextra{datasets.NeuralDataset method}}{21}
-\indexentry{RedditDataset (class in datasets)@\spxentry{RedditDataset}\spxextra{class in datasets}}{22}
-\indexentry{\_\_init\_\_() (datasets.RedditDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.RedditDataset method}}{22}
-\indexentry{\_abc\_impl (datasets.RedditDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.RedditDataset attribute}}{22}
-\indexentry{\_download() (datasets.RedditDataset method)@\spxentry{\_download()}\spxextra{datasets.RedditDataset method}}{22}
-\indexentry{\_infer\_num\_classes() (datasets.RedditDataset method)@\spxentry{\_infer\_num\_classes()}\spxextra{datasets.RedditDataset method}}{22}
-\indexentry{\_is\_protocol (datasets.RedditDataset attribute)@\spxentry{\_is\_protocol}\spxextra{datasets.RedditDataset attribute}}{22}
-\indexentry{\_process() (datasets.RedditDataset method)@\spxentry{\_process()}\spxextra{datasets.RedditDataset method}}{23}
-\indexentry{collate() (datasets.RedditDataset static method)@\spxentry{collate()}\spxextra{datasets.RedditDataset static method}}{23}
-\indexentry{copy() (datasets.RedditDataset method)@\spxentry{copy()}\spxextra{datasets.RedditDataset method}}{23}
-\indexentry{data (datasets.RedditDataset property)@\spxentry{data}\spxextra{datasets.RedditDataset property}}{23}
-\indexentry{download() (datasets.RedditDataset method)@\spxentry{download()}\spxextra{datasets.RedditDataset method}}{23}
-\indexentry{get() (datasets.RedditDataset method)@\spxentry{get()}\spxextra{datasets.RedditDataset method}}{23}
-\indexentry{get\_summary() (datasets.RedditDataset method)@\spxentry{get\_summary()}\spxextra{datasets.RedditDataset method}}{23}
-\indexentry{has\_download (datasets.RedditDataset property)@\spxentry{has\_download}\spxextra{datasets.RedditDataset property}}{23}
-\indexentry{has\_process (datasets.RedditDataset property)@\spxentry{has\_process}\spxextra{datasets.RedditDataset property}}{23}
-\indexentry{index\_select() (datasets.RedditDataset method)@\spxentry{index\_select()}\spxextra{datasets.RedditDataset method}}{23}
-\indexentry{indices() (datasets.RedditDataset method)@\spxentry{indices()}\spxextra{datasets.RedditDataset method}}{23}
-\indexentry{len() (datasets.RedditDataset method)@\spxentry{len()}\spxextra{datasets.RedditDataset method}}{23}
-\indexentry{num\_classes (datasets.RedditDataset property)@\spxentry{num\_classes}\spxextra{datasets.RedditDataset property}}{23}
-\indexentry{num\_edge\_features (datasets.RedditDataset property)@\spxentry{num\_edge\_features}\spxextra{datasets.RedditDataset property}}{23}
-\indexentry{num\_features (datasets.RedditDataset property)@\spxentry{num\_features}\spxextra{datasets.RedditDataset property}}{23}
-\indexentry{num\_node\_features (datasets.RedditDataset property)@\spxentry{num\_node\_features}\spxextra{datasets.RedditDataset property}}{24}
-\indexentry{print\_summary() (datasets.RedditDataset method)@\spxentry{print\_summary()}\spxextra{datasets.RedditDataset method}}{24}
-\indexentry{process() (datasets.RedditDataset method)@\spxentry{process()}\spxextra{datasets.RedditDataset method}}{24}
-\indexentry{processed\_dir (datasets.RedditDataset property)@\spxentry{processed\_dir}\spxextra{datasets.RedditDataset property}}{24}
-\indexentry{processed\_file\_names (datasets.RedditDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.RedditDataset property}}{24}
-\indexentry{processed\_paths (datasets.RedditDataset property)@\spxentry{processed\_paths}\spxextra{datasets.RedditDataset property}}{24}
-\indexentry{raw\_dir (datasets.RedditDataset property)@\spxentry{raw\_dir}\spxextra{datasets.RedditDataset property}}{24}
-\indexentry{raw\_file\_names (datasets.RedditDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.RedditDataset property}}{24}
-\indexentry{raw\_paths (datasets.RedditDataset property)@\spxentry{raw\_paths}\spxextra{datasets.RedditDataset property}}{24}
-\indexentry{shuffle() (datasets.RedditDataset method)@\spxentry{shuffle()}\spxextra{datasets.RedditDataset method}}{24}
-\indexentry{to\_datapipe() (datasets.RedditDataset method)@\spxentry{to\_datapipe()}\spxextra{datasets.RedditDataset method}}{24}
-\indexentry{RoadDataset (class in datasets)@\spxentry{RoadDataset}\spxextra{class in datasets}}{24}
-\indexentry{\_\_init\_\_() (datasets.RoadDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.RoadDataset method}}{25}
-\indexentry{\_abc\_impl (datasets.RoadDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.RoadDataset attribute}}{25}
-\indexentry{\_download() (datasets.RoadDataset method)@\spxentry{\_download()}\spxextra{datasets.RoadDataset method}}{25}
-\indexentry{\_infer\_num\_classes() (datasets.RoadDataset method)@\spxentry{\_infer\_num\_classes()}\spxextra{datasets.RoadDataset method}}{25}
-\indexentry{\_is\_protocol (datasets.RoadDataset attribute)@\spxentry{\_is\_protocol}\spxextra{datasets.RoadDataset attribute}}{25}
-\indexentry{\_process() (datasets.RoadDataset method)@\spxentry{\_process()}\spxextra{datasets.RoadDataset method}}{25}
-\indexentry{collate() (datasets.RoadDataset static method)@\spxentry{collate()}\spxextra{datasets.RoadDataset static method}}{25}
-\indexentry{copy() (datasets.RoadDataset method)@\spxentry{copy()}\spxextra{datasets.RoadDataset method}}{25}
-\indexentry{data (datasets.RoadDataset property)@\spxentry{data}\spxextra{datasets.RoadDataset property}}{26}
-\indexentry{download() (datasets.RoadDataset method)@\spxentry{download()}\spxextra{datasets.RoadDataset method}}{26}
-\indexentry{get() (datasets.RoadDataset method)@\spxentry{get()}\spxextra{datasets.RoadDataset method}}{26}
-\indexentry{get\_summary() (datasets.RoadDataset method)@\spxentry{get\_summary()}\spxextra{datasets.RoadDataset method}}{26}
-\indexentry{has\_download (datasets.RoadDataset property)@\spxentry{has\_download}\spxextra{datasets.RoadDataset property}}{26}
-\indexentry{has\_process (datasets.RoadDataset property)@\spxentry{has\_process}\spxextra{datasets.RoadDataset property}}{26}
-\indexentry{index\_select() (datasets.RoadDataset method)@\spxentry{index\_select()}\spxextra{datasets.RoadDataset method}}{26}
-\indexentry{indices() (datasets.RoadDataset method)@\spxentry{indices()}\spxextra{datasets.RoadDataset method}}{26}
-\indexentry{len() (datasets.RoadDataset method)@\spxentry{len()}\spxextra{datasets.RoadDataset method}}{26}
-\indexentry{num\_classes (datasets.RoadDataset property)@\spxentry{num\_classes}\spxextra{datasets.RoadDataset property}}{26}
-\indexentry{num\_edge\_features (datasets.RoadDataset property)@\spxentry{num\_edge\_features}\spxextra{datasets.RoadDataset property}}{26}
-\indexentry{num\_features (datasets.RoadDataset property)@\spxentry{num\_features}\spxextra{datasets.RoadDataset property}}{26}
-\indexentry{num\_node\_features (datasets.RoadDataset property)@\spxentry{num\_node\_features}\spxextra{datasets.RoadDataset property}}{26}
-\indexentry{print\_summary() (datasets.RoadDataset method)@\spxentry{print\_summary()}\spxextra{datasets.RoadDataset method}}{26}
-\indexentry{process() (datasets.RoadDataset method)@\spxentry{process()}\spxextra{datasets.RoadDataset method}}{26}
-\indexentry{processed\_dir (datasets.RoadDataset property)@\spxentry{processed\_dir}\spxextra{datasets.RoadDataset property}}{26}
-\indexentry{processed\_file\_names (datasets.RoadDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.RoadDataset property}}{26}
-\indexentry{processed\_paths (datasets.RoadDataset property)@\spxentry{processed\_paths}\spxextra{datasets.RoadDataset property}}{26}
-\indexentry{raw\_dir (datasets.RoadDataset property)@\spxentry{raw\_dir}\spxextra{datasets.RoadDataset property}}{27}
-\indexentry{raw\_file\_names (datasets.RoadDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.RoadDataset property}}{27}
-\indexentry{raw\_paths (datasets.RoadDataset property)@\spxentry{raw\_paths}\spxextra{datasets.RoadDataset property}}{27}
-\indexentry{shuffle() (datasets.RoadDataset method)@\spxentry{shuffle()}\spxextra{datasets.RoadDataset method}}{27}
-\indexentry{to\_datapipe() (datasets.RoadDataset method)@\spxentry{to\_datapipe()}\spxextra{datasets.RoadDataset method}}{27}
-\indexentry{get\_all\_datasets() (in module datasets)@\spxentry{get\_all\_datasets()}\spxextra{in module datasets}}{27}
-\indexentry{get\_test\_datasets() (in module datasets)@\spxentry{get\_test\_datasets()}\spxextra{in module datasets}}{27}
-\indexentry{get\_train\_datasets() (in module datasets)@\spxentry{get\_train\_datasets()}\spxextra{in module datasets}}{27}
-\indexentry{get\_val\_datasets() (in module datasets)@\spxentry{get\_val\_datasets()}\spxextra{in module datasets}}{27}
-\indexentry{module@\spxentry{module}!top@\spxentry{top}}{28}
-\indexentry{top@\spxentry{top}!module@\spxentry{module}}{28}
-\indexentry{GeneralEmbeddingEvaluation (class in top)@\spxentry{GeneralEmbeddingEvaluation}\spxextra{class in top}}{28}
-\indexentry{\_\_init\_\_() (top.GeneralEmbeddingEvaluation method)@\spxentry{\_\_init\_\_()}\spxextra{top.GeneralEmbeddingEvaluation method}}{28}
-\indexentry{embedding\_evaluation() (top.GeneralEmbeddingEvaluation method)@\spxentry{embedding\_evaluation()}\spxextra{top.GeneralEmbeddingEvaluation method}}{28}
-\indexentry{get\_embeddings() (top.GeneralEmbeddingEvaluation method)@\spxentry{get\_embeddings()}\spxextra{top.GeneralEmbeddingEvaluation method}}{28}
-\indexentry{vis() (top.GeneralEmbeddingEvaluation method)@\spxentry{vis()}\spxextra{top.GeneralEmbeddingEvaluation method}}{28}
-\indexentry{centroid\_similarities() (top.GeneralEmbeddingEvaluation method)@\spxentry{centroid\_similarities()}\spxextra{top.GeneralEmbeddingEvaluation method}}{28}
-\indexentry{\_\_init\_\_() (top.GeneralEmbeddingEvaluation method)@\spxentry{\_\_init\_\_()}\spxextra{top.GeneralEmbeddingEvaluation method}}{28}
-\indexentry{centroid\_similarities() (top.GeneralEmbeddingEvaluation method)@\spxentry{centroid\_similarities()}\spxextra{top.GeneralEmbeddingEvaluation method}}{28}
-\indexentry{embedding\_evaluation() (top.GeneralEmbeddingEvaluation method)@\spxentry{embedding\_evaluation()}\spxextra{top.GeneralEmbeddingEvaluation method}}{28}
-\indexentry{get\_embeddings() (top.GeneralEmbeddingEvaluation method)@\spxentry{get\_embeddings()}\spxextra{top.GeneralEmbeddingEvaluation method}}{28}
-\indexentry{vis() (top.GeneralEmbeddingEvaluation method)@\spxentry{vis()}\spxextra{top.GeneralEmbeddingEvaluation method}}{29}
-\indexentry{ToPDataset (class in top)@\spxentry{ToPDataset}\spxextra{class in top}}{29}
-\indexentry{\_\_init\_\_() (top.ToPDataset method)@\spxentry{\_\_init\_\_()}\spxextra{top.ToPDataset method}}{29}
-\indexentry{\_abc\_impl (top.ToPDataset attribute)@\spxentry{\_abc\_impl}\spxextra{top.ToPDataset attribute}}{29}
-\indexentry{\_download() (top.ToPDataset method)@\spxentry{\_download()}\spxextra{top.ToPDataset method}}{29}
-\indexentry{\_infer\_num\_classes() (top.ToPDataset method)@\spxentry{\_infer\_num\_classes()}\spxextra{top.ToPDataset method}}{29}
-\indexentry{\_is\_protocol (top.ToPDataset attribute)@\spxentry{\_is\_protocol}\spxextra{top.ToPDataset attribute}}{30}
-\indexentry{\_process() (top.ToPDataset method)@\spxentry{\_process()}\spxextra{top.ToPDataset method}}{30}
-\indexentry{collate() (top.ToPDataset static method)@\spxentry{collate()}\spxextra{top.ToPDataset static method}}{30}
-\indexentry{copy() (top.ToPDataset method)@\spxentry{copy()}\spxextra{top.ToPDataset method}}{30}
-\indexentry{data (top.ToPDataset property)@\spxentry{data}\spxextra{top.ToPDataset property}}{30}
-\indexentry{download() (top.ToPDataset method)@\spxentry{download()}\spxextra{top.ToPDataset method}}{30}
-\indexentry{get() (top.ToPDataset method)@\spxentry{get()}\spxextra{top.ToPDataset method}}{30}
-\indexentry{get\_summary() (top.ToPDataset method)@\spxentry{get\_summary()}\spxextra{top.ToPDataset method}}{30}
-\indexentry{has\_download (top.ToPDataset property)@\spxentry{has\_download}\spxextra{top.ToPDataset property}}{30}
-\indexentry{has\_process (top.ToPDataset property)@\spxentry{has\_process}\spxextra{top.ToPDataset property}}{30}
-\indexentry{index\_select() (top.ToPDataset method)@\spxentry{index\_select()}\spxextra{top.ToPDataset method}}{30}
-\indexentry{indices() (top.ToPDataset method)@\spxentry{indices()}\spxextra{top.ToPDataset method}}{30}
-\indexentry{len() (top.ToPDataset method)@\spxentry{len()}\spxextra{top.ToPDataset method}}{30}
-\indexentry{num\_classes (top.ToPDataset property)@\spxentry{num\_classes}\spxextra{top.ToPDataset property}}{30}
-\indexentry{num\_edge\_features (top.ToPDataset property)@\spxentry{num\_edge\_features}\spxextra{top.ToPDataset property}}{31}
-\indexentry{num\_features (top.ToPDataset property)@\spxentry{num\_features}\spxextra{top.ToPDataset property}}{31}
-\indexentry{num\_node\_features (top.ToPDataset property)@\spxentry{num\_node\_features}\spxextra{top.ToPDataset property}}{31}
-\indexentry{print\_summary() (top.ToPDataset method)@\spxentry{print\_summary()}\spxextra{top.ToPDataset method}}{31}
-\indexentry{process() (top.ToPDataset method)@\spxentry{process()}\spxextra{top.ToPDataset method}}{31}
-\indexentry{processed\_dir (top.ToPDataset property)@\spxentry{processed\_dir}\spxextra{top.ToPDataset property}}{31}
-\indexentry{processed\_file\_names (top.ToPDataset property)@\spxentry{processed\_file\_names}\spxextra{top.ToPDataset property}}{31}
-\indexentry{processed\_paths (top.ToPDataset property)@\spxentry{processed\_paths}\spxextra{top.ToPDataset property}}{31}
-\indexentry{raw\_dir (top.ToPDataset property)@\spxentry{raw\_dir}\spxextra{top.ToPDataset property}}{31}
-\indexentry{raw\_file\_names (top.ToPDataset property)@\spxentry{raw\_file\_names}\spxextra{top.ToPDataset property}}{31}
-\indexentry{raw\_paths (top.ToPDataset property)@\spxentry{raw\_paths}\spxextra{top.ToPDataset property}}{31}
-\indexentry{shuffle() (top.ToPDataset method)@\spxentry{shuffle()}\spxextra{top.ToPDataset method}}{31}
-\indexentry{to\_datapipe() (top.ToPDataset method)@\spxentry{to\_datapipe()}\spxextra{top.ToPDataset method}}{31}
-\indexentry{compute\_top\_scores() (in module top)@\spxentry{compute\_top\_scores()}\spxextra{in module top}}{31}
+\indexentry{process() (datasets.CoraDataset method)@\spxentry{process()}\spxextra{datasets.CoraDataset method}}{12}
+\indexentry{processed\_file\_names (datasets.CoraDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.CoraDataset property}}{12}
+\indexentry{raw\_file\_names (datasets.CoraDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.CoraDataset property}}{12}
+\indexentry{EgoDataset (class in datasets)@\spxentry{EgoDataset}\spxextra{class in datasets}}{12}
+\indexentry{\_\_init\_\_() (datasets.EgoDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.EgoDataset method}}{12}
+\indexentry{\_abc\_impl (datasets.EgoDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.EgoDataset attribute}}{12}
+\indexentry{process() (datasets.EgoDataset method)@\spxentry{process()}\spxextra{datasets.EgoDataset method}}{12}
+\indexentry{processed\_file\_names (datasets.EgoDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.EgoDataset property}}{12}
+\indexentry{raw\_file\_names (datasets.EgoDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.EgoDataset property}}{12}
+\indexentry{FacebookDataset (class in datasets)@\spxentry{FacebookDataset}\spxextra{class in datasets}}{12}
+\indexentry{\_\_init\_\_() (datasets.FacebookDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.FacebookDataset method}}{13}
+\indexentry{\_abc\_impl (datasets.FacebookDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.FacebookDataset attribute}}{13}
+\indexentry{process() (datasets.FacebookDataset method)@\spxentry{process()}\spxextra{datasets.FacebookDataset method}}{13}
+\indexentry{processed\_file\_names (datasets.FacebookDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.FacebookDataset property}}{13}
+\indexentry{raw\_file\_names (datasets.FacebookDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.FacebookDataset property}}{13}
+\indexentry{NeuralDataset (class in datasets)@\spxentry{NeuralDataset}\spxextra{class in datasets}}{13}
+\indexentry{\_\_init\_\_() (datasets.NeuralDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.NeuralDataset method}}{14}
+\indexentry{\_abc\_impl (datasets.NeuralDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.NeuralDataset attribute}}{14}
+\indexentry{process() (datasets.NeuralDataset method)@\spxentry{process()}\spxextra{datasets.NeuralDataset method}}{14}
+\indexentry{processed\_file\_names (datasets.NeuralDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.NeuralDataset property}}{14}
+\indexentry{raw\_file\_names (datasets.NeuralDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.NeuralDataset property}}{14}
+\indexentry{RedditDataset (class in datasets)@\spxentry{RedditDataset}\spxextra{class in datasets}}{14}
+\indexentry{\_\_init\_\_() (datasets.RedditDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.RedditDataset method}}{15}
+\indexentry{\_abc\_impl (datasets.RedditDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.RedditDataset attribute}}{15}
+\indexentry{process() (datasets.RedditDataset method)@\spxentry{process()}\spxextra{datasets.RedditDataset method}}{15}
+\indexentry{processed\_file\_names (datasets.RedditDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.RedditDataset property}}{15}
+\indexentry{raw\_file\_names (datasets.RedditDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.RedditDataset property}}{15}
+\indexentry{RoadDataset (class in datasets)@\spxentry{RoadDataset}\spxextra{class in datasets}}{15}
+\indexentry{\_\_init\_\_() (datasets.RoadDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.RoadDataset method}}{16}
+\indexentry{\_abc\_impl (datasets.RoadDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.RoadDataset attribute}}{16}
+\indexentry{process() (datasets.RoadDataset method)@\spxentry{process()}\spxextra{datasets.RoadDataset method}}{16}
+\indexentry{processed\_file\_names (datasets.RoadDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.RoadDataset property}}{16}
+\indexentry{raw\_file\_names (datasets.RoadDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.RoadDataset property}}{16}
+\indexentry{get\_all\_datasets() (in module datasets)@\spxentry{get\_all\_datasets()}\spxextra{in module datasets}}{16}
+\indexentry{get\_test\_datasets() (in module datasets)@\spxentry{get\_test\_datasets()}\spxextra{in module datasets}}{16}
+\indexentry{get\_train\_datasets() (in module datasets)@\spxentry{get\_train\_datasets()}\spxextra{in module datasets}}{16}
+\indexentry{get\_val\_datasets() (in module datasets)@\spxentry{get\_val\_datasets()}\spxextra{in module datasets}}{16}
+\indexentry{module@\spxentry{module}!top@\spxentry{top}}{16}
+\indexentry{top@\spxentry{top}!module@\spxentry{module}}{16}
+\indexentry{GeneralEmbeddingEvaluation (class in top)@\spxentry{GeneralEmbeddingEvaluation}\spxextra{class in top}}{16}
+\indexentry{\_\_init\_\_() (top.GeneralEmbeddingEvaluation method)@\spxentry{\_\_init\_\_()}\spxextra{top.GeneralEmbeddingEvaluation method}}{16}
+\indexentry{embedding\_evaluation() (top.GeneralEmbeddingEvaluation method)@\spxentry{embedding\_evaluation()}\spxextra{top.GeneralEmbeddingEvaluation method}}{16}
+\indexentry{get\_embeddings() (top.GeneralEmbeddingEvaluation method)@\spxentry{get\_embeddings()}\spxextra{top.GeneralEmbeddingEvaluation method}}{16}
+\indexentry{vis() (top.GeneralEmbeddingEvaluation method)@\spxentry{vis()}\spxextra{top.GeneralEmbeddingEvaluation method}}{17}
+\indexentry{centroid\_similarities() (top.GeneralEmbeddingEvaluation method)@\spxentry{centroid\_similarities()}\spxextra{top.GeneralEmbeddingEvaluation method}}{17}
+\indexentry{\_\_init\_\_() (top.GeneralEmbeddingEvaluation method)@\spxentry{\_\_init\_\_()}\spxextra{top.GeneralEmbeddingEvaluation method}}{17}
+\indexentry{centroid\_similarities() (top.GeneralEmbeddingEvaluation method)@\spxentry{centroid\_similarities()}\spxextra{top.GeneralEmbeddingEvaluation method}}{17}
+\indexentry{embedding\_evaluation() (top.GeneralEmbeddingEvaluation method)@\spxentry{embedding\_evaluation()}\spxextra{top.GeneralEmbeddingEvaluation method}}{17}
+\indexentry{get\_embeddings() (top.GeneralEmbeddingEvaluation method)@\spxentry{get\_embeddings()}\spxextra{top.GeneralEmbeddingEvaluation method}}{17}
+\indexentry{vis() (top.GeneralEmbeddingEvaluation method)@\spxentry{vis()}\spxextra{top.GeneralEmbeddingEvaluation method}}{17}
+\indexentry{ToPDataset (class in top)@\spxentry{ToPDataset}\spxextra{class in top}}{18}
+\indexentry{\_\_init\_\_() (top.ToPDataset method)@\spxentry{\_\_init\_\_()}\spxextra{top.ToPDataset method}}{18}
+\indexentry{\_abc\_impl (top.ToPDataset attribute)@\spxentry{\_abc\_impl}\spxextra{top.ToPDataset attribute}}{18}
+\indexentry{process() (top.ToPDataset method)@\spxentry{process()}\spxextra{top.ToPDataset method}}{18}
+\indexentry{processed\_file\_names (top.ToPDataset property)@\spxentry{processed\_file\_names}\spxextra{top.ToPDataset property}}{18}
+\indexentry{raw\_file\_names (top.ToPDataset property)@\spxentry{raw\_file\_names}\spxextra{top.ToPDataset property}}{18}
+\indexentry{compute\_top\_scores() (in module top)@\spxentry{compute\_top\_scores()}\spxextra{in module top}}{18}

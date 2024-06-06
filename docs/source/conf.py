@@ -64,5 +64,5 @@ latex_elements = {
 
 latex_documents = [
     ('index', 'big-graph-dataset.tex', 'Big Graph Dataset Documentation',
-     'Author Name', 'howto'),  # Change 'manual' to 'howto' or other themes as needed
+     'Alex O. Davies', 'howto'),  # Change 'manual' to 'howto' or other themes as needed
 ]

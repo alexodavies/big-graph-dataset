@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reddit Example Dataset &mdash; big-graph-dataset 0.01 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=6ca3c713"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Datasets" href="datasets.html" />
+    <link rel="prev" title="Welcome to Big Graph Dataset’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            big-graph-dataset
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Examples:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reddit Example Dataset</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#A-walkthrough-of-the-dataset-code-for-the-Big-Graph-Dataset-project">A walkthrough of the dataset code for the Big Graph Dataset project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Getting-the-graph">Getting the graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Turn-the-data-into-a-graph">Turn the data into a graph</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Sample-to-make-a-dataset-of-smaller-graphs">Sample to make a dataset of smaller graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#The-final-dataset">The final dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Other-datsets">Other datsets</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Many-graph datasets:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Topology Only Pre-Training:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="top.html">ToP (Topology only Pre-training)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">big-graph-dataset</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Reddit Example Dataset</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/reddit-dataset-example.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Reddit-Example-Dataset">
+<h1>Reddit Example Dataset<a class="headerlink" href="#Reddit-Example-Dataset" title="Link to this heading"></a></h1>
+<section id="A-walkthrough-of-the-dataset-code-for-the-Big-Graph-Dataset-project">
+<h2>A walkthrough of the dataset code for the Big Graph Dataset project<a class="headerlink" href="#A-walkthrough-of-the-dataset-code-for-the-Big-Graph-Dataset-project" title="Link to this heading"></a></h2>
+<p>Alex Davies, University of Bristol, 2024</p>
+<p>In this notebook we’ll write code to:</p>
+<ul class="simple">
+<li><p>download a large Reddit graph from an online repository</p></li>
+<li><p>sample that graph to produce a dataset of smaller graphs</p></li>
+<li><p>process that dataset into a Pytorch Geometric InMemoryDataset</p></li>
+</ul>
+<hr class="docutils" />
+<section id="Getting-the-graph">
+<h3>Getting the graph<a class="headerlink" href="#Getting-the-graph" title="Link to this heading"></a></h3>
+<p>First we need to download the graph, here from the <a class="reference external" href="http://snap.stanford.edu/data/soc-RedditHyperlinks.html">Stanford Network Analysis Project</a></p>
+<p>We first find the links for the graph and node features (here node features are text embeddings):</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph_url</span> <span class="o">=</span> <span class="s2">&quot;https://snap.stanford.edu/data/soc-redditHyperlinks-title.tsv&quot;</span>
+<span class="n">embedding_url</span> <span class="o">=</span> <span class="s2">&quot;http://snap.stanford.edu/data/web-redditEmbeddings-subreddits.csv&quot;</span>
+</pre></div>
+</div>
+</div>
+<p>Then play with directories and download the data:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">wget</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Swap into dataset directory</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<span class="n">start_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;original_datasets&quot;</span><span class="p">)</span>
+
+<span class="c1"># We won&#39;t actually need this part in the final function!</span>
+<span class="k">if</span> <span class="s2">&quot;reddit&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">():</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s2">&quot;reddit&quot;</span><span class="p">)</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;reddit&quot;</span><span class="p">)</span>
+
+<span class="c1">#  Download raw files if we don&#39;t already have them</span>
+<span class="k">if</span> <span class="s2">&quot;soc-redditHyperlinks-title.tsv&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">():</span>
+    <span class="n">graph_data</span> <span class="o">=</span> <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">graph_url</span><span class="p">)</span> <span class="c1"># Edgelist and edge features</span>
+<span class="k">if</span> <span class="s2">&quot;web-redditEmbeddings-subreddits.csv&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">():</span>
+    <span class="n">embedding_data</span> <span class="o">=</span> <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">embedding_url</span><span class="p">)</span> <span class="c1"># Node features</span>
+
+<span class="c1"># We know that there are 300 components in the node feature vectors</span>
+<span class="n">embedding_column_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;COMPONENT&quot;</span><span class="p">,</span> <span class="o">*</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">300</span><span class="p">)]]</span>
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;web-redditEmbeddings-subreddits.csv&quot;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">embedding_column_names</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<span class="n">graph_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;soc-redditHyperlinks-title.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># Avoids weird directory problems</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">start_dir</span><span class="p">)</span>
+<br/><br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+/home/alex/Projects/big-graph-dataset
+</pre></div></div>
+</div>
+<p>Let’s have a look at the node embeddings:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">embeddings</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>51268</th>
+      <th>51269</th>
+      <th>51270</th>
+      <th>51271</th>
+      <th>51272</th>
+      <th>51273</th>
+      <th>51274</th>
+      <th>51275</th>
+      <th>51276</th>
+      <th>51277</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>COMPONENT</th>
+      <td>spiders</td>
+      <td>askreddit</td>
+      <td>globaloffensivetrade</td>
+      <td>fireteams</td>
+      <td>funny</td>
+      <td>the_donald</td>
+      <td>videos</td>
+      <td>news</td>
+      <td>leagueoflegends</td>
+      <td>rocketleagueexchange</td>
+      <td>...</td>
+      <td>motleyfool</td>
+      <td>govtjobsrchinindia</td>
+      <td>snoopdogg</td>
+      <td>fortean</td>
+      <td>whatcanidoforbernie</td>
+      <td>33rd</td>
+      <td>bestofvic2015</td>
+      <td>aberystwyth</td>
+      <td>mail_forwarding</td>
+      <td>cover</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>0.158972</td>
+      <td>-0.499114</td>
+      <td>-0.023145</td>
+      <td>2.492506</td>
+      <td>-0.81937</td>
+      <td>-0.123265</td>
+      <td>0.131896</td>
+      <td>0.132825</td>
+      <td>-2.785298</td>
+      <td>0.553341</td>
+      <td>...</td>
+      <td>0.004494</td>
+      <td>0.001908</td>
+      <td>-0.000534</td>
+      <td>0.000615</td>
+      <td>0.000906</td>
+      <td>-0.000076</td>
+      <td>-0.000203</td>
+      <td>-0.001563</td>
+      <td>0.009269</td>
+      <td>0.00457</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.285813</td>
+      <td>0.323983</td>
+      <td>-1.199374</td>
+      <td>-2.529917</td>
+      <td>-0.865261</td>
+      <td>-0.610208</td>
+      <td>0.866419</td>
+      <td>1.505527</td>
+      <td>-0.166391</td>
+      <td>-3.283354</td>
+      <td>...</td>
+      <td>0.052268</td>
+      <td>0.042618</td>
+      <td>0.023619</td>
+      <td>0.023847</td>
+      <td>0.017816</td>
+      <td>-0.001643</td>
+      <td>0.012698</td>
+      <td>0.004733</td>
+      <td>0.024779</td>
+      <td>0.012403</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.226329</td>
+      <td>-0.424809</td>
+      <td>1.661484</td>
+      <td>-0.448484</td>
+      <td>0.301753</td>
+      <td>0.361495</td>
+      <td>0.919025</td>
+      <td>0.730393</td>
+      <td>1.592624</td>
+      <td>-3.091485</td>
+      <td>...</td>
+      <td>-0.027792</td>
+      <td>-0.021329</td>
+      <td>-0.003317</td>
+      <td>-0.018297</td>
+      <td>-0.004231</td>
+      <td>-0.002896</td>
+      <td>-0.007575</td>
+      <td>-0.000082</td>
+      <td>-0.017018</td>
+      <td>-0.000363</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.183338</td>
+      <td>-0.222705</td>
+      <td>-1.025296</td>
+      <td>-3.543441</td>
+      <td>0.018787</td>
+      <td>-1.171773</td>
+      <td>-0.765584</td>
+      <td>-0.505759</td>
+      <td>-1.269829</td>
+      <td>0.877085</td>
+      <td>...</td>
+      <td>0.013468</td>
+      <td>0.012</td>
+      <td>0.005566</td>
+      <td>-0.004873</td>
+      <td>-0.010438</td>
+      <td>0.000581</td>
+      <td>0.006486</td>
+      <td>-0.000982</td>
+      <td>-0.007228</td>
+      <td>-0.002496</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 51278 columns</p>
+</div></div>
+</div>
+<p>And now the edges:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SOURCE_SUBREDDIT</th>
+      <th>TARGET_SUBREDDIT</th>
+      <th>POST_ID</th>
+      <th>TIMESTAMP</th>
+      <th>LINK_SENTIMENT</th>
+      <th>PROPERTIES</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>rddtgaming</td>
+      <td>rddtrust</td>
+      <td>1u4pzzs</td>
+      <td>2013-12-31 16:39:18</td>
+      <td>1</td>
+      <td>25.0,23.0,0.76,0.0,0.44,0.12,0.12,4.0,4.0,0.0,...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>xboxone</td>
+      <td>battlefield_4</td>
+      <td>1u4tmfs</td>
+      <td>2013-12-31 17:59:11</td>
+      <td>1</td>
+      <td>100.0,88.0,0.78,0.02,0.08,0.13,0.07,16.0,16.0,...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ps4</td>
+      <td>battlefield_4</td>
+      <td>1u4tmos</td>
+      <td>2013-12-31 17:59:40</td>
+      <td>1</td>
+      <td>100.0,88.0,0.78,0.02,0.08,0.13,0.07,16.0,16.0,...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>fitnesscirclejerk</td>
+      <td>leangains</td>
+      <td>1u50xfs</td>
+      <td>2013-12-31 19:01:56</td>
+      <td>1</td>
+      <td>49.0,43.0,0.775510204082,0.0,0.265306122449,0....</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>fitnesscirclejerk</td>
+      <td>lifeprotips</td>
+      <td>1u51nps</td>
+      <td>2013-12-31 21:02:28</td>
+      <td>1</td>
+      <td>14.0,14.0,0.785714285714,0.0,0.428571428571,0....</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="Turn-the-data-into-a-graph">
+<h3>Turn the data into a graph<a class="headerlink" href="#Turn-the-data-into-a-graph" title="Link to this heading"></a></h3>
+<p>Now we need to turn the data into a graph. Our edges come from graph_data (SOURCE and TARGET), including categories for each edge (LINK_SENTIMENT), as well as edge features (PROPERTIES).</p>
+<p>The first step is making a networkx.Graph object, which is a useful graph class, then we add the nodes one by one. We’ll include the text embedding for the subreddit as a node attribute, taken from the embedding dataframe.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># networkx is a Python library for graph structures</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="c1"># tqdm for loading bars</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="c1"># cheeky function to visualise a networkx graph</span>
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">vis_networkx</span>
+
+<span class="n">embeddings</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;COMPONENT&quot;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+
+<span class="c1"># Add a node for each id in the embedding data</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">embeddings</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">desc</span> <span class="o">=</span> <span class="s2">&quot;Adding nodes&quot;</span><span class="p">):</span>
+    <span class="c1"># attrs here is taken from the embedding data, with the node id the column (col)</span>
+    <span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="n">embeddings</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<script type="text/javascript">
+<!--
+
+{
+        var element = document.getElementById('NetworKit_script');
+        if (element) {
+                element.parentNode.removeChild(element);
+        }
+        element = document.createElement('script');
+        element.type = 'text/javascript';
+        element.innerHTML = 'function NetworKit_pageEmbed(id) { var i, j; var elements; elements = document.getElementById(id).getElementsByClassName("Plot"); for (i=0; i<elements.length; i++) { elements[i].id = id + "_Plot_" + i; var data = elements[i].getAttribute("data-image").split("|"); elements[i].removeAttribute("data-image"); var content = "<div class=\\"Image\\" id=\\"" + elements[i].id + "_Image\\" />"; elements[i].innerHTML = content; elements[i].setAttribute("data-image-index", 0); elements[i].setAttribute("data-image-length", data.length); for (j=0; j<data.length; j++) { elements[i].setAttribute("data-image-" + j, data[j]); } NetworKit_plotUpdate(elements[i]); elements[i].onclick = function (e) { NetworKit_overlayShow((e.target) ? e.target : e.srcElement); } } elements = document.getElementById(id).getElementsByClassName("HeatCell"); for (i=0; i<elements.length; i++) { var data = parseFloat(elements[i].getAttribute("data-heat")); var color = "#00FF00"; if (data <= 1 && data > 0) { color = "hsla(0, 100%, 75%, " + (data) + ")"; } else if (data <= 0 && data >= -1) { color = "hsla(240, 100%, 75%, " + (-data) + ")"; } elements[i].style.backgroundColor = color; } elements = document.getElementById(id).getElementsByClassName("Details"); for (i=0; i<elements.length; i++) { elements[i].setAttribute("data-title", "-"); NetworKit_toggleDetails(elements[i]); elements[i].onclick = function (e) { NetworKit_toggleDetails((e.target) ? e.target : e.srcElement); } } elements = document.getElementById(id).getElementsByClassName("MathValue"); for (i=elements.length-1; i>=0; i--) { value = elements[i].innerHTML.trim(); if (value === "nan") { elements[i].parentNode.innerHTML = "" } } elements = document.getElementById(id).getElementsByClassName("SubCategory"); for (i=elements.length-1; i>=0; i--) { value = elements[i].innerHTML.trim(); if (value === "") { elements[i].parentNode.removeChild(elements[i]) } } elements = document.getElementById(id).getElementsByClassName("Category"); for (i=elements.length-1; i>=0; i--) { value = elements[i].innerHTML.trim(); if (value === "") { elements[i].parentNode.removeChild(elements[i]) } } var isFirefox = false; try { isFirefox = typeof InstallTrigger !== "undefined"; } catch (e) {} if (!isFirefox) { alert("Currently the function\'s output is only fully supported by Firefox."); } } function NetworKit_plotUpdate(source) { var index = source.getAttribute("data-image-index"); var data = source.getAttribute("data-image-" + index); var image = document.getElementById(source.id + "_Image"); image.style.backgroundImage = "url(" + data + ")"; } function NetworKit_showElement(id, show) { var element = document.getElementById(id); element.style.display = (show) ? "block" : "none"; } function NetworKit_overlayShow(source) { NetworKit_overlayUpdate(source); NetworKit_showElement("NetworKit_Overlay", true); } function NetworKit_overlayUpdate(source) { document.getElementById("NetworKit_Overlay_Title").innerHTML = source.title; var index = source.getAttribute("data-image-index"); var data = source.getAttribute("data-image-" + index); var image = document.getElementById("NetworKit_Overlay_Image"); image.setAttribute("data-id", source.id); image.style.backgroundImage = "url(" + data + ")"; var link = document.getElementById("NetworKit_Overlay_Toolbar_Bottom_Save"); link.href = data; link.download = source.title + ".svg"; } function NetworKit_overlayImageShift(delta) { var image = document.getElementById("NetworKit_Overlay_Image"); var source = document.getElementById(image.getAttribute("data-id")); var index = parseInt(source.getAttribute("data-image-index")); var length = parseInt(source.getAttribute("data-image-length")); var index = (index+delta) % length; if (index < 0) { index = length + index; } source.setAttribute("data-image-index", index); NetworKit_overlayUpdate(source); } function NetworKit_toggleDetails(source) { var childs = source.children; var show = false; if (source.getAttribute("data-title") == "-") { source.setAttribute("data-title", "+"); show = false; } else { source.setAttribute("data-title", "-"); show = true; } for (i=0; i<childs.length; i++) { if (show) { childs[i].style.display = "block"; } else { childs[i].style.display = "none"; } } }';
+        element.setAttribute('id', 'NetworKit_script');
+        document.head.appendChild(element);
+}
+
+
+{
+        var element = document.getElementById('NetworKit_style');
+        if (element) {
+                element.parentNode.removeChild(element);
+        }
+        element = document.createElement('style');
+        element.type = 'text/css';
+        element.innerHTML = '.NetworKit_Page { font-family: Arial, Helvetica, sans-serif; font-size: 14px; } .NetworKit_Page .Value:before { font-family: Arial, Helvetica, sans-serif; font-size: 1.05em; content: attr(data-title) ":"; margin-left: -2.5em; padding-right: 0.5em; } .NetworKit_Page .Details .Value:before { display: block; } .NetworKit_Page .Value { font-family: monospace; white-space: pre; padding-left: 2.5em; white-space: -moz-pre-wrap !important; white-space: -pre-wrap; white-space: -o-pre-wrap; white-space: pre-wrap; word-wrap: break-word; tab-size: 4; -moz-tab-size: 4; } .NetworKit_Page .Category { clear: both; padding-left: 1em; margin-bottom: 1.5em; } .NetworKit_Page .Category:before { content: attr(data-title); font-size: 1.75em; display: block; margin-left: -0.8em; margin-bottom: 0.5em; } .NetworKit_Page .SubCategory { margin-bottom: 1.5em; padding-left: 1em; } .NetworKit_Page .SubCategory:before { font-size: 1.6em; display: block; margin-left: -0.8em; margin-bottom: 0.5em; } .NetworKit_Page .SubCategory[data-title]:before { content: attr(data-title); } .NetworKit_Page .Block { display: block; } .NetworKit_Page .Block:after { content: "."; visibility: hidden; display: block; height: 0; clear: both; } .NetworKit_Page .Block .Thumbnail_Overview, .NetworKit_Page .Block .Thumbnail_ScatterPlot { width: 260px; float: left; } .NetworKit_Page .Block .Thumbnail_Overview img, .NetworKit_Page .Block .Thumbnail_ScatterPlot img { width: 260px; } .NetworKit_Page .Block .Thumbnail_Overview:before, .NetworKit_Page .Block .Thumbnail_ScatterPlot:before { display: block; text-align: center; font-weight: bold; } .NetworKit_Page .Block .Thumbnail_Overview:before { content: attr(data-title); } .NetworKit_Page .HeatCell { font-family: "Courier New", Courier, monospace; cursor: pointer; } .NetworKit_Page .HeatCell, .NetworKit_Page .HeatCellName { display: inline; padding: 0.1em; margin-right: 2px; background-color: #FFFFFF } .NetworKit_Page .HeatCellName { margin-left: 0.25em; } .NetworKit_Page .HeatCell:before { content: attr(data-heat); display: inline-block; color: #000000; width: 4em; text-align: center; } .NetworKit_Page .Measure { clear: both; } .NetworKit_Page .Measure .Details { cursor: pointer; } .NetworKit_Page .Measure .Details:before { content: "[" attr(data-title) "]"; display: block; } .NetworKit_Page .Measure .Details .Value { border-left: 1px dotted black; margin-left: 0.4em; padding-left: 3.5em; pointer-events: none; } .NetworKit_Page .Measure .Details .Spacer:before { content: "."; opacity: 0.0; pointer-events: none; } .NetworKit_Page .Measure .Plot { width: 440px; height: 440px; cursor: pointer; float: left; margin-left: -0.9em; margin-right: 20px; } .NetworKit_Page .Measure .Plot .Image { background-repeat: no-repeat; background-position: center center; background-size: contain; height: 100%; pointer-events: none; } .NetworKit_Page .Measure .Stat { width: 500px; float: left; } .NetworKit_Page .Measure .Stat .Group { padding-left: 1.25em; margin-bottom: 0.75em; } .NetworKit_Page .Measure .Stat .Group .Title { font-size: 1.1em; display: block; margin-bottom: 0.3em; margin-left: -0.75em; border-right-style: dotted; border-right-width: 1px; border-bottom-style: dotted; border-bottom-width: 1px; background-color: #D0D0D0; padding-left: 0.2em; } .NetworKit_Page .Measure .Stat .Group .List { -webkit-column-count: 3; -moz-column-count: 3; column-count: 3; } .NetworKit_Page .Measure .Stat .Group .List .Entry { position: relative; line-height: 1.75em; } .NetworKit_Page .Measure .Stat .Group .List .Entry[data-tooltip]:before { position: absolute; left: 0; top: -40px; background-color: #808080; color: #ffffff; height: 30px; line-height: 30px; border-radius: 5px; padding: 0 15px; content: attr(data-tooltip); white-space: nowrap; display: none; } .NetworKit_Page .Measure .Stat .Group .List .Entry[data-tooltip]:after { position: absolute; left: 15px; top: -10px; border-top: 7px solid #808080; border-left: 7px solid transparent; border-right: 7px solid transparent; content: ""; display: none; } .NetworKit_Page .Measure .Stat .Group .List .Entry[data-tooltip]:hover:after, .NetworKit_Page .Measure .Stat .Group .List .Entry[data-tooltip]:hover:before { display: block; } .NetworKit_Page .Measure .Stat .Group .List .Entry .MathValue { font-family: "Courier New", Courier, monospace; } .NetworKit_Page .Measure:after { content: "."; visibility: hidden; display: block; height: 0; clear: both; } .NetworKit_Page .PartitionPie { clear: both; } .NetworKit_Page .PartitionPie img { width: 600px; } #NetworKit_Overlay { left: 0px; top: 0px; display: none; position: absolute; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); z-index: 1000; } #NetworKit_Overlay_Title { position: absolute; color: white; transform: rotate(-90deg); width: 32em; height: 32em; padding-right: 0.5em; padding-top: 0.5em; text-align: right; font-size: 40px; } #NetworKit_Overlay .button { background: white; cursor: pointer; } #NetworKit_Overlay .button:before { size: 13px; display: inline-block; text-align: center; margin-top: 0.5em; margin-bottom: 0.5em; width: 1.5em; height: 1.5em; } #NetworKit_Overlay .icon-close:before { content: "X"; } #NetworKit_Overlay .icon-previous:before { content: "P"; } #NetworKit_Overlay .icon-next:before { content: "N"; } #NetworKit_Overlay .icon-save:before { content: "S"; } #NetworKit_Overlay_Toolbar_Top, #NetworKit_Overlay_Toolbar_Bottom { position: absolute; width: 40px; right: 13px; text-align: right; z-index: 1100; } #NetworKit_Overlay_Toolbar_Top { top: 0.5em; } #NetworKit_Overlay_Toolbar_Bottom { Bottom: 0.5em; } #NetworKit_Overlay_ImageContainer { position: absolute; top: 5%; left: 5%; height: 90%; width: 90%; background-repeat: no-repeat; background-position: center center; background-size: contain; } #NetworKit_Overlay_Image { height: 100%; width: 100%; background-repeat: no-repeat; background-position: center center; background-size: contain; }';
+        element.setAttribute('id', 'NetworKit_style');
+        document.head.appendChild(element);
+}
+
+
+{
+        var element = document.getElementById('NetworKit_Overlay');
+        if (element) {
+                element.parentNode.removeChild(element);
+        }
+        element = document.createElement('div');
+        element.innerHTML = '<div id="NetworKit_Overlay_Toolbar_Top"><div class="button icon-close" id="NetworKit_Overlay_Close" /></div><div id="NetworKit_Overlay_Title" /> <div id="NetworKit_Overlay_ImageContainer"> <div id="NetworKit_Overlay_Image" /> </div> <div id="NetworKit_Overlay_Toolbar_Bottom"> <div class="button icon-previous" onclick="NetworKit_overlayImageShift(-1)" /> <div class="button icon-next" onclick="NetworKit_overlayImageShift(1)" /> <a id="NetworKit_Overlay_Toolbar_Bottom_Save"><div class="button icon-save" /></a> </div>';
+        element.setAttribute('id', 'NetworKit_Overlay');
+        document.body.appendChild(element);
+        document.getElementById('NetworKit_Overlay_Close').onclick = function (e) {
+                document.getElementById('NetworKit_Overlay').style.display = 'none';
+        }
+}
+
+-->
+</script></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Adding nodes: 100%|██████████| 51278/51278 [00:01&lt;00:00, 32961.66it/s]
+</pre></div></div>
+</div>
+<p>Now we add the edges (the actual graph stuff).</p>
+<p>We need to include two properties:</p>
+<ul class="simple">
+<li><p>Type of edge, negative or positive interaction, -1 or 1. In dataframe as LINK_SENTIMENT</p></li>
+<li><p>Properties of the edge, text embedding of the reddit post content</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">fix_property_string</span><span class="p">(</span><span class="n">input_string</span><span class="p">):</span>
+    <span class="n">input_string</span> <span class="o">=</span> <span class="n">input_string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="n">input_string</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">input_string</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">input_string</span><span class="p">)</span>
+
+<span class="n">sources</span> <span class="o">=</span> <span class="n">graph_data</span><span class="p">[</span><span class="s2">&quot;SOURCE_SUBREDDIT&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">targets</span> <span class="o">=</span> <span class="n">graph_data</span><span class="p">[</span><span class="s2">&quot;TARGET_SUBREDDIT&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+<span class="c1"># This line can take a while!</span>
+<span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="n">fix_property_string</span><span class="p">(</span><span class="n">properties</span><span class="p">)</span> <span class="k">for</span> <span class="n">properties</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">graph_data</span><span class="p">[</span><span class="s2">&quot;PROPERTIES&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">desc</span> <span class="o">=</span> <span class="s2">&quot;Wrangling edge features&quot;</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Wrangling edge features: 100%|██████████| 571927/571927 [00:05&lt;00:00, 103705.47it/s]
+</pre></div></div>
+</div>
+<p>Now iterate over the edges, only adding them if their nodes have data:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="n">labels</span> <span class="o">=</span> <span class="n">graph_data</span><span class="p">[</span><span class="s2">&quot;LINK_SENTIMENT&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">all_nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">sources</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">desc</span> <span class="o">=</span> <span class="s2">&quot;Adding edges&quot;</span><span class="p">):</span>
+    <span class="c1"># Check that the edge has data</span>
+    <span class="k">if</span> <span class="n">sources</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">all_nodes</span> <span class="ow">and</span> <span class="n">targets</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">all_nodes</span><span class="p">:</span>
+        <span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">sources</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">targets</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                    <span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                    <span class="n">attr</span> <span class="o">=</span> <span class="n">attrs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Adding edges: 100%|██████████| 571927/571927 [00:37&lt;00:00, 15434.45it/s]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+
+<span class="c1"># Last tidying bits</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">convert_node_labels_to_integers</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+<span class="n">CGs</span> <span class="o">=</span> <span class="p">[</span><span class="n">graph</span><span class="o">.</span><span class="n">subgraph</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">nx</span><span class="o">.</span><span class="n">connected_components</span><span class="p">(</span><span class="n">graph</span><span class="p">)]</span>
+<span class="n">CGs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">CGs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">(),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">CGs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">convert_node_labels_to_integers</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+
+<span class="c1"># Save the graph!</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;original_datasets/reddit/reddit-graph.npz&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Graph with 51278 nodes and 178143 edges
+</pre></div></div>
+</div>
+<p>Nice! Graph achieved. Spot that in the last section we had to deal with some missing data - we’re including edges ONLY if their nodes also have data.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="Sample-to-make-a-dataset-of-smaller-graphs">
+<h2>Sample to make a dataset of smaller graphs<a class="headerlink" href="#Sample-to-make-a-dataset-of-smaller-graphs" title="Link to this heading"></a></h2>
+<p>This is not too hard, I’ve written some code (Exploration Sampling With Replacement, ESWR) that does the sampling for you.</p>
+<p>This will produce a big list of small networkx graphs sampled from that original graph.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">ESWR</span>
+
+<span class="c1"># Sample 1000 graphs of max 96 nodes from the big reddit graph</span>
+<span class="n">nx_graph_list</span> <span class="o">=</span> <span class="n">ESWR</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">96</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Sampling 1000 in 5 chunks with size 200
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Sampling from large graph: 100%|██████████| 6/6 [00:07&lt;00:00,  1.31s/it]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Done sampling!
+
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<p>Next we need to convert it to a Pytorch Geometric format. This will be specific to your data - here we have node labels, edge labels, edge attributes.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch_geometric.data</span> <span class="kn">import</span> <span class="n">Data</span>
+
+<span class="k">def</span> <span class="nf">specific_from_networkx</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
+    <span class="c1"># Turns a graph into a pytorch geometric object</span>
+    <span class="c1"># Mostly by unpacking dictionaries on nodes and edges</span>
+    <span class="c1"># Here node labels are the target</span>
+    <span class="c1"># One of these functions for each dataset ideally - they are unlikely to transfer across datasets</span>
+    <span class="n">node_attrs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">edge_indices</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">edge_labels</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">edge_attrs</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Collect node labels and attributes</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)):</span>
+        <span class="c1"># list(graph.nodes(data=True)) returns [(node_id1, {attribute dictionary}), (node_id2, ...), (node_id3, ...)]</span>
+        <span class="n">node_attrs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;attrs&quot;</span><span class="p">]))</span>
+
+    <span class="c1"># Collect edge indices and attributes</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="c1"># graph.edges(data=True) is a generator producing (node_id1, node_id2, {attribute dictionary})</span>
+        <span class="n">edge_indices</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+        <span class="n">edge_attrs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s2">&quot;attr&quot;</span><span class="p">]))</span>
+        <span class="n">edge_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s2">&quot;labels&quot;</span><span class="p">])</span>
+
+
+    <span class="c1"># Specific to classification on edges! This is a binary edge classification (pos/neg) task</span>
+    <span class="n">edge_labels</span> <span class="o">=</span> <span class="p">((</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">edge_labels</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">edge_attrs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">edge_attrs</span><span class="p">)</span>
+    <span class="n">node_attrs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">node_attrs</span><span class="p">)</span>
+    <span class="n">edge_indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">edge_indices</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span><span class="o">.</span><span class="n">t</span><span class="p">()</span><span class="o">.</span><span class="n">contiguous</span><span class="p">()</span>
+
+    <span class="c1"># Create PyG Data object</span>
+    <span class="c1"># Can pass:</span>
+    <span class="c1"># x:            node features, shape (n nodes x n features)</span>
+    <span class="c1"># edge_index:   the list of edges in the graph, shape (2, n_edges). Entries edge_index[i, :] are [node_id1, node_id2].</span>
+    <span class="c1"># edge_attr:    edge features, shape (n_edges, n_features), same order as edgelist</span>
+    <span class="c1"># y:            targets. Graph regression shape (n_variables), graph classification (n_classes), node classification (n_nodes, n_classes), edge classification (n_edges, n_classes)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">node_attrs</span><span class="p">,</span> <span class="n">edge_index</span><span class="o">=</span><span class="n">edge_indices</span><span class="p">,</span> <span class="n">edge_attr</span> <span class="o">=</span> <span class="n">edge_attrs</span><span class="p">,</span>  <span class="n">y</span><span class="o">=</span><span class="n">edge_labels</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data in torch geometric format:&quot;</span><span class="p">)</span>
+<span class="n">specific_from_networkx</span><span class="p">(</span><span class="n">nx_graph_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Data in torch geometric format:
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/alex/anaconda3/envs/adgcl/lib/python3.8/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Data(x=[54, 300], edge_index=[2, 249], edge_attr=[249, 86], y=[249, 1])
+</pre></div></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="The-final-dataset">
+<h2>The final dataset<a class="headerlink" href="#The-final-dataset" title="Link to this heading"></a></h2>
+<p>Finally we place all that data into an InMemoryDataset!</p>
+<p>Please note that in-code this whole notebook will be in functions - see <code class="docutils literal notranslate"><span class="pre">datasets/example_dataset.py</span></code>.</p>
+<p>This means that the <code class="docutils literal notranslate"><span class="pre">datalist</span></code> argument wouldn’t actually exist below - instead you’d call something like <code class="docutils literal notranslate"><span class="pre">get_reddit_dataset()</span></code> within your <code class="docutils literal notranslate"><span class="pre">.process</span></code> method.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch_geometric.data</span> <span class="kn">import</span> <span class="n">InMemoryDataset</span>
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">vis_grid</span>
+
+<span class="k">class</span> <span class="nc">RedditDataset</span><span class="p">(</span><span class="n">InMemoryDataset</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reddit hyperlink graphs - ie graphs of subreddits interacting with one another.</span>
+<span class="sd">    The original graph is sourced from:</span>
+
+<span class="sd">    `Kumar, Srijan, et al. &quot;Community interaction and conflict on the web.&quot; Proceedings of the 2018 world wide web conference. 2018.`</span>
+
+<span class="sd">    The data has text embeddings as node features for each subreddit and text features for the cross-post edges.</span>
+
+<span class="sd">    The task is edge classification for the sentiment of the interaction between subreddits.</span>
+
+<span class="sd">    - Task: Edge classification</span>
+<span class="sd">    - Num node features: 300</span>
+<span class="sd">    - Num edge features: 86</span>
+<span class="sd">    - Num target values: 1</span>
+<span class="sd">    - Target shape: N Edges</span>
+<span class="sd">    - Num graphs: Parameterised by `num`</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">    root (str): Root directory where the dataset should be saved.</span>
+<span class="sd">    datalist (list): A list of pytorch geometric data objects. Only obtained from an argument here, not in actual code!</span>
+<span class="sd">    stage (str): The stage of the dataset to load. One of &quot;train&quot;, &quot;val&quot;, &quot;test&quot;. (default: :obj:`&quot;train&quot;`)</span>
+<span class="sd">    transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before every access. (default: :obj:`None`)</span>
+<span class="sd">    pre_transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before being saved to disk. (default: :obj:`None`)</span>
+<span class="sd">    pre_filter (callable, optional): A function that takes in an :obj:`torch_geometric.data.Data` object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: :obj:`None`)</span>
+<span class="sd">    num (int): The number of samples to take from the original dataset. (default: :obj:`2000`).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># datalist is only an argument for this notebook example - see existing datasets under datasets/.. for how it actually works</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">datalist</span><span class="p">,</span> <span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pre_transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pre_filter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">num</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stage</span> <span class="o">=</span> <span class="n">stage</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stage_to_index</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;train&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+                               <span class="s2">&quot;val&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+                               <span class="s2">&quot;test&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datalist</span> <span class="o">=</span> <span class="n">datalist</span>
+
+        <span class="c1"># Options are node-classification, node-regression, graph-classification, graph-regression, edge-regression, edge-classification</span>
+        <span class="c1"># Graph-level tasks are preferred! (graph-classification and graph-regression)</span>
+        <span class="c1"># edge-prediction is another option if you can&#39;t think of a good task</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="s2">&quot;node-classification&quot;</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">pre_transform</span><span class="p">,</span> <span class="n">pre_filter</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">slices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">processed_paths</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stage_to_index</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stage</span><span class="p">]])</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">raw_file_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Replace with your saved raw file name</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;reddit-graph.npz&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">processed_file_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;train.pt&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;val.pt&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;test.pt&#39;</span><span class="p">]</span>
+
+
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Read data into huge `Data` list.</span>
+
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">processed_paths</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stage_to_index</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stage</span><span class="p">]]):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cora files exist&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="c1"># Get a list of num pytorch_geometric.data.Data objects</span>
+        <span class="n">data_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">datalist</span> <span class="c1"># get_example_dataset(num=self.num)</span>
+
+        <span class="c1"># Torch geometric stuff</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pre_filter</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">data_list</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pre_filter</span><span class="p">(</span><span class="n">data</span><span class="p">)]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pre_transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">pre_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">data_list</span><span class="p">]</span>
+
+        <span class="c1"># Save data</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">slices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="n">slices</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">processed_paths</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stage_to_index</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stage</span><span class="p">]])</span>
+
+<span class="n">pyg_graphs</span> <span class="o">=</span> <span class="p">[</span><span class="n">specific_from_networkx</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">nx_graph_list</span><span class="p">,</span> <span class="n">desc</span> <span class="o">=</span> <span class="s2">&quot;Converting data to PyG data objects&quot;</span><span class="p">)]</span>
+
+<span class="c1"># The visualisation doesn&#39;t work in documentation :( uncomment to see the graphs</span>
+<span class="n">vis_grid</span><span class="p">(</span><span class="n">pyg_graphs</span><span class="p">[:</span><span class="mi">16</span><span class="p">],</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/original_datasets/reddit/example.png&quot;</span><span class="p">,</span> <span class="n">show_plot</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">RedditDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/original_datasets/reddit&quot;</span><span class="p">,</span>
+                              <span class="n">pyg_graphs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Converting data to PyG data objects: 100%|██████████| 1000/1000 [00:01&lt;00:00, 991.15it/s]
+/home/alex/Projects/big-graph-dataset/utils.py:398: UserWarning: The figure layout has changed to tight
+  plt.tight_layout()
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/reddit-dataset-example_22_1.png" src="_images/reddit-dataset-example_22_1.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Cora files exist
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Processing...
+Done!
+</pre></div></div>
+</div>
+</section>
+<section id="Other-datsets">
+<h2>Other datsets<a class="headerlink" href="#Other-datsets" title="Link to this heading"></a></h2>
+<p>There are already some datasets we can look at under datasets/DATASET.py.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Big Graph Dataset’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="datasets.html" class="btn btn-neutral float-right" title="Datasets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Alex O. Davies.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

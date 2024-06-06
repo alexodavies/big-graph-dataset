@@ -128,7 +128,20 @@ def get_social_datasets(transforms, num, stage = "train", exclude = None):
 
     return social_datasets, names
 
-def get_test_datasets(transforms, num = 2000, mol_only = False):
+def get_test_datasets(transforms, num=2000, mol_only=False):
+    """
+    Get the test split of each dataset.
+
+    Args:
+        transforms (list): List of data transformations to apply.
+        num (int): Number of samples in non-molecule datasets to include (default is 2000).
+        mol_only (bool): Flag indicating whether to include only chemical datasets (default is False).
+
+    Returns:
+        tuple: A tuple containing two elements:
+            - datasets (list): List of test datasets.
+            - names (list): List of dataset names.
+    """
 
     chemical_datasets, ogbg_names = get_chemical_datasets(transforms, -1, stage="test")
     if not mol_only:
@@ -142,8 +155,20 @@ def get_test_datasets(transforms, num = 2000, mol_only = False):
     return datasets, ogbg_names + social_names
 
 
-def get_val_datasets(transforms, num = 2000, mol_only = False):
-    print("Getting val datasets")
+def get_val_datasets(transforms, num=2000, mol_only=False):
+    """
+    Get validation splits for each dataset.
+
+    Args:
+        transforms (list): List of data transformations to apply.
+        num (int, optional): Number of samples in non-molecule datasets to include. Defaults to 2000.
+        mol_only (bool, optional): Flag indicating whether to include only chemical datasets. Defaults to False.
+
+    Returns:
+        tuple: A tuple containing two elements:
+            - datasets (list): List of validation datasets.
+            - names (list): List of dataset names.
+    """
     chemical_datasets, ogbg_names = get_chemical_datasets(transforms, -1, stage="val")
     if not mol_only:
         social_datasets, social_names = get_social_datasets(transforms, num, stage="val")
@@ -155,8 +180,19 @@ def get_val_datasets(transforms, num = 2000, mol_only = False):
 
     return datasets, ogbg_names + social_names
 
-def get_train_datasets(transforms, num = 2000, mol_only = False):
-    
+def get_train_datasets(transforms, num=2000, mol_only=False):
+    """
+    Get the training splits of each dataset.
+
+    Args:
+        transforms (list): List of data transformations to apply.
+        num (int): Number of datasets to retrieve.
+        mol_only (bool): Flag indicating whether to retrieve only chemical datasets.
+
+    Returns:
+        tuple: A tuple containing the datasets and their names.
+    """
+
     chemical_datasets, ogbg_names = get_chemical_datasets(transforms, num, stage="train")
     if not mol_only:
         social_datasets, social_names = get_social_datasets(transforms, num, stage="train")
@@ -180,7 +216,20 @@ def remove_duplicates_in_place(list1, list2):
             seen.add(list2[i])
             i += 1
 
-def get_all_datasets(transforms, num = 5000, mol_only = False):
+def get_all_datasets(transforms, num=5000, mol_only=False):
+    """
+    Get all datasets for training and validation, in that order.
+
+    Args:
+        transforms (list): List of data transformations to apply to the datasets.
+        num (int, optional): Number of samples to load from each dataset. Defaults to 5000.
+        mol_only (bool, optional): Flag indicating whether to include only chemical datasets. Defaults to False.
+
+    Returns:
+        tuple: A tuple containing two elements:
+            - datasets (list): A list of all the datasets.
+            - all_names (list): A list of names corresponding to each dataset.
+    """
     
     # All the train datasets
     chemical_datasets, ogbg_names = get_chemical_datasets(transforms, num, stage="train")
@@ -191,7 +240,6 @@ def get_all_datasets(transforms, num = 5000, mol_only = False):
         social_names = []
 
     datasets = chemical_datasets + social_datasets
-
 
     val_chemical_datasets, val_ogbg_names = get_chemical_datasets(transforms, -1, stage="val")
     if not mol_only:

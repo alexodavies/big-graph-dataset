@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ToP (Topology only Pre-training) &mdash; big-graph-dataset 0.01 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=6ca3c713"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Datasets" href="datasets.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            big-graph-dataset
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Examples:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reddit-dataset-example.html">Reddit Example Dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Many-graph datasets:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasets</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Topology Only Pre-Training:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ToP (Topology only Pre-training)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#top.GeneralEmbeddingEvaluation"><code class="docutils literal notranslate"><span class="pre">GeneralEmbeddingEvaluation</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#top.GeneralEmbeddingEvaluation.__init__"><code class="docutils literal notranslate"><span class="pre">GeneralEmbeddingEvaluation.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#top.GeneralEmbeddingEvaluation.embedding_evaluation"><code class="docutils literal notranslate"><span class="pre">GeneralEmbeddingEvaluation.embedding_evaluation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#top.GeneralEmbeddingEvaluation.get_embeddings"><code class="docutils literal notranslate"><span class="pre">GeneralEmbeddingEvaluation.get_embeddings()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#top.GeneralEmbeddingEvaluation.vis"><code class="docutils literal notranslate"><span class="pre">GeneralEmbeddingEvaluation.vis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#top.GeneralEmbeddingEvaluation.centroid_similarities"><code class="docutils literal notranslate"><span class="pre">GeneralEmbeddingEvaluation.centroid_similarities()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">GeneralEmbeddingEvaluation.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">GeneralEmbeddingEvaluation.centroid_similarities()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">GeneralEmbeddingEvaluation.embedding_evaluation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">GeneralEmbeddingEvaluation.get_embeddings()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">GeneralEmbeddingEvaluation.vis()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#top.ToPDataset"><code class="docutils literal notranslate"><span class="pre">ToPDataset</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#top.ToPDataset.__init__"><code class="docutils literal notranslate"><span class="pre">ToPDataset.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#top.ToPDataset._abc_impl"><code class="docutils literal notranslate"><span class="pre">ToPDataset._abc_impl</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#top.ToPDataset.process"><code class="docutils literal notranslate"><span class="pre">ToPDataset.process()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#top.ToPDataset.processed_file_names"><code class="docutils literal notranslate"><span class="pre">ToPDataset.processed_file_names</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#top.ToPDataset.raw_file_names"><code class="docutils literal notranslate"><span class="pre">ToPDataset.raw_file_names</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#top.compute_top_scores"><code class="docutils literal notranslate"><span class="pre">compute_top_scores()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">big-graph-dataset</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">ToP (Topology only Pre-training)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/top.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-top">
+<span id="top-topology-only-pre-training"></span><h1>ToP (Topology only Pre-training)<a class="headerlink" href="#module-top" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="top.GeneralEmbeddingEvaluation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">top.</span></span><span class="sig-name descname"><span class="pre">GeneralEmbeddingEvaluation</span></span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.GeneralEmbeddingEvaluation" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for evaluating embeddings and visualizing the results.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="top.GeneralEmbeddingEvaluation.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.GeneralEmbeddingEvaluation.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initializes the GeneralEmbeddingEvaluation object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="top.GeneralEmbeddingEvaluation.embedding_evaluation">
+<span class="sig-name descname"><span class="pre">embedding_evaluation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_loaders</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.embedding_evaluation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.GeneralEmbeddingEvaluation.embedding_evaluation" title="Link to this definition"></a></dt>
+<dd><p>Performs embedding evaluation using the given encoder, train loaders, and names.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="top.GeneralEmbeddingEvaluation.get_embeddings">
+<span class="sig-name descname"><span class="pre">get_embeddings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loaders</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.get_embeddings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.GeneralEmbeddingEvaluation.get_embeddings" title="Link to this definition"></a></dt>
+<dd><p>Retrieves the embeddings from the encoder and loaders.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="top.GeneralEmbeddingEvaluation.vis">
+<span class="sig-name descname"><span class="pre">vis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_embeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">separate_embeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.vis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.GeneralEmbeddingEvaluation.vis" title="Link to this definition"></a></dt>
+<dd><p>Visualizes the embeddings using UMAP and PCA projections.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="top.GeneralEmbeddingEvaluation.centroid_similarities">
+<span class="sig-name descname"><span class="pre">centroid_similarities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.centroid_similarities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.GeneralEmbeddingEvaluation.centroid_similarities" title="Link to this definition"></a></dt>
+<dd><p>Calculates the pairwise similarities between the centroids of the embeddings.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">centroid_similarities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.centroid_similarities"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dd><p>Calculate centroid similarities for a given set of embeddings and names.</p>
+<p>Parameters:
+embeddings (list of numpy arrays): List of embeddings, where each embedding is a numpy array.
+names (list of str): List of names corresponding to the embeddings.</p>
+<p>Returns:
+None</p>
+<p>This method calculates the centroid similarities for a given set of embeddings. It first calculates the centroid
+for each embedding by taking the mean along the axis 0. Then, it calculates the pairwise similarities between
+the centroids using cosine similarity. Finally, it visualizes the pairwise similarities as a heatmap and saves
+the plot as “outputs/pairwise-similarity.png”.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">embedding_evaluation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_loaders</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.embedding_evaluation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd><p>Evaluate the embeddings generated by the encoder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>encoder</strong> – The encoder model used to generate the embeddings.</p></li>
+<li><p><strong>train_loaders</strong> – A list of data loaders for the data.</p></li>
+<li><p><strong>names</strong> – A list of names corresponding to the data loaders.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">get_embeddings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loaders</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.get_embeddings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<dd><p>Get embeddings for the given encoder and loaders.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>encoder</strong> – The encoder model.</p></li>
+<li><p><strong>loaders</strong> – A list of data loaders.</p></li>
+<li><p><strong>names</strong> – A list of names corresponding to the loaders.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple containing the concatenated embeddings of all loaders and a list of separate embeddings for each loader.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">vis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_embeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">separate_embeddings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#GeneralEmbeddingEvaluation.vis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id4" title="Link to this definition"></a></dt>
+<dd><p>Visualizes the embeddings using UMAP and PCA projections.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_embeddings</strong> (<em>numpy.ndarray</em>) – The combined embeddings of all graphs.</p></li>
+<li><p><strong>separate_embeddings</strong> (<em>list</em>) – A list of separate embeddings for each graph.</p></li>
+<li><p><strong>names</strong> (<em>list</em>) – A list of names corresponding to each graph.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="top.ToPDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">top.</span></span><span class="sig-name descname"><span class="pre">ToPDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">original_dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top_dataset.html#ToPDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.ToPDataset" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">InMemoryDataset</span></code></p>
+<p>Processes an InMemoryDataset into a ToP dataset by removing node and edge features.</p>
+<p>Based on the paper:</p>
+<blockquote>
+<div><p><cite>Towards Generalised Pre-Training of Graph Models, Davies, A. O., Green, R. W., Ajmeri, N. S., and Silva Filho, T. M.,  arXiv e-prints, 2024. doi:10.48550/arXiv.2311.03976.</cite></p>
+</div></blockquote>
+<p>The resulting dataset is topology-only, intended for pre-training with ToP, and as such this module does not produce validation/test splits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>root</strong> (<em>str</em>) – Root directory where the dataset should be saved. The dataset will be saved in <cite>root</cite>/train-top.pt</p></li>
+<li><p><strong>original_dataset</strong> (<em>InMemoryDataset</em>) – The original dataset to convert to ToP format.</p></li>
+<li><p><strong>num</strong> (<em>int</em>) – The number of samples to take from the original dataset. <cite>num=-1</cite> will convert all available samples from the original. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">-1</span></code>).</p></li>
+<li><p><strong>transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function/transform that takes in an <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> object and returns a transformed version. The data object will be transformed before every access. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>pre_transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function/transform that takes in an <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> object and returns a transformed version. The data object will be transformed before being saved to disk. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>pre_filter</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function that takes in an <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="top.ToPDataset.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">original_dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top_dataset.html#ToPDataset.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.ToPDataset.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="top.ToPDataset._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#top.ToPDataset._abc_impl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="top.ToPDataset.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top_dataset.html#ToPDataset.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.ToPDataset.process" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="top.ToPDataset.processed_file_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">processed_file_names</span></span><a class="headerlink" href="#top.ToPDataset.processed_file_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="top.ToPDataset.raw_file_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">raw_file_names</span></span><a class="headerlink" href="#top.ToPDataset.raw_file_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="top.compute_top_scores">
+<span class="sig-prename descclassname"><span class="pre">top.</span></span><span class="sig-name descname"><span class="pre">compute_top_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datasets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/top/top.html#compute_top_scores"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#top.compute_top_scores" title="Link to this definition"></a></dt>
+<dd><p>Computes the top scores for graph structures using the ToP encoder.</p>
+<p>ToP scores use a pre-trained ToP model to compute the similarity between graphs across datasets.</p>
+<p>This function will also produce embedding visualisations using GeneralEmbeddingEvaluation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>datasets</strong> (<em>list</em>) – A list of datasets containing graph structures.</p></li>
+<li><p><strong>names</strong> (<em>list</em>) – A list of names corresponding to each dataset.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="datasets.html" class="btn btn-neutral float-left" title="Datasets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Alex O. Davies.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
