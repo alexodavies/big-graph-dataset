@@ -1,0 +1,17 @@
+\selectlanguage *[]{english}
+\contentsline {section}{\numberline {1}Contributing}{2}{section.1}%
+\contentsline {section}{\numberline {2}Getting Started}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Reddit Example Dataset}{2}{subsection.2.1}%
+\contentsline {subsubsection}{A walkthrough of the dataset code for the Big Graph Dataset project}{2}{subsubsection*.2}%
+\contentsline {paragraph}{Getting the graph}{3}{paragraph*.3}%
+\contentsline {paragraph}{Turn the data into a graph}{5}{paragraph*.4}%
+\contentsline {subsubsection}{Sample to make a dataset of smaller graphs}{6}{subsubsection*.5}%
+\contentsline {subsubsection}{The final dataset}{8}{subsubsection*.6}%
+\contentsline {subsubsection}{Other datsets}{11}{subsubsection*.7}%
+\contentsline {section}{\numberline {3}Datasets}{11}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Datasets}{11}{subsection.3.1}%
+\contentsline {section}{\numberline {4}ToP (Topology Only Pre\sphinxhyphen {}Training)}{27}{section.4}%
+\contentsline {subsection}{\numberline {4.1}ToP (Topology only Pre\sphinxhyphen {}training)}{28}{subsection.4.1}%
+\contentsline {section}{\numberline {5}Indices and tables}{32}{section.5}%
+\contentsline {section}{Python Module Index}{33}{section*.248}%
+\contentsline {section}{Index}{34}{section*.249}%

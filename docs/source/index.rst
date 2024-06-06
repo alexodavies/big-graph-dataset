@@ -9,8 +9,16 @@ Welcome to Big Graph Dataset's documentation!
 This is a collaboration project to build a large, multi-domain set of graph datasets.
 Each dataset comprises many small graphs.
 
-.. image:: https://github.com/neutralpronoun/big-graph-dataset/blob/main/outputs/embedding.png
-   :alt: embedding image
+The aim of this project is to provide a large set of graph datasets for use in machine learning research.
+Currently graph datasets are distributed in individual repositories, increasing workload as researchers have to search for relevant resources.
+Once these datasets are found, there is additional labour in formatting the data for use in deep learning.
+
+We aim to provide datasets that are:
+ - Composed of many small graphs
+ - Diverse in domain
+ - Diverse in tasks
+ - Well-documented
+ - Formatted uniformly across datasets for Pytorch Geometric
 
 Contributing
 ============
@@ -27,7 +35,7 @@ I've provided code for sub-sampling graphs and producing statistics.
 
 A few rules, demonstrated in `datasets/example_dataset.py`:
  - The datasets need at least a train/val/test split
- - Datasets should be many small (<400 node) graphs
+ - Datasets should be many small (less than 400 node) graphs
  - Ideally the number of graphs in each dataset should be controllable
  - Data should be downloaded in-code to keep the repo small. If this isn't possible let me know.
  - Please cite your sources for data in documentation - see the existing datasets for example documentation
@@ -43,13 +51,33 @@ My environment is under `docs/requirements.txt`, use `pip install -r requirement
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Examples:
 
    reddit-dataset-example
-   datasets
-   top
 
-   
+Datasets
+========
+
+Documentation for the datsets currently in the Big Graph Dataset project.
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Many-graph datasets:
+
+   datasets
+
+ToP (Topology Only Pre-Training)
+================================
+
+Documentation for the Topology Only Pre-Training component of the project.
+We are using a pre-trained model to generate embeddings of the graphs in the datasets, hopefully to get some measure of how diverse the datasets are.
+Very much a work-in-progress!
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Topology Only Pre-Training:
+
+   top
 
 Indices and tables
 ==================

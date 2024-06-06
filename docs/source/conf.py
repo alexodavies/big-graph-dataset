@@ -19,7 +19,6 @@ release = '0.01'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'recommonmark',
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.viewcode',
@@ -55,9 +54,15 @@ exclude_patterns = []
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
-from recommonmark.parser import CommonMarkParser
+latex_engine = 'xelatex'
 
-source_suffix = {
-    '.rst': 'restructuredtext',
-    '.md': 'markdown',
+latex_elements = {
+    'preamble': r'''
+    \usepackage{fontspec}
+    ''',
 }
+
+latex_documents = [
+    ('index', 'big-graph-dataset.tex', 'Big Graph Dataset Documentation',
+     'Author Name', 'howto'),  # Change 'manual' to 'howto' or other themes as needed
+]
