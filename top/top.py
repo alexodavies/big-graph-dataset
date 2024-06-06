@@ -288,16 +288,16 @@ class GeneralEmbeddingEvaluation:
         plt.savefig("outputs/pairwise-similarity.png")
 
 def get_top_model():
-    checkpoint_url = "https://github.com/neutralpronoun/big-graph-dataset/blob/main/outputs/all-100.pt"
-    config_url = "https://github.com/neutralpronoun/big-graph-dataset/blob/main/outputs/all-100.yaml"
+    checkpoint_url = "https://github.com/neutralpronoun/general-gcl/raw/main/outputs/all-100.pt"
+    config_url = "https://github.com/neutralpronoun/general-gcl/raw/main/outputs/all-100.yaml"
 
-    if "outputs" not in os.listdir():
-        os.mkdir("outputs")
-    os.chdir("outputs")
+    if "top_models" not in os.listdir():
+        os.mkdir("top_models")
+    os.chdir("top_models")
 
-    if "all-100.pt" not in os.listdir("outputs"):
+    if "all-100.pt" not in os.listdir():
         checkpoint = wget.download(checkpoint_url)
-    if "all-100.yaml" not in os.listdir("outputs"):
+    if "all-100.yaml" not in os.listdir():
         config = wget.download(config_url)
 
     os.chdir("../")
@@ -322,12 +322,12 @@ def compute_top_scores(datasets, names):
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S')
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     # setup_seed(args.seed)
-
+    get_top_model()
     checkpoint = "all-100.pt"
 
-    checkpoint_path = f"outputs/{checkpoint}"
+    checkpoint_path = f"top_models/{checkpoint}"
     cfg_name = checkpoint.split('.')[0] + ".yaml"
-    config_path = f"outputs/{cfg_name}"
+    config_path = f"top_models/{cfg_name}"
 
     with open(config_path, 'r') as stream:
         try:

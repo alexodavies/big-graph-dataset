@@ -20,10 +20,22 @@ We aim to provide datasets that are:
  - Well-documented
  - Formatted uniformly across datasets for Pytorch Geometric
 
+What we're looking for
+=======================
+
+In short: anything! The idea behind this being a collaboration is that we cast a wide net over different domains and tasks.
+
+There are a few rules for this first phase (see below) but the quick brief is that we're looking for datasets of small static graphs with well-defined tasks.
+That just means that the structure of the graphs don't vary over time.
+
+If your data is a bit more funky, for example multi-graphs or time-series on graphs, please get in touch and we can discuss how to include it.
+
+In the examples I've provided datasets are mostly sampled from one large graph - this is not compulsory.
+
 Contributing
 ============
 
-The GitHub repo can be found at `https://github.com/neutralpronoun/big-graph-dataset`.
+The source can be found in the `Github repository <https://github.com/neutralpronoun/big-graph-dataset>`.
 
 The basics:
  - Create your own git branch
@@ -41,6 +53,7 @@ A few rules, demonstrated in `datasets/example_dataset.py`:
  - Please cite your sources for data in documentation - see the existing datasets for example documentation
  - Where possible start from existing datasets that have been used in-literature, or if using generators, use generators that are well-understood (for example Erdos-Renyi graphs)
 
+Please document your dataset files with your name and contact information at the top, I'll check code and merge your branches all at once at the end of the project.
 
 Getting Started
 ===============

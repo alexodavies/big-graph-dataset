@@ -1,24 +1,24 @@
 \indexentry{module@\spxentry{module}!datasets@\spxentry{datasets}}{11}
 \indexentry{datasets@\spxentry{datasets}!module@\spxentry{module}}{11}
 \indexentry{CoraDataset (class in datasets)@\spxentry{CoraDataset}\spxextra{class in datasets}}{11}
-\indexentry{\_\_init\_\_() (datasets.CoraDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.CoraDataset method}}{11}
-\indexentry{\_abc\_impl (datasets.CoraDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.CoraDataset attribute}}{11}
+\indexentry{\_\_init\_\_() (datasets.CoraDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.CoraDataset method}}{12}
+\indexentry{\_abc\_impl (datasets.CoraDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.CoraDataset attribute}}{12}
 \indexentry{process() (datasets.CoraDataset method)@\spxentry{process()}\spxextra{datasets.CoraDataset method}}{12}
 \indexentry{processed\_file\_names (datasets.CoraDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.CoraDataset property}}{12}
 \indexentry{raw\_file\_names (datasets.CoraDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.CoraDataset property}}{12}
 \indexentry{EgoDataset (class in datasets)@\spxentry{EgoDataset}\spxextra{class in datasets}}{12}
 \indexentry{\_\_init\_\_() (datasets.EgoDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.EgoDataset method}}{12}
 \indexentry{\_abc\_impl (datasets.EgoDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.EgoDataset attribute}}{12}
-\indexentry{process() (datasets.EgoDataset method)@\spxentry{process()}\spxextra{datasets.EgoDataset method}}{12}
-\indexentry{processed\_file\_names (datasets.EgoDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.EgoDataset property}}{12}
-\indexentry{raw\_file\_names (datasets.EgoDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.EgoDataset property}}{12}
-\indexentry{FacebookDataset (class in datasets)@\spxentry{FacebookDataset}\spxextra{class in datasets}}{12}
+\indexentry{process() (datasets.EgoDataset method)@\spxentry{process()}\spxextra{datasets.EgoDataset method}}{13}
+\indexentry{processed\_file\_names (datasets.EgoDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.EgoDataset property}}{13}
+\indexentry{raw\_file\_names (datasets.EgoDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.EgoDataset property}}{13}
+\indexentry{FacebookDataset (class in datasets)@\spxentry{FacebookDataset}\spxextra{class in datasets}}{13}
 \indexentry{\_\_init\_\_() (datasets.FacebookDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.FacebookDataset method}}{13}
 \indexentry{\_abc\_impl (datasets.FacebookDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.FacebookDataset attribute}}{13}
 \indexentry{process() (datasets.FacebookDataset method)@\spxentry{process()}\spxextra{datasets.FacebookDataset method}}{13}
 \indexentry{processed\_file\_names (datasets.FacebookDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.FacebookDataset property}}{13}
-\indexentry{raw\_file\_names (datasets.FacebookDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.FacebookDataset property}}{13}
-\indexentry{NeuralDataset (class in datasets)@\spxentry{NeuralDataset}\spxextra{class in datasets}}{13}
+\indexentry{raw\_file\_names (datasets.FacebookDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.FacebookDataset property}}{14}
+\indexentry{NeuralDataset (class in datasets)@\spxentry{NeuralDataset}\spxextra{class in datasets}}{14}
 \indexentry{\_\_init\_\_() (datasets.NeuralDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.NeuralDataset method}}{14}
 \indexentry{\_abc\_impl (datasets.NeuralDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.NeuralDataset attribute}}{14}
 \indexentry{process() (datasets.NeuralDataset method)@\spxentry{process()}\spxextra{datasets.NeuralDataset method}}{14}
@@ -38,25 +38,25 @@
 \indexentry{raw\_file\_names (datasets.RoadDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.RoadDataset property}}{16}
 \indexentry{get\_all\_datasets() (in module datasets)@\spxentry{get\_all\_datasets()}\spxextra{in module datasets}}{16}
 \indexentry{get\_test\_datasets() (in module datasets)@\spxentry{get\_test\_datasets()}\spxextra{in module datasets}}{16}
-\indexentry{get\_train\_datasets() (in module datasets)@\spxentry{get\_train\_datasets()}\spxextra{in module datasets}}{16}
-\indexentry{get\_val\_datasets() (in module datasets)@\spxentry{get\_val\_datasets()}\spxextra{in module datasets}}{16}
-\indexentry{module@\spxentry{module}!top@\spxentry{top}}{16}
-\indexentry{top@\spxentry{top}!module@\spxentry{module}}{16}
-\indexentry{GeneralEmbeddingEvaluation (class in top)@\spxentry{GeneralEmbeddingEvaluation}\spxextra{class in top}}{16}
-\indexentry{\_\_init\_\_() (top.GeneralEmbeddingEvaluation method)@\spxentry{\_\_init\_\_()}\spxextra{top.GeneralEmbeddingEvaluation method}}{16}
-\indexentry{embedding\_evaluation() (top.GeneralEmbeddingEvaluation method)@\spxentry{embedding\_evaluation()}\spxextra{top.GeneralEmbeddingEvaluation method}}{16}
-\indexentry{get\_embeddings() (top.GeneralEmbeddingEvaluation method)@\spxentry{get\_embeddings()}\spxextra{top.GeneralEmbeddingEvaluation method}}{16}
-\indexentry{vis() (top.GeneralEmbeddingEvaluation method)@\spxentry{vis()}\spxextra{top.GeneralEmbeddingEvaluation method}}{17}
-\indexentry{centroid\_similarities() (top.GeneralEmbeddingEvaluation method)@\spxentry{centroid\_similarities()}\spxextra{top.GeneralEmbeddingEvaluation method}}{17}
-\indexentry{\_\_init\_\_() (top.GeneralEmbeddingEvaluation method)@\spxentry{\_\_init\_\_()}\spxextra{top.GeneralEmbeddingEvaluation method}}{17}
-\indexentry{centroid\_similarities() (top.GeneralEmbeddingEvaluation method)@\spxentry{centroid\_similarities()}\spxextra{top.GeneralEmbeddingEvaluation method}}{17}
-\indexentry{embedding\_evaluation() (top.GeneralEmbeddingEvaluation method)@\spxentry{embedding\_evaluation()}\spxextra{top.GeneralEmbeddingEvaluation method}}{17}
-\indexentry{get\_embeddings() (top.GeneralEmbeddingEvaluation method)@\spxentry{get\_embeddings()}\spxextra{top.GeneralEmbeddingEvaluation method}}{17}
-\indexentry{vis() (top.GeneralEmbeddingEvaluation method)@\spxentry{vis()}\spxextra{top.GeneralEmbeddingEvaluation method}}{17}
-\indexentry{ToPDataset (class in top)@\spxentry{ToPDataset}\spxextra{class in top}}{18}
-\indexentry{\_\_init\_\_() (top.ToPDataset method)@\spxentry{\_\_init\_\_()}\spxextra{top.ToPDataset method}}{18}
-\indexentry{\_abc\_impl (top.ToPDataset attribute)@\spxentry{\_abc\_impl}\spxextra{top.ToPDataset attribute}}{18}
-\indexentry{process() (top.ToPDataset method)@\spxentry{process()}\spxextra{top.ToPDataset method}}{18}
-\indexentry{processed\_file\_names (top.ToPDataset property)@\spxentry{processed\_file\_names}\spxextra{top.ToPDataset property}}{18}
-\indexentry{raw\_file\_names (top.ToPDataset property)@\spxentry{raw\_file\_names}\spxextra{top.ToPDataset property}}{18}
-\indexentry{compute\_top\_scores() (in module top)@\spxentry{compute\_top\_scores()}\spxextra{in module top}}{18}
+\indexentry{get\_train\_datasets() (in module datasets)@\spxentry{get\_train\_datasets()}\spxextra{in module datasets}}{17}
+\indexentry{get\_val\_datasets() (in module datasets)@\spxentry{get\_val\_datasets()}\spxextra{in module datasets}}{17}
+\indexentry{module@\spxentry{module}!top@\spxentry{top}}{18}
+\indexentry{top@\spxentry{top}!module@\spxentry{module}}{18}
+\indexentry{GeneralEmbeddingEvaluation (class in top)@\spxentry{GeneralEmbeddingEvaluation}\spxextra{class in top}}{18}
+\indexentry{\_\_init\_\_() (top.GeneralEmbeddingEvaluation method)@\spxentry{\_\_init\_\_()}\spxextra{top.GeneralEmbeddingEvaluation method}}{18}
+\indexentry{embedding\_evaluation() (top.GeneralEmbeddingEvaluation method)@\spxentry{embedding\_evaluation()}\spxextra{top.GeneralEmbeddingEvaluation method}}{18}
+\indexentry{get\_embeddings() (top.GeneralEmbeddingEvaluation method)@\spxentry{get\_embeddings()}\spxextra{top.GeneralEmbeddingEvaluation method}}{18}
+\indexentry{vis() (top.GeneralEmbeddingEvaluation method)@\spxentry{vis()}\spxextra{top.GeneralEmbeddingEvaluation method}}{18}
+\indexentry{centroid\_similarities() (top.GeneralEmbeddingEvaluation method)@\spxentry{centroid\_similarities()}\spxextra{top.GeneralEmbeddingEvaluation method}}{18}
+\indexentry{\_\_init\_\_() (top.GeneralEmbeddingEvaluation method)@\spxentry{\_\_init\_\_()}\spxextra{top.GeneralEmbeddingEvaluation method}}{18}
+\indexentry{centroid\_similarities() (top.GeneralEmbeddingEvaluation method)@\spxentry{centroid\_similarities()}\spxextra{top.GeneralEmbeddingEvaluation method}}{18}
+\indexentry{embedding\_evaluation() (top.GeneralEmbeddingEvaluation method)@\spxentry{embedding\_evaluation()}\spxextra{top.GeneralEmbeddingEvaluation method}}{18}
+\indexentry{get\_embeddings() (top.GeneralEmbeddingEvaluation method)@\spxentry{get\_embeddings()}\spxextra{top.GeneralEmbeddingEvaluation method}}{18}
+\indexentry{vis() (top.GeneralEmbeddingEvaluation method)@\spxentry{vis()}\spxextra{top.GeneralEmbeddingEvaluation method}}{19}
+\indexentry{ToPDataset (class in top)@\spxentry{ToPDataset}\spxextra{class in top}}{19}
+\indexentry{\_\_init\_\_() (top.ToPDataset method)@\spxentry{\_\_init\_\_()}\spxextra{top.ToPDataset method}}{20}
+\indexentry{\_abc\_impl (top.ToPDataset attribute)@\spxentry{\_abc\_impl}\spxextra{top.ToPDataset attribute}}{20}
+\indexentry{process() (top.ToPDataset method)@\spxentry{process()}\spxextra{top.ToPDataset method}}{20}
+\indexentry{processed\_file\_names (top.ToPDataset property)@\spxentry{processed\_file\_names}\spxextra{top.ToPDataset property}}{20}
+\indexentry{raw\_file\_names (top.ToPDataset property)@\spxentry{raw\_file\_names}\spxextra{top.ToPDataset property}}{20}
+\indexentry{compute\_top\_scores() (in module top)@\spxentry{compute\_top\_scores()}\spxextra{in module top}}{20}

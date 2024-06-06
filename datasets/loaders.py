@@ -23,39 +23,40 @@ def get_chemical_datasets(transforms, num, stage="train"):
         os.mkdir("original_datasets")
     print(f"stage: {stage}")
 
-    if stage == "train" or stage == "train-adgcl":
-        names = ["ogbg-molpcba"]
-    else:
-        print("Not train stage")
-        names = ["ogbg-molesol", "ogbg-molclintox",
-                 "ogbg-molfreesolv", "ogbg-mollipo", "ogbg-molhiv",
-                "ogbg-molbbbp", "ogbg-molbace",
-                 ]
+    # if stage == "train" or stage == "train-adgcl":
+    # names = ["ogbg-molpcba"]
+    # else:
+    # print("Not train stage")
+    names = ["ogbg-molpcba", "ogbg-molesol", "ogbg-molclintox",
+                "ogbg-molfreesolv", "ogbg-mollipo", "ogbg-molhiv",
+            "ogbg-molbbbp", "ogbg-molbace",
+                ]
 
     print(f"Molecular datasets: {names}")
     datasets = [PygGraphPropPredDataset(name=name, root='./original_datasets/', transform=transforms) for name in names]
     print(datasets)
     split_idx = [data.get_idx_split() for data in datasets]
 
-    if stage == "val":
-        train_datasets = [data[split_idx[i]["train"]] for i, data in enumerate(datasets)]
-        val_datasets = [data[split_idx[i]["valid"]] for i, data in enumerate(datasets)]
+    # if stage == "val":
+    #     train_datasets = [data[split_idx[i]["train"]] for i, data in enumerate(datasets)]
+    #     val_datasets = [data[split_idx[i]["valid"]] for i, data in enumerate(datasets)]
 
-    elif stage == "train-adgcl":
-        datasets = [data[split_idx[i]["train"]] for i, data in enumerate(datasets)]
+    # elif stage == "train-adgcl":
+    #     datasets = [data[split_idx[i]["train"]] for i, data in enumerate(datasets)]
 
-    else:
-        datasets = [data[split_idx[i][stage]] for i, data in enumerate(datasets)]
+    # else:
+    # stage = "valid" if stage == "val" else stage
+    datasets = [data[split_idx[i]["valid" if stage == "val" else stage]] for i, data in enumerate(datasets)]
 
     # Need to convert to pyg inmemorydataset
-    num = num if stage != "train" else 5*num
-    if stage != "val":
-        datasets = [FromOGBDataset(os.getcwd()+'/original_datasets/'+names[i], data, num=num, stage = stage)
-                    for i, data in enumerate(datasets)] #  if names[i] != "ogbg-molpcba" else 5*num, stage=stage
-    else:
+    # num = num if stage != "train" else 5*num
+    # if stage != "val":
+    datasets = [FromOGBDataset(os.getcwd()+'/original_datasets/'+names[i], data, num=num, stage = stage)
+                for i, data in enumerate(datasets)] #  if names[i] != "ogbg-molpcba" else 5*num, stage=stage
+    # else:
         # Include train data in validation for fine tuning if dataset is evaluation only (ie not molpcba)
-        datasets = [FromOGBDataset(os.getcwd()+'/original_datasets/'+names[i], data, num=num, stage = "train") + FromOGBDataset(os.getcwd()+'/original_datasets/'+names[i], val_datasets[i], num=num, stage = "val")
-                    for i, data in enumerate(train_datasets)] #  if names[i] != "ogbg-molpcba" else 5*num, stage=stage
+        # datasets = [FromOGBDataset(os.getcwd()+'/original_datasets/'+names[i], data, num=num, stage = "train") + FromOGBDataset(os.getcwd()+'/original_datasets/'+names[i], val_datasets[i], num=num, stage = "val")
+                    # for i, data in enumerate(train_datasets)] #  if names[i] != "ogbg-molpcba" else 5*num, stage=stage
 
     return datasets, names
 
@@ -134,7 +135,7 @@ def get_test_datasets(transforms, num=2000, mol_only=False):
 
     Args:
         transforms (list): List of data transformations to apply.
-        num (int): Number of samples in non-molecule datasets to include (default is 2000).
+        num (int): Number of samples in datasets to include (default is 2000).
         mol_only (bool): Flag indicating whether to include only chemical datasets (default is False).
 
     Returns:
@@ -161,7 +162,7 @@ def get_val_datasets(transforms, num=2000, mol_only=False):
 
     Args:
         transforms (list): List of data transformations to apply.
-        num (int, optional): Number of samples in non-molecule datasets to include. Defaults to 2000.
+        num (int, optional): Number of samples in datasets to include. Defaults to 2000.
         mol_only (bool, optional): Flag indicating whether to include only chemical datasets. Defaults to False.
 
     Returns:
@@ -190,7 +191,9 @@ def get_train_datasets(transforms, num=2000, mol_only=False):
         mol_only (bool): Flag indicating whether to retrieve only chemical datasets.
 
     Returns:
-        tuple: A tuple containing the datasets and their names.
+        tuple: A tuple containing two elements:
+            - datasets (list): A list of all the datasets.
+            - all_names (list): A list of names corresponding to each dataset.
     """
 
     chemical_datasets, ogbg_names = get_chemical_datasets(transforms, num, stage="train")

@@ -7,27 +7,27 @@
 
 
   \lettergroupDefault{default}
-  \item \spxentry{\_\_init\_\_()}\spxextra{datasets.CoraDataset method}, \hyperpage{11}
+  \item \spxentry{\_\_init\_\_()}\spxextra{datasets.CoraDataset method}, \hyperpage{12}
   \item \spxentry{\_\_init\_\_()}\spxextra{datasets.EgoDataset method}, \hyperpage{12}
   \item \spxentry{\_\_init\_\_()}\spxextra{datasets.FacebookDataset method}, \hyperpage{13}
   \item \spxentry{\_\_init\_\_()}\spxextra{datasets.NeuralDataset method}, \hyperpage{14}
   \item \spxentry{\_\_init\_\_()}\spxextra{datasets.RedditDataset method}, \hyperpage{15}
   \item \spxentry{\_\_init\_\_()}\spxextra{datasets.RoadDataset method}, \hyperpage{16}
-  \item \spxentry{\_\_init\_\_()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{16}, \hyperpage{17}
-  \item \spxentry{\_\_init\_\_()}\spxextra{top.ToPDataset method}, \hyperpage{18}
-  \item \spxentry{\_abc\_impl}\spxextra{datasets.CoraDataset attribute}, \hyperpage{11}
+  \item \spxentry{\_\_init\_\_()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{18}
+  \item \spxentry{\_\_init\_\_()}\spxextra{top.ToPDataset method}, \hyperpage{20}
+  \item \spxentry{\_abc\_impl}\spxextra{datasets.CoraDataset attribute}, \hyperpage{12}
   \item \spxentry{\_abc\_impl}\spxextra{datasets.EgoDataset attribute}, \hyperpage{12}
   \item \spxentry{\_abc\_impl}\spxextra{datasets.FacebookDataset attribute}, \hyperpage{13}
   \item \spxentry{\_abc\_impl}\spxextra{datasets.NeuralDataset attribute}, \hyperpage{14}
   \item \spxentry{\_abc\_impl}\spxextra{datasets.RedditDataset attribute}, \hyperpage{15}
   \item \spxentry{\_abc\_impl}\spxextra{datasets.RoadDataset attribute}, \hyperpage{16}
-  \item \spxentry{\_abc\_impl}\spxextra{top.ToPDataset attribute}, \hyperpage{18}
+  \item \spxentry{\_abc\_impl}\spxextra{top.ToPDataset attribute}, \hyperpage{20}
 
   \indexspace
 
   \lettergroup{C}
-  \item \spxentry{centroid\_similarities()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{17}
-  \item \spxentry{compute\_top\_scores()}\spxextra{in module top}, \hyperpage{18}
+  \item \spxentry{centroid\_similarities()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{18}
+  \item \spxentry{compute\_top\_scores()}\spxextra{in module top}, \hyperpage{20}
   \item \spxentry{CoraDataset}\spxextra{class in datasets}, \hyperpage{11}
 
   \indexspace
@@ -40,63 +40,63 @@
 
   \lettergroup{E}
   \item \spxentry{EgoDataset}\spxextra{class in datasets}, \hyperpage{12}
-  \item \spxentry{embedding\_evaluation()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{16}, \hyperpage{17}
+  \item \spxentry{embedding\_evaluation()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{18}
 
   \indexspace
 
   \lettergroup{F}
-  \item \spxentry{FacebookDataset}\spxextra{class in datasets}, \hyperpage{12}
+  \item \spxentry{FacebookDataset}\spxextra{class in datasets}, \hyperpage{13}
 
   \indexspace
 
   \lettergroup{G}
-  \item \spxentry{GeneralEmbeddingEvaluation}\spxextra{class in top}, \hyperpage{16}
+  \item \spxentry{GeneralEmbeddingEvaluation}\spxextra{class in top}, \hyperpage{18}
   \item \spxentry{get\_all\_datasets()}\spxextra{in module datasets}, \hyperpage{16}
-  \item \spxentry{get\_embeddings()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{16}, \hyperpage{17}
+  \item \spxentry{get\_embeddings()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{18}
   \item \spxentry{get\_test\_datasets()}\spxextra{in module datasets}, \hyperpage{16}
-  \item \spxentry{get\_train\_datasets()}\spxextra{in module datasets}, \hyperpage{16}
-  \item \spxentry{get\_val\_datasets()}\spxextra{in module datasets}, \hyperpage{16}
+  \item \spxentry{get\_train\_datasets()}\spxextra{in module datasets}, \hyperpage{17}
+  \item \spxentry{get\_val\_datasets()}\spxextra{in module datasets}, \hyperpage{17}
 
   \indexspace
 
   \lettergroup{M}
   \item \spxentry{module}
     \subitem \spxentry{datasets}, \hyperpage{11}
-    \subitem \spxentry{top}, \hyperpage{16}
+    \subitem \spxentry{top}, \hyperpage{18}
 
   \indexspace
 
   \lettergroup{N}
-  \item \spxentry{NeuralDataset}\spxextra{class in datasets}, \hyperpage{13}
+  \item \spxentry{NeuralDataset}\spxextra{class in datasets}, \hyperpage{14}
 
   \indexspace
 
   \lettergroup{P}
   \item \spxentry{process()}\spxextra{datasets.CoraDataset method}, \hyperpage{12}
-  \item \spxentry{process()}\spxextra{datasets.EgoDataset method}, \hyperpage{12}
+  \item \spxentry{process()}\spxextra{datasets.EgoDataset method}, \hyperpage{13}
   \item \spxentry{process()}\spxextra{datasets.FacebookDataset method}, \hyperpage{13}
   \item \spxentry{process()}\spxextra{datasets.NeuralDataset method}, \hyperpage{14}
   \item \spxentry{process()}\spxextra{datasets.RedditDataset method}, \hyperpage{15}
   \item \spxentry{process()}\spxextra{datasets.RoadDataset method}, \hyperpage{16}
-  \item \spxentry{process()}\spxextra{top.ToPDataset method}, \hyperpage{18}
+  \item \spxentry{process()}\spxextra{top.ToPDataset method}, \hyperpage{20}
   \item \spxentry{processed\_file\_names}\spxextra{datasets.CoraDataset property}, \hyperpage{12}
-  \item \spxentry{processed\_file\_names}\spxextra{datasets.EgoDataset property}, \hyperpage{12}
+  \item \spxentry{processed\_file\_names}\spxextra{datasets.EgoDataset property}, \hyperpage{13}
   \item \spxentry{processed\_file\_names}\spxextra{datasets.FacebookDataset property}, \hyperpage{13}
   \item \spxentry{processed\_file\_names}\spxextra{datasets.NeuralDataset property}, \hyperpage{14}
   \item \spxentry{processed\_file\_names}\spxextra{datasets.RedditDataset property}, \hyperpage{15}
   \item \spxentry{processed\_file\_names}\spxextra{datasets.RoadDataset property}, \hyperpage{16}
-  \item \spxentry{processed\_file\_names}\spxextra{top.ToPDataset property}, \hyperpage{18}
+  \item \spxentry{processed\_file\_names}\spxextra{top.ToPDataset property}, \hyperpage{20}
 
   \indexspace
 
   \lettergroup{R}
   \item \spxentry{raw\_file\_names}\spxextra{datasets.CoraDataset property}, \hyperpage{12}
-  \item \spxentry{raw\_file\_names}\spxextra{datasets.EgoDataset property}, \hyperpage{12}
-  \item \spxentry{raw\_file\_names}\spxextra{datasets.FacebookDataset property}, \hyperpage{13}
+  \item \spxentry{raw\_file\_names}\spxextra{datasets.EgoDataset property}, \hyperpage{13}
+  \item \spxentry{raw\_file\_names}\spxextra{datasets.FacebookDataset property}, \hyperpage{14}
   \item \spxentry{raw\_file\_names}\spxextra{datasets.NeuralDataset property}, \hyperpage{14}
   \item \spxentry{raw\_file\_names}\spxextra{datasets.RedditDataset property}, \hyperpage{15}
   \item \spxentry{raw\_file\_names}\spxextra{datasets.RoadDataset property}, \hyperpage{16}
-  \item \spxentry{raw\_file\_names}\spxextra{top.ToPDataset property}, \hyperpage{18}
+  \item \spxentry{raw\_file\_names}\spxextra{top.ToPDataset property}, \hyperpage{20}
   \item \spxentry{RedditDataset}\spxextra{class in datasets}, \hyperpage{14}
   \item \spxentry{RoadDataset}\spxextra{class in datasets}, \hyperpage{15}
 
@@ -104,12 +104,12 @@
 
   \lettergroup{T}
   \item \spxentry{top}
-    \subitem \spxentry{module}, \hyperpage{16}
-  \item \spxentry{ToPDataset}\spxextra{class in top}, \hyperpage{18}
+    \subitem \spxentry{module}, \hyperpage{18}
+  \item \spxentry{ToPDataset}\spxextra{class in top}, \hyperpage{19}
 
   \indexspace
 
   \lettergroup{V}
-  \item \spxentry{vis()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{17}
+  \item \spxentry{vis()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{18}, \hyperpage{19}
 
 \end{sphinxtheindex}

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.6.6)  6 JUN 2024 11:46
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.6.6)  6 JUN 2024 16:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -841,92 +841,92 @@ Writing index file big-graph-dataset.idx
 (./big-graph-dataset.aux)
 \openout1 = `big-graph-dataset.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 89.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 88.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 8
-9.
+8.
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 89.
-LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
 
 Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
 (fontspec)             this).
 
 \symlegacymaths=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 89.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 89.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 89.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 89.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 89.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 89.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 89.
-LaTeX Font Info:    Redeclaring math accent \check on input line 89.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 89.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 89.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 89.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 89.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 89.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 89.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 89.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 89.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 89.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 89.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 89.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 89.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 89.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 89.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 89.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 89.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 88.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 88.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 88.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 88.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 88.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 88.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 88.
+LaTeX Font Info:    Redeclaring math accent \check on input line 88.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 88.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 88.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 88.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 88.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 88.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 88.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 88.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 88.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 88.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 88.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 88.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 88.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 88.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 88.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 88.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 88.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 89.
+(Font)              `operators' in the math version `normal' on input line 88.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/FreeSerif(0)/m/n on input line 89.
+(Font)                  OT1/cmr/m/n --> TU/FreeSerif(0)/m/n on input line 88.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 89.
+(Font)              `operators' in the math version `bold' on input line 88.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/FreeSerif(0)/m/n on input line 89.
+(Font)                  OT1/cmr/bx/n --> TU/FreeSerif(0)/m/n on input line 88.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  TU/FreeSerif(0)/m/n --> TU/FreeSerif(0)/m/n on input li
-ne 89.
+ne 88.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/FreeSerif(0)/m/it on input line 89.
+(Font)                  OT1/cmr/m/it --> TU/FreeSerif(0)/m/it on input line 88.
 
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/FreeSerif(0)/b/n on input line 89.
+(Font)                  OT1/cmr/bx/n --> TU/FreeSerif(0)/b/n on input line 88.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/FreeSans(0)/m/n on input line 89.
+(Font)                  OT1/cmss/m/n --> TU/FreeSans(0)/m/n on input line 88.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/FreeMono(0)/m/n on input line 89.
+(Font)                  OT1/cmtt/m/n --> TU/FreeMono(0)/m/n on input line 88.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  TU/FreeSerif(0)/m/n --> TU/FreeSerif(0)/b/n on input li
-ne 89.
+ne 88.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/FreeSerif(0)/b/it on input line 89
+(Font)                  OT1/cmr/bx/it --> TU/FreeSerif(0)/b/it on input line 88
 .
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/FreeSans(0)/b/n on input line 89.
+(Font)                  OT1/cmss/bx/n --> TU/FreeSans(0)/b/n on input line 88.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/FreeMono(0)/b/n on input line 89.
+(Font)                  OT1/cmtt/m/n --> TU/FreeMono(0)/b/n on input line 88.
 \c@literalblock=\count334
 
 *geometry* driver: auto-detecting
@@ -963,21 +963,21 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 89.
+Package hyperref Info: Link coloring ON on input line 88.
 (./big-graph-dataset.out) (./big-graph-dataset.out)
 \@outlinefile=\write5
 \openout5 = `big-graph-dataset.out'.
 
-LaTeX Info: Redefining \rmfamily on input line 89.
-LaTeX Info: Redefining \sffamily on input line 89.
-LaTeX Info: Redefining \ttfamily on input line 89.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 92.
+LaTeX Info: Redefining \rmfamily on input line 88.
+LaTeX Info: Redefining \sffamily on input line 88.
+LaTeX Info: Redefining \ttfamily on input line 88.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 91.
 
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 92.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 91.
 
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -994,114 +994,114 @@ LaTeX Info: Redefining \ttfamily on input line 1.
  [1
 
 ] [2] [3] [4] [5] [6] [7] [8]
-Underfull \vbox (badness 10000) detected at line 1024
+Underfull \vbox (badness 10000) detected at line 1023
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 1024
+Overfull \vbox (2.78596pt too high) detected at line 1023
  []
 
 [9]
 File: reddit-dataset-example_22_1.png Graphic file (type bmp)
 <reddit-dataset-example_22_1.png>
  [10]
-Underfull \hbox (badness 10000) in paragraph at lines 1204--1206
+Underfull \hbox (badness 10000) in paragraph at lines 1214--1216
 []\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
 it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
 
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 1204--1206
+Underfull \hbox (badness 5939) in paragraph at lines 1214--1216
 \TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
  and returns a boolean value, indicating
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 1328--1330
+Underfull \hbox (badness 10000) in paragraph at lines 1338--1340
 []\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
 it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
 
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 1328--1330
+Underfull \hbox (badness 5939) in paragraph at lines 1338--1340
 \TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
  and returns a boolean value, indicating
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 1455--1457
+Underfull \hbox (badness 10000) in paragraph at lines 1465--1467
 []\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
 it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
 
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 1455--1457
+Underfull \hbox (badness 5939) in paragraph at lines 1465--1467
 \TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
  and returns a boolean value, indicating
  []
 
-
-Overfull \hbox (56.21722pt too wide) in paragraph at lines 1528--1530
+[13]
+Overfull \hbox (56.21722pt too wide) in paragraph at lines 1538--1540
 []\TU/FreeSerif(0)/m/it/10 Michael Winding et al. , The connectome of an insect
  brain.Science379,eadd9330(2023).DOI:10.1126/science.add9330 
  []
 
-[13]
-Underfull \hbox (badness 10000) in paragraph at lines 1579--1581
+
+Underfull \hbox (badness 10000) in paragraph at lines 1589--1591
 []\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
 it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
 
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 1579--1581
+Underfull \hbox (badness 5939) in paragraph at lines 1589--1591
 \TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
  and returns a boolean value, indicating
  []
 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 1706--1708
+Underfull \hbox (badness 10000) in paragraph at lines 1716--1718
 []\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
 it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
 
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 1706--1708
+Underfull \hbox (badness 5939) in paragraph at lines 1716--1718
 \TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
  and returns a boolean value, indicating
  []
 
 [15]
-Underfull \hbox (badness 10000) in paragraph at lines 1830--1832
+Underfull \hbox (badness 10000) in paragraph at lines 1840--1842
 []\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
 it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
 
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 1830--1832
+Underfull \hbox (badness 5939) in paragraph at lines 1840--1842
 \TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
  and returns a boolean value, indicating
  []
 
-[16] [17]
-Underfull \hbox (badness 10000) in paragraph at lines 2193--2195
+[16] [17] [18]
+Underfull \hbox (badness 10000) in paragraph at lines 2367--2369
 []\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
 it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
 
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 2193--2195
+Underfull \hbox (badness 5939) in paragraph at lines 2367--2369
 \TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
  and returns a boolean value, indicating
  []
 
-[18] [19] [20
+[19] [20] [21
 
 
 ] (./big-graph-dataset.ind
@@ -1156,7 +1156,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 87--88
 Serif(0)/m/it/10 datasets.RoadDataset
  []
 
-[21
+[22
 
 
 ]) (./big-graph-dataset.aux)
@@ -1165,15 +1165,15 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
 Package rerunfilecheck Info: File `big-graph-dataset.out' has not changed.
-(rerunfilecheck)             Checksum: 545AD5B71E32A04F5DE818FFB8B177B6;2763.
+(rerunfilecheck)             Checksum: 20465C6D5604602D36B71025DE919D28;2821.
  ) 
 Here is how much of TeX's memory you used:
  18446 strings out of 474773
- 369546 string characters out of 5757725
+ 369557 string characters out of 5757725
  2077839 words of memory out of 5000000
  40215 multiletter control sequences out of 15000+600000
  562041 words of font info for 97 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
- 79i,12n,93p,722b,661s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 79i,11n,93p,722b,683s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on big-graph-dataset.pdf (21 pages).
+Output written on big-graph-dataset.pdf (22 pages).

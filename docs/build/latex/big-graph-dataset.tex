@@ -70,7 +70,6 @@
 % Set up styles of URL: it should be placed after hyperref.
 \urlstyle{same}
 
-\addto\captionsenglish{\renewcommand{\contentsname}{Examples:}}
 
 \usepackage{sphinxmessages}
 \setcounter{tocdepth}{2}
@@ -134,7 +133,7 @@ Formatted uniformly across datasets for Pytorch Geometric
 \section{Contributing}
 \label{\detokenize{index:contributing}}
 \sphinxAtStartPar
-The GitHub repo can be found at \sphinxtitleref{https://github.com/neutralpronoun/big\sphinxhyphen{}graph\sphinxhyphen{}dataset}.
+The source can be found in the \sphinxtitleref{Github repository <https://github.com/neutralpronoun/big\sphinxhyphen{}graph\sphinxhyphen{}dataset>}.
 \begin{description}
 \sphinxlineitem{The basics:}\begin{itemize}
 \item {} 
@@ -1131,8 +1130,19 @@ Documentation for the datsets currently in the Big Graph Dataset project.
 \sphinxstepscope
 
 
-\subsection{Datasets}
-\label{\detokenize{datasets:module-datasets}}\label{\detokenize{datasets:datasets}}\label{\detokenize{datasets::doc}}\index{module@\spxentry{module}!datasets@\spxentry{datasets}}\index{datasets@\spxentry{datasets}!module@\spxentry{module}}\index{CoraDataset (class in datasets)@\spxentry{CoraDataset}\spxextra{class in datasets}}
+\subsection{Many\sphinxhyphen{}Graph Datasets}
+\label{\detokenize{datasets:many-graph-datasets}}\label{\detokenize{datasets::doc}}
+\sphinxAtStartPar
+These datsets are composed of many small graphs.
+Each is presented as a \sphinxtitleref{torch\_geometric.data.InMemoryDataset} object.
+
+\sphinxAtStartPar
+Tasks, node features and edge features vary between datasets.
+Currently we don’t present dynamic graphs, multi\sphinxhyphen{}graphs or temporal graphs.
+
+\sphinxAtStartPar
+Additionally the functions \sphinxtitleref{get\_X\_datasets()} retrieve multiple datasets at once.
+\index{module@\spxentry{module}!datasets@\spxentry{datasets}}\index{datasets@\spxentry{datasets}!module@\spxentry{module}}\index{CoraDataset (class in datasets)@\spxentry{CoraDataset}\spxextra{class in datasets}}\phantomsection\label{\detokenize{datasets:module-datasets}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{datasets:datasets.CoraDataset}}
@@ -1892,6 +1902,47 @@ Num graphs: Parameterised by \sphinxtitleref{num}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxcode{\sphinxupquote{datasets.}}\sphinxbfcode{\sphinxupquote{get\_all\_datasets}}}{\sphinxparam{\DUrole{n}{transforms}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{5000}}\sphinxparamcomma \sphinxparam{\DUrole{n}{mol\_only}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
 \pysigstopsignatures
+\sphinxAtStartPar
+Get all datasets for training and validation, in that order.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{transforms}} (\sphinxstyleliteralemphasis{\sphinxupquote{list}}) – List of data transformations to apply to the datasets.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{num}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) – Number of samples to load from each dataset. Defaults to 5000.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{mol\_only}} (\sphinxstyleliteralemphasis{\sphinxupquote{bool}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) – Flag indicating whether to include only chemical datasets. Defaults to False.
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+\begin{description}
+\sphinxlineitem{A tuple containing two elements:}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+datasets (list): A list of all the datasets.
+
+\item {} 
+\sphinxAtStartPar
+all\_names (list): A list of names corresponding to each dataset.
+
+\end{itemize}
+
+\end{description}
+
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+tuple
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 \index{get\_test\_datasets() (in module datasets)@\spxentry{get\_test\_datasets()}\spxextra{in module datasets}}
@@ -1901,6 +1952,47 @@ Num graphs: Parameterised by \sphinxtitleref{num}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxcode{\sphinxupquote{datasets.}}\sphinxbfcode{\sphinxupquote{get\_test\_datasets}}}{\sphinxparam{\DUrole{n}{transforms}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}\sphinxparamcomma \sphinxparam{\DUrole{n}{mol\_only}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
 \pysigstopsignatures
+\sphinxAtStartPar
+Get the test split of each dataset.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{transforms}} (\sphinxstyleliteralemphasis{\sphinxupquote{list}}) – List of data transformations to apply.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{num}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) – Number of samples in datasets to include (default is 2000).
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{mol\_only}} (\sphinxstyleliteralemphasis{\sphinxupquote{bool}}) – Flag indicating whether to include only chemical datasets (default is False).
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+\begin{description}
+\sphinxlineitem{A tuple containing two elements:}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+datasets (list): List of test datasets.
+
+\item {} 
+\sphinxAtStartPar
+names (list): List of dataset names.
+
+\end{itemize}
+
+\end{description}
+
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+tuple
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 \index{get\_train\_datasets() (in module datasets)@\spxentry{get\_train\_datasets()}\spxextra{in module datasets}}
@@ -1910,6 +2002,47 @@ Num graphs: Parameterised by \sphinxtitleref{num}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxcode{\sphinxupquote{datasets.}}\sphinxbfcode{\sphinxupquote{get\_train\_datasets}}}{\sphinxparam{\DUrole{n}{transforms}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}\sphinxparamcomma \sphinxparam{\DUrole{n}{mol\_only}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
 \pysigstopsignatures
+\sphinxAtStartPar
+Get the training splits of each dataset.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{transforms}} (\sphinxstyleliteralemphasis{\sphinxupquote{list}}) – List of data transformations to apply.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{num}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) – Number of datasets to retrieve.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{mol\_only}} (\sphinxstyleliteralemphasis{\sphinxupquote{bool}}) – Flag indicating whether to retrieve only chemical datasets.
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+\begin{description}
+\sphinxlineitem{A tuple containing two elements:}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+datasets (list): A list of all the datasets.
+
+\item {} 
+\sphinxAtStartPar
+all\_names (list): A list of names corresponding to each dataset.
+
+\end{itemize}
+
+\end{description}
+
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+tuple
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 \index{get\_val\_datasets() (in module datasets)@\spxentry{get\_val\_datasets()}\spxextra{in module datasets}}
@@ -1919,6 +2052,47 @@ Num graphs: Parameterised by \sphinxtitleref{num}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxcode{\sphinxupquote{datasets.}}\sphinxbfcode{\sphinxupquote{get\_val\_datasets}}}{\sphinxparam{\DUrole{n}{transforms}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}\sphinxparamcomma \sphinxparam{\DUrole{n}{mol\_only}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
 \pysigstopsignatures
+\sphinxAtStartPar
+Get validation splits for each dataset.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{transforms}} (\sphinxstyleliteralemphasis{\sphinxupquote{list}}) – List of data transformations to apply.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{num}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) – Number of samples in datasets to include. Defaults to 2000.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{mol\_only}} (\sphinxstyleliteralemphasis{\sphinxupquote{bool}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) – Flag indicating whether to include only chemical datasets. Defaults to False.
+
+\end{itemize}
+
+\sphinxlineitem{Returns}
+\sphinxAtStartPar
+\begin{description}
+\sphinxlineitem{A tuple containing two elements:}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+datasets (list): List of validation datasets.
+
+\item {} 
+\sphinxAtStartPar
+names (list): List of dataset names.
+
+\end{itemize}
+
+\end{description}
+
+
+\sphinxlineitem{Return type}
+\sphinxAtStartPar
+tuple
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 

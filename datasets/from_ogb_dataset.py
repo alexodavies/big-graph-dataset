@@ -65,6 +65,28 @@ def to_onehot_bonds(x):
     return torch.cat(one_hot_tensors, dim=1)
 
 class FromOGBDataset(InMemoryDataset):
+    r"""
+    Converts an Open Graph Benchmark dataset into a `torch_geometric.data.InMemoryDataset`.
+    This allows standard dataset operations like concatenation with other datasets.
+
+    The Open Graph Benchmark project is available here:
+
+         `Hu, Weihua, et al. "Open graph benchmark: Datasets for machine learning on graphs." Advances in neural information processing systems 33 (2020): 22118-22133.`
+
+    We convert atom and bond features into one-hot encodings.
+    The resulting shapes are:
+     - node (atom features): (174, N Atoms)
+     - edge (bond features) features: (13, N Bonds)
+
+    Args:
+        root (str): Root directory where the dataset should be saved.
+        ogb_dataset (list): an `PygGraphPropPredDataset` to be converted back to `InMemoryDataset`.
+        stage (str): The stage of the dataset to load. One of "train", "val", "test". (default: :obj:`"train"`)
+        transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before every access. (default: :obj:`None`)
+        pre_transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before being saved to disk. (default: :obj:`None`)
+        pre_filter (callable, optional): A function that takes in an :obj:`torch_geometric.data.Data` object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: :obj:`None`)
+        num (int): The number of samples to take from the original dataset. -1 takes all available samples for that stage. (default: :obj:`-1`).
+    """
     def __init__(self, root, ogb_dataset, stage = "train", num = -1, transform=None, pre_transform=None, pre_filter=None):
         self.ogb_dataset = ogb_dataset
         self.stage = stage
@@ -85,17 +107,15 @@ class FromOGBDataset(InMemoryDataset):
     def processed_file_names(self):
         return ['train.pt',
                 'val.pt',
-                'test.pt',
-                'train-adgcl.pt']
+                'test.pt']
 
 
     def process(self):
         # Read data into huge `Data` list.
-        # print(f"Looking for OGB processed files at {self.processed_paths[self.stage_to_index[self.stage]]}")
         if os.path.isfile(self.processed_paths[self.stage_to_index[self.stage]]):
             print(f"\nOGB files exist at {self.processed_paths[self.stage_to_index[self.stage]]}")
             return
-        data_list = self.ogb_dataset# get_fb_dataset(num=self.num)
+        data_list = self.ogb_dataset
 
         num_samples = len(data_list)
         if num_samples < self.num:
@@ -103,44 +123,17 @@ class FromOGBDataset(InMemoryDataset):
         else:
             keep_n = self.num
 
-        if self.stage == "train" and "pcba" in self.processed_paths[self.stage_to_index[self.stage]]:
-            print("Found stage train for PCBA, dropping targets")
-            new_data_list = []
-            for i, item in enumerate(data_list[:keep_n]):
-                n_nodes, n_edges = item.x.shape[0], item.edge_index.shape[1]
-
-                data = Data(x = torch.ones(n_nodes).to(torch.int).reshape((-1, 1)),
-                            edge_index=item.edge_index,
-                            edge_attr=torch.ones(n_edges).to(torch.int).reshape((-1,1)),
-                            y = None)
-
-                # data = Data(x = item.x[:,0].reshape((-1, 1)), edge_index=item.edge_index,
-                #             edge_attr=item.edge_attr, y = None)
-                # print(f"Train x shape {data.x.shape}, edge index {data.edge_index.shape}, edge attr {data.edge_attr.shape}")
-                # print(data)
-                # vis_from_pyg(data, filename=self.root + '/processed/' + i + '.png')
-                new_data_list.append(data)
-            data_list = new_data_list
-        else:
-            new_data_list = []
-            for i, item in enumerate(data_list[:keep_n]):
-                n_nodes, n_edges = item.x.shape[0], item.edge_index.shape[1]
+        new_data_list = []
+        for i, item in enumerate(data_list[:keep_n]):
 
 
-                data = Data(x = to_onehot_atoms(item.x), # [:,0].reshape((-1, 1)),# torch.ones(n_nodes).to(torch.int).reshape((-1, 1)), #
-                            edge_index=item.edge_index,
-                            edge_attr= to_onehot_bonds(item.edge_attr), #torch.ones(n_edges).to(torch.int).reshape((-1,1)),
-                            y = item.y)
-
-                # data = Data(x = item.x[:,0].reshape((-1, 1)), edge_index=item.edge_index,
-                #             edge_attr=item.edge_attr, y = item.y)
-                # print(f"Val x shape {data.x.shape}, edge index {data.edge_index.shape}")
-                # print(data)
-                # vis_from_pyg(data, filename=self.root + '/processed/' + i + '.png')
-                new_data_list.append(data)
-            data_list = new_data_list
-            # for i, data in enumerate(tqdm(data_list)):
-            #     vis_from_pyg(data, filename=self.root + f'/processed/{self.stage}-{i}.png')
+            data = Data(x = to_onehot_atoms(item.x), 
+                        edge_index=item.edge_index,
+                        edge_attr= to_onehot_bonds(item.edge_attr), 
+                        y = item.y)
+            
+            new_data_list.append(data)
+        data_list = new_data_list
 
         if self.pre_filter is not None:
             data_list = [data for data in data_list if self.pre_filter(data)]
