@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.6.6)  6 JUN 2024 16:04
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.6.6)  6 JUN 2024 16:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -994,114 +994,118 @@ LaTeX Info: Redefining \ttfamily on input line 1.
  [1
 
 ] [2] [3] [4] [5] [6] [7] [8]
-Underfull \vbox (badness 10000) detected at line 1023
+Underfull \vbox (badness 10000) detected at line 1042
  []
 
 
-Overfull \vbox (2.78596pt too high) detected at line 1023
+Overfull \vbox (2.78596pt too high) detected at line 1042
  []
 
 [9]
 File: reddit-dataset-example_22_1.png Graphic file (type bmp)
 <reddit-dataset-example_22_1.png>
- [10]
-Underfull \hbox (badness 10000) in paragraph at lines 1214--1216
+
+Underfull \vbox (badness 10000) detected at line 1085
+ []
+
+[10] [11]
+Underfull \hbox (badness 10000) in paragraph at lines 1233--1235
 []\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
 it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
 
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 1214--1216
-\TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
- and returns a boolean value, indicating
- []
-
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 1338--1340
-[]\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
-it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
-
- []
-
-
-Underfull \hbox (badness 5939) in paragraph at lines 1338--1340
+Underfull \hbox (badness 5939) in paragraph at lines 1233--1235
 \TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
  and returns a boolean value, indicating
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 1465--1467
+Underfull \hbox (badness 10000) in paragraph at lines 1357--1359
 []\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
 it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
 
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 1465--1467
+Underfull \hbox (badness 5939) in paragraph at lines 1357--1359
 \TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
  and returns a boolean value, indicating
  []
 
 [13]
-Overfull \hbox (56.21722pt too wide) in paragraph at lines 1538--1540
-[]\TU/FreeSerif(0)/m/it/10 Michael Winding et al. , The connectome of an insect
- brain.Science379,eadd9330(2023).DOI:10.1126/science.add9330 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1589--1591
+Underfull \hbox (badness 10000) in paragraph at lines 1484--1486
 []\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
 it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
 
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 1589--1591
+Underfull \hbox (badness 5939) in paragraph at lines 1484--1486
 \TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
  and returns a boolean value, indicating
  []
 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 1716--1718
+Overfull \hbox (56.21722pt too wide) in paragraph at lines 1557--1559
+[]\TU/FreeSerif(0)/m/it/10 Michael Winding et al. , The connectome of an insect
+ brain.Science379,eadd9330(2023).DOI:10.1126/science.add9330 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1608--1610
 []\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
 it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
 
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 1716--1718
+Underfull \hbox (badness 5939) in paragraph at lines 1608--1610
 \TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
  and returns a boolean value, indicating
  []
 
 [15]
-Underfull \hbox (badness 10000) in paragraph at lines 1840--1842
+Underfull \hbox (badness 10000) in paragraph at lines 1735--1737
 []\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
 it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
 
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 1840--1842
+Underfull \hbox (badness 5939) in paragraph at lines 1735--1737
 \TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
  and returns a boolean value, indicating
  []
 
-[16] [17] [18]
-Underfull \hbox (badness 10000) in paragraph at lines 2367--2369
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 1859--1861
 []\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
 it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
 
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 2367--2369
+Underfull \hbox (badness 5939) in paragraph at lines 1859--1861
 \TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
  and returns a boolean value, indicating
  []
 
-[19] [20] [21
+[17] [18] [19]
+Underfull \hbox (badness 10000) in paragraph at lines 2386--2388
+[]\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
+it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
+
+ []
+
+
+Underfull \hbox (badness 5939) in paragraph at lines 2386--2388
+\TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
+ and returns a boolean value, indicating
+ []
+
+[20] [21] [22
 
 
 ] (./big-graph-dataset.ind
@@ -1156,7 +1160,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 87--88
 Serif(0)/m/it/10 datasets.RoadDataset
  []
 
-[22
+[23
 
 
 ]) (./big-graph-dataset.aux)
@@ -1165,15 +1169,15 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
 Package rerunfilecheck Info: File `big-graph-dataset.out' has not changed.
-(rerunfilecheck)             Checksum: 20465C6D5604602D36B71025DE919D28;2821.
+(rerunfilecheck)             Checksum: A5AEFEDDC603E2025771F77358875465;2987.
  ) 
 Here is how much of TeX's memory you used:
- 18446 strings out of 474773
- 369557 string characters out of 5757725
- 2077839 words of memory out of 5000000
- 40215 multiletter control sequences out of 15000+600000
+ 18447 strings out of 474773
+ 369587 string characters out of 5757725
+ 2117839 words of memory out of 5000000
+ 40216 multiletter control sequences out of 15000+600000
  562041 words of font info for 97 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
  79i,11n,93p,722b,683s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on big-graph-dataset.pdf (22 pages).
+Output written on big-graph-dataset.pdf (23 pages).
