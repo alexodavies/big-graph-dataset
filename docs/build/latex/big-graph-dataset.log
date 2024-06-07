@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.6.6)  6 JUN 2024 16:49
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.6.6)  7 JUN 2024 10:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1092,20 +1092,20 @@ Underfull \hbox (badness 5939) in paragraph at lines 1859--1861
  and returns a boolean value, indicating
  []
 
-[17] [18] [19]
-Underfull \hbox (badness 10000) in paragraph at lines 2386--2388
+[17] [18] [19] [20]
+Underfull \hbox (badness 10000) in paragraph at lines 2401--2403
 []\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
 it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
 
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 2386--2388
+Underfull \hbox (badness 5939) in paragraph at lines 2401--2403
 \TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
  and returns a boolean value, indicating
  []
 
-[20] [21] [22
+[21] [22] [23
 
 
 ] (./big-graph-dataset.ind
@@ -1160,7 +1160,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 87--88
 Serif(0)/m/it/10 datasets.RoadDataset
  []
 
-[23
+[24
 
 
 ]) (./big-graph-dataset.aux)
@@ -1169,15 +1169,15 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
 Package rerunfilecheck Info: File `big-graph-dataset.out' has not changed.
-(rerunfilecheck)             Checksum: A5AEFEDDC603E2025771F77358875465;2987.
+(rerunfilecheck)             Checksum: 9984C3D60829A837B0A58CEAB0A306C1;3159.
  ) 
 Here is how much of TeX's memory you used:
- 18447 strings out of 474773
- 369587 string characters out of 5757725
+ 18450 strings out of 474773
+ 369633 string characters out of 5757725
  2117839 words of memory out of 5000000
- 40216 multiletter control sequences out of 15000+600000
+ 40219 multiletter control sequences out of 15000+600000
  562041 words of font info for 97 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
- 79i,11n,93p,722b,683s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 79i,11n,93p,722b,697s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on big-graph-dataset.pdf (23 pages).
+Output written on big-graph-dataset.pdf (24 pages).

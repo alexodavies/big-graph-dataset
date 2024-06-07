@@ -51,7 +51,7 @@
 \indexentry{\_\_init\_\_() (top.GeneralEmbeddingEvaluation method)@\spxentry{\_\_init\_\_()}\spxextra{top.GeneralEmbeddingEvaluation method}}{19}
 \indexentry{centroid\_similarities() (top.GeneralEmbeddingEvaluation method)@\spxentry{centroid\_similarities()}\spxextra{top.GeneralEmbeddingEvaluation method}}{19}
 \indexentry{embedding\_evaluation() (top.GeneralEmbeddingEvaluation method)@\spxentry{embedding\_evaluation()}\spxextra{top.GeneralEmbeddingEvaluation method}}{19}
-\indexentry{get\_embeddings() (top.GeneralEmbeddingEvaluation method)@\spxentry{get\_embeddings()}\spxextra{top.GeneralEmbeddingEvaluation method}}{19}
+\indexentry{get\_embeddings() (top.GeneralEmbeddingEvaluation method)@\spxentry{get\_embeddings()}\spxextra{top.GeneralEmbeddingEvaluation method}}{20}
 \indexentry{vis() (top.GeneralEmbeddingEvaluation method)@\spxentry{vis()}\spxextra{top.GeneralEmbeddingEvaluation method}}{20}
 \indexentry{ToPDataset (class in top)@\spxentry{ToPDataset}\spxextra{class in top}}{20}
 \indexentry{\_\_init\_\_() (top.ToPDataset method)@\spxentry{\_\_init\_\_()}\spxextra{top.ToPDataset method}}{21}

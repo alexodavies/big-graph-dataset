@@ -142,6 +142,7 @@ class RedditDataset(InMemoryDataset):
 
          `Kumar, Srijan, et al. "Community interaction and conflict on the web." Proceedings of the 2018 world wide web conference. 2018.`
 
+    We produce this dataset of small graphs using ESWR.
     The data has text embeddings as node features for each subreddit and text features for the cross-post edges.
 
     The task is edge classification for the sentiment of the interaction between subreddits.

@@ -52,7 +52,7 @@
   \lettergroup{G}
   \item \spxentry{GeneralEmbeddingEvaluation}\spxextra{class in top}, \hyperpage{19}
   \item \spxentry{get\_all\_datasets()}\spxextra{in module datasets}, \hyperpage{17}
-  \item \spxentry{get\_embeddings()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{19}
+  \item \spxentry{get\_embeddings()}\spxextra{top.GeneralEmbeddingEvaluation method}, \hyperpage{19}, \hyperpage{20}
   \item \spxentry{get\_test\_datasets()}\spxextra{in module datasets}, \hyperpage{17}
   \item \spxentry{get\_train\_datasets()}\spxextra{in module datasets}, \hyperpage{18}
   \item \spxentry{get\_val\_datasets()}\spxextra{in module datasets}, \hyperpage{18}
