@@ -81,7 +81,6 @@ Documentation for the datsets currently in the Big Graph Dataset project.
    :maxdepth: 4
 
    datasets
-   credits
 
 ToP (Topology Only Pre-Training)
 ================================

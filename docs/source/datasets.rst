@@ -16,7 +16,7 @@ Currently we don't present dynamic graphs, multi-graphs or temporal graphs.
 Additionally the functions `get_X_datasets()` retrieve multiple datasets at once.
 
 .. toctree:: 
-   :maxdepth: 3
+   :maxdepth: 2
 
    datasets/real
    datasets/synthetic
