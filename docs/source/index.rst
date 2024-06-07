@@ -3,7 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Big Graph Dataset's documentation!
+.. toctree::
+   :hidden:
+
+   self
+
+Big Graph Dataset
 ===============================================
 
 This is a collaboration project to build a large, multi-domain set of graph datasets.
@@ -73,7 +78,7 @@ Datasets
 Documentation for the datsets currently in the Big Graph Dataset project.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
 
    datasets
    credits
@@ -97,6 +102,11 @@ This project is maintained by Alex O. Davies, a PhD student at the University of
 Contributors, by default, will be given fair credit upon initial release of the project.
 
 Should you wish your authorship to be anonymous, or if you have any further questions, please contact me at `<alexander.davies@bristol.ac.uk>`.
+
+.. toctree::
+   :maxdepth: 4
+
+   credits
 
 Indices and tables
 ==================

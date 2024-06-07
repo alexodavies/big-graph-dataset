@@ -111,6 +111,11 @@ def get_road_dataset(num = 2000, targets = False):
 
 class RoadDataset(InMemoryDataset):
     r"""
+    Contributor: Alex O. Davies
+    
+    Contributor email: `alexander.davies@bristol.ac.uk`
+    
+
     Road graphs from Pennsylvania, sampled from a large original graph using ESWR.
     The original graph is sourced from:
 

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.6.6)  7 JUN 2024 10:11
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.6.6)  7 JUN 2024 13:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1009,159 +1009,297 @@ Underfull \vbox (badness 10000) detected at line 1085
  []
 
 [10] [11]
-Underfull \hbox (badness 10000) in paragraph at lines 1233--1235
+File: reddit-dataset-example_24_0.png Graphic file (type bmp)
+<reddit-dataset-example_24_0.png>
+ [12]
+File: datasets.png Graphic file (type bmp)
+<datasets.png>
+ [13]
+Underfull \hbox (badness 10000) in paragraph at lines 1296--1298
 []\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
 it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
 
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 1233--1235
-\TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
- and returns a boolean value, indicating
- []
-
-[12]
-Underfull \hbox (badness 10000) in paragraph at lines 1357--1359
-[]\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
-it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
-
- []
-
-
-Underfull \hbox (badness 5939) in paragraph at lines 1357--1359
-\TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
- and returns a boolean value, indicating
- []
-
-[13]
-Underfull \hbox (badness 10000) in paragraph at lines 1484--1486
-[]\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
-it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
-
- []
-
-
-Underfull \hbox (badness 5939) in paragraph at lines 1484--1486
+Underfull \hbox (badness 5939) in paragraph at lines 1296--1298
 \TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
  and returns a boolean value, indicating
  []
 
 [14]
-Overfull \hbox (56.21722pt too wide) in paragraph at lines 1557--1559
-[]\TU/FreeSerif(0)/m/it/10 Michael Winding et al. , The connectome of an insect
- brain.Science379,eadd9330(2023).DOI:10.1126/science.add9330 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1608--1610
+Underfull \hbox (badness 10000) in paragraph at lines 1426--1428
 []\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
 it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
 
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 1608--1610
+Underfull \hbox (badness 5939) in paragraph at lines 1426--1428
 \TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
  and returns a boolean value, indicating
  []
 
 [15]
-Underfull \hbox (badness 10000) in paragraph at lines 1735--1737
+Underfull \hbox (badness 10000) in paragraph at lines 1559--1561
 []\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
 it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
 
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 1735--1737
+Underfull \hbox (badness 5939) in paragraph at lines 1559--1561
 \TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
  and returns a boolean value, indicating
  []
 
 [16]
-Underfull \hbox (badness 10000) in paragraph at lines 1859--1861
+Overfull \hbox (56.21722pt too wide) in paragraph at lines 1638--1640
+[]\TU/FreeSerif(0)/m/it/10 Michael Winding et al. , The connectome of an insect
+ brain.Science379,eadd9330(2023).DOI:10.1126/science.add9330 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1689--1691
 []\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
 it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
 
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 1859--1861
+Underfull \hbox (badness 5939) in paragraph at lines 1689--1691
 \TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
  and returns a boolean value, indicating
  []
 
-[17] [18] [19] [20]
-Underfull \hbox (badness 10000) in paragraph at lines 2401--2403
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 1823--1825
 []\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
 it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
 
  []
 
 
-Underfull \hbox (badness 5939) in paragraph at lines 2401--2403
+Underfull \hbox (badness 5939) in paragraph at lines 1823--1825
 \TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
  and returns a boolean value, indicating
  []
 
-[21] [22] [23
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 1953--1955
+[]\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
+it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
+
+ []
+
+
+Underfull \hbox (badness 5939) in paragraph at lines 1953--1955
+\TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
+ and returns a boolean value, indicating
+ []
+
+[19]
+Underfull \hbox (badness 10000) in paragraph at lines 2061--2063
+[]\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
+it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
+
+ []
+
+
+Underfull \hbox (badness 5939) in paragraph at lines 2061--2063
+\TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
+ and returns a boolean value, indicating
+ []
+
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 2159--2161
+[]\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
+it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
+
+ []
+
+
+Underfull \hbox (badness 5939) in paragraph at lines 2159--2161
+\TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
+ and returns a boolean value, indicating
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2257--2259
+[]\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
+it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
+
+ []
+
+
+Underfull \hbox (badness 5939) in paragraph at lines 2257--2259
+\TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
+ and returns a boolean value, indicating
+ []
+
+[21] [22] [23] [24]
+Underfull \hbox (badness 10000) in paragraph at lines 2814--2816
+[]\TU/FreeMono(0)/b/n/10 pre_filter \TU/FreeSerif(0)/m/n/10 (\TU/FreeMono(0)/m/
+it/10 callable, optional\TU/FreeSerif(0)/m/n/10 ) – A function that takes in an
+
+ []
+
+
+Underfull \hbox (badness 5939) in paragraph at lines 2814--2816
+\TU/FreeMono(0)/m/n/10 torch_geometric.data.Data \TU/FreeSerif(0)/m/n/10 object
+ and returns a boolean value, indicating
+ []
+
+[25] [26] [27
 
 
 ] (./big-graph-dataset.ind
+Underfull \hbox (badness 6364) in paragraph at lines 12--13
+[]\TU/FreeMono(0)/m/n/10 __init__() \TU/FreeSerif(0)/m/n/10 (\TU/FreeSerif(0)/m
+/it/10 datasets.real.FacebookDataset method\TU/FreeSerif(0)/m/n/10 ),
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 16--17
+[]\TU/FreeMono(0)/m/n/10 __init__() \TU/FreeSerif(0)/m/n/10 (\TU/FreeSerif(0)/m
+/it/10 datasets.synthetic.CommunityDataset
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--18
+[]\TU/FreeMono(0)/m/n/10 __init__() \TU/FreeSerif(0)/m/n/10 (\TU/FreeSerif(0)/m
+/it/10 datasets.synthetic.RandomDataset
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--20
 []\TU/FreeMono(0)/m/n/10 __init__() \TU/FreeSerif(0)/m/n/10 (\TU/FreeSerif(0)/m
 /it/10 top.GeneralEmbeddingEvaluation
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--30
+Underfull \hbox (badness 10000) in paragraph at lines 27--28
+[]\TU/FreeMono(0)/m/n/10 _abc_impl \TU/FreeSerif(0)/m/n/10 (\TU/FreeSerif(0)/m/
+it/10 datasets.synthetic.CommunityDataset
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 35--36
 []\TU/FreeMono(0)/m/n/10 centroid_similarities()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--30
+Underfull \hbox (badness 10000) in paragraph at lines 35--36
 \TU/FreeSerif(0)/m/n/10 (\TU/FreeSerif(0)/m/it/10 top.GeneralEmbeddingEvaluatio
 n method\TU/FreeSerif(0)/m/n/10 ),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 43--44
+Underfull \hbox (badness 10000) in paragraph at lines 54--55
 []\TU/FreeMono(0)/m/n/10 embedding_evaluation()
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 43--44
+Underfull \hbox (badness 10000) in paragraph at lines 54--55
 \TU/FreeSerif(0)/m/n/10 (\TU/FreeSerif(0)/m/it/10 top.GeneralEmbeddingEvaluatio
 n method\TU/FreeSerif(0)/m/n/10 ),
  []
 
 
-Overfull \hbox (1.62917pt too wide) in paragraph at lines 55--56
+Overfull \hbox (1.62917pt too wide) in paragraph at lines 66--67
 []\TU/FreeMono(0)/m/n/10 get_embeddings() \TU/FreeSerif(0)/m/n/10 (\TU/FreeSeri
 f(0)/m/it/10 top.GeneralEmbeddingEvaluation
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 85--86
-[]\TU/FreeMono(0)/m/n/10 processed_file_names \TU/FreeSerif(0)/m/n/10 (\TU/Free
-Serif(0)/m/it/10 datasets.NeuralDataset
+Underfull \hbox (badness 10000) in paragraph at lines 68--69
+[]\TU/FreeMono(0)/m/n/10 get_train_datasets() \TU/FreeSerif(0)/m/n/10 (\TU/Free
+Serif(0)/m/it/10 in module
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 86--87
-[]\TU/FreeMono(0)/m/n/10 processed_file_names \TU/FreeSerif(0)/m/n/10 (\TU/Free
-Serif(0)/m/it/10 datasets.RedditDataset
+Underfull \hbox (badness 10000) in paragraph at lines 94--95
+[]\TU/FreeMono(0)/m/n/10 process() \TU/FreeSerif(0)/m/n/10 (\TU/FreeSerif(0)/m/
+it/10 datasets.synthetic.CommunityDataset
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 87--88
+Underfull \hbox (badness 6493) in paragraph at lines 98--99
 []\TU/FreeMono(0)/m/n/10 processed_file_names \TU/FreeSerif(0)/m/n/10 (\TU/Free
-Serif(0)/m/it/10 datasets.RoadDataset
+Serif(0)/m/it/10 datasets.real.CoraDataset
  []
 
-[24
 
+Underfull \hbox (badness 10000) in paragraph at lines 99--100
+[]\TU/FreeMono(0)/m/n/10 processed_file_names \TU/FreeSerif(0)/m/n/10 (\TU/Free
+Serif(0)/m/it/10 datasets.real.EgoDataset
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 100--101
+[]\TU/FreeMono(0)/m/n/10 processed_file_names
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 100--101
+\TU/FreeSerif(0)/m/n/10 (\TU/FreeSerif(0)/m/it/10 datasets.real.FacebookDataset
+ property\TU/FreeSerif(0)/m/n/10 ),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 101--102
+[]\TU/FreeMono(0)/m/n/10 processed_file_names
+ []
+
+[28
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 104--105
+[]\TU/FreeMono(0)/m/n/10 processed_file_names
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--105
+\TU/FreeSerif(0)/m/n/10 (\TU/FreeSerif(0)/m/it/10 datasets.synthetic.CommunityD
+ataset prop-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 105--106
+[]\TU/FreeMono(0)/m/n/10 processed_file_names
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
+[]\TU/FreeMono(0)/m/n/10 processed_file_names
+ []
+
+
+Underfull \hbox (badness 7168) in paragraph at lines 116--117
+[]\TU/FreeMono(0)/m/n/10 raw_file_names \TU/FreeSerif(0)/m/n/10 (\TU/FreeSerif(
+0)/m/it/10 datasets.real.NeuralDataset prop-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 117--118
+[]\TU/FreeMono(0)/m/n/10 raw_file_names \TU/FreeSerif(0)/m/n/10 (\TU/FreeSerif(
+0)/m/it/10 datasets.real.RedditDataset prop-
+ []
+
+
+Overfull \hbox (1.51917pt too wide) in paragraph at lines 119--120
+[]\TU/FreeMono(0)/m/n/10 raw_file_names \TU/FreeSerif(0)/m/n/10 (\TU/FreeSerif(
+0)/m/it/10 datasets.synthetic.CommunityDataset
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 120--121
+[]\TU/FreeMono(0)/m/n/10 raw_file_names \TU/FreeSerif(0)/m/n/10 (\TU/FreeSerif(
+0)/m/it/10 datasets.synthetic.RandomDataset
+ []
+
+[29
 
 ]) (./big-graph-dataset.aux)
  ***********
@@ -1169,15 +1307,15 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
 Package rerunfilecheck Info: File `big-graph-dataset.out' has not changed.
-(rerunfilecheck)             Checksum: 9984C3D60829A837B0A58CEAB0A306C1;3159.
+(rerunfilecheck)             Checksum: 6B8C5C0AF776866AD419EBE277ECAE2C;3581.
  ) 
 Here is how much of TeX's memory you used:
- 18450 strings out of 474773
- 369633 string characters out of 5757725
+ 18497 strings out of 474773
+ 372038 string characters out of 5757725
  2117839 words of memory out of 5000000
- 40219 multiletter control sequences out of 15000+600000
+ 40264 multiletter control sequences out of 15000+600000
  562041 words of font info for 97 fonts, out of 8000000 for 9000
  1349 hyphenation exceptions out of 8191
- 79i,11n,93p,722b,697s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 79i,12n,93p,733b,685s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on big-graph-dataset.pdf (24 pages).
+Output written on big-graph-dataset.pdf (29 pages).

@@ -66,6 +66,10 @@ def get_twitch(num = 49152, include_targets = False):
 
 class EgoDataset(InMemoryDataset):
     r"""
+    Contributor: Alex O. Davies
+    
+    Contributor email: `alexander.davies@bristol.ac.uk`
+    
     Ego networks from the streaming platform Twitch.
     The original graph is sourced from:
 

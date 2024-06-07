@@ -49,7 +49,6 @@ Please document your dataset files with your name and contact information at the
 
  The datasets so-far:
 
-
 | Name  |  Stage  |  Num  |  X shape  |  E shape  |  Y shape  |  Num. Nodes  |  Num. Edges  |  Diameter  |  Clustering  | 
 |---|---|---|---|---|---|---|---|---|---| 
 | ogbg-molpcba | Train | 5000 | 174 | 13 | 128 | 25.6 ± 6.28| 27.6 ± 7.02| 13.4 ± 3.24| 0.00124 ± 0.0113 | 

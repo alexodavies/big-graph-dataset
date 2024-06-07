@@ -99,6 +99,10 @@ def get_fly_dataset(num = 2000):
 
 class NeuralDataset(InMemoryDataset):
     r"""
+    Contributor: Alex O. Davies
+    
+    Contributor email: `alexander.davies@bristol.ac.uk`
+    
     A dataset of the connectome of a fruit fly larvae.
     The original graph is sourced from:
 

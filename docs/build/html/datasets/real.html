@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>From Real Data &mdash; big-graph-dataset 0.01 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=6ca3c713"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Synthetic" href="synthetic.html" />
+    <link rel="prev" title="Many-Graph Datasets" href="../datasets.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            big-graph-dataset
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../reddit-dataset-example.html">Reddit Example Dataset</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../datasets.html">Many-Graph Datasets</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">From Real Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#datasets.real.CoraDataset"><code class="docutils literal notranslate"><span class="pre">CoraDataset</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.CoraDataset.__init__"><code class="docutils literal notranslate"><span class="pre">CoraDataset.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.CoraDataset._abc_impl"><code class="docutils literal notranslate"><span class="pre">CoraDataset._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.CoraDataset.process"><code class="docutils literal notranslate"><span class="pre">CoraDataset.process()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.CoraDataset.processed_file_names"><code class="docutils literal notranslate"><span class="pre">CoraDataset.processed_file_names</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.CoraDataset.raw_file_names"><code class="docutils literal notranslate"><span class="pre">CoraDataset.raw_file_names</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#datasets.real.EgoDataset"><code class="docutils literal notranslate"><span class="pre">EgoDataset</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.EgoDataset.__init__"><code class="docutils literal notranslate"><span class="pre">EgoDataset.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.EgoDataset._abc_impl"><code class="docutils literal notranslate"><span class="pre">EgoDataset._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.EgoDataset.process"><code class="docutils literal notranslate"><span class="pre">EgoDataset.process()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.EgoDataset.processed_file_names"><code class="docutils literal notranslate"><span class="pre">EgoDataset.processed_file_names</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.EgoDataset.raw_file_names"><code class="docutils literal notranslate"><span class="pre">EgoDataset.raw_file_names</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#datasets.real.FacebookDataset"><code class="docutils literal notranslate"><span class="pre">FacebookDataset</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.FacebookDataset.__init__"><code class="docutils literal notranslate"><span class="pre">FacebookDataset.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.FacebookDataset._abc_impl"><code class="docutils literal notranslate"><span class="pre">FacebookDataset._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.FacebookDataset.process"><code class="docutils literal notranslate"><span class="pre">FacebookDataset.process()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.FacebookDataset.processed_file_names"><code class="docutils literal notranslate"><span class="pre">FacebookDataset.processed_file_names</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.FacebookDataset.raw_file_names"><code class="docutils literal notranslate"><span class="pre">FacebookDataset.raw_file_names</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#datasets.real.NeuralDataset"><code class="docutils literal notranslate"><span class="pre">NeuralDataset</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.NeuralDataset.__init__"><code class="docutils literal notranslate"><span class="pre">NeuralDataset.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.NeuralDataset._abc_impl"><code class="docutils literal notranslate"><span class="pre">NeuralDataset._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.NeuralDataset.process"><code class="docutils literal notranslate"><span class="pre">NeuralDataset.process()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.NeuralDataset.processed_file_names"><code class="docutils literal notranslate"><span class="pre">NeuralDataset.processed_file_names</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.NeuralDataset.raw_file_names"><code class="docutils literal notranslate"><span class="pre">NeuralDataset.raw_file_names</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#datasets.real.RedditDataset"><code class="docutils literal notranslate"><span class="pre">RedditDataset</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.RedditDataset.__init__"><code class="docutils literal notranslate"><span class="pre">RedditDataset.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.RedditDataset._abc_impl"><code class="docutils literal notranslate"><span class="pre">RedditDataset._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.RedditDataset.process"><code class="docutils literal notranslate"><span class="pre">RedditDataset.process()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.RedditDataset.processed_file_names"><code class="docutils literal notranslate"><span class="pre">RedditDataset.processed_file_names</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.RedditDataset.raw_file_names"><code class="docutils literal notranslate"><span class="pre">RedditDataset.raw_file_names</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#datasets.real.RoadDataset"><code class="docutils literal notranslate"><span class="pre">RoadDataset</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.RoadDataset.__init__"><code class="docutils literal notranslate"><span class="pre">RoadDataset.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.RoadDataset._abc_impl"><code class="docutils literal notranslate"><span class="pre">RoadDataset._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.RoadDataset.process"><code class="docutils literal notranslate"><span class="pre">RoadDataset.process()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.RoadDataset.processed_file_names"><code class="docutils literal notranslate"><span class="pre">RoadDataset.processed_file_names</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets.real.RoadDataset.raw_file_names"><code class="docutils literal notranslate"><span class="pre">RoadDataset.raw_file_names</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="synthetic.html">Synthetic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loaders.html">Functions &amp; Loaders</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../credits.html">Credits</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../top.html">ToP (Topology only Pre-training)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">big-graph-dataset</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../datasets.html">Many-Graph Datasets</a></li>
+      <li class="breadcrumb-item active">From Real Data</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/datasets/real.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="from-real-data">
+<h1>From Real Data<a class="headerlink" href="#from-real-data" title="Link to this heading"></a></h1>
+<p>These datasets are produced from real-world data sources.</p>
+<p>Some are produced by repeatedly sampling from a large real world graphs, and others are simply reformated from an existing many-graph dataset.</p>
+<dl class="py class" id="module-datasets.real">
+<dt class="sig sig-object py" id="datasets.real.CoraDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">datasets.real.</span></span><span class="sig-name descname"><span class="pre">CoraDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/datasets/real/cora_dataset.html#CoraDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#datasets.real.CoraDataset" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">InMemoryDataset</span></code></p>
+<p>Contributor: Alex O. Davies</p>
+<p>Contributor email: <cite>alexander.davies&#64;bristol.ac.uk</cite></p>
+<p>Academic citation graphs from the ML community, sampled from a large original graph using ESWR.
+The original graph is sourced from:</p>
+<blockquote>
+<div><p><cite>Yang, Zhilin, William Cohen, and Ruslan Salakhudinov. “Revisiting semi-supervised learning with graph embeddings.” International conference on machine learning. PMLR, 2016.</cite></p>
+</div></blockquote>
+<p>The original data has one-hot bag-of-words over paper abstract as node features.</p>
+<p>The task is node classification for the category of each paper, one-hot encoded for seven categories.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Task: Node classification</p></li>
+<li><p>Num node features: 2879</p></li>
+<li><p>Num edge features: None</p></li>
+<li><p>Num target values: 7</p></li>
+<li><p>Target shape: N Nodes</p></li>
+<li><p>Num graphs: Parameterised by <cite>num</cite></p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>root</strong> (<em>str</em>) – Root directory where the dataset should be saved.</p></li>
+<li><p><strong>stage</strong> (<em>str</em>) – The stage of the dataset to load. One of “train”, “val”, “test”. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;train&quot;</span></code>)</p></li>
+<li><p><strong>transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function/transform that takes in an <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> object and returns a transformed version. The data object will be transformed before every access. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>pre_transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function/transform that takes in an <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> object and returns a transformed version. The data object will be transformed before being saved to disk. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>pre_filter</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function that takes in an <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>num</strong> (<em>int</em>) – The number of samples to take from the original dataset. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">2000</span></code>).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="datasets.real.CoraDataset.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/datasets/real/cora_dataset.html#CoraDataset.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#datasets.real.CoraDataset.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="datasets.real.CoraDataset._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#datasets.real.CoraDataset._abc_impl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="datasets.real.CoraDataset.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/datasets/real/cora_dataset.html#CoraDataset.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#datasets.real.CoraDataset.process" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="datasets.real.CoraDataset.processed_file_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">processed_file_names</span></span><a class="headerlink" href="#datasets.real.CoraDataset.processed_file_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="datasets.real.CoraDataset.raw_file_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">raw_file_names</span></span><a class="headerlink" href="#datasets.real.CoraDataset.raw_file_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="datasets.real.EgoDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">datasets.real.</span></span><span class="sig-name descname"><span class="pre">EgoDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/datasets/real/ego_dataset.html#EgoDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#datasets.real.EgoDataset" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">InMemoryDataset</span></code></p>
+<p>Contributor: Alex O. Davies</p>
+<p>Contributor email: <cite>alexander.davies&#64;bristol.ac.uk</cite></p>
+<p>Ego networks from the streaming platform Twitch.
+The original graph is sourced from:</p>
+<blockquote>
+<div><p><cite>B. Rozemberczki, O. Kiss, R. Sarkar: An API Oriented Open-source Python Framework for Unsupervised Learning on Graphs 2019.</cite></p>
+</div></blockquote>
+<p>The task is predicting whether a given streamer plays multiple different games.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Task: Graph classification</p></li>
+<li><p>Num node features: None</p></li>
+<li><p>Num edge features: None</p></li>
+<li><p>Num target values: 1</p></li>
+<li><p>Target shape: 1</p></li>
+<li><p>Num graphs: 127094</p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>root</strong> (<em>str</em>) – Root directory where the dataset should be saved.</p></li>
+<li><p><strong>stage</strong> (<em>str</em>) – The stage of the dataset to load. One of “train”, “val”, “test”. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;train&quot;</span></code>)</p></li>
+<li><p><strong>transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function/transform that takes in an <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> object and returns a transformed version. The data object will be transformed before every access. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>pre_transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function/transform that takes in an <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> object and returns a transformed version. The data object will be transformed before being saved to disk. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>pre_filter</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function that takes in an <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>num</strong> (<em>int</em>) – The number of samples to take from the original dataset. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">2000</span></code>).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="datasets.real.EgoDataset.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/datasets/real/ego_dataset.html#EgoDataset.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#datasets.real.EgoDataset.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="datasets.real.EgoDataset._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#datasets.real.EgoDataset._abc_impl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="datasets.real.EgoDataset.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/datasets/real/ego_dataset.html#EgoDataset.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#datasets.real.EgoDataset.process" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="datasets.real.EgoDataset.processed_file_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">processed_file_names</span></span><a class="headerlink" href="#datasets.real.EgoDataset.processed_file_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="datasets.real.EgoDataset.raw_file_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">raw_file_names</span></span><a class="headerlink" href="#datasets.real.EgoDataset.raw_file_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="datasets.real.FacebookDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">datasets.real.</span></span><span class="sig-name descname"><span class="pre">FacebookDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/datasets/real/facebook_dataset.html#FacebookDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#datasets.real.FacebookDataset" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">InMemoryDataset</span></code></p>
+<p>Contributor: Alex O. Davies</p>
+<p>Contributor email: <cite>alexander.davies&#64;bristol.ac.uk</cite></p>
+<p>Facebook page-to-page interaction graphs, sampled from a large original graph using ESWR.
+The original graph is sourced from:</p>
+<blockquote>
+<div><p><cite>Benedek Rozemberczki, Carl Allen, and Rik Sarkar. Multi-Scale Attributed Node Embedding.  Journal of Complex Networks 2021</cite></p>
+</div></blockquote>
+<p>The original data has node features, but as they are of varying length, we don’t include them here.</p>
+<p>The task is node classification for the category of each Facebook page in a given graph, one-hot encoded for four categories.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Task: Node classification</p></li>
+<li><p>Num node features: None</p></li>
+<li><p>Num edge features: None</p></li>
+<li><p>Num target values: 4</p></li>
+<li><p>Target shape: N Nodes</p></li>
+<li><p>Num graphs: Parameterised by <cite>num</cite></p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>root</strong> (<em>str</em>) – Root directory where the dataset should be saved.</p></li>
+<li><p><strong>stage</strong> (<em>str</em>) – The stage of the dataset to load. One of “train”, “val”, “test”. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;train&quot;</span></code>)</p></li>
+<li><p><strong>transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function/transform that takes in an <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> object and returns a transformed version. The data object will be transformed before every access. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>pre_transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function/transform that takes in an <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> object and returns a transformed version. The data object will be transformed before being saved to disk. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>pre_filter</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function that takes in an <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>num</strong> (<em>int</em>) – The number of samples to take from the original dataset. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">2000</span></code>).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="datasets.real.FacebookDataset.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/datasets/real/facebook_dataset.html#FacebookDataset.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#datasets.real.FacebookDataset.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="datasets.real.FacebookDataset._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#datasets.real.FacebookDataset._abc_impl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="datasets.real.FacebookDataset.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/datasets/real/facebook_dataset.html#FacebookDataset.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#datasets.real.FacebookDataset.process" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="datasets.real.FacebookDataset.processed_file_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">processed_file_names</span></span><a class="headerlink" href="#datasets.real.FacebookDataset.processed_file_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="datasets.real.FacebookDataset.raw_file_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">raw_file_names</span></span><a class="headerlink" href="#datasets.real.FacebookDataset.raw_file_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="datasets.real.NeuralDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">datasets.real.</span></span><span class="sig-name descname"><span class="pre">NeuralDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/datasets/real/neural_dataset.html#NeuralDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#datasets.real.NeuralDataset" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">InMemoryDataset</span></code></p>
+<p>Contributor: Alex O. Davies</p>
+<p>Contributor email: <cite>alexander.davies&#64;bristol.ac.uk</cite></p>
+<p>A dataset of the connectome of a fruit fly larvae.
+The original graph is sourced from:</p>
+<blockquote>
+<div><p><cite>Michael Winding et al. , The connectome of an insect brain.Science379,eadd9330(2023).DOI:10.1126/science.add9330</cite></p>
+</div></blockquote>
+<p>We process the original multigraph into ESWR samples of this neural network, with predicting the strength of the connection (number of synapses) between two neurons as the target.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Task: Edge regression</p></li>
+<li><p>Num node features: 0</p></li>
+<li><p>Num edge features: 0</p></li>
+<li><p>Num target values: 1</p></li>
+<li><p>Target shape: N Edges</p></li>
+<li><p>Num graphs: Parameterised by <cite>num</cite></p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>root</strong> (<em>str</em>) – Root directory where the dataset should be saved.</p></li>
+<li><p><strong>stage</strong> (<em>str</em>) – The stage of the dataset to load. One of “train”, “val”, “test”. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;train&quot;</span></code>)</p></li>
+<li><p><strong>transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function/transform that takes in an <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> object and returns a transformed version. The data object will be transformed before every access. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>pre_transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function/transform that takes in an <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> object and returns a transformed version. The data object will be transformed before being saved to disk. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>pre_filter</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function that takes in an <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>num</strong> (<em>int</em>) – The number of samples to take from the original dataset. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">2000</span></code>).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="datasets.real.NeuralDataset.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/datasets/real/neural_dataset.html#NeuralDataset.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#datasets.real.NeuralDataset.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="datasets.real.NeuralDataset._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#datasets.real.NeuralDataset._abc_impl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="datasets.real.NeuralDataset.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/datasets/real/neural_dataset.html#NeuralDataset.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#datasets.real.NeuralDataset.process" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="datasets.real.NeuralDataset.processed_file_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">processed_file_names</span></span><a class="headerlink" href="#datasets.real.NeuralDataset.processed_file_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="datasets.real.NeuralDataset.raw_file_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">raw_file_names</span></span><a class="headerlink" href="#datasets.real.NeuralDataset.raw_file_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="datasets.real.RedditDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">datasets.real.</span></span><span class="sig-name descname"><span class="pre">RedditDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/datasets/real/reddit_dataset.html#RedditDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#datasets.real.RedditDataset" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">InMemoryDataset</span></code></p>
+<p>Contributor: Alex O. Davies</p>
+<p>Contributor email: <cite>alexander.davies&#64;bristol.ac.uk</cite></p>
+<p>Reddit hyperlink graphs - ie graphs of subreddits interacting with one another.
+The original graph is sourced from:</p>
+<blockquote>
+<div><p><cite>Kumar, Srijan, et al. “Community interaction and conflict on the web.” Proceedings of the 2018 world wide web conference. 2018.</cite></p>
+</div></blockquote>
+<p>We produce this dataset of small graphs using ESWR.
+The data has text embeddings as node features for each subreddit and text features for the cross-post edges.</p>
+<p>The task is edge classification for the sentiment of the interaction between subreddits.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Task: Edge classification</p></li>
+<li><p>Num node features: 300</p></li>
+<li><p>Num edge features: 86</p></li>
+<li><p>Num target values: 1</p></li>
+<li><p>Target shape: N Edges</p></li>
+<li><p>Num graphs: Parameterised by <cite>num</cite></p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>root</strong> (<em>str</em>) – Root directory where the dataset should be saved.</p></li>
+<li><p><strong>stage</strong> (<em>str</em>) – The stage of the dataset to load. One of “train”, “val”, “test”. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;train&quot;</span></code>)</p></li>
+<li><p><strong>transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function/transform that takes in an <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> object and returns a transformed version. The data object will be transformed before every access. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>pre_transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function/transform that takes in an <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> object and returns a transformed version. The data object will be transformed before being saved to disk. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>pre_filter</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function that takes in an <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>num</strong> (<em>int</em>) – The number of samples to take from the original dataset. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">2000</span></code>).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="datasets.real.RedditDataset.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/datasets/real/reddit_dataset.html#RedditDataset.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#datasets.real.RedditDataset.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="datasets.real.RedditDataset._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#datasets.real.RedditDataset._abc_impl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="datasets.real.RedditDataset.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/datasets/real/reddit_dataset.html#RedditDataset.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#datasets.real.RedditDataset.process" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="datasets.real.RedditDataset.processed_file_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">processed_file_names</span></span><a class="headerlink" href="#datasets.real.RedditDataset.processed_file_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="datasets.real.RedditDataset.raw_file_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">raw_file_names</span></span><a class="headerlink" href="#datasets.real.RedditDataset.raw_file_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="datasets.real.RoadDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">datasets.real.</span></span><span class="sig-name descname"><span class="pre">RoadDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/datasets/real/road_dataset.html#RoadDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#datasets.real.RoadDataset" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">InMemoryDataset</span></code></p>
+<p>Contributor: Alex O. Davies</p>
+<p>Contributor email: <cite>alexander.davies&#64;bristol.ac.uk</cite></p>
+<p>Road graphs from Pennsylvania, sampled from a large original graph using ESWR.
+The original graph is sourced from:</p>
+<blockquote>
+<div><p><cite>J. Leskovec, K. Lang, A. Dasgupta, M. Mahoney. Community Structure in Large Networks: Natural Cluster Sizes and the Absence of Large Well-Defined Clusters. Internet Mathematics 6(1) 29–123, 2009.</cite></p>
+</div></blockquote>
+<p>The task is predicting whether a given graph is planar (can be laid out with no crossing edges).</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Task: Graph classification</p></li>
+<li><p>Num node features: None</p></li>
+<li><p>Num edge features: None</p></li>
+<li><p>Num target values: 1</p></li>
+<li><p>Target shape: 1</p></li>
+<li><p>Num graphs: Parameterised by <cite>num</cite></p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>root</strong> (<em>str</em>) – Root directory where the dataset should be saved.</p></li>
+<li><p><strong>stage</strong> (<em>str</em>) – The stage of the dataset to load. One of “train”, “val”, “test”. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">&quot;train&quot;</span></code>)</p></li>
+<li><p><strong>transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function/transform that takes in an <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> object and returns a transformed version. The data object will be transformed before every access. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>pre_transform</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function/transform that takes in an <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> object and returns a transformed version. The data object will be transformed before being saved to disk. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>pre_filter</strong> (<em>callable</em><em>, </em><em>optional</em>) – A function that takes in an <code class="xref py py-obj docutils literal notranslate"><span class="pre">torch_geometric.data.Data</span></code> object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>num</strong> (<em>int</em>) – The number of samples to take from the original dataset. (default: <code class="xref py py-obj docutils literal notranslate"><span class="pre">2000</span></code>).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="datasets.real.RoadDataset.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'train'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/datasets/real/road_dataset.html#RoadDataset.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#datasets.real.RoadDataset.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="datasets.real.RoadDataset._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#datasets.real.RoadDataset._abc_impl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="datasets.real.RoadDataset.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/datasets/real/road_dataset.html#RoadDataset.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#datasets.real.RoadDataset.process" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="datasets.real.RoadDataset.processed_file_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">processed_file_names</span></span><a class="headerlink" href="#datasets.real.RoadDataset.processed_file_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="datasets.real.RoadDataset.raw_file_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">raw_file_names</span></span><a class="headerlink" href="#datasets.real.RoadDataset.raw_file_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../datasets.html" class="btn btn-neutral float-left" title="Many-Graph Datasets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="synthetic.html" class="btn btn-neutral float-right" title="Synthetic" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Alex O. Davies.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

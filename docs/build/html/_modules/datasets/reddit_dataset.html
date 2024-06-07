@@ -47,6 +47,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../datasets.html">Many-Graph Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../credits.html">Credits</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../top.html">ToP (Topology only Pre-training)</a></li>
@@ -218,11 +219,17 @@
 <a class="viewcode-back" href="../../datasets.html#datasets.RedditDataset">[docs]</a>
 <span class="k">class</span> <span class="nc">RedditDataset</span><span class="p">(</span><span class="n">InMemoryDataset</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Contributor: Alex O. Davies</span>
+<span class="sd">    </span>
+<span class="sd">    Contributor email: `alexander.davies@bristol.ac.uk`</span>
+<span class="sd">    </span>
+
 <span class="sd">    Reddit hyperlink graphs - ie graphs of subreddits interacting with one another.</span>
 <span class="sd">    The original graph is sourced from:</span>
 
 <span class="sd">         `Kumar, Srijan, et al. &quot;Community interaction and conflict on the web.&quot; Proceedings of the 2018 world wide web conference. 2018.`</span>
 
+<span class="sd">    We produce this dataset of small graphs using ESWR.</span>
 <span class="sd">    The data has text embeddings as node features for each subreddit and text features for the cross-post edges.</span>
 
 <span class="sd">    The task is edge classification for the sentiment of the interaction between subreddits.</span>

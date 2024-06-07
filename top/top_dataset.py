@@ -7,6 +7,9 @@ from torch.utils.data.dataset import ConcatDataset
 
 class ToPDataset(InMemoryDataset):
     r"""
+    Contributor: Alex O. Davies
+    Contributor email: `alexander.davies@bristol.ac.uk`
+    
     Processes an InMemoryDataset into a ToP dataset by removing node and edge features.
     
     Based on the paper:
@@ -15,9 +18,11 @@ class ToPDataset(InMemoryDataset):
 
     The resulting dataset is topology-only, intended for pre-training with ToP, and as such this module does not produce validation/test splits.
 
+    Saves a single processed file `train-top.pt` under `./root/processed/`.
+
     Args:
-        root (str): Root directory where the dataset should be saved. The dataset will be saved in `root`/train-top.pt
         original_dataset (InMemoryDataset): The original dataset to convert to ToP format.
+        root (str): Root directory where the dataset should be saved. If 'none', will use the root directory of `original_dataset`. (default: :obj:`None`)
         num (int): The number of samples to take from the original dataset. `num=-1` will convert all available samples from the original. (default: :obj:`-1`).
         transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before every access. (default: :obj:`None`)
         pre_transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before being saved to disk. (default: :obj:`None`)
@@ -25,11 +30,12 @@ class ToPDataset(InMemoryDataset):
 
     """
 
-    def __init__(self, root, original_dataset, num = -1, transform=None, pre_transform=None, pre_filter=None):
+    def __init__(self, original_dataset, root = None,  num = -1, transform=None, pre_transform=None, pre_filter=None):
         self.original_dataset = original_dataset
         self.stage = "train"
         self.stage_to_index = {"train":0}
         self.num = num
+        root = root if root is not None else original_dataset.root
         print(f"\n\nConverting original dataset {original_dataset} at {root}")
         super().__init__(root, transform, pre_transform, pre_filter)
         self.data, self.slices = torch.load(self.processed_paths[self.stage_to_index[self.stage]])

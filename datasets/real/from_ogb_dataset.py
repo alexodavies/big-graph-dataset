@@ -66,6 +66,10 @@ def to_onehot_bonds(x):
 
 class FromOGBDataset(InMemoryDataset):
     r"""
+    Contributor: Alex O. Davies
+    
+    Contributor email: `alexander.davies@bristol.ac.uk`
+
     Converts an Open Graph Benchmark dataset into a `torch_geometric.data.InMemoryDataset`.
     This allows standard dataset operations like concatenation with other datasets.
 

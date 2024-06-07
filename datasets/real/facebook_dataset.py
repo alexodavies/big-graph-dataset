@@ -122,6 +122,11 @@ def get_fb_dataset(num = 2000, targets = False):
 
 class FacebookDataset(InMemoryDataset):
     r"""
+    Contributor: Alex O. Davies
+    
+    Contributor email: `alexander.davies@bristol.ac.uk`
+    
+
     Facebook page-to-page interaction graphs, sampled from a large original graph using ESWR.
     The original graph is sourced from:
 

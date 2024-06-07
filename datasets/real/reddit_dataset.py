@@ -137,6 +137,11 @@ def specific_from_networkx(graph):
 
 class RedditDataset(InMemoryDataset):
     r"""
+    Contributor: Alex O. Davies
+    
+    Contributor email: `alexander.davies@bristol.ac.uk`
+    
+
     Reddit hyperlink graphs - ie graphs of subreddits interacting with one another.
     The original graph is sourced from:
 

@@ -72,7 +72,7 @@
 
 
 \usepackage{sphinxmessages}
-\setcounter{tocdepth}{2}
+
 
 
     \usepackage{fontspec}
@@ -1140,6 +1140,50 @@ Done!
 \sphinxAtStartPar
 There are already some datasets we can look at under datasets/DATASET.py.
 
+\begin{sphinxuseclass}{nbinput}
+{
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[18]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+
+\PYG{n}{fig} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{im} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{imread}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{docs/source/\PYGZus{}static/datasets.png}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(}\PYG{n}{im}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{axis}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{tight\PYGZus{}layout}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{nboutput}
+\begin{sphinxuseclass}{nblast}
+\hrule height -\fboxrule\relax
+\vspace{\nbsphinxcodecellspacing}
+
+\makeatletter\setbox\nbsphinxpromptbox\box\voidb@x\makeatother
+
+\begin{nbsphinxfancyoutput}
+
+\begin{sphinxuseclass}{output_area}
+\begin{sphinxuseclass}{}
+\noindent\sphinxincludegraphics[width=929\sphinxpxdimen,height=989\sphinxpxdimen]{{reddit-dataset-example_24_0}.png}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\end{nbsphinxfancyoutput}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+\begin{sphinxuseclass}{nbinput}
+\begin{sphinxuseclass}{nblast}
+{
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}
+\end{sphinxVerbatim}
+}
+
+\end{sphinxuseclass}
+\end{sphinxuseclass}
 
 \section{Datasets}
 \label{\detokenize{index:datasets}}
@@ -1151,6 +1195,8 @@ Documentation for the datsets currently in the Big Graph Dataset project.
 
 \subsection{Many\sphinxhyphen{}Graph Datasets}
 \label{\detokenize{datasets:many-graph-datasets}}\label{\detokenize{datasets::doc}}
+\noindent\sphinxincludegraphics[width=800\sphinxpxdimen]{{datasets}.png}
+
 \sphinxAtStartPar
 These datsets are composed of many small graphs.
 Each is presented as a \sphinxtitleref{torch\_geometric.data.InMemoryDataset} object.
@@ -1161,15 +1207,32 @@ Currently we don’t present dynamic graphs, multi\sphinxhyphen{}graphs or tempo
 
 \sphinxAtStartPar
 Additionally the functions \sphinxtitleref{get\_X\_datasets()} retrieve multiple datasets at once.
-\index{module@\spxentry{module}!datasets@\spxentry{datasets}}\index{datasets@\spxentry{datasets}!module@\spxentry{module}}\index{CoraDataset (class in datasets)@\spxentry{CoraDataset}\spxextra{class in datasets}}\phantomsection\label{\detokenize{datasets:module-datasets}}
+
+\sphinxstepscope
+
+
+\subsubsection{From Real Data}
+\label{\detokenize{datasets/real:from-real-data}}\label{\detokenize{datasets/real::doc}}
+\sphinxAtStartPar
+These datasets are produced from real\sphinxhyphen{}world data sources.
+
+\sphinxAtStartPar
+Some are produced by repeatedly sampling from a large real world graphs, and others are simply reformated from an existing many\sphinxhyphen{}graph dataset.
+\index{module@\spxentry{module}!datasets.real@\spxentry{datasets.real}}\index{datasets.real@\spxentry{datasets.real}!module@\spxentry{module}}\index{CoraDataset (class in datasets.real)@\spxentry{CoraDataset}\spxextra{class in datasets.real}}\phantomsection\label{\detokenize{datasets/real:module-datasets.real}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.CoraDataset}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.CoraDataset}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{datasets.}}\sphinxbfcode{\sphinxupquote{CoraDataset}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{datasets.real.}}\sphinxbfcode{\sphinxupquote{CoraDataset}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: \sphinxcode{\sphinxupquote{InMemoryDataset}}
+
+\sphinxAtStartPar
+Contributor: Alex O. Davies
+
+\sphinxAtStartPar
+Contributor email: \sphinxtitleref{alexander.davies@bristol.ac.uk}
 
 \sphinxAtStartPar
 Academic citation graphs from the ML community, sampled from a large original graph using ESWR.
@@ -1240,46 +1303,46 @@ Num graphs: Parameterised by \sphinxtitleref{num}
 \end{itemize}
 
 \end{description}\end{quote}
-\index{\_\_init\_\_() (datasets.CoraDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.CoraDataset method}}
+\index{\_\_init\_\_() (datasets.real.CoraDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.real.CoraDataset method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.CoraDataset.__init__}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.CoraDataset.__init__}}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{\_\_init\_\_}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{\_abc\_impl (datasets.CoraDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.CoraDataset attribute}}
+\index{\_abc\_impl (datasets.real.CoraDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.real.CoraDataset attribute}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.CoraDataset._abc_impl}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.CoraDataset._abc_impl}}
 \pysigstartsignatures
 \pysigline{\sphinxbfcode{\sphinxupquote{\_abc\_impl}}\sphinxbfcode{\sphinxupquote{\DUrole{w}{ }\DUrole{p}{=}\DUrole{w}{ }<\_abc.\_abc\_data object>}}}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{process() (datasets.CoraDataset method)@\spxentry{process()}\spxextra{datasets.CoraDataset method}}
+\index{process() (datasets.real.CoraDataset method)@\spxentry{process()}\spxextra{datasets.real.CoraDataset method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.CoraDataset.process}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.CoraDataset.process}}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{process}}}{}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{processed\_file\_names (datasets.CoraDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.CoraDataset property}}
+\index{processed\_file\_names (datasets.real.CoraDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.real.CoraDataset property}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.CoraDataset.processed_file_names}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.CoraDataset.processed_file_names}}
 \pysigstartsignatures
 \pysigline{\sphinxbfcode{\sphinxupquote{property\DUrole{w}{ }}}\sphinxbfcode{\sphinxupquote{processed\_file\_names}}}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{raw\_file\_names (datasets.CoraDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.CoraDataset property}}
+\index{raw\_file\_names (datasets.real.CoraDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.real.CoraDataset property}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.CoraDataset.raw_file_names}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.CoraDataset.raw_file_names}}
 \pysigstartsignatures
 \pysigline{\sphinxbfcode{\sphinxupquote{property\DUrole{w}{ }}}\sphinxbfcode{\sphinxupquote{raw\_file\_names}}}
 \pysigstopsignatures
@@ -1288,15 +1351,21 @@ Num graphs: Parameterised by \sphinxtitleref{num}
 
 \end{fulllineitems}
 
-\index{EgoDataset (class in datasets)@\spxentry{EgoDataset}\spxextra{class in datasets}}
+\index{EgoDataset (class in datasets.real)@\spxentry{EgoDataset}\spxextra{class in datasets.real}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.EgoDataset}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.EgoDataset}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{datasets.}}\sphinxbfcode{\sphinxupquote{EgoDataset}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{5000}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{datasets.real.}}\sphinxbfcode{\sphinxupquote{EgoDataset}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{5000}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: \sphinxcode{\sphinxupquote{InMemoryDataset}}
+
+\sphinxAtStartPar
+Contributor: Alex O. Davies
+
+\sphinxAtStartPar
+Contributor email: \sphinxtitleref{alexander.davies@bristol.ac.uk}
 
 \sphinxAtStartPar
 Ego networks from the streaming platform Twitch.
@@ -1364,46 +1433,46 @@ Num graphs: 127094
 \end{itemize}
 
 \end{description}\end{quote}
-\index{\_\_init\_\_() (datasets.EgoDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.EgoDataset method}}
+\index{\_\_init\_\_() (datasets.real.EgoDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.real.EgoDataset method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.EgoDataset.__init__}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.EgoDataset.__init__}}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{\_\_init\_\_}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{5000}}}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{\_abc\_impl (datasets.EgoDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.EgoDataset attribute}}
+\index{\_abc\_impl (datasets.real.EgoDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.real.EgoDataset attribute}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.EgoDataset._abc_impl}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.EgoDataset._abc_impl}}
 \pysigstartsignatures
 \pysigline{\sphinxbfcode{\sphinxupquote{\_abc\_impl}}\sphinxbfcode{\sphinxupquote{\DUrole{w}{ }\DUrole{p}{=}\DUrole{w}{ }<\_abc.\_abc\_data object>}}}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{process() (datasets.EgoDataset method)@\spxentry{process()}\spxextra{datasets.EgoDataset method}}
+\index{process() (datasets.real.EgoDataset method)@\spxentry{process()}\spxextra{datasets.real.EgoDataset method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.EgoDataset.process}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.EgoDataset.process}}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{process}}}{}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{processed\_file\_names (datasets.EgoDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.EgoDataset property}}
+\index{processed\_file\_names (datasets.real.EgoDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.real.EgoDataset property}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.EgoDataset.processed_file_names}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.EgoDataset.processed_file_names}}
 \pysigstartsignatures
 \pysigline{\sphinxbfcode{\sphinxupquote{property\DUrole{w}{ }}}\sphinxbfcode{\sphinxupquote{processed\_file\_names}}}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{raw\_file\_names (datasets.EgoDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.EgoDataset property}}
+\index{raw\_file\_names (datasets.real.EgoDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.real.EgoDataset property}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.EgoDataset.raw_file_names}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.EgoDataset.raw_file_names}}
 \pysigstartsignatures
 \pysigline{\sphinxbfcode{\sphinxupquote{property\DUrole{w}{ }}}\sphinxbfcode{\sphinxupquote{raw\_file\_names}}}
 \pysigstopsignatures
@@ -1412,15 +1481,21 @@ Num graphs: 127094
 
 \end{fulllineitems}
 
-\index{FacebookDataset (class in datasets)@\spxentry{FacebookDataset}\spxextra{class in datasets}}
+\index{FacebookDataset (class in datasets.real)@\spxentry{FacebookDataset}\spxextra{class in datasets.real}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.FacebookDataset}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.FacebookDataset}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{datasets.}}\sphinxbfcode{\sphinxupquote{FacebookDataset}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{datasets.real.}}\sphinxbfcode{\sphinxupquote{FacebookDataset}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: \sphinxcode{\sphinxupquote{InMemoryDataset}}
+
+\sphinxAtStartPar
+Contributor: Alex O. Davies
+
+\sphinxAtStartPar
+Contributor email: \sphinxtitleref{alexander.davies@bristol.ac.uk}
 
 \sphinxAtStartPar
 Facebook page\sphinxhyphen{}to\sphinxhyphen{}page interaction graphs, sampled from a large original graph using ESWR.
@@ -1491,46 +1566,46 @@ Num graphs: Parameterised by \sphinxtitleref{num}
 \end{itemize}
 
 \end{description}\end{quote}
-\index{\_\_init\_\_() (datasets.FacebookDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.FacebookDataset method}}
+\index{\_\_init\_\_() (datasets.real.FacebookDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.real.FacebookDataset method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.FacebookDataset.__init__}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.FacebookDataset.__init__}}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{\_\_init\_\_}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{\_abc\_impl (datasets.FacebookDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.FacebookDataset attribute}}
+\index{\_abc\_impl (datasets.real.FacebookDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.real.FacebookDataset attribute}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.FacebookDataset._abc_impl}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.FacebookDataset._abc_impl}}
 \pysigstartsignatures
 \pysigline{\sphinxbfcode{\sphinxupquote{\_abc\_impl}}\sphinxbfcode{\sphinxupquote{\DUrole{w}{ }\DUrole{p}{=}\DUrole{w}{ }<\_abc.\_abc\_data object>}}}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{process() (datasets.FacebookDataset method)@\spxentry{process()}\spxextra{datasets.FacebookDataset method}}
+\index{process() (datasets.real.FacebookDataset method)@\spxentry{process()}\spxextra{datasets.real.FacebookDataset method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.FacebookDataset.process}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.FacebookDataset.process}}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{process}}}{}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{processed\_file\_names (datasets.FacebookDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.FacebookDataset property}}
+\index{processed\_file\_names (datasets.real.FacebookDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.real.FacebookDataset property}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.FacebookDataset.processed_file_names}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.FacebookDataset.processed_file_names}}
 \pysigstartsignatures
 \pysigline{\sphinxbfcode{\sphinxupquote{property\DUrole{w}{ }}}\sphinxbfcode{\sphinxupquote{processed\_file\_names}}}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{raw\_file\_names (datasets.FacebookDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.FacebookDataset property}}
+\index{raw\_file\_names (datasets.real.FacebookDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.real.FacebookDataset property}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.FacebookDataset.raw_file_names}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.FacebookDataset.raw_file_names}}
 \pysigstartsignatures
 \pysigline{\sphinxbfcode{\sphinxupquote{property\DUrole{w}{ }}}\sphinxbfcode{\sphinxupquote{raw\_file\_names}}}
 \pysigstopsignatures
@@ -1539,15 +1614,21 @@ Num graphs: Parameterised by \sphinxtitleref{num}
 
 \end{fulllineitems}
 
-\index{NeuralDataset (class in datasets)@\spxentry{NeuralDataset}\spxextra{class in datasets}}
+\index{NeuralDataset (class in datasets.real)@\spxentry{NeuralDataset}\spxextra{class in datasets.real}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.NeuralDataset}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.NeuralDataset}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{datasets.}}\sphinxbfcode{\sphinxupquote{NeuralDataset}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{datasets.real.}}\sphinxbfcode{\sphinxupquote{NeuralDataset}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: \sphinxcode{\sphinxupquote{InMemoryDataset}}
+
+\sphinxAtStartPar
+Contributor: Alex O. Davies
+
+\sphinxAtStartPar
+Contributor email: \sphinxtitleref{alexander.davies@bristol.ac.uk}
 
 \sphinxAtStartPar
 A dataset of the connectome of a fruit fly larvae.
@@ -1615,46 +1696,46 @@ Num graphs: Parameterised by \sphinxtitleref{num}
 \end{itemize}
 
 \end{description}\end{quote}
-\index{\_\_init\_\_() (datasets.NeuralDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.NeuralDataset method}}
+\index{\_\_init\_\_() (datasets.real.NeuralDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.real.NeuralDataset method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.NeuralDataset.__init__}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.NeuralDataset.__init__}}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{\_\_init\_\_}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{\_abc\_impl (datasets.NeuralDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.NeuralDataset attribute}}
+\index{\_abc\_impl (datasets.real.NeuralDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.real.NeuralDataset attribute}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.NeuralDataset._abc_impl}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.NeuralDataset._abc_impl}}
 \pysigstartsignatures
 \pysigline{\sphinxbfcode{\sphinxupquote{\_abc\_impl}}\sphinxbfcode{\sphinxupquote{\DUrole{w}{ }\DUrole{p}{=}\DUrole{w}{ }<\_abc.\_abc\_data object>}}}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{process() (datasets.NeuralDataset method)@\spxentry{process()}\spxextra{datasets.NeuralDataset method}}
+\index{process() (datasets.real.NeuralDataset method)@\spxentry{process()}\spxextra{datasets.real.NeuralDataset method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.NeuralDataset.process}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.NeuralDataset.process}}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{process}}}{}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{processed\_file\_names (datasets.NeuralDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.NeuralDataset property}}
+\index{processed\_file\_names (datasets.real.NeuralDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.real.NeuralDataset property}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.NeuralDataset.processed_file_names}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.NeuralDataset.processed_file_names}}
 \pysigstartsignatures
 \pysigline{\sphinxbfcode{\sphinxupquote{property\DUrole{w}{ }}}\sphinxbfcode{\sphinxupquote{processed\_file\_names}}}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{raw\_file\_names (datasets.NeuralDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.NeuralDataset property}}
+\index{raw\_file\_names (datasets.real.NeuralDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.real.NeuralDataset property}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.NeuralDataset.raw_file_names}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.NeuralDataset.raw_file_names}}
 \pysigstartsignatures
 \pysigline{\sphinxbfcode{\sphinxupquote{property\DUrole{w}{ }}}\sphinxbfcode{\sphinxupquote{raw\_file\_names}}}
 \pysigstopsignatures
@@ -1663,15 +1744,21 @@ Num graphs: Parameterised by \sphinxtitleref{num}
 
 \end{fulllineitems}
 
-\index{RedditDataset (class in datasets)@\spxentry{RedditDataset}\spxextra{class in datasets}}
+\index{RedditDataset (class in datasets.real)@\spxentry{RedditDataset}\spxextra{class in datasets.real}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.RedditDataset}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.RedditDataset}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{datasets.}}\sphinxbfcode{\sphinxupquote{RedditDataset}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{datasets.real.}}\sphinxbfcode{\sphinxupquote{RedditDataset}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: \sphinxcode{\sphinxupquote{InMemoryDataset}}
+
+\sphinxAtStartPar
+Contributor: Alex O. Davies
+
+\sphinxAtStartPar
+Contributor email: \sphinxtitleref{alexander.davies@bristol.ac.uk}
 
 \sphinxAtStartPar
 Reddit hyperlink graphs \sphinxhyphen{} ie graphs of subreddits interacting with one another.
@@ -1683,6 +1770,7 @@ The original graph is sourced from:
 \end{quote}
 
 \sphinxAtStartPar
+We produce this dataset of small graphs using ESWR.
 The data has text embeddings as node features for each subreddit and text features for the cross\sphinxhyphen{}post edges.
 
 \sphinxAtStartPar
@@ -1742,46 +1830,46 @@ Num graphs: Parameterised by \sphinxtitleref{num}
 \end{itemize}
 
 \end{description}\end{quote}
-\index{\_\_init\_\_() (datasets.RedditDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.RedditDataset method}}
+\index{\_\_init\_\_() (datasets.real.RedditDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.real.RedditDataset method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.RedditDataset.__init__}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.RedditDataset.__init__}}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{\_\_init\_\_}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{\_abc\_impl (datasets.RedditDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.RedditDataset attribute}}
+\index{\_abc\_impl (datasets.real.RedditDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.real.RedditDataset attribute}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.RedditDataset._abc_impl}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.RedditDataset._abc_impl}}
 \pysigstartsignatures
 \pysigline{\sphinxbfcode{\sphinxupquote{\_abc\_impl}}\sphinxbfcode{\sphinxupquote{\DUrole{w}{ }\DUrole{p}{=}\DUrole{w}{ }<\_abc.\_abc\_data object>}}}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{process() (datasets.RedditDataset method)@\spxentry{process()}\spxextra{datasets.RedditDataset method}}
+\index{process() (datasets.real.RedditDataset method)@\spxentry{process()}\spxextra{datasets.real.RedditDataset method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.RedditDataset.process}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.RedditDataset.process}}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{process}}}{}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{processed\_file\_names (datasets.RedditDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.RedditDataset property}}
+\index{processed\_file\_names (datasets.real.RedditDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.real.RedditDataset property}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.RedditDataset.processed_file_names}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.RedditDataset.processed_file_names}}
 \pysigstartsignatures
 \pysigline{\sphinxbfcode{\sphinxupquote{property\DUrole{w}{ }}}\sphinxbfcode{\sphinxupquote{processed\_file\_names}}}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{raw\_file\_names (datasets.RedditDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.RedditDataset property}}
+\index{raw\_file\_names (datasets.real.RedditDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.real.RedditDataset property}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.RedditDataset.raw_file_names}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.RedditDataset.raw_file_names}}
 \pysigstartsignatures
 \pysigline{\sphinxbfcode{\sphinxupquote{property\DUrole{w}{ }}}\sphinxbfcode{\sphinxupquote{raw\_file\_names}}}
 \pysigstopsignatures
@@ -1790,15 +1878,21 @@ Num graphs: Parameterised by \sphinxtitleref{num}
 
 \end{fulllineitems}
 
-\index{RoadDataset (class in datasets)@\spxentry{RoadDataset}\spxextra{class in datasets}}
+\index{RoadDataset (class in datasets.real)@\spxentry{RoadDataset}\spxextra{class in datasets.real}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.RoadDataset}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.RoadDataset}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{datasets.}}\sphinxbfcode{\sphinxupquote{RoadDataset}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{datasets.real.}}\sphinxbfcode{\sphinxupquote{RoadDataset}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: \sphinxcode{\sphinxupquote{InMemoryDataset}}
+
+\sphinxAtStartPar
+Contributor: Alex O. Davies
+
+\sphinxAtStartPar
+Contributor email: \sphinxtitleref{alexander.davies@bristol.ac.uk}
 
 \sphinxAtStartPar
 Road graphs from Pennsylvania, sampled from a large original graph using ESWR.
@@ -1866,46 +1960,46 @@ Num graphs: Parameterised by \sphinxtitleref{num}
 \end{itemize}
 
 \end{description}\end{quote}
-\index{\_\_init\_\_() (datasets.RoadDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.RoadDataset method}}
+\index{\_\_init\_\_() (datasets.real.RoadDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.real.RoadDataset method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.RoadDataset.__init__}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.RoadDataset.__init__}}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{\_\_init\_\_}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{\_abc\_impl (datasets.RoadDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.RoadDataset attribute}}
+\index{\_abc\_impl (datasets.real.RoadDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.real.RoadDataset attribute}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.RoadDataset._abc_impl}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.RoadDataset._abc_impl}}
 \pysigstartsignatures
 \pysigline{\sphinxbfcode{\sphinxupquote{\_abc\_impl}}\sphinxbfcode{\sphinxupquote{\DUrole{w}{ }\DUrole{p}{=}\DUrole{w}{ }<\_abc.\_abc\_data object>}}}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{process() (datasets.RoadDataset method)@\spxentry{process()}\spxextra{datasets.RoadDataset method}}
+\index{process() (datasets.real.RoadDataset method)@\spxentry{process()}\spxextra{datasets.real.RoadDataset method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.RoadDataset.process}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.RoadDataset.process}}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{process}}}{}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{processed\_file\_names (datasets.RoadDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.RoadDataset property}}
+\index{processed\_file\_names (datasets.real.RoadDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.real.RoadDataset property}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.RoadDataset.processed_file_names}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.RoadDataset.processed_file_names}}
 \pysigstartsignatures
 \pysigline{\sphinxbfcode{\sphinxupquote{property\DUrole{w}{ }}}\sphinxbfcode{\sphinxupquote{processed\_file\_names}}}
 \pysigstopsignatures
 \end{fulllineitems}
 
-\index{raw\_file\_names (datasets.RoadDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.RoadDataset property}}
+\index{raw\_file\_names (datasets.real.RoadDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.real.RoadDataset property}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.RoadDataset.raw_file_names}}
+\phantomsection\label{\detokenize{datasets/real:datasets.real.RoadDataset.raw_file_names}}
 \pysigstartsignatures
 \pysigline{\sphinxbfcode{\sphinxupquote{property\DUrole{w}{ }}}\sphinxbfcode{\sphinxupquote{raw\_file\_names}}}
 \pysigstopsignatures
@@ -1914,12 +2008,324 @@ Num graphs: Parameterised by \sphinxtitleref{num}
 
 \end{fulllineitems}
 
-\index{get\_all\_datasets() (in module datasets)@\spxentry{get\_all\_datasets()}\spxextra{in module datasets}}
+
+\sphinxstepscope
+
+
+\subsubsection{Synthetic}
+\label{\detokenize{datasets/synthetic:synthetic}}\label{\detokenize{datasets/synthetic::doc}}
+\sphinxAtStartPar
+These datasets are produced using generators, for example Erdos\sphinxhyphen{}Renyi, Barabasi\sphinxhyphen{}Albert, etc.
+Tasks are generic, for example predicting tree depth, and intended primarily for benchmarking purposes.
+\index{module@\spxentry{module}!datasets.synthetic@\spxentry{datasets.synthetic}}\index{datasets.synthetic@\spxentry{datasets.synthetic}!module@\spxentry{module}}\index{CommunityDataset (class in datasets.synthetic)@\spxentry{CommunityDataset}\spxextra{class in datasets.synthetic}}\phantomsection\label{\detokenize{datasets/synthetic:module-datasets.synthetic}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.get_all_datasets}}
+\phantomsection\label{\detokenize{datasets/synthetic:datasets.synthetic.CommunityDataset}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{datasets.}}\sphinxbfcode{\sphinxupquote{get\_all\_datasets}}}{\sphinxparam{\DUrole{n}{transforms}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{5000}}\sphinxparamcomma \sphinxparam{\DUrole{n}{mol\_only}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{datasets.synthetic.}}\sphinxbfcode{\sphinxupquote{CommunityDataset}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Bases: \sphinxcode{\sphinxupquote{InMemoryDataset}}
+
+\sphinxAtStartPar
+Contributor: Alex O. Davies
+
+\sphinxAtStartPar
+Contributor email: \sphinxtitleref{alexander.davies@bristol.ac.uk}
+
+\sphinxAtStartPar
+Dataset of random community\sphinxhyphen{}like graphs, composed of four evenly sized subgraphs with a random inter\sphinxhyphen{}subgraph edge probability.
+Subgraphs have a density of 0.5, and inter\sphinxhyphen{}subgraph edges have a random density between 0.05 and 0.15.
+
+\sphinxAtStartPar
+The target is the inter\sphinxhyphen{}subgraph density of each graph.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{root}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) – Root directory where the dataset should be saved.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{stage}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) – The stage of the dataset to load. One of “train”, “val”, “test”. (default: \sphinxcode{\sphinxupquote{"train"}})
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{transform}} (\sphinxstyleliteralemphasis{\sphinxupquote{callable}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) – A function/transform that takes in an \sphinxcode{\sphinxupquote{torch\_geometric.data.Data}} object and returns a transformed version. The data object will be transformed before every access. (default: \sphinxcode{\sphinxupquote{None}})
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{pre\_transform}} (\sphinxstyleliteralemphasis{\sphinxupquote{callable}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) – A function/transform that takes in an \sphinxcode{\sphinxupquote{torch\_geometric.data.Data}} object and returns a transformed version. The data object will be transformed before being saved to disk. (default: \sphinxcode{\sphinxupquote{None}})
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{pre\_filter}} (\sphinxstyleliteralemphasis{\sphinxupquote{callable}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) – A function that takes in an \sphinxcode{\sphinxupquote{torch\_geometric.data.Data}} object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: \sphinxcode{\sphinxupquote{None}})
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{num}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) – The number of samples to take from the original dataset. \sphinxhyphen{}1 takes all available samples for that stage. (default: \sphinxcode{\sphinxupquote{\sphinxhyphen{}1}}).
+
+\end{itemize}
+
+\end{description}\end{quote}
+\index{\_\_init\_\_() (datasets.synthetic.CommunityDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.synthetic.CommunityDataset method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datasets/synthetic:datasets.synthetic.CommunityDataset.__init__}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{\_\_init\_\_}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{\_abc\_impl (datasets.synthetic.CommunityDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.synthetic.CommunityDataset attribute}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datasets/synthetic:datasets.synthetic.CommunityDataset._abc_impl}}
+\pysigstartsignatures
+\pysigline{\sphinxbfcode{\sphinxupquote{\_abc\_impl}}\sphinxbfcode{\sphinxupquote{\DUrole{w}{ }\DUrole{p}{=}\DUrole{w}{ }<\_abc.\_abc\_data object>}}}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{process() (datasets.synthetic.CommunityDataset method)@\spxentry{process()}\spxextra{datasets.synthetic.CommunityDataset method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datasets/synthetic:datasets.synthetic.CommunityDataset.process}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{process}}}{}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{processed\_file\_names (datasets.synthetic.CommunityDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.synthetic.CommunityDataset property}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datasets/synthetic:datasets.synthetic.CommunityDataset.processed_file_names}}
+\pysigstartsignatures
+\pysigline{\sphinxbfcode{\sphinxupquote{property\DUrole{w}{ }}}\sphinxbfcode{\sphinxupquote{processed\_file\_names}}}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{raw\_file\_names (datasets.synthetic.CommunityDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.synthetic.CommunityDataset property}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datasets/synthetic:datasets.synthetic.CommunityDataset.raw_file_names}}
+\pysigstartsignatures
+\pysigline{\sphinxbfcode{\sphinxupquote{property\DUrole{w}{ }}}\sphinxbfcode{\sphinxupquote{raw\_file\_names}}}
+\pysigstopsignatures
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+\index{RandomDataset (class in datasets.synthetic)@\spxentry{RandomDataset}\spxextra{class in datasets.synthetic}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datasets/synthetic:datasets.synthetic.RandomDataset}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{datasets.synthetic.}}\sphinxbfcode{\sphinxupquote{RandomDataset}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Bases: \sphinxcode{\sphinxupquote{InMemoryDataset}}
+
+\sphinxAtStartPar
+Contributor: Alex O. Davies
+
+\sphinxAtStartPar
+Contributor email: \sphinxtitleref{alexander.davies@bristol.ac.uk}
+
+\sphinxAtStartPar
+Dataset of random erdos\sphinxhyphen{}renyi graphs, between 12 and 128 nodes, of random density between 0.05 and 0.3.
+
+\sphinxAtStartPar
+The target is the density of each graph.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{root}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) – Root directory where the dataset should be saved.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{stage}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) – The stage of the dataset to load. One of “train”, “val”, “test”. (default: \sphinxcode{\sphinxupquote{"train"}})
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{transform}} (\sphinxstyleliteralemphasis{\sphinxupquote{callable}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) – A function/transform that takes in an \sphinxcode{\sphinxupquote{torch\_geometric.data.Data}} object and returns a transformed version. The data object will be transformed before every access. (default: \sphinxcode{\sphinxupquote{None}})
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{pre\_transform}} (\sphinxstyleliteralemphasis{\sphinxupquote{callable}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) – A function/transform that takes in an \sphinxcode{\sphinxupquote{torch\_geometric.data.Data}} object and returns a transformed version. The data object will be transformed before being saved to disk. (default: \sphinxcode{\sphinxupquote{None}})
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{pre\_filter}} (\sphinxstyleliteralemphasis{\sphinxupquote{callable}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) – A function that takes in an \sphinxcode{\sphinxupquote{torch\_geometric.data.Data}} object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: \sphinxcode{\sphinxupquote{None}})
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{num}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) – The number of samples to take from the original dataset. \sphinxhyphen{}1 takes all available samples for that stage. (default: \sphinxcode{\sphinxupquote{\sphinxhyphen{}1}}).
+
+\end{itemize}
+
+\end{description}\end{quote}
+\index{\_\_init\_\_() (datasets.synthetic.RandomDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.synthetic.RandomDataset method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datasets/synthetic:datasets.synthetic.RandomDataset.__init__}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{\_\_init\_\_}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{\_abc\_impl (datasets.synthetic.RandomDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.synthetic.RandomDataset attribute}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datasets/synthetic:datasets.synthetic.RandomDataset._abc_impl}}
+\pysigstartsignatures
+\pysigline{\sphinxbfcode{\sphinxupquote{\_abc\_impl}}\sphinxbfcode{\sphinxupquote{\DUrole{w}{ }\DUrole{p}{=}\DUrole{w}{ }<\_abc.\_abc\_data object>}}}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{process() (datasets.synthetic.RandomDataset method)@\spxentry{process()}\spxextra{datasets.synthetic.RandomDataset method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datasets/synthetic:datasets.synthetic.RandomDataset.process}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{process}}}{}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{processed\_file\_names (datasets.synthetic.RandomDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.synthetic.RandomDataset property}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datasets/synthetic:datasets.synthetic.RandomDataset.processed_file_names}}
+\pysigstartsignatures
+\pysigline{\sphinxbfcode{\sphinxupquote{property\DUrole{w}{ }}}\sphinxbfcode{\sphinxupquote{processed\_file\_names}}}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{raw\_file\_names (datasets.synthetic.RandomDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.synthetic.RandomDataset property}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datasets/synthetic:datasets.synthetic.RandomDataset.raw_file_names}}
+\pysigstartsignatures
+\pysigline{\sphinxbfcode{\sphinxupquote{property\DUrole{w}{ }}}\sphinxbfcode{\sphinxupquote{raw\_file\_names}}}
+\pysigstopsignatures
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+\index{TreeDataset (class in datasets.synthetic)@\spxentry{TreeDataset}\spxextra{class in datasets.synthetic}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datasets/synthetic:datasets.synthetic.TreeDataset}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{datasets.synthetic.}}\sphinxbfcode{\sphinxupquote{TreeDataset}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Bases: \sphinxcode{\sphinxupquote{InMemoryDataset}}
+
+\sphinxAtStartPar
+Contributor: Alex O. Davies
+
+\sphinxAtStartPar
+Contributor email: \sphinxtitleref{alexander.davies@bristol.ac.uk}
+
+\sphinxAtStartPar
+Dataset of random tree structures, between 8 and 96 nodes, produced with \sphinxtitleref{networkx.random\_tree}.
+
+\sphinxAtStartPar
+The target is the depth of the tree, normalised by the number of nodes in the tree.
+\begin{quote}\begin{description}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{root}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) – Root directory where the dataset should be saved.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{stage}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) – The stage of the dataset to load. One of “train”, “val”, “test”. (default: \sphinxcode{\sphinxupquote{"train"}})
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{transform}} (\sphinxstyleliteralemphasis{\sphinxupquote{callable}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) – A function/transform that takes in an \sphinxcode{\sphinxupquote{torch\_geometric.data.Data}} object and returns a transformed version. The data object will be transformed before every access. (default: \sphinxcode{\sphinxupquote{None}})
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{pre\_transform}} (\sphinxstyleliteralemphasis{\sphinxupquote{callable}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) – A function/transform that takes in an \sphinxcode{\sphinxupquote{torch\_geometric.data.Data}} object and returns a transformed version. The data object will be transformed before being saved to disk. (default: \sphinxcode{\sphinxupquote{None}})
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{pre\_filter}} (\sphinxstyleliteralemphasis{\sphinxupquote{callable}}\sphinxstyleliteralemphasis{\sphinxupquote{, }}\sphinxstyleliteralemphasis{\sphinxupquote{optional}}) – A function that takes in an \sphinxcode{\sphinxupquote{torch\_geometric.data.Data}} object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: \sphinxcode{\sphinxupquote{None}})
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{num}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) – The number of samples to take from the original dataset. \sphinxhyphen{}1 takes all available samples for that stage. (default: \sphinxcode{\sphinxupquote{\sphinxhyphen{}1}}).
+
+\end{itemize}
+
+\end{description}\end{quote}
+\index{\_\_init\_\_() (datasets.synthetic.TreeDataset method)@\spxentry{\_\_init\_\_()}\spxextra{datasets.synthetic.TreeDataset method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datasets/synthetic:datasets.synthetic.TreeDataset.__init__}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{\_\_init\_\_}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{stage}\DUrole{o}{=}\DUrole{default_value}{'train'}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{\_abc\_impl (datasets.synthetic.TreeDataset attribute)@\spxentry{\_abc\_impl}\spxextra{datasets.synthetic.TreeDataset attribute}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datasets/synthetic:datasets.synthetic.TreeDataset._abc_impl}}
+\pysigstartsignatures
+\pysigline{\sphinxbfcode{\sphinxupquote{\_abc\_impl}}\sphinxbfcode{\sphinxupquote{\DUrole{w}{ }\DUrole{p}{=}\DUrole{w}{ }<\_abc.\_abc\_data object>}}}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{process() (datasets.synthetic.TreeDataset method)@\spxentry{process()}\spxextra{datasets.synthetic.TreeDataset method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datasets/synthetic:datasets.synthetic.TreeDataset.process}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{process}}}{}{}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{processed\_file\_names (datasets.synthetic.TreeDataset property)@\spxentry{processed\_file\_names}\spxextra{datasets.synthetic.TreeDataset property}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datasets/synthetic:datasets.synthetic.TreeDataset.processed_file_names}}
+\pysigstartsignatures
+\pysigline{\sphinxbfcode{\sphinxupquote{property\DUrole{w}{ }}}\sphinxbfcode{\sphinxupquote{processed\_file\_names}}}
+\pysigstopsignatures
+\end{fulllineitems}
+
+\index{raw\_file\_names (datasets.synthetic.TreeDataset property)@\spxentry{raw\_file\_names}\spxextra{datasets.synthetic.TreeDataset property}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datasets/synthetic:datasets.synthetic.TreeDataset.raw_file_names}}
+\pysigstartsignatures
+\pysigline{\sphinxbfcode{\sphinxupquote{property\DUrole{w}{ }}}\sphinxbfcode{\sphinxupquote{raw\_file\_names}}}
+\pysigstopsignatures
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+\sphinxstepscope
+
+
+\subsubsection{Functions \& Loaders}
+\label{\detokenize{datasets/loaders:functions-loaders}}\label{\detokenize{datasets/loaders::doc}}
+\sphinxAtStartPar
+Functions to load multiple datasets at\sphinxhyphen{}once.
+\index{module@\spxentry{module}!datasets.loaders@\spxentry{datasets.loaders}}\index{datasets.loaders@\spxentry{datasets.loaders}!module@\spxentry{module}}\index{get\_all\_datasets() (in module datasets.loaders)@\spxentry{get\_all\_datasets()}\spxextra{in module datasets.loaders}}\phantomsection\label{\detokenize{datasets/loaders:module-datasets.loaders}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{datasets/loaders:datasets.loaders.get_all_datasets}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{datasets.loaders.}}\sphinxbfcode{\sphinxupquote{get\_all\_datasets}}}{\sphinxparam{\DUrole{n}{transforms}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{5000}}\sphinxparamcomma \sphinxparam{\DUrole{n}{mol\_only}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Get all datasets for training and validation, in that order.
@@ -1964,12 +2370,12 @@ tuple
 
 \end{fulllineitems}
 
-\index{get\_test\_datasets() (in module datasets)@\spxentry{get\_test\_datasets()}\spxextra{in module datasets}}
+\index{get\_test\_datasets() (in module datasets.loaders)@\spxentry{get\_test\_datasets()}\spxextra{in module datasets.loaders}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.get_test_datasets}}
+\phantomsection\label{\detokenize{datasets/loaders:datasets.loaders.get_test_datasets}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{datasets.}}\sphinxbfcode{\sphinxupquote{get\_test\_datasets}}}{\sphinxparam{\DUrole{n}{transforms}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}\sphinxparamcomma \sphinxparam{\DUrole{n}{mol\_only}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{datasets.loaders.}}\sphinxbfcode{\sphinxupquote{get\_test\_datasets}}}{\sphinxparam{\DUrole{n}{transforms}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}\sphinxparamcomma \sphinxparam{\DUrole{n}{mol\_only}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Get the test split of each dataset.
@@ -2014,12 +2420,12 @@ tuple
 
 \end{fulllineitems}
 
-\index{get\_train\_datasets() (in module datasets)@\spxentry{get\_train\_datasets()}\spxextra{in module datasets}}
+\index{get\_train\_datasets() (in module datasets.loaders)@\spxentry{get\_train\_datasets()}\spxextra{in module datasets.loaders}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.get_train_datasets}}
+\phantomsection\label{\detokenize{datasets/loaders:datasets.loaders.get_train_datasets}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{datasets.}}\sphinxbfcode{\sphinxupquote{get\_train\_datasets}}}{\sphinxparam{\DUrole{n}{transforms}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}\sphinxparamcomma \sphinxparam{\DUrole{n}{mol\_only}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{datasets.loaders.}}\sphinxbfcode{\sphinxupquote{get\_train\_datasets}}}{\sphinxparam{\DUrole{n}{transforms}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}\sphinxparamcomma \sphinxparam{\DUrole{n}{mol\_only}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Get the training splits of each dataset.
@@ -2064,12 +2470,12 @@ tuple
 
 \end{fulllineitems}
 
-\index{get\_val\_datasets() (in module datasets)@\spxentry{get\_val\_datasets()}\spxextra{in module datasets}}
+\index{get\_val\_datasets() (in module datasets.loaders)@\spxentry{get\_val\_datasets()}\spxextra{in module datasets.loaders}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{datasets:datasets.get_val_datasets}}
+\phantomsection\label{\detokenize{datasets/loaders:datasets.loaders.get_val_datasets}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxcode{\sphinxupquote{datasets.}}\sphinxbfcode{\sphinxupquote{get\_val\_datasets}}}{\sphinxparam{\DUrole{n}{transforms}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}\sphinxparamcomma \sphinxparam{\DUrole{n}{mol\_only}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
+\pysiglinewithargsret{\sphinxcode{\sphinxupquote{datasets.loaders.}}\sphinxbfcode{\sphinxupquote{get\_val\_datasets}}}{\sphinxparam{\DUrole{n}{transforms}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{2000}}\sphinxparamcomma \sphinxparam{\DUrole{n}{mol\_only}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Get validation splits for each dataset.
@@ -2357,10 +2763,14 @@ None
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{top:top.ToPDataset}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{top.}}\sphinxbfcode{\sphinxupquote{ToPDataset}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{original\_dataset}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{\sphinxhyphen{}1}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{top.}}\sphinxbfcode{\sphinxupquote{ToPDataset}}}{\sphinxparam{\DUrole{n}{original\_dataset}}\sphinxparamcomma \sphinxparam{\DUrole{n}{root}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{\sphinxhyphen{}1}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Bases: \sphinxcode{\sphinxupquote{InMemoryDataset}}
+
+\sphinxAtStartPar
+Contributor: Alex O. Davies
+Contributor email: \sphinxtitleref{alexander.davies@bristol.ac.uk}
 
 \sphinxAtStartPar
 Processes an InMemoryDataset into a ToP dataset by removing node and edge features.
@@ -2375,15 +2785,18 @@ Based on the paper:
 
 \sphinxAtStartPar
 The resulting dataset is topology\sphinxhyphen{}only, intended for pre\sphinxhyphen{}training with ToP, and as such this module does not produce validation/test splits.
+
+\sphinxAtStartPar
+Saves a single processed file \sphinxtitleref{train\sphinxhyphen{}top.pt} under \sphinxtitleref{./root/processed/}.
 \begin{quote}\begin{description}
 \sphinxlineitem{Parameters}\begin{itemize}
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{root}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) – Root directory where the dataset should be saved. The dataset will be saved in \sphinxtitleref{root}/train\sphinxhyphen{}top.pt
+\sphinxstyleliteralstrong{\sphinxupquote{original\_dataset}} (\sphinxstyleliteralemphasis{\sphinxupquote{InMemoryDataset}}) – The original dataset to convert to ToP format.
 
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{original\_dataset}} (\sphinxstyleliteralemphasis{\sphinxupquote{InMemoryDataset}}) – The original dataset to convert to ToP format.
+\sphinxstyleliteralstrong{\sphinxupquote{root}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) – Root directory where the dataset should be saved. If ‘none’, will use the root directory of \sphinxtitleref{original\_dataset}. (default: \sphinxcode{\sphinxupquote{None}})
 
 \item {} 
 \sphinxAtStartPar
@@ -2409,7 +2822,7 @@ The resulting dataset is topology\sphinxhyphen{}only, intended for pre\sphinxhyp
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{top:top.ToPDataset.__init__}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{\_\_init\_\_}}}{\sphinxparam{\DUrole{n}{root}}\sphinxparamcomma \sphinxparam{\DUrole{n}{original\_dataset}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{\sphinxhyphen{}1}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{\_\_init\_\_}}}{\sphinxparam{\DUrole{n}{original\_dataset}}\sphinxparamcomma \sphinxparam{\DUrole{n}{root}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num}\DUrole{o}{=}\DUrole{default_value}{\sphinxhyphen{}1}}\sphinxparamcomma \sphinxparam{\DUrole{n}{transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_transform}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{pre\_filter}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \end{fulllineitems}
 
@@ -2520,7 +2933,9 @@ Should you wish your authorship to be anonymous, or if you have any further ques
 \begin{sphinxtheindex}
 \let\bigletter\sphinxstyleindexlettergroup
 \bigletter{d}
-\item\relax\sphinxstyleindexentry{datasets}\sphinxstyleindexpageref{datasets:\detokenize{module-datasets}}
+\item\relax\sphinxstyleindexentry{datasets.loaders}\sphinxstyleindexpageref{datasets/loaders:\detokenize{module-datasets.loaders}}
+\item\relax\sphinxstyleindexentry{datasets.real}\sphinxstyleindexpageref{datasets/real:\detokenize{module-datasets.real}}
+\item\relax\sphinxstyleindexentry{datasets.synthetic}\sphinxstyleindexpageref{datasets/synthetic:\detokenize{module-datasets.synthetic}}
 \indexspace
 \bigletter{t}
 \item\relax\sphinxstyleindexentry{top}\sphinxstyleindexpageref{top:\detokenize{module-top}}

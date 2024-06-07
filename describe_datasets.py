@@ -101,7 +101,7 @@ def run(args):
     my_transforms = Compose([initialize_edge_weight])
 
     train_datasets, train_names = get_all_datasets(my_transforms, num = args.num_train)
-    top_datasets = [ToPDataset(dataset.root, dataset) for i, dataset in enumerate(train_datasets)]
+    top_datasets = [ToPDataset(dataset) for i, dataset in enumerate(train_datasets)]
     compute_top_scores(top_datasets, train_names)
 
     train_datasets, train_names = get_train_datasets(my_transforms, num = args.num_train)

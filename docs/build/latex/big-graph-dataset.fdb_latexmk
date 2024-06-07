@@ -1,11 +1,11 @@
 # Fdb version 4
-["makeindex big-graph-dataset.idx"] 1717751505.85529 "big-graph-dataset.idx" "big-graph-dataset.ind" "big-graph-dataset" 1717751507.81586 0
-  "big-graph-dataset.idx" 1717751507.66903 7744 4205b4b7fdf8b4d09322331051f38b6e "pdflatex"
+["makeindex big-graph-dataset.idx"] 1717762146.4577 "big-graph-dataset.idx" "big-graph-dataset.ind" "big-graph-dataset" 1717762150.81468 0
+  "big-graph-dataset.idx" 1717762150.65644 11232 dd89d27fdac87148eb243fa338f3d5ce "pdflatex"
   (generated)
   "big-graph-dataset.ilg"
   "big-graph-dataset.ind"
   (rewritten before read)
-["pdflatex"] 1717751506.27562 "big-graph-dataset.tex" "big-graph-dataset.pdf" "big-graph-dataset" 1717751507.81626 0
+["pdflatex"] 1717762148.81455 "big-graph-dataset.tex" "big-graph-dataset.pdf" "big-graph-dataset" 1717762150.81513 0
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -118,15 +118,17 @@
   "/usr/local/texlive/2024/texmf-dist/web2c/texmf.cnf" 1708706663 41649 5d6ae549fbbcb850a863f69aa41f3d10 ""
   "/usr/local/texlive/2024/texmf-var/web2c/xetex/xelatex.fmt" 1717667950 10850184 f353ac481a22751698e14bcf0e35c989 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "big-graph-dataset.aux" 1717751507.65541 11430 5662ed9255cf5a182010fdc47b59a3e7 "pdflatex"
-  "big-graph-dataset.ind" 1717751506.2696 5650 5ae785cb56c5e27714bba5a13045369a "makeindex big-graph-dataset.idx"
-  "big-graph-dataset.out" 1717751507.66393 3159 9984c3d60829a837b0a58ceab0a306c1 "pdflatex"
-  "big-graph-dataset.tex" 1717751503.0476 116172 d195ca24d9636288b95d13ac986f0206 ""
-  "big-graph-dataset.toc" 1717751507.66904 1536 c86db3c883606e70a2a6f17e2e22bb00 "pdflatex"
+  "big-graph-dataset.aux" 1717762150.64042 14102 2d3c995a6342eda6c96677b870cccfb2 "pdflatex"
+  "big-graph-dataset.ind" 1717762146.83195 7934 a50c1635f8a5098e39c16bc1a94ca3d8 "makeindex big-graph-dataset.idx"
+  "big-graph-dataset.out" 1717762150.65379 3581 6b8c5c0af776866ad419ebe277ecae2c "pdflatex"
+  "big-graph-dataset.tex" 1717762142.58498 141214 c0c99973672b0217990232796b8199b8 ""
+  "big-graph-dataset.toc" 1717762150.65646 1746 947de916a6c52e0df22191cbf9fb60b6 "pdflatex"
+  "datasets.png" 1717758345.97061 648910 c459c87317beee2aa08810ea78195712 ""
   "nbsphinx.sty" 1717518416.19587 8202 a429e7504022e861d9f81e9a64e9928d ""
   "reddit-dataset-example_22_1.png" 1717688992.34935 213300 9f420569480ca7cada4a382472312d5e ""
+  "reddit-dataset-example_24_0.png" 1717758638.00032 667445 5edd4ad70dca82e6f84c9b819e47481f ""
   "sphinx.sty" 1717505465.14291 44560 f9fbf51072c954d129c9bd5284cc4ccf ""
-  "sphinxhighlight.sty" 1717751502.85214 7553 83fb52292c17957d9f4aadcb28c57a87 ""
+  "sphinxhighlight.sty" 1717762142.30541 7553 83fb52292c17957d9f4aadcb28c57a87 ""
   "sphinxhowto.cls" 1717505465.14357 3256 55d5772de2f18cad818d98a3e6e8e37b ""
   "sphinxlatexadmonitions.sty" 1717505465.14387 10989 c38302e64c2bb47779f086869b246760 ""
   "sphinxlatexcontainers.sty" 1717505465.1441 901 d3a3a1b7b2547f47ade2499350b5c420 ""
@@ -141,7 +143,7 @@
   "sphinxlatexstylepage.sty" 1717505465.14689 3064 abce6c3018a84afee0afb08a431944ea ""
   "sphinxlatexstyletext.sty" 1717505465.14738 8589 a7e8f95eb4fef6c1cd2623cd417d6467 ""
   "sphinxlatextables.sty" 1717505465.14783 57829 997133f8082b07d1e9aafcd87331d9bf ""
-  "sphinxmessages.sty" 1717751503.05159 745 3f5fcd6cdd7964ed608767954a8ced6f ""
+  "sphinxmessages.sty" 1717762142.60512 745 3f5fcd6cdd7964ed608767954a8ced6f ""
   "sphinxoptionsgeometry.sty" 1717505465.14837 2061 47bb34b8ed8a78823eb0c886abfb9f4d ""
   "sphinxoptionshyperref.sty" 1717505465.14868 1094 79beb8b8a3f10784f8cce804e0f9d3aa ""
   "sphinxpackageboxes.sty" 1717505465.14905 36615 1d74c63e665ede6c648fa08c42ea70fb ""

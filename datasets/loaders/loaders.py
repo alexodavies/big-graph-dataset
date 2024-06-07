@@ -2,17 +2,19 @@ import os
 from torch_geometric.data import DataLoader
 
 from ogb.graphproppred import PygGraphPropPredDataset
-from datasets.facebook_dataset import FacebookDataset
-from datasets.ego_dataset import EgoDataset
-from datasets.community_dataset import CommunityDataset
-from datasets.cora_dataset import CoraDataset
-from datasets.random_dataset import RandomDataset
-from datasets.neural_dataset import NeuralDataset
-from datasets.road_dataset import RoadDataset
-from datasets.tree_dataset import TreeDataset
-from datasets.reddit_dataset import RedditDataset
-from datasets.lattice_dataset import LatticeDataset
-from datasets.from_ogb_dataset import FromOGBDataset
+from datasets.real.facebook_dataset import FacebookDataset
+from datasets.real.ego_dataset import EgoDataset
+from datasets.real.cora_dataset import CoraDataset
+from datasets.real.neural_dataset import NeuralDataset
+from datasets.real.road_dataset import RoadDataset
+from datasets.real.reddit_dataset import RedditDataset
+from datasets.real.from_ogb_dataset import FromOGBDataset
+
+from datasets.synthetic.random_dataset import RandomDataset
+from datasets.synthetic.tree_dataset import TreeDataset
+from datasets.synthetic.lattice_dataset import LatticeDataset
+from datasets.synthetic.community_dataset import CommunityDataset
+
 
 
 

@@ -9,7 +9,7 @@ import wget
 
 from unsupervised.encoder import Encoder
 from unsupervised.learning import GInfoMinMax
-from torch_geometric.data import DataLoader
+from torch_geometric.loader import DataLoader
 
 from sklearn.metrics.pairwise import cosine_similarity
 from umap import UMAP
@@ -17,7 +17,6 @@ from sklearn.decomposition import PCA
 import matplotlib
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import normalize, StandardScaler
-from matplotlib.legend_handler import HandlerPathCollection
 
 from tqdm import tqdm
 

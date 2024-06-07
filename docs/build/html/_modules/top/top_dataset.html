@@ -47,6 +47,7 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../datasets.html">Many-Graph Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../credits.html">Credits</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../top.html">ToP (Topology only Pre-training)</a></li>
@@ -88,6 +89,9 @@
 <a class="viewcode-back" href="../../top.html#top.ToPDataset">[docs]</a>
 <span class="k">class</span> <span class="nc">ToPDataset</span><span class="p">(</span><span class="n">InMemoryDataset</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Contributor: Alex O. Davies</span>
+<span class="sd">    Contributor email: `alexander.davies@bristol.ac.uk`</span>
+<span class="sd">    </span>
 <span class="sd">    Processes an InMemoryDataset into a ToP dataset by removing node and edge features.</span>
 <span class="sd">    </span>
 <span class="sd">    Based on the paper:</span>
@@ -96,9 +100,11 @@
 
 <span class="sd">    The resulting dataset is topology-only, intended for pre-training with ToP, and as such this module does not produce validation/test splits.</span>
 
+<span class="sd">    Saves a single processed file `train-top.pt` under `./root/processed/`.</span>
+
 <span class="sd">    Args:</span>
-<span class="sd">        root (str): Root directory where the dataset should be saved. The dataset will be saved in `root`/train-top.pt</span>
 <span class="sd">        original_dataset (InMemoryDataset): The original dataset to convert to ToP format.</span>
+<span class="sd">        root (str): Root directory where the dataset should be saved. If &#39;none&#39;, will use the root directory of `original_dataset`. (default: :obj:`None`)</span>
 <span class="sd">        num (int): The number of samples to take from the original dataset. `num=-1` will convert all available samples from the original. (default: :obj:`-1`).</span>
 <span class="sd">        transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before every access. (default: :obj:`None`)</span>
 <span class="sd">        pre_transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before being saved to disk. (default: :obj:`None`)</span>
@@ -108,11 +114,12 @@
 
 <div class="viewcode-block" id="ToPDataset.__init__">
 <a class="viewcode-back" href="../../top.html#top.ToPDataset.__init__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">original_dataset</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pre_transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pre_filter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original_dataset</span><span class="p">,</span> <span class="n">root</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="n">num</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pre_transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pre_filter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">original_dataset</span> <span class="o">=</span> <span class="n">original_dataset</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;train&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stage_to_index</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;train&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">num</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">root</span> <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">original_dataset</span><span class="o">.</span><span class="n">root</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Converting original dataset </span><span class="si">{</span><span class="n">original_dataset</span><span class="si">}</span><span class="s2"> at </span><span class="si">{</span><span class="n">root</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">pre_transform</span><span class="p">,</span> <span class="n">pre_filter</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">slices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">processed_paths</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stage_to_index</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stage</span><span class="p">]])</span></div>
