@@ -1,0 +1,35 @@
+\selectlanguage *[]{english}
+\contentsline {section}{\numberline {1}What we’re looking for}{2}{section.1}%
+\contentsline {section}{\numberline {2}Contributing}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Set Up \& Contributing}{3}{subsection.2.1}%
+\contentsline {subsubsection}{1. Clone the Repository}{3}{subsubsection*.3}%
+\contentsline {subsubsection}{2. Navigate to the repository directory:}{3}{subsubsection*.4}%
+\contentsline {subsubsection}{3. Create a new branch:}{3}{subsubsection*.5}%
+\contentsline {subsubsection}{3. Work your magic:}{3}{subsubsection*.6}%
+\contentsline {subsubsection}{4. Stage your changes:}{3}{subsubsection*.7}%
+\contentsline {subsubsection}{5. Commit your changes:}{3}{subsubsection*.8}%
+\contentsline {subsubsection}{6. Push Your Branch to GitHub}{4}{subsubsection*.9}%
+\contentsline {subsubsection}{7. Create a Pull Request}{4}{subsubsection*.10}%
+\contentsline {subsubsection}{8. Merge the pull request:}{4}{subsubsection*.11}%
+\contentsline {subsubsection}{Summary of Git Commands}{4}{subsubsection*.12}%
+\contentsline {subsection}{\numberline {2.2}Testing Code}{4}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Getting Started}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Reddit Example Dataset}{5}{subsection.3.1}%
+\contentsline {subsubsection}{A walkthrough of the dataset code for the Big Graph Dataset project}{5}{subsubsection*.13}%
+\contentsline {paragraph}{Getting the graph}{6}{paragraph*.14}%
+\contentsline {paragraph}{Turn the data into a graph}{8}{paragraph*.15}%
+\contentsline {subsubsection}{Sample to make a dataset of smaller graphs}{9}{subsubsection*.16}%
+\contentsline {subsubsection}{The final dataset}{11}{subsubsection*.17}%
+\contentsline {subsubsection}{Other datsets}{14}{subsubsection*.18}%
+\contentsline {section}{\numberline {4}Datasets}{15}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Many\sphinxhyphen {}Graph Datasets}{15}{subsection.4.1}%
+\contentsline {subsubsection}{From Real Data}{16}{subsubsection*.19}%
+\contentsline {subsubsection}{Synthetic}{22}{subsubsection*.57}%
+\contentsline {subsubsection}{Functions \& Loaders}{24}{subsubsection*.77}%
+\contentsline {section}{\numberline {5}ToP (Topology Only Pre\sphinxhyphen {}Training)}{25}{section.5}%
+\contentsline {subsection}{\numberline {5.1}ToP (Topology only Pre\sphinxhyphen {}training)}{26}{subsection.5.1}%
+\contentsline {section}{\numberline {6}Credits}{28}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Credits}{28}{subsection.6.1}%
+\contentsline {section}{\numberline {7}Indices and tables}{28}{section.7}%
+\contentsline {section}{Python Module Index}{29}{section*.101}%
+\contentsline {section}{Index}{30}{section*.102}%
