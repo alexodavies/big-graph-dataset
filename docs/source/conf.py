@@ -69,3 +69,9 @@ latex_documents = [
 ]
 
 bibtex_bibfiles = ['big-graph-project-reference.bib']
+
+html_logo = "_static/bgd-logo-transparent.png"
+html_theme_options = {
+    'logo_only': True,
+    'display_version': False,
+}
