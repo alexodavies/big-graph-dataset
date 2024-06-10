@@ -48,6 +48,13 @@ The basics:
  - Have a look through
  - Re-tool it for your own dataset
 
+ See more in :ref:`the Getting Started section<get-started>`.
+
+ .. toctree::
+   :maxdepth: 1
+
+   get-started
+
 I've provided code for sub-sampling graphs and producing statistics.
 
 A few rules, demonstrated in `datasets/example_dataset.py`:

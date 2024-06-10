@@ -43,17 +43,19 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Big Graph Dataset</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../reddit-dataset-example.html">Reddit Example Dataset</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../datasets.html">Many-Graph Datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../datasets.html#module-datasets.real">From real data:</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../datasets.html#module-datasets.synthetic">From synthetic generators:</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../datasets.html#functions">Functions:</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../credits.html">Credits</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../top.html">ToP (Topology only Pre-training)</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../credits.html">Credits</a></li>
 </ul>
 
         </div>
@@ -222,7 +224,7 @@
     <span class="k">return</span>  <span class="n">data_objects</span>
 
 <div class="viewcode-block" id="CoraDataset">
-<a class="viewcode-back" href="../../../datasets.html#datasets.real.CoraDataset">[docs]</a>
+<a class="viewcode-back" href="../../../datasets/real.html#datasets.real.CoraDataset">[docs]</a>
 <span class="k">class</span> <span class="nc">CoraDataset</span><span class="p">(</span><span class="n">InMemoryDataset</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Contributor: Alex O. Davies</span>
@@ -255,7 +257,7 @@
 <span class="sd">        num (int): The number of samples to take from the original dataset. (default: :obj:`2000`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 <div class="viewcode-block" id="CoraDataset.__init__">
-<a class="viewcode-back" href="../../../datasets.html#datasets.real.CoraDataset.__init__">[docs]</a>
+<a class="viewcode-back" href="../../../datasets/real.html#datasets.real.CoraDataset.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pre_transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pre_filter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">num</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stage</span> <span class="o">=</span> <span class="n">stage</span>
@@ -279,7 +281,7 @@
 
 
 <div class="viewcode-block" id="CoraDataset.process">
-<a class="viewcode-back" href="../../../datasets.html#datasets.real.CoraDataset.process">[docs]</a>
+<a class="viewcode-back" href="../../../datasets/real.html#datasets.real.CoraDataset.process">[docs]</a>
     <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Read data into huge `Data` list.</span>
 

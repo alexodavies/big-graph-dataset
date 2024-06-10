@@ -27,6 +27,8 @@ In the examples I've provided datasets are mostly sampled from one large graph -
 
 I've prepared some documentation in a [readthedocs page](https://big-graph-dataset.readthedocs.io/), including an example notebook to get you started. 
 
+This documentation page has much more detailed instructions on how to get started, including setting up your git branch and using pull reqests.
+
 The basics:
 - Create your own git branch
 - Copy the `datasets/example_dataset.py`
