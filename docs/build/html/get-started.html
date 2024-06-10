@@ -62,6 +62,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#summary-of-git-commands">Summary of Git Commands</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="#testing-code">Testing Code</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="reddit-dataset-example.html">Reddit Example Dataset</a></li>
@@ -201,8 +202,32 @@ We’ll be collaborating through GitHub, with everyone working in their own bran
 <span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">your</span><span class="o">-</span><span class="n">name</span>
 </pre></div>
 </div>
-<p>Feel free to reach out if you have any questions or need further assistance. Happy coding!</p>
 </section>
+</section>
+<section id="testing-code">
+<h1>Testing Code<a class="headerlink" href="#testing-code" title="Link to this heading"></a></h1>
+<p>In your <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name</span> <span class="pre">==</span> <span class="pre">`__main__</span></code> section you can use some prepared code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">describe_one_dataset</span><span class="p">,</span> <span class="n">vis_grid</span>
+
+<span class="o">...</span> <span class="n">rest</span> <span class="n">of</span> <span class="n">your</span> <span class="n">code</span> <span class="o">...</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Please set the last part of the path to your dataset name!</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">NAMEDataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;/original_datasets/&#39;</span><span class="o">+</span><span class="s1">&#39;NAME&#39;</span><span class="p">,</span> <span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;train&quot;</span><span class="p">)</span>
+    <span class="n">describe_one_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+    <span class="n">vis_grid</span><span class="p">(</span><span class="n">dataset</span><span class="p">[:</span><span class="mi">16</span><span class="p">],</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;/original_datasets/NAME/train.png&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Option to instead show the plot in GUI</span>
+    <span class="n">vis_grid</span><span class="p">(</span><span class="n">dataset</span><span class="p">[:</span><span class="mi">16</span><span class="p">],</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;/original_datasets/NAME/train.png&quot;</span><span class="p">,</span> <span class="n">show_plot</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You’d run this from the root <code class="docutils literal notranslate"><span class="pre">big-graph-dataset</span></code> with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">datasets</span><span class="o">.</span><span class="p">(</span><span class="n">real</span><span class="o">/</span><span class="n">synthetic</span><span class="p">)</span><span class="o">.</span><span class="n">NAME_dataset</span>
+</pre></div>
+</div>
+<p>assuming that you’ve added your dataset to the relevant <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> files.</p>
+<p><strong>Please don’t make changes to any other files!</strong></p>
+<p>Feel free to reach out if you have any questions or need further assistance. Happy coding!</p>
 </section>
 
 

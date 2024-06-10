@@ -93,4 +93,31 @@ Summary of Git Commands
     # Push your branch to GitHub
     git push origin your-name
 
+Testing Code
+============
+
+In your ``if __name == `__main__`` section you can use some prepared code::
+
+    from utils import describe_one_dataset, vis_grid
+
+    ... rest of your code ...
+
+    if __name__ == "__main__":
+        # Please set the last part of the path to your dataset name!
+        dataset = NAMEDataset(os.getcwd()+'/original_datasets/'+'NAME', stage = "train")
+        describe_one_dataset(dataset)
+        vis_grid(dataset[:16], os.getcwd()+"/original_datasets/NAME/train.png")
+
+        # Option to instead show the plot in GUI
+        vis_grid(dataset[:16], os.getcwd()+"/original_datasets/NAME/train.png", show_plot = True)
+
+You'd run this from the root ``big-graph-dataset`` with::
+
+    python -m datasets.(real/synthetic).NAME_dataset
+
+assuming that you've added your dataset to the relevant ``__init__.py`` files.
+
+**Please don't make changes to any other files!**
+
+
 Feel free to reach out if you have any questions or need further assistance. Happy coding!
