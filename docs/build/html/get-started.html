@@ -103,7 +103,7 @@
   <p id="get-started">Welcome to the project! We’re excited to have you on board.
 We’ll be collaborating through GitHub, with everyone working in their own branch.</p>
 <dl class="simple">
-<dt>There are a few rules for the datasets, demonstrated in <cite>datasets/example_dataset.py</cite>:</dt><dd><ul class="simple">
+<dt>There are a few rules for the datasets, demonstrated in <code class="docutils literal notranslate"><span class="pre">datasets/example_dataset.py</span></code>:</dt><dd><ul class="simple">
 <li><p>Please cite your sources for data in documentation - see the existing datasets for examples</p></li>
 <li><p>Where possible start from existing datasets that have been used in-literature (to avoid ethics paperwork)</p></li>
 <li><p>If using generators, use generators that are well-understood (for example Erdos-Renyi graphs)</p></li>
@@ -140,15 +140,16 @@ We’ll be collaborating through GitHub, with everyone working in their own bran
 <h2>3. Work your magic:<a class="headerlink" href="#work-your-magic" title="Link to this heading"></a></h2>
 <blockquote>
 <div><ul class="simple">
-<li><p>Copy <cite>example_dataset.py</cite></p></li>
-<li><p>Re-tool it for your data (<cite>NAME_dataset.py</cite> or something similar)</p></li>
+<li><p>Copy <code class="docutils literal notranslate"><span class="pre">datasets/real/example_dataset.py</span></code> into the relevant sub-directory (<code class="docutils literal notranslate"><span class="pre">datasets/real/</span></code>, <code class="docutils literal notranslate"><span class="pre">datasets/synthetic/</span></code> depending on your data)</p></li>
+<li><p>Re-tool it for your data (<code class="docutils literal notranslate"><span class="pre">NAME_dataset.py</span></code> or something similar)</p></li>
+<li><p>Add your dataset to relevant <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> files (<code class="docutils literal notranslate"><span class="pre">datasets/X/__init__.py</span></code> and <code class="docutils literal notranslate"><span class="pre">datasets/__init__.py</span></code>)</p></li>
 </ul>
 </div></blockquote>
 </section>
 <section id="stage-your-changes">
 <h2>4. Stage your changes:<a class="headerlink" href="#stage-your-changes" title="Link to this heading"></a></h2>
 <p>Add the files you modified or created to the staging area:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>git add `NAME_dataset.py`
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="n">NAME_dataset</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 </section>

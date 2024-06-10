@@ -3,7 +3,7 @@
 Welcome to the project! We're excited to have you on board.
 We'll be collaborating through GitHub, with everyone working in their own branch.
 
-There are a few rules for the datasets, demonstrated in `datasets/example_dataset.py`:
+There are a few rules for the datasets, demonstrated in ``datasets/example_dataset.py``:
  - Please cite your sources for data in documentation - see the existing datasets for examples
  - Where possible start from existing datasets that have been used in-literature (to avoid ethics paperwork)
  - If using generators, use generators that are well-understood (for example Erdos-Renyi graphs)
@@ -38,15 +38,16 @@ Replace ``your-name`` with your name or a  descriptive name for your data.
 3. Work your magic:
 --------------------------
 
- - Copy `example_dataset.py`
- - Re-tool it for your data (`NAME_dataset.py` or something similar)
+ - Copy ``datasets/real/example_dataset.py`` into the relevant sub-directory (``datasets/real/``, ``datasets/synthetic/`` depending on your data)
+ - Re-tool it for your data (``NAME_dataset.py`` or something similar)
+ - Add your dataset to relevant ``__init__.py`` files (``datasets/X/__init__.py`` and ``datasets/__init__.py``)
 
 4. Stage your changes: 
 -----------------------
 
 Add the files you modified or created to the staging area::
 
-    git add `NAME_dataset.py`
+    git add NAME_dataset.py
 
 5. Commit your changes: 
 ------------------------

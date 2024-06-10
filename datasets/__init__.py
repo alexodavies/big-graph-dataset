@@ -17,8 +17,14 @@ from .loaders import *
 from .real import *
 from .synthetic import *
 
-__all__ = ['CoraDataset', 'RoadDataset', 'NeuralDataset',
-            'FacebookDataset', 'RedditDataset', 'EgoDataset',
-            'RandomDataset', 'CommunityDataset', 'TreeDataset',
-              'get_test_datasets', 'get_val_datasets', 'get_train_datasets', 'get_all_datasets',
-              'real', 'synthetic', 'loaders']
+_real_datasets = ['CoraDataset', 'RoadDataset', 'NeuralDataset',
+            'FacebookDataset', 'RedditDataset', 'EgoDataset']
+
+_synthetic_datasets = ['RandomDataset', 'CommunityDataset', 'TreeDataset']
+
+
+_loaders = ['get_test_datasets', 'get_val_datasets', 'get_train_datasets', 'get_all_datasets']
+
+_modules = ['real', 'synthetic', 'loaders']
+
+__all__ = _real_datasets + _synthetic_datasets + _loaders + _modules
