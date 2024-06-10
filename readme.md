@@ -31,13 +31,13 @@ This documentation page has much more detailed instructions on how to get starte
 
 The basics:
 - Create your own git branch
-- Copy the `datasets/example_dataset.py`
+- Copy the `datasets/real/example_dataset.py`
 - Have a look through
 - Re-tool it for your own dataset
 
 I've provided code for sub-sampling graphs and producing statistics.
 
-A few rules, demonstrated in `datasets/example_dataset.py`:
+A few rules, demonstrated in `datasets/real/example_dataset.py`:
 - The datasets need at least a train/val/test split
 - Datasets should be many small (less than 400 node) static graphs
 - Ideally, the number of graphs in each dataset should be controllable
