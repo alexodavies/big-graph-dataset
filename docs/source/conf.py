@@ -20,6 +20,7 @@ release = '0.01-dev'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
+    'sphinxcontrib.bibtex',
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.viewcode',
@@ -48,7 +49,6 @@ templates_path = ['_templates']
 exclude_patterns = []
 
 
-
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
@@ -67,3 +67,5 @@ latex_documents = [
     ('index', 'big-graph-dataset.tex', 'Big Graph Dataset Documentation',
      'Alex O. Davies', 'howto'),  # Change 'manual' to 'howto' or other themes as needed
 ]
+
+bibtex_bibfiles = ['big-graph-project-reference.bib']

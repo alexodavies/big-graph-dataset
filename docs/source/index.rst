@@ -57,7 +57,7 @@ The basics:
 
 I've provided code for sub-sampling graphs and producing statistics.
 
-A few rules, demonstrated in `datasets/example_dataset.py`:
+A few rules, demonstrated in `datasets/real/example_dataset.py`:
  - The datasets need at least a train/val/test split
  - Datasets should be many small (less than 400 node) graphs
  - Ideally the number of graphs in each dataset should be controllable
@@ -85,7 +85,7 @@ Datasets
 Documentation for the datsets currently in the Big Graph Dataset project.
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 3
 
    datasets
 
@@ -113,6 +113,16 @@ Should you wish your authorship to be anonymous, or if you have any further ques
    :maxdepth: 4
 
    credits
+
+
+**Citing**
+
+.. code-block:: bibtex
+
+   @misc{big-graph-dataset,
+   title = {{Big Graph Dataset} Documentation},
+   howpublished = {https://big-graph-dataset.readthedocs.io/}}
+
 
 Indices and tables
 ==================

@@ -22,29 +22,11 @@ Additionally the functions `get_X_datasets()` retrieve multiple datasets at once
    datasets/synthetic
    datasets/loaders
 
-.. From real data:
-.. ===============
 
-.. .. automodule:: datasets.real
-..    :members:
-..    :special-members: __init__
-..    :show-inheritance:
-..    :no-inherited-members:
+**Citing**
 
-.. From synthetic generators:
-.. ===========================
+.. code-block:: bibtex
 
-.. .. automodule:: datasets.synthetic
-..    :members:
-..    :special-members: __init__
-..    :show-inheritance:
-..    :no-inherited-members:
-
-.. Functions:
-.. ==========
-
-.. .. automodule:: datasets.loaders
-..    :members:
-..    :special-members: __init__
-..    :show-inheritance:
-..    :no-inherited-members:
+   @misc{big-graph-dataset,
+   title = {{Big Graph Dataset} Documentation},
+   howpublished = {https://big-graph-dataset.readthedocs.io/}}

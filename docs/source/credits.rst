@@ -9,3 +9,10 @@ Should you wish your authorship to be anonymous, or if you have any further ques
 Please bear in mind that your commit history is publicly available, and that the project is open-source, so you may be identifiable even if your authorship is removed.
 
 This page will be completed when the project is initially released.
+
+**Citing**
+.. code-block:: bibtex
+
+   @misc{big-graph-dataset,
+   title = {{Big Graph Dataset} Documentation},
+   howpublished = {https://big-graph-dataset.readthedocs.io/}}

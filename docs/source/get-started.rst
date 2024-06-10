@@ -3,7 +3,7 @@
 Welcome to the project! We're excited to have you on board.
 We'll be collaborating through GitHub, with everyone working in their own branch.
 
-There are a few rules for the datasets, demonstrated in ``datasets/example_dataset.py``:
+There are a few rules for the datasets, demonstrated in ``datasets/real/example_dataset.py``:
  - Please cite your sources for data in documentation - see the existing datasets for examples
  - Where possible start from existing datasets that have been used in-literature (to avoid ethics paperwork)
  - If using generators, use generators that are well-understood (for example Erdos-Renyi graphs)
@@ -121,3 +121,11 @@ assuming that you've added your dataset to the relevant ``__init__.py`` files.
 
 
 Feel free to reach out if you have any questions or need further assistance. Happy coding!
+
+**Citing**
+
+.. code-block:: bibtex
+
+   @misc{big-graph-dataset,
+   title = {{Big Graph Dataset} Documentation},
+   howpublished = {https://big-graph-dataset.readthedocs.io/}}

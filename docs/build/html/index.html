@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Big Graph Dataset &mdash; big-graph-dataset 0.01 documentation</title>
+  <title>Big Graph Dataset &mdash; big-graph-dataset 0.01-dev documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
@@ -15,7 +15,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=6ca3c713"></script>
+        <script src="_static/documentation_options.js?v=ff22ff82"></script>
         <script src="_static/doctools.js?v=9a2dae69"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -38,6 +38,9 @@
           <a href="#" class="icon icon-home">
             big-graph-dataset
           </a>
+              <div class="version">
+                0.01
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -139,7 +142,7 @@ That just means that the structure of the graphs don’t vary over time.</p>
 </dl>
 <p>I’ve provided code for sub-sampling graphs and producing statistics.</p>
 <dl class="simple">
-<dt>A few rules, demonstrated in <cite>datasets/example_dataset.py</cite>:</dt><dd><ul class="simple">
+<dt>A few rules, demonstrated in <cite>datasets/real/example_dataset.py</cite>:</dt><dd><ul class="simple">
 <li><p>The datasets need at least a train/val/test split</p></li>
 <li><p>Datasets should be many small (less than 400 node) graphs</p></li>
 <li><p>Ideally the number of graphs in each dataset should be controllable</p></li>
@@ -174,81 +177,18 @@ That just means that the structure of the graphs don’t vary over time.</p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="datasets.html">Many-Graph Datasets</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="datasets/real.html">From Real Data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="datasets/real.html#datasets.real.CoraDataset"><code class="docutils literal notranslate"><span class="pre">CoraDataset</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.CoraDataset.__init__"><code class="docutils literal notranslate"><span class="pre">CoraDataset.__init__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.CoraDataset._abc_impl"><code class="docutils literal notranslate"><span class="pre">CoraDataset._abc_impl</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.CoraDataset.process"><code class="docutils literal notranslate"><span class="pre">CoraDataset.process()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.CoraDataset.processed_file_names"><code class="docutils literal notranslate"><span class="pre">CoraDataset.processed_file_names</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.CoraDataset.raw_file_names"><code class="docutils literal notranslate"><span class="pre">CoraDataset.raw_file_names</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="datasets/real.html#datasets.real.EgoDataset"><code class="docutils literal notranslate"><span class="pre">EgoDataset</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.EgoDataset.__init__"><code class="docutils literal notranslate"><span class="pre">EgoDataset.__init__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.EgoDataset._abc_impl"><code class="docutils literal notranslate"><span class="pre">EgoDataset._abc_impl</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.EgoDataset.process"><code class="docutils literal notranslate"><span class="pre">EgoDataset.process()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.EgoDataset.processed_file_names"><code class="docutils literal notranslate"><span class="pre">EgoDataset.processed_file_names</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.EgoDataset.raw_file_names"><code class="docutils literal notranslate"><span class="pre">EgoDataset.raw_file_names</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="datasets/real.html#datasets.real.FacebookDataset"><code class="docutils literal notranslate"><span class="pre">FacebookDataset</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.FacebookDataset.__init__"><code class="docutils literal notranslate"><span class="pre">FacebookDataset.__init__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.FacebookDataset._abc_impl"><code class="docutils literal notranslate"><span class="pre">FacebookDataset._abc_impl</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.FacebookDataset.process"><code class="docutils literal notranslate"><span class="pre">FacebookDataset.process()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.FacebookDataset.processed_file_names"><code class="docutils literal notranslate"><span class="pre">FacebookDataset.processed_file_names</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.FacebookDataset.raw_file_names"><code class="docutils literal notranslate"><span class="pre">FacebookDataset.raw_file_names</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="datasets/real.html#datasets.real.NeuralDataset"><code class="docutils literal notranslate"><span class="pre">NeuralDataset</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.NeuralDataset.__init__"><code class="docutils literal notranslate"><span class="pre">NeuralDataset.__init__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.NeuralDataset._abc_impl"><code class="docutils literal notranslate"><span class="pre">NeuralDataset._abc_impl</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.NeuralDataset.process"><code class="docutils literal notranslate"><span class="pre">NeuralDataset.process()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.NeuralDataset.processed_file_names"><code class="docutils literal notranslate"><span class="pre">NeuralDataset.processed_file_names</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.NeuralDataset.raw_file_names"><code class="docutils literal notranslate"><span class="pre">NeuralDataset.raw_file_names</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="datasets/real.html#datasets.real.RedditDataset"><code class="docutils literal notranslate"><span class="pre">RedditDataset</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.RedditDataset.__init__"><code class="docutils literal notranslate"><span class="pre">RedditDataset.__init__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.RedditDataset._abc_impl"><code class="docutils literal notranslate"><span class="pre">RedditDataset._abc_impl</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.RedditDataset.process"><code class="docutils literal notranslate"><span class="pre">RedditDataset.process()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.RedditDataset.processed_file_names"><code class="docutils literal notranslate"><span class="pre">RedditDataset.processed_file_names</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.RedditDataset.raw_file_names"><code class="docutils literal notranslate"><span class="pre">RedditDataset.raw_file_names</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="datasets/real.html#datasets.real.RoadDataset"><code class="docutils literal notranslate"><span class="pre">RoadDataset</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.RoadDataset.__init__"><code class="docutils literal notranslate"><span class="pre">RoadDataset.__init__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.RoadDataset._abc_impl"><code class="docutils literal notranslate"><span class="pre">RoadDataset._abc_impl</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.RoadDataset.process"><code class="docutils literal notranslate"><span class="pre">RoadDataset.process()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.RoadDataset.processed_file_names"><code class="docutils literal notranslate"><span class="pre">RoadDataset.processed_file_names</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/real.html#datasets.real.RoadDataset.raw_file_names"><code class="docutils literal notranslate"><span class="pre">RoadDataset.raw_file_names</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="datasets/real.html#datasets.real.CoraDataset"><code class="docutils literal notranslate"><span class="pre">CoraDataset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="datasets/real.html#datasets.real.EgoDataset"><code class="docutils literal notranslate"><span class="pre">EgoDataset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="datasets/real.html#datasets.real.FacebookDataset"><code class="docutils literal notranslate"><span class="pre">FacebookDataset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="datasets/real.html#datasets.real.NeuralDataset"><code class="docutils literal notranslate"><span class="pre">NeuralDataset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="datasets/real.html#datasets.real.RedditDataset"><code class="docutils literal notranslate"><span class="pre">RedditDataset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="datasets/real.html#datasets.real.RoadDataset"><code class="docutils literal notranslate"><span class="pre">RoadDataset</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="datasets/synthetic.html">Synthetic</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="datasets/synthetic.html#datasets.synthetic.CommunityDataset"><code class="docutils literal notranslate"><span class="pre">CommunityDataset</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="datasets/synthetic.html#datasets.synthetic.CommunityDataset.__init__"><code class="docutils literal notranslate"><span class="pre">CommunityDataset.__init__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/synthetic.html#datasets.synthetic.CommunityDataset._abc_impl"><code class="docutils literal notranslate"><span class="pre">CommunityDataset._abc_impl</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/synthetic.html#datasets.synthetic.CommunityDataset.process"><code class="docutils literal notranslate"><span class="pre">CommunityDataset.process()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/synthetic.html#datasets.synthetic.CommunityDataset.processed_file_names"><code class="docutils literal notranslate"><span class="pre">CommunityDataset.processed_file_names</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/synthetic.html#datasets.synthetic.CommunityDataset.raw_file_names"><code class="docutils literal notranslate"><span class="pre">CommunityDataset.raw_file_names</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="datasets/synthetic.html#datasets.synthetic.RandomDataset"><code class="docutils literal notranslate"><span class="pre">RandomDataset</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="datasets/synthetic.html#datasets.synthetic.RandomDataset.__init__"><code class="docutils literal notranslate"><span class="pre">RandomDataset.__init__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/synthetic.html#datasets.synthetic.RandomDataset._abc_impl"><code class="docutils literal notranslate"><span class="pre">RandomDataset._abc_impl</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/synthetic.html#datasets.synthetic.RandomDataset.process"><code class="docutils literal notranslate"><span class="pre">RandomDataset.process()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/synthetic.html#datasets.synthetic.RandomDataset.processed_file_names"><code class="docutils literal notranslate"><span class="pre">RandomDataset.processed_file_names</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/synthetic.html#datasets.synthetic.RandomDataset.raw_file_names"><code class="docutils literal notranslate"><span class="pre">RandomDataset.raw_file_names</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="datasets/synthetic.html#datasets.synthetic.TreeDataset"><code class="docutils literal notranslate"><span class="pre">TreeDataset</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="datasets/synthetic.html#datasets.synthetic.TreeDataset.__init__"><code class="docutils literal notranslate"><span class="pre">TreeDataset.__init__()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/synthetic.html#datasets.synthetic.TreeDataset._abc_impl"><code class="docutils literal notranslate"><span class="pre">TreeDataset._abc_impl</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/synthetic.html#datasets.synthetic.TreeDataset.process"><code class="docutils literal notranslate"><span class="pre">TreeDataset.process()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/synthetic.html#datasets.synthetic.TreeDataset.processed_file_names"><code class="docutils literal notranslate"><span class="pre">TreeDataset.processed_file_names</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="datasets/synthetic.html#datasets.synthetic.TreeDataset.raw_file_names"><code class="docutils literal notranslate"><span class="pre">TreeDataset.raw_file_names</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="datasets/synthetic.html#datasets.synthetic.CommunityDataset"><code class="docutils literal notranslate"><span class="pre">CommunityDataset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="datasets/synthetic.html#datasets.synthetic.RandomDataset"><code class="docutils literal notranslate"><span class="pre">RandomDataset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="datasets/synthetic.html#datasets.synthetic.TreeDataset"><code class="docutils literal notranslate"><span class="pre">TreeDataset</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="datasets/loaders.html">Functions &amp; Loaders</a><ul>
@@ -288,6 +228,12 @@ Contributors, by default, will be given fair credit upon initial release of the 
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
 </ul>
+</div>
+<p><strong>Citing</strong></p>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@misc</span><span class="p">{</span><span class="nl">big-graph-dataset</span><span class="p">,</span>
+<span class="na">title</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{{Big Graph Dataset} Documentation}</span><span class="p">,</span>
+<span class="na">howpublished</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{https://big-graph-dataset.readthedocs.io/}</span><span class="p">}</span>
+</pre></div>
 </div>
 </section>
 <section id="indices-and-tables">
