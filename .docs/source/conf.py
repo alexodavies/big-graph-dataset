@@ -26,7 +26,8 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.napoleon',  # For Google and NumPy style docstrings
     'sphinx_autodoc_typehints',  # For type hints support
-    'nbsphinx'
+    'nbsphinx',
+    'sphinx_readme'
 ]
 
 # Optional: Configure autodoc
@@ -75,3 +76,13 @@ html_theme_options = {
     'logo_only': True,
     'display_version': False,
 }
+
+html_context = {
+    'display_github': True,
+    'github_user': 'alexodavies',
+    'github_repo': 'big-graph-dataset'
+}
+
+html_baseurl = 'https://big-graph-dataset.readthedocs.io/en/latest/'
+readme_src_files = 'index.rst'
+readme_docs_url_type = 'code'
