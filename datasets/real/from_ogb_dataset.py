@@ -155,4 +155,4 @@ if __name__ == "__main__":
     # graphs = ESWR(fb_graph, 200, 100)
     # G = download_cora()
     # print(G)
-    dataset = FacebookDataset(os.getcwd()+'/original_datasets/'+'facebook_large')
+    dataset = FacebookDataset(os.getcwd()+'/bgd_files/'+'facebook_large')

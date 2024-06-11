@@ -28,7 +28,7 @@ def download_roads(visualise = False):
     zip_url = "https://snap.stanford.edu/data/roadNet-PA.txt.gz"
 
     start_dir = os.getcwd()
-    os.chdir("original_datasets")
+    os.chdir("bgd_files")
 
 
     if "roads" not in os.listdir():
@@ -209,5 +209,5 @@ class RoadDataset(InMemoryDataset):
         del data_list
 
 if __name__ == "__main__":
-    dataset = RoadDataset(os.getcwd()+'/original_datasets/'+'roads', stage = "train")
+    dataset = RoadDataset(os.getcwd()+'/bgd_files/'+'roads', stage = "train")
     describe_one_dataset(dataset)

@@ -68,7 +68,7 @@ def download_example():
 
     # swap into directory
     start_dir = os.getcwd()
-    os.chdir("original_datasets")
+    os.chdir("bgd_files")
 
     # create directory if we haven't before
     if "example" not in os.listdir():
@@ -232,14 +232,14 @@ class ExampleDataset(InMemoryDataset):
 # Run this to check that everything works!
 if __name__ == "__main__":
     # Please set the last part of the path to your dataset name!
-    dataset = ExampleDataset(os.getcwd()+'/original_datasets/'+'example', stage = "train")
+    dataset = ExampleDataset(os.getcwd()+'/bgd_files/'+'example', stage = "train")
     describe_one_dataset(dataset)
-    vis_grid(dataset[:16], os.getcwd()+"/original_datasets/example/train.png")
+    vis_grid(dataset[:16], os.getcwd()+"/bgd_files/example/train.png")
 
-    dataset = ExampleDataset(os.getcwd()+'/original_datasets/'+'example', stage = "val")
+    dataset = ExampleDataset(os.getcwd()+'/bgd_files/'+'example', stage = "val")
     describe_one_dataset(dataset)
-    vis_grid(dataset[:16], os.getcwd()+"/original_datasets/example/val.png")
+    vis_grid(dataset[:16], os.getcwd()+"/bgd_files/example/val.png")
 
-    dataset = ExampleDataset(os.getcwd()+'/original_datasets/'+'example', stage = "test")
+    dataset = ExampleDataset(os.getcwd()+'/bgd_files/'+'example', stage = "test")
     describe_one_dataset(dataset)
-    vis_grid(dataset[:16], os.getcwd()+"/original_datasets/example/test.png")
+    vis_grid(dataset[:16], os.getcwd()+"/bgd_files/example/test.png")

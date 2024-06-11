@@ -38,7 +38,7 @@ def load_fly(return_tensor = False):
     fly_mat = fly_mat.to_numpy()
 
     os.chdir(start_dir)
-    os.chdir("original_datasets")
+    os.chdir("bgd_files")
 
     if "fruit_fly" not in os.listdir():
         os.mkdir("fruit_fly")
@@ -203,14 +203,14 @@ class NeuralDataset(InMemoryDataset):
 
 
 if __name__ == "__main__":
-    dataset = NeuralDataset(os.getcwd()+'/original_datasets/'+'fruit_fly', stage = "train")
+    dataset = NeuralDataset(os.getcwd()+'/bgd_files/'+'fruit_fly', stage = "train")
     describe_one_dataset(dataset)
-    vis_grid(dataset[:16], os.getcwd()+"/original_datasets/fruit_fly/train.png")
+    vis_grid(dataset[:16], os.getcwd()+"/bgd_files/fruit_fly/train.png")
     
-    dataset = NeuralDataset(os.getcwd()+'/original_datasets/'+'fruit_fly', stage = "val")
+    dataset = NeuralDataset(os.getcwd()+'/bgd_files/'+'fruit_fly', stage = "val")
     describe_one_dataset(dataset)
-    vis_grid(dataset[:16], os.getcwd()+"/original_datasets/fruit_fly/val.png")
+    vis_grid(dataset[:16], os.getcwd()+"/bgd_files/fruit_fly/val.png")
     
-    dataset = NeuralDataset(os.getcwd()+'/original_datasets/'+'fruit_fly', stage = "test")
+    dataset = NeuralDataset(os.getcwd()+'/bgd_files/'+'fruit_fly', stage = "test")
     describe_one_dataset(dataset)
-    vis_grid(dataset[:16], os.getcwd()+"/original_datasets/fruit_fly/test.png")
+    vis_grid(dataset[:16], os.getcwd()+"/bgd_files/fruit_fly/test.png")

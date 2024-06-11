@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>datasets.real.reddit_dataset &mdash; big-graph-dataset 0.01-dev documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=ff22ff82"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/bgd-logo-transparent.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Big Graph Dataset</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../get-started.html">Set Up &amp; Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../get-started.html#testing-code">Testing Code</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../reddit-dataset-example.html">Reddit Example Dataset</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../datasets.html">Many-Graph Datasets</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../top.html">ToP (Topology only Pre-training)</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../credits.html">Credits</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">big-graph-dataset</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">datasets.real.reddit_dataset</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for datasets.real.reddit_dataset</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">wget</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">ESWR</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch_geometric.data</span> <span class="kn">import</span> <span class="n">Data</span><span class="p">,</span> <span class="n">InMemoryDataset</span>
+
+
+<span class="k">def</span> <span class="nf">fix_property_string</span><span class="p">(</span><span class="n">input_string</span><span class="p">):</span>
+    <span class="n">input_string</span> <span class="o">=</span> <span class="n">input_string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="n">input_string</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">input_string</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">input_string</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">download_reddit</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Getting reddit networkx graph&quot;</span><span class="p">)</span>
+    <span class="n">start_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">start_dir</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;bgd_files/reddit&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+
+    <span class="n">graph_url</span> <span class="o">=</span> <span class="s2">&quot;https://snap.stanford.edu/data/soc-redditHyperlinks-title.tsv&quot;</span>
+    <span class="n">embedding_url</span> <span class="o">=</span> <span class="s2">&quot;http://snap.stanford.edu/data/web-redditEmbeddings-subreddits.csv&quot;</span>
+        
+    <span class="k">if</span> <span class="s2">&quot;reddit-graph.npz&quot;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">():</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;reddit-graph.npz&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">graph</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">start_dir</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">graph</span>
+
+    <span class="k">if</span> <span class="s2">&quot;soc-redditHyperlinks-title.tsv&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">():</span>
+        <span class="n">graph_data</span> <span class="o">=</span> <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">graph_url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">&quot;web-redditEmbeddings-subreddits.csv&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">():</span>
+        <span class="n">embeddings</span> <span class="o">=</span> <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">embedding_url</span><span class="p">)</span>
+
+    <span class="c1"># We know that there are 300 components in the node feature vectors</span>
+    <span class="n">embedding_column_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;COMPONENT&quot;</span><span class="p">,</span> <span class="o">*</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">300</span><span class="p">)]]</span>
+    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;web-redditEmbeddings-subreddits.csv&quot;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">embedding_column_names</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+    <span class="n">graph_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;soc-redditHyperlinks-title.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+    <span class="c1"># Avoids weird directory problems</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">start_dir</span><span class="p">)</span>
+
+    <span class="n">embeddings</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;COMPONENT&quot;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">embeddings</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">desc</span> <span class="o">=</span> <span class="s2">&quot;Adding nodes&quot;</span><span class="p">):</span>
+        <span class="c1"># attrs here is taken from the embedding data, with the node id the column (col)</span>
+        <span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="n">embeddings</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">))</span>
+
+    <span class="n">sources</span> <span class="o">=</span> <span class="n">graph_data</span><span class="p">[</span><span class="s2">&quot;SOURCE_SUBREDDIT&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+    <span class="n">targets</span> <span class="o">=</span> <span class="n">graph_data</span><span class="p">[</span><span class="s2">&quot;TARGET_SUBREDDIT&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+    <span class="c1"># This line can take a while!</span>
+    <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span><span class="n">fix_property_string</span><span class="p">(</span><span class="n">properties</span><span class="p">)</span> <span class="k">for</span> <span class="n">properties</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">graph_data</span><span class="p">[</span><span class="s2">&quot;PROPERTIES&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">desc</span> <span class="o">=</span> <span class="s2">&quot;Wrangling edge features&quot;</span><span class="p">)]</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">graph_data</span><span class="p">[</span><span class="s2">&quot;LINK_SENTIMENT&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+    <span class="n">all_nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">sources</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">desc</span> <span class="o">=</span> <span class="s2">&quot;Adding edges&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">sources</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">all_nodes</span> <span class="ow">and</span> <span class="n">targets</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">all_nodes</span><span class="p">:</span>
+            <span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">sources</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">targets</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                        <span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                        <span class="n">attr</span> <span class="o">=</span> <span class="n">attrs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+
+    <span class="c1"># Last tidying bits</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">convert_node_labels_to_integers</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+    <span class="n">CGs</span> <span class="o">=</span> <span class="p">[</span><span class="n">graph</span><span class="o">.</span><span class="n">subgraph</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">nx</span><span class="o">.</span><span class="n">connected_components</span><span class="p">(</span><span class="n">graph</span><span class="p">)]</span>
+    <span class="n">CGs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">CGs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">(),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">CGs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">convert_node_labels_to_integers</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+
+    <span class="c1"># Save the graph!</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;bgd_files/reddit/reddit-graph.npz&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">graph</span>
+
+<span class="k">def</span> <span class="nf">get_reddit_dataset</span><span class="p">(</span><span class="n">num</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">):</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">download_reddit</span><span class="p">()</span>
+
+    <span class="c1"># Sample 1000 graphs of max 96 nodes from the big reddit graph</span>
+    <span class="n">nx_graph_list</span> <span class="o">=</span> <span class="n">ESWR</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">96</span><span class="p">)</span>
+
+    <span class="n">pyg_graph_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">specific_from_networkx</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">nx_graph_list</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">pyg_graph_list</span>
+
+<span class="k">def</span> <span class="nf">specific_from_networkx</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
+    <span class="c1"># Turns a graph into a pytorch geometric object</span>
+    <span class="c1"># Mostly by unpacking dictionaries on nodes and edges</span>
+    <span class="c1"># Here node labels are the target</span>
+    <span class="c1"># One of these functions for each dataset ideally - they are unlikely to transfer across datasets</span>
+    <span class="n">node_attrs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">edge_indices</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">edge_labels</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">edge_attrs</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Collect node labels and attributes</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)):</span>
+        <span class="c1"># list(graph.nodes(data=True)) returns [(node_id1, {attribute dictionary}), (node_id2, ...), (node_id3, ...)]</span>
+        <span class="n">node_attrs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;attrs&quot;</span><span class="p">]))</span>
+
+    <span class="c1"># Collect edge indices and attributes</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="c1"># graph.edges(data=True) is a generator producing (node_id1, node_id2, {attribute dictionary})</span>
+        <span class="n">edge_indices</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+        <span class="n">edge_attrs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s2">&quot;attr&quot;</span><span class="p">]))</span> 
+        <span class="n">edge_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s2">&quot;labels&quot;</span><span class="p">])</span>
+
+
+    <span class="c1"># Specific to classification on edges! This is a binary edge classification (pos/neg) task</span>
+    <span class="n">edge_labels</span> <span class="o">=</span> <span class="p">((</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">edge_labels</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">edge_attrs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">edge_attrs</span><span class="p">)</span>
+    <span class="n">node_attrs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">node_attrs</span><span class="p">)</span>
+    <span class="n">edge_indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">edge_indices</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span><span class="o">.</span><span class="n">t</span><span class="p">()</span><span class="o">.</span><span class="n">contiguous</span><span class="p">()</span>
+
+    <span class="c1"># Create PyG Data object</span>
+    <span class="c1"># Can pass:</span>
+    <span class="c1"># x:            node features, shape (n nodes x n features)</span>
+    <span class="c1"># edge_index:   the list of edges in the graph, shape (2, n_edges). Entries edge_index[i, :] are [node_id1, node_id2].</span>
+    <span class="c1"># edge_attr:    edge features, shape (n_edges, n_features), same order as edgelist</span>
+    <span class="c1"># y:            targets. Graph regression shape (n_variables), graph classification (n_classes), node classification (n_nodes, n_classes), edge classification (n_edges, n_classes)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">node_attrs</span><span class="p">,</span> <span class="n">edge_index</span><span class="o">=</span><span class="n">edge_indices</span><span class="p">,</span> <span class="n">edge_attr</span> <span class="o">=</span> <span class="n">edge_attrs</span><span class="p">,</span>  <span class="n">y</span><span class="o">=</span><span class="n">edge_labels</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+
+
+<div class="viewcode-block" id="RedditDataset">
+<a class="viewcode-back" href="../../../datasets/real.html#datasets.real.RedditDataset">[docs]</a>
+<span class="k">class</span> <span class="nc">RedditDataset</span><span class="p">(</span><span class="n">InMemoryDataset</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Contributor: Alex O. Davies</span>
+<span class="sd">    </span>
+<span class="sd">    Contributor email: `alexander.davies@bristol.ac.uk`</span>
+<span class="sd">    </span>
+
+<span class="sd">    Reddit hyperlink graphs - ie graphs of subreddits interacting with one another.</span>
+<span class="sd">    The original graph is sourced from:</span>
+
+<span class="sd">         `Kumar, Srijan, et al. &quot;Community interaction and conflict on the web.&quot; Proceedings of the 2018 world wide web conference. 2018.`</span>
+
+<span class="sd">    We produce this dataset of small graphs using ESWR.</span>
+<span class="sd">    The data has text embeddings as node features for each subreddit and text features for the cross-post edges.</span>
+
+<span class="sd">    The task is edge classification for the sentiment of the interaction between subreddits.</span>
+
+<span class="sd">     - Task: Edge classification</span>
+<span class="sd">     - Num node features: 300</span>
+<span class="sd">     - Num edge features: 86</span>
+<span class="sd">     - Num target values: 1</span>
+<span class="sd">     - Target shape: N Edges</span>
+<span class="sd">     - Num graphs: Parameterised by `num`</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        root (str): Root directory where the dataset should be saved.</span>
+<span class="sd">        stage (str): The stage of the dataset to load. One of &quot;train&quot;, &quot;val&quot;, &quot;test&quot;. (default: :obj:`&quot;train&quot;`)</span>
+<span class="sd">        transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before every access. (default: :obj:`None`)</span>
+<span class="sd">        pre_transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before being saved to disk. (default: :obj:`None`)</span>
+<span class="sd">        pre_filter (callable, optional): A function that takes in an :obj:`torch_geometric.data.Data` object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: :obj:`None`)</span>
+<span class="sd">        num (int): The number of samples to take from the original dataset. (default: :obj:`2000`).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="RedditDataset.__init__">
+<a class="viewcode-back" href="../../../datasets/real.html#datasets.real.RedditDataset.__init__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span>  <span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pre_transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pre_filter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">num</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stage</span> <span class="o">=</span> <span class="n">stage</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stage_to_index</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;train&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+                               <span class="s2">&quot;val&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+                               <span class="s2">&quot;test&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+        
+        <span class="c1"># Options are node-classification, node-regression, graph-classification, graph-regression, edge-regression, edge-classification</span>
+        <span class="c1"># Graph-level tasks are preferred! (graph-classification and graph-regression)</span>
+        <span class="c1"># edge-prediction is another option if you can&#39;t think of a good task</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="s2">&quot;edge-classification&quot;</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">pre_transform</span><span class="p">,</span> <span class="n">pre_filter</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">slices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">processed_paths</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stage_to_index</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stage</span><span class="p">]])</span></div>
+
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">raw_file_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Replace with your saved raw file name</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;reddit-graph.npz&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">processed_file_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;train.pt&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;val.pt&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;test.pt&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="RedditDataset.process">
+<a class="viewcode-back" href="../../../datasets/real.html#datasets.real.RedditDataset.process">[docs]</a>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Read data into huge `Data` list.</span>
+
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">processed_paths</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stage_to_index</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stage</span><span class="p">]]):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reddit files exist&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="c1"># Get a list of num pytorch_geometric.data.Data objects</span>
+        <span class="n">data_list</span> <span class="o">=</span> <span class="n">get_reddit_dataset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="p">)</span>
+
+        <span class="c1"># Torch geometric stuff</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pre_filter</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">data_list</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pre_filter</span><span class="p">(</span><span class="n">data</span><span class="p">)]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pre_transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">pre_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">data_list</span><span class="p">]</span>
+
+        <span class="c1"># Save data</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">slices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">collate</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="n">slices</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">processed_paths</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stage_to_index</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stage</span><span class="p">]])</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Alex O. Davies.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

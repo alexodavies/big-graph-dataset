@@ -20,7 +20,7 @@ def download_facebook(visualise = False):
     zip_url = "https://snap.stanford.edu/data/facebook_large.zip"
 
     start_dir = os.getcwd()
-    os.chdir("original_datasets")
+    os.chdir("bgd_files")
 
     if "facebook-graph.npz" in os.listdir():
         with open("facebook-graph.npz", "rb") as f:
@@ -199,14 +199,14 @@ class FacebookDataset(InMemoryDataset):
 
 
 if __name__ == "__main__":
-    dataset = FacebookDataset(os.getcwd()+'/original_datasets/'+'facebook_large', stage = "train", num = 5000)
+    dataset = FacebookDataset(os.getcwd()+'/bgd_files/'+'facebook_large', stage = "train", num = 5000)
     describe_one_dataset(dataset)
-    vis_grid(dataset[:16], os.getcwd()+"/original_datasets/facebook_large/train.png")
+    vis_grid(dataset[:16], os.getcwd()+"/bgd_files/facebook_large/train.png")
     
-    dataset = FacebookDataset(os.getcwd()+'/original_datasets/'+'facebook_large', stage = "val", num = 1000)
+    dataset = FacebookDataset(os.getcwd()+'/bgd_files/'+'facebook_large', stage = "val", num = 1000)
     describe_one_dataset(dataset)
-    vis_grid(dataset[:16], os.getcwd()+"/original_datasets/facebook_large/val.png")
+    vis_grid(dataset[:16], os.getcwd()+"/bgd_files/facebook_large/val.png")
     
-    dataset = FacebookDataset(os.getcwd()+'/original_datasets/'+'facebook_large', stage = "test", num = 1000)
+    dataset = FacebookDataset(os.getcwd()+'/bgd_files/'+'facebook_large', stage = "test", num = 1000)
     describe_one_dataset(dataset)
-    vis_grid(dataset[:16], os.getcwd()+"/original_datasets/facebook_large/test.png")
+    vis_grid(dataset[:16], os.getcwd()+"/bgd_files/facebook_large/test.png")

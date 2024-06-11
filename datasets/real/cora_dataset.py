@@ -82,7 +82,7 @@ def download_cora(visualise = False):
 
     start_dir = os.getcwd()
     # print(os.getcwd(), os.listdir())
-    os.chdir("original_datasets")
+    os.chdir("bgd_files")
 
     if "cora" not in os.listdir():
         print("Downloading CORA")
@@ -224,11 +224,11 @@ class CoraDataset(InMemoryDataset):
 
 
 if __name__ == "__main__":
-    dataset = CoraDataset(os.getcwd()+'/original_datasets/'+'cora', stage = "train")
+    dataset = CoraDataset(os.getcwd()+'/bgd_files/'+'cora', stage = "train")
     describe_one_dataset(dataset)
 
 
-    dataset = CoraDataset(os.getcwd()+'/original_datasets/'+'cora', stage = "val")
+    dataset = CoraDataset(os.getcwd()+'/bgd_files/'+'cora', stage = "val")
     describe_one_dataset(dataset)
-    dataset = CoraDataset(os.getcwd()+'/original_datasets/'+'cora', stage = "test")
+    dataset = CoraDataset(os.getcwd()+'/bgd_files/'+'cora', stage = "test")
     describe_one_dataset(dataset)

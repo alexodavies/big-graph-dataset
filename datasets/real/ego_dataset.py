@@ -15,7 +15,7 @@ def get_twitch(num = 49152, include_targets = False):
     print("\nProcessing twitch egos dataset")
     zip_url = "https://snap.stanford.edu/data/twitch_egos.zip"
     start_dir = os.getcwd()
-    os.chdir("original_datasets")
+    os.chdir("bgd_files")
 
     if "twitch_edges.json" not in os.listdir("twitch_egos"):
         print("Downloading Twitch Egos")
@@ -135,5 +135,5 @@ class EgoDataset(InMemoryDataset):
 
 
 if __name__ == "__main__":
-    dataset = EgoDataset(os.getcwd()+'/original_datasets/'+'twitch_egos', stage = "train")
+    dataset = EgoDataset(os.getcwd()+'/bgd_files/'+'twitch_egos', stage = "train")
     describe_one_dataset(dataset)

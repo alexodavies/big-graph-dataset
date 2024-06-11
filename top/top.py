@@ -290,9 +290,9 @@ def get_top_model():
     checkpoint_url = "https://github.com/neutralpronoun/general-gcl/raw/main/outputs/all-100.pt"
     config_url = "https://github.com/neutralpronoun/general-gcl/raw/main/outputs/all-100.yaml"
 
-    if "top_models" not in os.listdir():
-        os.mkdir("top_models")
-    os.chdir("top_models")
+    if "bgd_models" not in os.listdir():
+        os.mkdir("bgd_models")
+    os.chdir("bgd_models")
 
     if "all-100.pt" not in os.listdir():
         checkpoint = wget.download(checkpoint_url)
@@ -324,9 +324,9 @@ def compute_top_scores(datasets, names):
     get_top_model()
     checkpoint = "all-100.pt"
 
-    checkpoint_path = f"top_models/{checkpoint}"
+    checkpoint_path = f"bgd_models/{checkpoint}"
     cfg_name = checkpoint.split('.')[0] + ".yaml"
-    config_path = f"top_models/{cfg_name}"
+    config_path = f"bgd_models/{cfg_name}"
 
     with open(config_path, 'r') as stream:
         try:

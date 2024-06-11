@@ -20,7 +20,7 @@ def download_reddit():
     print("Getting reddit networkx graph")
     start_dir = os.getcwd()
     print(start_dir)
-    os.chdir("original_datasets/reddit")
+    os.chdir("bgd_files/reddit")
     print(os.getcwd())
 
     graph_url = "https://snap.stanford.edu/data/soc-redditHyperlinks-title.tsv"
@@ -78,7 +78,7 @@ def download_reddit():
     graph = nx.convert_node_labels_to_integers(graph)
 
     # Save the graph!
-    with open("original_datasets/reddit/reddit-graph.npz", "wb") as f:
+    with open("bgd_files/reddit/reddit-graph.npz", "wb") as f:
         pickle.dump(graph, f)
 
     return graph

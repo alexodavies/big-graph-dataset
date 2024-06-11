@@ -21,8 +21,8 @@ from datasets.synthetic.community_dataset import CommunityDataset
 
 
 def get_chemical_datasets(transforms, num, stage="train"):
-    if "original_datasets" not in os.listdir():
-        os.mkdir("original_datasets")
+    if "bgd_files" not in os.listdir():
+        os.mkdir("bgd_files")
     print(f"stage: {stage}")
 
     # if stage == "train" or stage == "train-adgcl":
@@ -35,7 +35,7 @@ def get_chemical_datasets(transforms, num, stage="train"):
                 ]
 
     print(f"Molecular datasets: {names}")
-    datasets = [PygGraphPropPredDataset(name=name, root='./original_datasets/', transform=transforms) for name in names]
+    datasets = [PygGraphPropPredDataset(name=name, root='./bgd_files/', transform=transforms) for name in names]
     print(datasets)
     split_idx = [data.get_idx_split() for data in datasets]
 
@@ -53,27 +53,27 @@ def get_chemical_datasets(transforms, num, stage="train"):
     # Need to convert to pyg inmemorydataset
     # num = num if stage != "train" else 5*num
     # if stage != "val":
-    datasets = [FromOGBDataset(os.getcwd()+'/original_datasets/'+names[i], data, num=num, stage = stage)
+    datasets = [FromOGBDataset(os.getcwd()+'/bgd_files/'+names[i], data, num=num, stage = stage)
                 for i, data in enumerate(datasets)] #  if names[i] != "ogbg-molpcba" else 5*num, stage=stage
     # else:
         # Include train data in validation for fine tuning if dataset is evaluation only (ie not molpcba)
-        # datasets = [FromOGBDataset(os.getcwd()+'/original_datasets/'+names[i], data, num=num, stage = "train") + FromOGBDataset(os.getcwd()+'/original_datasets/'+names[i], val_datasets[i], num=num, stage = "val")
+        # datasets = [FromOGBDataset(os.getcwd()+'/bgd_files/'+names[i], data, num=num, stage = "train") + FromOGBDataset(os.getcwd()+'/bgd_files/'+names[i], val_datasets[i], num=num, stage = "val")
                     # for i, data in enumerate(train_datasets)] #  if names[i] != "ogbg-molpcba" else 5*num, stage=stage
 
     return datasets, names
 
 def get_social_datasets(transforms, num, stage = "train", exclude = None):
-    if "original_datasets" not in os.listdir():
-        os.mkdir("original_datasets")
+    if "bgd_files" not in os.listdir():
+        os.mkdir("bgd_files")
 
     if stage == "train":
         social_datasets = [
-            transforms(FacebookDataset(os.getcwd() + '/original_datasets/' + 'facebook_large', num=num, stage = stage)),
-            transforms(EgoDataset(os.getcwd() + '/original_datasets/' + 'twitch_egos', num=num, stage=stage)),
-            transforms(CoraDataset(os.getcwd() + '/original_datasets/' + 'cora', num=num, stage = stage)),
-            transforms(RoadDataset(os.getcwd() + '/original_datasets/' + 'roads', num=num, stage=stage)),
-            transforms(NeuralDataset(os.getcwd() + '/original_datasets/' + 'fruit_fly', num=num, stage=stage)),
-            transforms(RedditDataset(os.getcwd() + '/original_datasets/' + 'reddit', num=num, stage=stage))]
+            transforms(FacebookDataset(os.getcwd() + '/bgd_files/' + 'facebook_large', num=num, stage = stage)),
+            transforms(EgoDataset(os.getcwd() + '/bgd_files/' + 'twitch_egos', num=num, stage=stage)),
+            transforms(CoraDataset(os.getcwd() + '/bgd_files/' + 'cora', num=num, stage = stage)),
+            transforms(RoadDataset(os.getcwd() + '/bgd_files/' + 'roads', num=num, stage=stage)),
+            transforms(NeuralDataset(os.getcwd() + '/bgd_files/' + 'fruit_fly', num=num, stage=stage)),
+            transforms(RedditDataset(os.getcwd() + '/bgd_files/' + 'reddit', num=num, stage=stage))]
         names = ["facebook_large", "twitch_egos", "cora", "roads", "fruit_fly", "reddit"]
 
         if exclude is None:
@@ -104,28 +104,28 @@ def get_social_datasets(transforms, num, stage = "train", exclude = None):
 
     elif stage == "val":
         social_datasets = [
-            transforms(FacebookDataset(os.getcwd() + '/original_datasets/' + 'facebook_large', stage=stage, num=num)),
-            transforms(EgoDataset(os.getcwd() + '/original_datasets/' + 'twitch_egos', stage=stage, num=num)),
-            transforms(CoraDataset(os.getcwd() + '/original_datasets/' + 'cora', stage=stage, num=num)),
-            transforms(RoadDataset(os.getcwd() + '/original_datasets/' + 'roads', stage=stage, num=num)),
-            transforms(NeuralDataset(os.getcwd() + '/original_datasets/' + 'fruit_fly', stage=stage, num=num)),
-            transforms(RedditDataset(os.getcwd() + '/original_datasets/' + 'reddit', num=num, stage=stage)),
-            transforms(TreeDataset(os.getcwd() + '/original_datasets/' + 'trees', stage=stage, num=num)),
-            transforms(RandomDataset(os.getcwd() + '/original_datasets/' + 'random', stage=stage, num=num)),
-            transforms(CommunityDataset(os.getcwd() + '/original_datasets/' + 'community', stage=stage, num=num))
+            transforms(FacebookDataset(os.getcwd() + '/bgd_files/' + 'facebook_large', stage=stage, num=num)),
+            transforms(EgoDataset(os.getcwd() + '/bgd_files/' + 'twitch_egos', stage=stage, num=num)),
+            transforms(CoraDataset(os.getcwd() + '/bgd_files/' + 'cora', stage=stage, num=num)),
+            transforms(RoadDataset(os.getcwd() + '/bgd_files/' + 'roads', stage=stage, num=num)),
+            transforms(NeuralDataset(os.getcwd() + '/bgd_files/' + 'fruit_fly', stage=stage, num=num)),
+            transforms(RedditDataset(os.getcwd() + '/bgd_files/' + 'reddit', num=num, stage=stage)),
+            transforms(TreeDataset(os.getcwd() + '/bgd_files/' + 'trees', stage=stage, num=num)),
+            transforms(RandomDataset(os.getcwd() + '/bgd_files/' + 'random', stage=stage, num=num)),
+            transforms(CommunityDataset(os.getcwd() + '/bgd_files/' + 'community', stage=stage, num=num))
             ]
         names = ["facebook_large", "twitch_egos", "cora", "roads", "fruit_fly", "reddit", "trees", "random", "community"]
     else:
         social_datasets = [
-            transforms(FacebookDataset(os.getcwd() + '/original_datasets/' + 'facebook_large', stage=stage, num=num)),
-            transforms(EgoDataset(os.getcwd() + '/original_datasets/' + 'twitch_egos', stage=stage, num=num)),
-            transforms(CoraDataset(os.getcwd() + '/original_datasets/' + 'cora', stage=stage, num=num)),
-            transforms(RoadDataset(os.getcwd() + '/original_datasets/' + 'roads', stage=stage, num=num)),
-            transforms(NeuralDataset(os.getcwd() + '/original_datasets/' + 'fruit_fly', stage=stage, num=num)),
-            transforms(RedditDataset(os.getcwd() + '/original_datasets/' + 'reddit', num=num, stage=stage)),
-            transforms(TreeDataset(os.getcwd() + '/original_datasets/' + 'trees', stage=stage, num=num)),
-            transforms(RandomDataset(os.getcwd() + '/original_datasets/' + 'random', stage=stage, num=num)),
-            transforms(CommunityDataset(os.getcwd() + '/original_datasets/' + 'community', stage=stage, num=num))
+            transforms(FacebookDataset(os.getcwd() + '/bgd_files/' + 'facebook_large', stage=stage, num=num)),
+            transforms(EgoDataset(os.getcwd() + '/bgd_files/' + 'twitch_egos', stage=stage, num=num)),
+            transforms(CoraDataset(os.getcwd() + '/bgd_files/' + 'cora', stage=stage, num=num)),
+            transforms(RoadDataset(os.getcwd() + '/bgd_files/' + 'roads', stage=stage, num=num)),
+            transforms(NeuralDataset(os.getcwd() + '/bgd_files/' + 'fruit_fly', stage=stage, num=num)),
+            transforms(RedditDataset(os.getcwd() + '/bgd_files/' + 'reddit', num=num, stage=stage)),
+            transforms(TreeDataset(os.getcwd() + '/bgd_files/' + 'trees', stage=stage, num=num)),
+            transforms(RandomDataset(os.getcwd() + '/bgd_files/' + 'random', stage=stage, num=num)),
+            transforms(CommunityDataset(os.getcwd() + '/bgd_files/' + 'community', stage=stage, num=num))
             ]
         names = ["facebook_large", "twitch_egos", "cora", "roads", "fruit_fly", "reddit", "trees", "random", "community"]
 
