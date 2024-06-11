@@ -72,7 +72,7 @@ Getting Started
 
 Check out the Reddit dataset example notebook for a quick start guide, then have a look at the source code for the datasets.
 
-My environment is under `docs/requirements.txt`, use `pip install -r requirements. txt` within a virtual (Conda etc.) environment to get everything installed.
+My environment is under `requirements.txt`, use `pip install -r requirements. txt` within a virtual (Conda etc.) environment to get everything installed.
 
 .. toctree::
    :maxdepth: 2
