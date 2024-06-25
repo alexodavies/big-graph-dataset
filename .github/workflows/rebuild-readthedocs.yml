@@ -1,0 +1,18 @@
+name: Rebuild ReadTheDocs
+
+on:
+  push:
+    branches:
+      - main  # Change this to your default branch if different
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Trigger ReadTheDocs build
+      env:
+        READTHEDOCS_TOKEN: ${{ secrets.READTHEDOCS_TOKEN }}
+      run: curl -X POST -d "token=${{ secrets.READTHEDOCS_TOKEN }}" https://readthedocs.org/api/v3/projects/<your-project-name>/builds/
