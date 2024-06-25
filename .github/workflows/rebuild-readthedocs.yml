@@ -16,4 +16,5 @@ jobs:
     - name: Trigger ReadTheDocs build
       env:
         READTHEDOCS_TOKEN: ${{ secrets.READTHEDOCS_TOKEN }}
-        curl -X POST -H "Authorization: token $READTHEDOCS_TOKEN" https://readthedocs.org/api/v3/projects/big-graph-dataset/builds/
+        run: |
+          curl -X POST -H "Authorization: token $READTHEDOCS_TOKEN" https://readthedocs.org/api/v3/projects/big-graph-dataset/builds/
