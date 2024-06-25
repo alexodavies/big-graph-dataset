@@ -18,7 +18,9 @@ from .real import *
 from .synthetic import *
 
 _real_datasets = ['CoraDataset', 'RoadDataset', 'NeuralDataset',
-            'FacebookDataset', 'RedditDataset', 'EgoDataset']
+            'FacebookDataset', 'RedditDataset', 'EgoDataset',
+            'FromOGBDataset', 'from_ogb_dataset',
+            'FromTUDataset', 'from_tu_dataset']
 
 _synthetic_datasets = ['RandomDataset', 'CommunityDataset', 'TreeDataset']
 

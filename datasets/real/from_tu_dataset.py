@@ -7,48 +7,44 @@ from torch_geometric.data import InMemoryDataset, Data
 from tqdm import tqdm
 from utils import describe_one_dataset
 
-from ogb.utils.features import get_atom_feature_dims, get_bond_feature_dims
-from ogb.graphproppred import PygGraphPropPredDataset
+from torch_geometric.datasets import TUDataset
+
+# from ogb.utils.features import get_atom_feature_dims, get_bond_feature_dims
+# from ogb.graphproppred import PygGraphPropPredDataset
 
 
-full_atom_feature_dims = get_atom_feature_dims()
-full_bond_feature_dims = get_bond_feature_dims()
+# full_atom_feature_dims = get_atom_feature_dims()
+# full_bond_feature_dims = get_bond_feature_dims()
 
 
+# def to_onehot_atoms(x):
+#     one_hot_tensors = []
+#     for i, num_values in enumerate(full_atom_feature_dims):
+#         one_hot = torch.nn.functional.one_hot(x[:, i], num_classes=num_values)
+#         one_hot_tensors.append(one_hot)
 
-def to_onehot_atoms(x):
-    one_hot_tensors = []
-    for i, num_values in enumerate(full_atom_feature_dims):
-        one_hot = torch.nn.functional.one_hot(x[:, i], num_classes=num_values)
-        one_hot_tensors.append(one_hot)
+#     return torch.cat(one_hot_tensors, dim=1)
 
-    return torch.cat(one_hot_tensors, dim=1)
+# def to_onehot_bonds(x):
+#     one_hot_tensors = []
+#     for i, num_values in enumerate(full_bond_feature_dims):
+#         one_hot = torch.nn.functional.one_hot(x[:, i], num_classes=num_values)
+#         one_hot_tensors.append(one_hot)
 
-def to_onehot_bonds(x):
-    one_hot_tensors = []
-    for i, num_values in enumerate(full_bond_feature_dims):
-        one_hot = torch.nn.functional.one_hot(x[:, i], num_classes=num_values)
-        one_hot_tensors.append(one_hot)
+#     return torch.cat(one_hot_tensors, dim=1)
 
-    return torch.cat(one_hot_tensors, dim=1)
-
-class FromOGBDataset(InMemoryDataset):
+class FromTUDataset(InMemoryDataset):
     r"""
-    Contributor: Alex O. Davies
+    Contributor: Alex O. Davies (minimal alterations to existing code from PyG)
     
     Contributor email: `alexander.davies@bristol.ac.uk`
 
-    Converts an Open Graph Benchmark dataset into a `torch_geometric.data.InMemoryDataset`.
+    Returns a `torch_geometric.data.InMemoryDataset` for each TUDataset.
     This allows standard dataset operations like concatenation with other datasets.
 
-    The Open Graph Benchmark project is available here:
+    The datasets were originally collected in this paper:
 
-         `Hu, Weihua, et al. "Open graph benchmark: Datasets for machine learning on graphs." Advances in neural information processing systems 33 (2020): 22118-22133.`
-
-    We convert atom and bond features into one-hot encodings.
-    The resulting shapes are:
-     - node (atom features): (174, N Atoms)
-     - edge (bond features) features: (13, N Bonds)
+        `Morris, Christopher, et al. "TUDataset: A collection of benchmark datasets for learning with graphs." (2020).`
 
     Args:
         root (str): Root directory where the dataset should be saved.
@@ -58,6 +54,61 @@ class FromOGBDataset(InMemoryDataset):
         pre_transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before being saved to disk. (default: :obj:`None`)
         pre_filter (callable, optional): A function that takes in an :obj:`torch_geometric.data.Data` object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: :obj:`None`)
         num (int): The number of samples to take from the original dataset. -1 takes all available samples for that stage. (default: :obj:`-1`).
+
+    **STATS:**
+
+    .. list-table::
+        :widths: 20 10 10 10 10 10
+        :header-rows: 1
+
+        * - Name
+          - #graphs
+          - #nodes
+          - #edges
+          - #features
+          - #classes
+        * - MUTAG
+          - 188
+          - ~17.9
+          - ~39.6
+          - 7
+          - 2
+        * - ENZYMES
+          - 600
+          - ~32.6
+          - ~124.3
+          - 3
+          - 6
+        * - PROTEINS
+          - 1,113
+          - ~39.1
+          - ~145.6
+          - 3
+          - 2
+        * - COLLAB
+          - 5,000
+          - ~74.5
+          - ~4914.4
+          - 0
+          - 3
+        * - IMDB-BINARY
+          - 1,000
+          - ~19.8
+          - ~193.1
+          - 0
+          - 2
+        * - REDDIT-BINARY
+          - 2,000
+          - ~429.6
+          - ~995.5
+          - 0
+          - 2
+        * - ...
+          -
+          -
+          -
+          -
+          -
     """
     def __init__(self, root, ogb_dataset, stage = "train", num = -1, transform=None, pre_transform=None, pre_filter=None):
         self.ogb_dataset = ogb_dataset
@@ -85,7 +136,7 @@ class FromOGBDataset(InMemoryDataset):
     def process(self):
         # Read data into huge `Data` list.
         if os.path.isfile(self.processed_paths[self.stage_to_index[self.stage]]):
-            print(f"\nOGB files exist at {self.processed_paths[self.stage_to_index[self.stage]]}")
+            print(f"\nTU files exist at {self.processed_paths[self.stage_to_index[self.stage]]}")
             return
         data_list = self.ogb_dataset
 
@@ -99,9 +150,9 @@ class FromOGBDataset(InMemoryDataset):
         for i, item in enumerate(data_list[:keep_n]):
 
 
-            data = Data(x = to_onehot_atoms(item.x), 
+            data = Data(x = item.x, 
                         edge_index=item.edge_index,
-                        edge_attr= to_onehot_bonds(item.edge_attr), 
+                        edge_attr= item.edge_attr, 
                         y = item.y)
             
             new_data_list.append(data)
@@ -117,7 +168,7 @@ class FromOGBDataset(InMemoryDataset):
         torch.save((data, slices), self.processed_paths[self.stage_to_index[self.stage]])
 
 
-def from_ogb_dataset(root,  stage="train", num=-1):
+def from_tu_dataset(root,  stage="train", num=-1):
     """
     Load a dataset from the Open Graph Benchmark (OGB) and convert it to the Big Graph Dataset format.
 
@@ -129,11 +180,9 @@ def from_ogb_dataset(root,  stage="train", num=-1):
     Returns:
         FromOGBDataset: The converted dataset in the Big Graph Dataset format.
     """
-    dataset = PygGraphPropPredDataset(root.split('/')[-1], root = root)
-    split_idx = dataset.get_idx_split()
-    dataset = dataset[split_idx["valid" if stage == "val" else stage]]
-    return FromOGBDataset(root, dataset, stage = stage, num = num)
+    dataset = TUDataset(root, root.split('/')[-1])
+    return FromTUDataset(root, dataset, stage = stage, num = num)
 
 if __name__ == "__main__":
-    molpcba = from_ogb_dataset("ogbg-molpcba", stage = "train")
-    describe_one_dataset(molpcba)
+    mutag = from_tu_dataset("PROTEINS", stage = "train")
+    describe_one_dataset(mutag)
