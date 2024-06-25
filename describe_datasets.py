@@ -104,6 +104,21 @@ def run(args):
     top_datasets = [ToPDataset(dataset) for i, dataset in enumerate(train_datasets)]
     compute_top_scores(top_datasets, train_names)
 
+    roots = []
+    for idataset, dataset in enumerate(train_datasets):
+        try:
+            roots.append(dataset.root)
+        except AttributeError:
+            train_datasets[idataset] = dataset.datasets[0]
+            roots.append(train_datasets[idataset].root)
+            # roots.append(dataset.datasets[0].root)
+
+    for i, dataset in enumerate(train_datasets):
+        print(dataset, train_names[i], roots[i])
+        vis_grid(dataset[:25], f"{roots[i]}/{train_names[i]}.png")
+
+        
+
     train_datasets, train_names = get_train_datasets(my_transforms, num = args.num_train)
 
     val_datasets, val_names = get_val_datasets(my_transforms, num = args.num_val)
@@ -119,18 +134,7 @@ def run(args):
     update_readme_table("README.md", md_string)
 
 
-    # roots = []
-    # for idataset, dataset in enumerate(train_datasets):
-    #     try:
-    #         roots.append(dataset.root)
-    #     except AttributeError:
-    #         train_datasets[idataset] = dataset.datasets[0]
-    #         roots.append(train_datasets[idataset].root)
-    #         # roots.append(dataset.datasets[0].root)
 
-    # for i, dataset in enumerate(train_datasets):
-    #     print(dataset, train_names[i], roots[i])
-    #     vis_grid(dataset[:25], f"{roots[i]}/{train_names[i]}.png")
 
 
 

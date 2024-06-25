@@ -125,7 +125,7 @@ class GeneralEmbeddingEvaluation:
         """
         train_all_embeddings, train_separate_embeddings = self.get_embeddings(encoder, train_loaders, names)
         self.centroid_similarities(train_separate_embeddings, names)
-        self.vis(train_all_embeddings, train_separate_embeddings, names)
+        # self.vis(train_all_embeddings, train_separate_embeddings, names)
 
     def get_embeddings(self, encoder, loaders, names):
         """

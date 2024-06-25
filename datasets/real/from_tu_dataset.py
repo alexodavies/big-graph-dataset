@@ -1,5 +1,6 @@
 import os
 import torch
+from torch.nn.functional import one_hot
 import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
@@ -48,12 +49,12 @@ class FromTUDataset(InMemoryDataset):
 
     Args:
         root (str): Root directory where the dataset should be saved.
-        ogb_dataset (list): an `PygGraphPropPredDataset` to be converted back to `InMemoryDataset`.
-        stage (str): The stage of the dataset to load. One of "train", "val", "test". (default: :obj:`"train"`)
+        ogb_dataset (list): a TUDataset to be converted back to `InMemoryDataset`.
+        stage (str): The stage of the dataset to load. One of "train", "val", "test", "None". If None, returns the whole original dataset. Otherwise returns one of a (80,10,10) train/val/test split. (default: :obj:`None`)
         transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before every access. (default: :obj:`None`)
         pre_transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before being saved to disk. (default: :obj:`None`)
         pre_filter (callable, optional): A function that takes in an :obj:`torch_geometric.data.Data` object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: :obj:`None`)
-        num (int): The number of samples to take from the original dataset. -1 takes all available samples for that stage. (default: :obj:`-1`).
+        num (int): The number of samples to take from the original dataset. -1 takes all available samples for that stage. Ignored if stage is not None. (default: :obj:`-1`).
 
     **STATS:**
 
@@ -118,6 +119,7 @@ class FromTUDataset(InMemoryDataset):
                                "test":2,
                                "train-adgcl":3}
         self.num = num
+        self.task = "graph-classification"
         print(f"Converting OGB stage {self.stage}")
         super().__init__(root, transform, pre_transform, pre_filter)
         self.data, self.slices = torch.load(self.processed_paths[self.stage_to_index[self.stage]])
@@ -140,20 +142,31 @@ class FromTUDataset(InMemoryDataset):
             return
         data_list = self.ogb_dataset
 
+        num_classes = data_list.num_classes
+
         num_samples = len(data_list)
-        if num_samples < self.num:
-            keep_n = num_samples
+        if self.stage is None:
+            if num_samples < self.num:
+                keep_n = num_samples
+            else:
+                keep_n = self.num
         else:
-            keep_n = self.num
+            if self.stage == "train":
+                data_list = data_list[:int(0.8 * num_samples)]
+            elif self.stage == "val":
+                data_list = data_list[int(0.8 * num_samples):int(0.9 * num_samples)]
+            elif self.stage == "test":
+                data_list = data_list[int(0.9 * num_samples):]
+
+            keep_n = len(data_list)
 
         new_data_list = []
         for i, item in enumerate(data_list[:keep_n]):
 
-
             data = Data(x = item.x, 
                         edge_index=item.edge_index,
                         edge_attr= item.edge_attr, 
-                        y = item.y)
+                        y = one_hot(item.y, num_classes = num_classes))
             
             new_data_list.append(data)
         data_list = new_data_list
@@ -170,12 +183,12 @@ class FromTUDataset(InMemoryDataset):
 
 def from_tu_dataset(root,  stage="train", num=-1):
     """
-    Load a dataset from the Open Graph Benchmark (OGB) and convert it to the Big Graph Dataset format.
+    Load a TU dataset and convert it to the Big Graph Dataset format.
 
     Args:
-        name (str): The name of the OGB dataset.
-        stage (str, optional): The stage of the dataset to load (e.g., "train", "valid", "test"). Defaults to "train".
-        num (int, optional): The number of samples to load. Set to -1 to load all samples. Defaults to -1.
+        name (str): The name of the TU dataset. ("MUTAG", "ENZYMES", "PROTEINS", "COLLAB", "IMDB-BINARY", "REDDIT-BINARY")
+        stage (str, optional): The stage of the dataset to load (e.g., "train", "valid", "test", None). Defaults to None, which returns the whole dataset. Otherwise returns one of a (80/10/10) train/val/test split.
+        num (int, optional): The number of samples to load. Set to -1 to load all samples. Defaults to -1. Ignored if stage is not None.
 
     Returns:
         FromOGBDataset: The converted dataset in the Big Graph Dataset format.

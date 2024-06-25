@@ -17,32 +17,6 @@ from datasets.synthetic.lattice_dataset import LatticeDataset
 from datasets.synthetic.community_dataset import CommunityDataset
 
 
-
-
-
-
-# def get_chemical_datasets(transforms, num, stage="train"):
-#     if "bgd_files" not in os.listdir():
-#         os.mkdir("bgd_files")
-#     print(f"stage: {stage}")
-
-#     names = ["ogbg-molpcba", "ogbg-molesol", "ogbg-molclintox",
-#                 "ogbg-molfreesolv", "ogbg-mollipo", "ogbg-molhiv",
-#             "ogbg-molbbbp", "ogbg-molbace",
-#                 ]
-
-#     print(f"Molecular datasets: {names}")
-#     datasets = [PygGraphPropPredDataset(name=name, root='./bgd_files/', transform=transforms) for name in names]
-#     print(datasets)
-#     split_idx = [data.get_idx_split() for data in datasets]
-
-#     datasets = [data[split_idx[i]["valid" if stage == "val" else stage]] for i, data in enumerate(datasets)]
-
-#     datasets = [FromOGBDataset(os.getcwd()+'/bgd_files/'+names[i], data, num=num, stage = stage)
-#                 for i, data in enumerate(datasets)] #  if names[i] != "ogbg-molpcba" else 5*num, stage=stage
-
-#     return datasets, names
-
 def get_datasets(transforms, num, stage="train", exclude=None):
     if "bgd_files" not in os.listdir():
         os.mkdir("bgd_files")
@@ -162,26 +136,6 @@ def get_all_datasets(transforms, num=5000, mol_only=False):
             - datasets (list): A list of all the datasets.
             - all_names (list): A list of names corresponding to each dataset.
     """
-    
-    # # All the train datasets
-    # chemical_datasets, ogbg_names = get_chemical_datasets(transforms, num, stage="train")
-    # if not mol_only:
-    #     social_datasets, social_names = get_social_datasets(transforms, num, stage="train")
-    # else:
-    #     social_datasets = []
-    #     social_names = []
-
-    # datasets = chemical_datasets + social_datasets
-
-    # val_chemical_datasets, val_ogbg_names = get_chemical_datasets(transforms, -1, stage="val")
-    # if not mol_only:
-    #     val_social_datasets, val_social_names = get_social_datasets(transforms, num, stage="val")
-    # else:
-    #     val_social_datasets = []
-    #     val_social_names = []
-
-    # datasets = datasets + val_chemical_datasets + val_social_datasets
-    # all_names = ogbg_names + social_names + val_ogbg_names + val_social_names
 
     train_datasets, train_names = get_train_datasets(transforms, num)
     val_datasets, val_names = get_val_datasets(transforms, -1)

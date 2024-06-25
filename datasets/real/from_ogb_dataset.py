@@ -85,7 +85,7 @@ class FromOGBDataset(InMemoryDataset):
     def process(self):
         # Read data into huge `Data` list.
         if os.path.isfile(self.processed_paths[self.stage_to_index[self.stage]]):
-            print(f"\nOGB files exist at {self.processed_paths[self.stage_to_index[self.stage]]}")
+            print(f"\nTU files exist at {self.processed_paths[self.stage_to_index[self.stage]]}")
             return
         data_list = self.ogb_dataset
 
@@ -122,7 +122,7 @@ def from_ogb_dataset(root,  stage="train", num=-1):
     Load a dataset from the Open Graph Benchmark (OGB) and convert it to the Big Graph Dataset format.
 
     Args:
-        name (str): The name of the OGB dataset.
+        name (str): The name of the OGB dataset. (Classification: "ogbg-molpcba", "ogbg-molhiv", "ogbg-moltox21", "ogbg-molbace", "ogbg-molbbbp", "ogbg-molclintox", "ogbg-molmuv", "ogbg-molsider", "ogbg-moltoxcast") (Regression: "ogbg-molesol", "ogbg-molfreesolv", "ogbg-mollipo")
         stage (str, optional): The stage of the dataset to load (e.g., "train", "valid", "test"). Defaults to "train".
         num (int, optional): The number of samples to load. Set to -1 to load all samples. Defaults to -1.
 
