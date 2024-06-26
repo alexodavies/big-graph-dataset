@@ -21,14 +21,27 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install setuptools wheel twine
+        pip install setuptools wheel twine pypi-simple
+
+    - name: Check if version exists on PyPI
+      id: check-version
+      run: |
+        PACKAGE_NAME="big-graph-dataset"
+        VERSION=$(python setup.py --version)
+        EXISTS=$(python -c "import pypi_simple; client = pypi_simple.PyPISimple(); versions = [v.version for v in client.get_versions('$PACKAGE_NAME')]; print('$VERSION' in versions)")
+        echo "VERSION_EXISTS=$EXISTS" >> $GITHUB_ENV
 
     - name: Build the package
+      if: env.VERSION_EXISTS == 'False'
       run: python setup.py sdist bdist_wheel
 
     - name: Publish to PyPI
+      if: env.VERSION_EXISTS == 'False'
       env:
         TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
         TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
       run: twine upload dist/*
 
+    - name: Version already exists
+      if: env.VERSION_EXISTS == 'True'
+      run: echo "Version already exists. Skipping publish."
