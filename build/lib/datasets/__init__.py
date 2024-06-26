@@ -9,9 +9,9 @@
 # from .community_dataset import CommunityDataset
 # from .tree_dataset import TreeDataset
 
-from datasets import real
-from datasets import synthetic
-from datasets import loaders
+from bgd import real
+from bgd import synthetic
+from bgd import loaders
 
 from .loaders import *
 from .real import *

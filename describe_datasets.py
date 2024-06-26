@@ -3,7 +3,7 @@ import logging
 import numpy as np
 import torch
 from torch_geometric.transforms import Compose
-from datasets import get_train_datasets, get_val_datasets, get_test_datasets, get_all_datasets
+from bgd import get_train_datasets, get_val_datasets, get_test_datasets, get_all_datasets
 from utils import *
 from top import compute_top_scores, ToPDataset
 

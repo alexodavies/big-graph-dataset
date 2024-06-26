@@ -2,19 +2,19 @@ import os
 from torch_geometric.data import DataLoader
 
 from ogb.graphproppred import PygGraphPropPredDataset
-from datasets.real.facebook_dataset import FacebookDataset
-from datasets.real.ego_dataset import EgoDataset
-from datasets.real.cora_dataset import CoraDataset
-from datasets.real.neural_dataset import NeuralDataset
-from datasets.real.road_dataset import RoadDataset
-from datasets.real.reddit_dataset import RedditDataset
-from datasets.real.from_ogb_dataset import FromOGBDataset, from_ogb_dataset
-from datasets.real.from_tu_dataset import from_tu_dataset
+from bgd.real.facebook_dataset import FacebookDataset
+from bgd.real.ego_dataset import EgoDataset
+from bgd.real.cora_dataset import CoraDataset
+from bgd.real.neural_dataset import NeuralDataset
+from bgd.real.road_dataset import RoadDataset
+from bgd.real.reddit_dataset import RedditDataset
+from bgd.real.from_ogb_dataset import FromOGBDataset, from_ogb_dataset
+from bgd.real.from_tu_dataset import from_tu_dataset
 
-from datasets.synthetic.random_dataset import RandomDataset
-from datasets.synthetic.tree_dataset import TreeDataset
-from datasets.synthetic.lattice_dataset import LatticeDataset
-from datasets.synthetic.community_dataset import CommunityDataset
+from bgd.synthetic.random_dataset import RandomDataset
+from bgd.synthetic.tree_dataset import TreeDataset
+from bgd.synthetic.lattice_dataset import LatticeDataset
+from bgd.synthetic.community_dataset import CommunityDataset
 
 
 def get_datasets(transforms, num, stage="train", exclude=None, include=None):
