@@ -26,9 +26,9 @@ jobs:
     - name: Check if version exists on PyPI
       id: check-version
       run: |
-        PACKAGE_NAME="big-graph-dataset"
-        VERSION=$(python setup.py --version)
-        EXISTS=$(python -c "import requests; response = requests.get(f'https://pypi.org/pypi/{PACKAGE_NAME}/json'); versions = response.json()['releases'].keys(); print('${VERSION}' in versions)")
+        export PACKAGE_NAME="big-graph-dataset"
+        export VERSION=$(python setup.py --version)
+        EXISTS=$(python -c "import os, requests; response = requests.get(f'https://pypi.org/pypi/{os.getenv('PACKAGE_NAME')}/json'); versions = response.json()['releases'].keys(); print(os.getenv('VERSION') in versions)")
         echo "VERSION_EXISTS=$EXISTS" >> $GITHUB_ENV
 
     - name: Build the package
