@@ -28,7 +28,7 @@ jobs:
       run: |
         PACKAGE_NAME="big-graph-dataset"
         VERSION=$(python setup.py --version)
-        EXISTS=$(python -c "import requests; response = requests.get(f'https://pypi.org/pypi/{PACKAGE_NAME}/json'); versions = response.json()['releases'].keys(); print('$VERSION' in versions)")
+        EXISTS=$(python -c "import requests; response = requests.get(f'https://pypi.org/pypi/{PACKAGE_NAME}/json'); versions = response.json()['releases'].keys(); print('${VERSION}' in versions)")
         echo "VERSION_EXISTS=$EXISTS" >> $GITHUB_ENV
 
     - name: Build the package
