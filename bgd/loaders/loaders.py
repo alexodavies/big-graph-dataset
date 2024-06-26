@@ -18,46 +18,33 @@ from bgd.synthetic.community_dataset import CommunityDataset
 
 
 def get_datasets(transforms, num, stage="train", exclude=None, include=None):
-    """
+    r"""
     Retrieves and transforms a list of datasets based on specified inclusion and exclusion criteria.
 
     Parameters:
-    -----------
-    transforms : function
-        A function to apply transformations to each dataset.
-    num : int
-        The number of data points to include in each dataset.
-    stage : str, optional
-        The stage of data processing (e.g., "train", "test", "validate"). Default is "train".
-    exclude : list or str, optional
-        A list or a single string specifying dataset names to exclude from the selection.
-        If None, no datasets will be excluded. Default is None.
-    include : list or str, optional
-        A list or a single string specifying dataset names to include in the selection.
-        If None, all datasets not in the exclude list will be included. Default is None.
+        transforms (function): A function to apply transformations to each dataset.
+        num (int): The number of data points to include in each dataset.
+        stage (str, optional): The stage of data processing (e.g., "train", "test", "validate"). Default is "train".
+        exclude (list or str, optional): A list or a single string specifying dataset names to exclude from the selection. If None, no datasets will be excluded. Default is None.
+        include (list or str, optional): A list or a single string specifying dataset names to include in the selection. If None, all datasets not in the exclude list will be included. Default is None.
 
     Returns:
-    --------
-    datasets : list
-        A list of transformed datasets.
-    names : list
-        A list of names of the selected datasets.
+        list: A list of transformed datasets.
+        list: A list of names of the selected datasets.
 
     Notes:
-    ------
-    - If both `exclude` and `include` are provided, the function first applies the `exclude` filter
-      and then the `include` filter.
-    - The function checks for the existence of a "bgd_files" directory and creates it if it does not exist.
-    - The function supports various datasets, including predefined datasets and those from the Open Graph Benchmark (OGB) and TU datasets.
+        - If both `exclude` and `include` are provided, the function first applies the `exclude` filter and then the `include` filter.
+        - The function checks for the existence of a "bgd_files" directory and creates it if it does not exist.
+        - The function supports various datasets, including predefined datasets and those from the Open Graph Benchmark (OGB) and TU datasets.
 
     Example:
-    --------
-    >>> def dummy_transform(dataset):
-    >>>     return dataset
-    >>> datasets, names = get_datasets(dummy_transform, num=100, stage="train", exclude=["reddit"], include=["cora", "trees"])
-    >>> print(names)
-    ['cora', 'trees']
+        >>> def dummy_transform(dataset):
+        >>>     return dataset
+        >>> datasets, names = get_datasets(dummy_transform, num=100, stage="train", exclude=["reddit"], include=["cora", "trees"])
+        >>> print(names)
+        ['cora', 'trees']
     """
+
 
     if "bgd_files" not in os.listdir():
         os.mkdir("bgd_files")

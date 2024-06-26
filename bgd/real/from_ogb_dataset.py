@@ -1,10 +1,6 @@
 import os
 import torch
-import networkx as nx
-import matplotlib.pyplot as plt
-import numpy as np
 from torch_geometric.data import InMemoryDataset, Data
-from tqdm import tqdm
 from ..utils import describe_one_dataset
 
 from ogb.utils.features import get_atom_feature_dims, get_bond_feature_dims

@@ -18,9 +18,9 @@ Additionally the functions `get_X_datasets()` retrieve multiple datasets at once
 .. toctree:: 
    :maxdepth: 2
 
-   bgd/real
-   bgd/synthetic
-   bgd/loaders
+   datasets/real
+   datasets/synthetic
+   datasets/loaders
 
 
 **Citing**

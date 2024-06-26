@@ -1,15 +1,61 @@
+.. |CommunityDataset| replace:: ``CommunityDataset``
+.. _CommunityDataset: https://big-graph-dataset.readthedocs.io/en/latest/datasets/synthetic.html#bgd.synthetic.CommunityDataset
 .. |compute_top_scores()| replace:: ``compute_top_scores()``
 .. _compute_top_scores(): https://big-graph-dataset.readthedocs.io/en/latest/top.html#top.compute_top_scores
+.. |CoraDataset| replace:: ``CoraDataset``
+.. _CoraDataset: https://big-graph-dataset.readthedocs.io/en/latest/datasets/real.html#bgd.real.CoraDataset
+.. |EgoDataset| replace:: ``EgoDataset``
+.. _EgoDataset: https://big-graph-dataset.readthedocs.io/en/latest/datasets/real.html#bgd.real.EgoDataset
+.. |FacebookDataset| replace:: ``FacebookDataset``
+.. _FacebookDataset: https://big-graph-dataset.readthedocs.io/en/latest/datasets/real.html#bgd.real.FacebookDataset
+.. |from_ogb_dataset()| replace:: ``from_ogb_dataset()``
+.. _from_ogb_dataset(): https://big-graph-dataset.readthedocs.io/en/latest/datasets/real.html#bgd.real.from_ogb_dataset
+.. |from_tu_dataset()| replace:: ``from_tu_dataset()``
+.. _from_tu_dataset(): https://big-graph-dataset.readthedocs.io/en/latest/datasets/real.html#bgd.real.from_tu_dataset
+.. |FromOGBDataset| replace:: ``FromOGBDataset``
+.. _FromOGBDataset: https://big-graph-dataset.readthedocs.io/en/latest/datasets/real.html#bgd.real.FromOGBDataset
+.. |FromTUDataset| replace:: ``FromTUDataset``
+.. _FromTUDataset: https://big-graph-dataset.readthedocs.io/en/latest/datasets/real.html#bgd.real.FromTUDataset
 .. |GeneralEmbeddingEvaluation| replace:: ``GeneralEmbeddingEvaluation``
 .. _GeneralEmbeddingEvaluation: https://big-graph-dataset.readthedocs.io/en/latest/top.html#top.GeneralEmbeddingEvaluation
 .. |.genindex| replace:: Index
 .. _.genindex: https://big-graph-dataset.readthedocs.io/en/latest/genindex.html
+.. |get_all_datasets()| replace:: ``get_all_datasets()``
+.. _get_all_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/datasets/loaders.html#bgd.loaders.get_all_datasets
+.. |get_datasets()| replace:: ``get_datasets()``
+.. _get_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/datasets/loaders.html#bgd.loaders.get_datasets
+.. |get_edge_task_datasets()| replace:: ``get_edge_task_datasets()``
+.. _get_edge_task_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/datasets/loaders.html#bgd.loaders.get_edge_task_datasets
+.. |get_graph_classification_datasets()| replace:: ``get_graph_classification_datasets()``
+.. _get_graph_classification_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/datasets/loaders.html#bgd.loaders.get_graph_classification_datasets
+.. |get_graph_regression_datasets()| replace:: ``get_graph_regression_datasets()``
+.. _get_graph_regression_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/datasets/loaders.html#bgd.loaders.get_graph_regression_datasets
+.. |get_graph_task_datasets()| replace:: ``get_graph_task_datasets()``
+.. _get_graph_task_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/datasets/loaders.html#bgd.loaders.get_graph_task_datasets
+.. |get_node_task_datasets()| replace:: ``get_node_task_datasets()``
+.. _get_node_task_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/datasets/loaders.html#bgd.loaders.get_node_task_datasets
+.. |get_test_datasets()| replace:: ``get_test_datasets()``
+.. _get_test_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/datasets/loaders.html#bgd.loaders.get_test_datasets
+.. |get_train_datasets()| replace:: ``get_train_datasets()``
+.. _get_train_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/datasets/loaders.html#bgd.loaders.get_train_datasets
+.. |get_val_datasets()| replace:: ``get_val_datasets()``
+.. _get_val_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/datasets/loaders.html#bgd.loaders.get_val_datasets
 .. |.modindex| replace:: Module Index
 .. _.modindex: https://big-graph-dataset.readthedocs.io/en/latest/py-modindex.html
+.. |NeuralDataset| replace:: ``NeuralDataset``
+.. _NeuralDataset: https://big-graph-dataset.readthedocs.io/en/latest/datasets/real.html#bgd.real.NeuralDataset
+.. |RandomDataset| replace:: ``RandomDataset``
+.. _RandomDataset: https://big-graph-dataset.readthedocs.io/en/latest/datasets/synthetic.html#bgd.synthetic.RandomDataset
+.. |RedditDataset| replace:: ``RedditDataset``
+.. _RedditDataset: https://big-graph-dataset.readthedocs.io/en/latest/datasets/real.html#bgd.real.RedditDataset
+.. |RoadDataset| replace:: ``RoadDataset``
+.. _RoadDataset: https://big-graph-dataset.readthedocs.io/en/latest/datasets/real.html#bgd.real.RoadDataset
 .. |.search| replace:: Search Page
 .. _.search: https://big-graph-dataset.readthedocs.io/en/latest/search.html
 .. |ToPDataset| replace:: ``ToPDataset``
 .. _ToPDataset: https://big-graph-dataset.readthedocs.io/en/latest/top.html#top.ToPDataset
+.. |TreeDataset| replace:: ``TreeDataset``
+.. _TreeDataset: https://big-graph-dataset.readthedocs.io/en/latest/datasets/synthetic.html#bgd.synthetic.TreeDataset
 
 
 .. big-graph-dataset documentation master file, created by
@@ -111,9 +157,65 @@ Datasets
 
 Documentation for the datsets currently in the Big Graph Dataset project.
 
-* `Many-Graph Datasets <https://big-graph-dataset.readthedocs.io/en/latest/bgd.html>`_
+* `Many-Graph Datasets <https://big-graph-dataset.readthedocs.io/en/latest/datasets.html>`_
 
-  |
+  * `From Real Data <https://big-graph-dataset.readthedocs.io/en/latest/datasets/real.html>`_
+
+    * |CoraDataset|_
+
+
+    * |EgoDataset|_
+
+
+    * |FacebookDataset|_
+
+
+    * |FromOGBDataset|_
+
+
+    * |FromTUDataset|_
+
+
+    * |NeuralDataset|_
+
+
+    * |RedditDataset|_
+
+
+    * |RoadDataset|_
+
+
+    * |from_ogb_dataset()|_
+    * |from_tu_dataset()|_
+
+  * `Synthetic <https://big-graph-dataset.readthedocs.io/en/latest/datasets/synthetic.html>`_
+
+    * |CommunityDataset|_
+
+
+    * |RandomDataset|_
+
+
+    * |TreeDataset|_
+
+
+
+  * `Functions & Loaders <https://big-graph-dataset.readthedocs.io/en/latest/datasets/loaders.html>`_
+
+    * |get_all_datasets()|_
+    * |get_datasets()|_
+    * |get_edge_task_datasets()|_
+    * |get_graph_classification_datasets()|_
+    * |get_graph_regression_datasets()|_
+    * |get_graph_task_datasets()|_
+    * |get_node_task_datasets()|_
+    * |get_test_datasets()|_
+    * |get_train_datasets()|_
+    * |get_val_datasets()|_
+
+
+
+      |
 
 
 
