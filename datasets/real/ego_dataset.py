@@ -99,6 +99,8 @@ class EgoDataset(InMemoryDataset):
         self.stage_to_index = {"train":0,
                                "val":1,
                                "test":2}
+        
+        self.task = "graph-classification"
 
 
         super().__init__(root, transform, pre_transform, pre_filter)
