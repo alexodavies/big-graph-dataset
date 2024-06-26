@@ -184,43 +184,43 @@ Requires-Dist: widgetsnbextension==4.0.11
 Requires-Dist: yarl==1.9.4
 
 .. |CommunityDataset| replace:: ``CommunityDataset``
-.. _CommunityDataset: https://big-graph-dataset.readthedocs.io/en/latest/datasets/synthetic.html#datasets.synthetic.CommunityDataset
+.. _CommunityDataset: https://big-graph-dataset.readthedocs.io/en/latest/bgd/synthetic.html#datasets.synthetic.CommunityDataset
 .. |compute_top_scores()| replace:: ``compute_top_scores()``
 .. _compute_top_scores(): https://big-graph-dataset.readthedocs.io/en/latest/top.html#top.compute_top_scores
 .. |CoraDataset| replace:: ``CoraDataset``
-.. _CoraDataset: https://big-graph-dataset.readthedocs.io/en/latest/datasets/real.html#datasets.real.CoraDataset
+.. _CoraDataset: https://big-graph-dataset.readthedocs.io/en/latest/bgd/real.html#datasets.real.CoraDataset
 .. |EgoDataset| replace:: ``EgoDataset``
-.. _EgoDataset: https://big-graph-dataset.readthedocs.io/en/latest/datasets/real.html#datasets.real.EgoDataset
+.. _EgoDataset: https://big-graph-dataset.readthedocs.io/en/latest/bgd/real.html#datasets.real.EgoDataset
 .. |FacebookDataset| replace:: ``FacebookDataset``
-.. _FacebookDataset: https://big-graph-dataset.readthedocs.io/en/latest/datasets/real.html#datasets.real.FacebookDataset
+.. _FacebookDataset: https://big-graph-dataset.readthedocs.io/en/latest/bgd/real.html#datasets.real.FacebookDataset
 .. |GeneralEmbeddingEvaluation| replace:: ``GeneralEmbeddingEvaluation``
 .. _GeneralEmbeddingEvaluation: https://big-graph-dataset.readthedocs.io/en/latest/top.html#top.GeneralEmbeddingEvaluation
 .. |.genindex| replace:: Index
 .. _.genindex: https://big-graph-dataset.readthedocs.io/en/latest/genindex.html
 .. |get_all_datasets()| replace:: ``get_all_datasets()``
-.. _get_all_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/datasets/loaders.html#datasets.loaders.get_all_datasets
+.. _get_all_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/bgd/loaders.html#datasets.loaders.get_all_datasets
 .. |get_test_datasets()| replace:: ``get_test_datasets()``
-.. _get_test_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/datasets/loaders.html#datasets.loaders.get_test_datasets
+.. _get_test_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/bgd/loaders.html#datasets.loaders.get_test_datasets
 .. |get_train_datasets()| replace:: ``get_train_datasets()``
-.. _get_train_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/datasets/loaders.html#datasets.loaders.get_train_datasets
+.. _get_train_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/bgd/loaders.html#datasets.loaders.get_train_datasets
 .. |get_val_datasets()| replace:: ``get_val_datasets()``
-.. _get_val_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/datasets/loaders.html#datasets.loaders.get_val_datasets
+.. _get_val_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/bgd/loaders.html#datasets.loaders.get_val_datasets
 .. |.modindex| replace:: Module Index
 .. _.modindex: https://big-graph-dataset.readthedocs.io/en/latest/py-modindex.html
 .. |NeuralDataset| replace:: ``NeuralDataset``
-.. _NeuralDataset: https://big-graph-dataset.readthedocs.io/en/latest/datasets/real.html#datasets.real.NeuralDataset
+.. _NeuralDataset: https://big-graph-dataset.readthedocs.io/en/latest/bgd/real.html#datasets.real.NeuralDataset
 .. |RandomDataset| replace:: ``RandomDataset``
-.. _RandomDataset: https://big-graph-dataset.readthedocs.io/en/latest/datasets/synthetic.html#datasets.synthetic.RandomDataset
+.. _RandomDataset: https://big-graph-dataset.readthedocs.io/en/latest/bgd/synthetic.html#datasets.synthetic.RandomDataset
 .. |RedditDataset| replace:: ``RedditDataset``
-.. _RedditDataset: https://big-graph-dataset.readthedocs.io/en/latest/datasets/real.html#datasets.real.RedditDataset
+.. _RedditDataset: https://big-graph-dataset.readthedocs.io/en/latest/bgd/real.html#datasets.real.RedditDataset
 .. |RoadDataset| replace:: ``RoadDataset``
-.. _RoadDataset: https://big-graph-dataset.readthedocs.io/en/latest/datasets/real.html#datasets.real.RoadDataset
+.. _RoadDataset: https://big-graph-dataset.readthedocs.io/en/latest/bgd/real.html#datasets.real.RoadDataset
 .. |.search| replace:: Search Page
 .. _.search: https://big-graph-dataset.readthedocs.io/en/latest/search.html
 .. |ToPDataset| replace:: ``ToPDataset``
 .. _ToPDataset: https://big-graph-dataset.readthedocs.io/en/latest/top.html#top.ToPDataset
 .. |TreeDataset| replace:: ``TreeDataset``
-.. _TreeDataset: https://big-graph-dataset.readthedocs.io/en/latest/datasets/synthetic.html#datasets.synthetic.TreeDataset
+.. _TreeDataset: https://big-graph-dataset.readthedocs.io/en/latest/bgd/synthetic.html#datasets.synthetic.TreeDataset
 
 
 .. big-graph-dataset documentation master file, created by
@@ -270,7 +270,7 @@ The source can be found in the `Github repository<https://github.com/neutralpron
 
 The basics:
  - Create your own git branch
- - Copy the `datasets/example_dataset.py`
+ - Copy the `bgd/example_dataset.py`
  - Have a look through
  - Re-tool it for your own dataset
 
@@ -286,7 +286,7 @@ The basics:
 
 I've provided code for sub-sampling graphs and producing statistics.
 
-A few rules, demonstrated in `datasets/real/example_dataset.py`:
+A few rules, demonstrated in `bgd/real/example_dataset.py`:
  - The datasets need at least a train/val/test split
  - Datasets should be many small (less than 400 node) graphs
  - Ideally the number of graphs in each dataset should be controllable
@@ -324,7 +324,7 @@ Documentation for the datsets currently in the Big Graph Dataset project.
 
 * `Many-Graph Datasets <https://big-graph-dataset.readthedocs.io/en/latest/datasets.html>`_
 
-  * `From Real Data <https://big-graph-dataset.readthedocs.io/en/latest/datasets/real.html>`_
+  * `From Real Data <https://big-graph-dataset.readthedocs.io/en/latest/bgd/real.html>`_
 
     * |CoraDataset|_
 
@@ -345,7 +345,7 @@ Documentation for the datsets currently in the Big Graph Dataset project.
 
 
 
-  * `Synthetic <https://big-graph-dataset.readthedocs.io/en/latest/datasets/synthetic.html>`_
+  * `Synthetic <https://big-graph-dataset.readthedocs.io/en/latest/bgd/synthetic.html>`_
 
     * |CommunityDataset|_
 
@@ -357,7 +357,7 @@ Documentation for the datsets currently in the Big Graph Dataset project.
 
 
 
-  * `Functions & Loaders <https://big-graph-dataset.readthedocs.io/en/latest/datasets/loaders.html>`_
+  * `Functions & Loaders <https://big-graph-dataset.readthedocs.io/en/latest/bgd/loaders.html>`_
 
     * |get_all_datasets()|_
     * |get_test_datasets()|_

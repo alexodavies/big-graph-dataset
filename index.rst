@@ -1,41 +1,15 @@
-.. |CommunityDataset| replace:: ``CommunityDataset``
-.. _CommunityDataset: https://big-graph-dataset.readthedocs.io/en/latest/bgd/synthetic.html#bgd.synthetic.CommunityDataset
 .. |compute_top_scores()| replace:: ``compute_top_scores()``
 .. _compute_top_scores(): https://big-graph-dataset.readthedocs.io/en/latest/top.html#top.compute_top_scores
-.. |CoraDataset| replace:: ``CoraDataset``
-.. _CoraDataset: https://big-graph-dataset.readthedocs.io/en/latest/bgd/real.html#bgd.real.CoraDataset
-.. |EgoDataset| replace:: ``EgoDataset``
-.. _EgoDataset: https://big-graph-dataset.readthedocs.io/en/latest/bgd/real.html#bgd.real.EgoDataset
-.. |FacebookDataset| replace:: ``FacebookDataset``
-.. _FacebookDataset: https://big-graph-dataset.readthedocs.io/en/latest/bgd/real.html#bgd.real.FacebookDataset
 .. |GeneralEmbeddingEvaluation| replace:: ``GeneralEmbeddingEvaluation``
 .. _GeneralEmbeddingEvaluation: https://big-graph-dataset.readthedocs.io/en/latest/top.html#top.GeneralEmbeddingEvaluation
 .. |.genindex| replace:: Index
 .. _.genindex: https://big-graph-dataset.readthedocs.io/en/latest/genindex.html
-.. |get_all_datasets()| replace:: ``get_all_datasets()``
-.. _get_all_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/bgd/loaders.html#bgd.loaders.get_all_datasets
-.. |get_test_datasets()| replace:: ``get_test_datasets()``
-.. _get_test_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/bgd/loaders.html#bgd.loaders.get_test_datasets
-.. |get_train_datasets()| replace:: ``get_train_datasets()``
-.. _get_train_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/bgd/loaders.html#bgd.loaders.get_train_datasets
-.. |get_val_datasets()| replace:: ``get_val_datasets()``
-.. _get_val_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/bgd/loaders.html#bgd.loaders.get_val_datasets
 .. |.modindex| replace:: Module Index
 .. _.modindex: https://big-graph-dataset.readthedocs.io/en/latest/py-modindex.html
-.. |NeuralDataset| replace:: ``NeuralDataset``
-.. _NeuralDataset: https://big-graph-dataset.readthedocs.io/en/latest/bgd/real.html#bgd.real.NeuralDataset
-.. |RandomDataset| replace:: ``RandomDataset``
-.. _RandomDataset: https://big-graph-dataset.readthedocs.io/en/latest/bgd/synthetic.html#bgd.synthetic.RandomDataset
-.. |RedditDataset| replace:: ``RedditDataset``
-.. _RedditDataset: https://big-graph-dataset.readthedocs.io/en/latest/bgd/real.html#bgd.real.RedditDataset
-.. |RoadDataset| replace:: ``RoadDataset``
-.. _RoadDataset: https://big-graph-dataset.readthedocs.io/en/latest/bgd/real.html#bgd.real.RoadDataset
 .. |.search| replace:: Search Page
 .. _.search: https://big-graph-dataset.readthedocs.io/en/latest/search.html
 .. |ToPDataset| replace:: ``ToPDataset``
 .. _ToPDataset: https://big-graph-dataset.readthedocs.io/en/latest/top.html#top.ToPDataset
-.. |TreeDataset| replace:: ``TreeDataset``
-.. _TreeDataset: https://big-graph-dataset.readthedocs.io/en/latest/bgd/synthetic.html#bgd.synthetic.TreeDataset
 
 
 .. big-graph-dataset documentation master file, created by
@@ -50,7 +24,7 @@
 
 
 Big Graph Dataset
-=================
+===============================================
 
 This is a collaboration project to build a large, multi-domain set of graph bgd.
 Each dataset comprises many small graphs.
@@ -67,7 +41,7 @@ We aim to provide datasets that are:
  - Formatted uniformly across datasets for Pytorch Geometric
 
 What we're looking for
-======================
+=======================
 
 In short: anything! The idea behind this being a collaboration is that we cast a wide net over different domains and tasks.
 
@@ -89,7 +63,7 @@ The basics:
  - Have a look through
  - Re-tool it for your own dataset
 
- See more in Getting Started.
+ See more in :ref:`the Getting Started section<get-started>`.
 
  * `Set Up & Contributing <https://big-graph-dataset.readthedocs.io/en/latest/get-started.html>`_
 
@@ -116,7 +90,7 @@ Getting Started
 
 Check out the Reddit dataset example notebook for a quick start guide, then have a look at the source code for the bgd.
 
-My environment is under `docs/requirements.txt`, use `pip install -r requirements. txt` within a virtual (Conda etc.) environment to get everything installed.
+My environment is under `requirements.txt`, use `pip install -r requirements. txt` within a virtual (Conda etc.) environment to get everything installed.
 
 * `Reddit Example Dataset <https://big-graph-dataset.readthedocs.io/en/latest/reddit-dataset-example.html>`_
 
@@ -139,49 +113,7 @@ Documentation for the datsets currently in the Big Graph Dataset project.
 
 * `Many-Graph Datasets <https://big-graph-dataset.readthedocs.io/en/latest/bgd.html>`_
 
-  * `From Real Data <https://big-graph-dataset.readthedocs.io/en/latest/bgd/real.html>`_
-
-    * |CoraDataset|_
-
-
-    * |EgoDataset|_
-
-
-    * |FacebookDataset|_
-
-
-    * |NeuralDataset|_
-
-
-    * |RedditDataset|_
-
-
-    * |RoadDataset|_
-
-
-
-  * `Synthetic <https://big-graph-dataset.readthedocs.io/en/latest/bgd/synthetic.html>`_
-
-    * |CommunityDataset|_
-
-
-    * |RandomDataset|_
-
-
-    * |TreeDataset|_
-
-
-
-  * `Functions & Loaders <https://big-graph-dataset.readthedocs.io/en/latest/bgd/loaders.html>`_
-
-    * |get_all_datasets()|_
-    * |get_test_datasets()|_
-    * |get_train_datasets()|_
-    * |get_val_datasets()|_
-
-
-
-      |
+  |
 
 
 

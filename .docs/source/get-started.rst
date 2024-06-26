@@ -3,7 +3,7 @@
 Welcome to the project! We're excited to have you on board.
 We'll be collaborating through GitHub, with everyone working in their own branch.
 
-There are a few rules for the datasets, demonstrated in ``datasets/real/example_dataset.py``:
+There are a few rules for the datasets, demonstrated in ``bgd/real/example_dataset.py``:
  - Please cite your sources for data in documentation - see the existing datasets for examples
  - Where possible start from existing datasets that have been used in-literature (to avoid ethics paperwork)
  - If using generators, use generators that are well-understood (for example Erdos-Renyi graphs)
@@ -38,9 +38,9 @@ Replace ``your-name`` with your name or a  descriptive name for your data.
 3. Work your magic:
 --------------------------
 
- - Copy ``datasets/real/example_dataset.py`` into the relevant sub-directory (``datasets/real/``, ``datasets/synthetic/`` depending on your data)
+ - Copy ``bgd/real/example_dataset.py`` into the relevant sub-directory (``bgd/real/``, ``bgd/synthetic/`` depending on your data)
  - Re-tool it for your data (``NAME_dataset.py`` or something similar)
- - Add your dataset to relevant ``__init__.py`` files (``datasets/X/__init__.py`` and ``datasets/__init__.py``)
+ - Add your dataset to relevant ``__init__.py`` files (``bgd/X/__init__.py`` and ``bgd/__init__.py``)
 
 4. Stage your changes: 
 -----------------------
@@ -113,7 +113,7 @@ In your ``if __name == `__main__`` section you can use some prepared code::
 
 You'd run this from the root ``big-graph-dataset`` with::
 
-    python -m datasets.(real/synthetic).NAME_dataset
+    python -m bgd.(real/synthetic).NAME_dataset
 
 assuming that you've added your dataset to the relevant ``__init__.py`` files.
 

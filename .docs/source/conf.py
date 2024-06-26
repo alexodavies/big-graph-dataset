@@ -13,8 +13,8 @@ sys.path.insert(0, os.path.abspath('../../'))  # Adjust this path to point to yo
 project = 'big-graph-dataset'
 copyright = '2024, Alex O. Davies'
 author = 'Alex O. Davies'
-version = '0.01'
-release = '0.01-dev'
+version = '0.03'
+release = '0.03-dev'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

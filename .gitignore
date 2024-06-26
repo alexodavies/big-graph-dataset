@@ -8,6 +8,6 @@
 *.json
 /.docs/build
 /__pycache__
-/datasets/__pycache__
+/bgd/__pycache__
 fruit_fly/Supplementary-Data-S1/.DS_Store
 /bgd_models

@@ -228,7 +228,7 @@ class ExampleDataset(InMemoryDataset):
         torch.save((data, slices), self.processed_paths[self.stage_to_index[self.stage]])
 
 
-# Run with python -m datasets/example_dataset.py
+# Run with python -m bgd/example_dataset.py
 # Run this to check that everything works!
 if __name__ == "__main__":
     # Please set the last part of the path to your dataset name!

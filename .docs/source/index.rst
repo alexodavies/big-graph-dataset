@@ -11,7 +11,7 @@
 Big Graph Dataset
 ===============================================
 
-This is a collaboration project to build a large, multi-domain set of graph datasets.
+This is a collaboration project to build a large, multi-domain set of graph bgd.
 Each dataset comprises many small graphs.
 
 The aim of this project is to provide a large set of graph datasets for use in machine learning research.
@@ -44,7 +44,7 @@ The source can be found in the `Github repository<https://github.com/neutralpron
 
 The basics:
  - Create your own git branch
- - Copy the `datasets/example_dataset.py`
+ - Copy the `bgd/example_dataset.py`
  - Have a look through
  - Re-tool it for your own dataset
 
@@ -57,7 +57,7 @@ The basics:
 
 I've provided code for sub-sampling graphs and producing statistics.
 
-A few rules, demonstrated in `datasets/real/example_dataset.py`:
+A few rules, demonstrated in `bgd/real/example_dataset.py`:
  - The datasets need at least a train/val/test split
  - Datasets should be many small (less than 400 node) graphs
  - Ideally the number of graphs in each dataset should be controllable
@@ -70,7 +70,7 @@ Please document your dataset files with your name and contact information at the
 Getting Started
 ===============
 
-Check out the Reddit dataset example notebook for a quick start guide, then have a look at the source code for the datasets.
+Check out the Reddit dataset example notebook for a quick start guide, then have a look at the source code for the bgd.
 
 My environment is under `requirements.txt`, use `pip install -r requirements. txt` within a virtual (Conda etc.) environment to get everything installed.
 
