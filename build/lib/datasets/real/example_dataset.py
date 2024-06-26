@@ -8,8 +8,8 @@ from torch_geometric.io import read_npz
 from torch.nn.functional import one_hot
 import wget
 import matplotlib.pyplot as plt
-from utils import describe_one_dataset, vis_grid, ESWR
-from utils import ESWR
+from ..utils import describe_one_dataset, vis_grid, ESWR
+from ..utils import ESWR
 
 
 

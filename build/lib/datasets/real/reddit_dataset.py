@@ -5,7 +5,7 @@ import pandas as pd
 import networkx as nx
 from tqdm import tqdm
 import numpy as np
-from utils import ESWR
+from ..utils import ESWR
 import torch
 from torch_geometric.data import Data, InMemoryDataset
 

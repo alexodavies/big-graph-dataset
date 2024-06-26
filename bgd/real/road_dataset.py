@@ -11,7 +11,7 @@ import wget
 import numpy as np
 import gzip
 import shutil
-from utils import ESWR, describe_one_dataset
+from ..utils import ESWR, describe_one_dataset
 from littleballoffur.exploration_sampling import *
 
 print(os.getcwd())

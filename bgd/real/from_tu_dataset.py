@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from torch_geometric.data import InMemoryDataset, Data
 from tqdm import tqdm
-from utils import describe_one_dataset
+from ..utils import describe_one_dataset
 
 from torch_geometric.datasets import TUDataset
 

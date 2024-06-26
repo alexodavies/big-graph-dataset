@@ -98,7 +98,7 @@ Testing Code
 
 In your ``if __name == `__main__`` section you can use some prepared code::
 
-    from utils import describe_one_dataset, vis_grid
+    from ..utils import describe_one_dataset, vis_grid
 
     ... rest of your code ...
 

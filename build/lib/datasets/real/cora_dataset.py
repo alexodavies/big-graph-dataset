@@ -8,12 +8,12 @@ from torch_geometric.io import read_npz
 from torch.nn.functional import one_hot
 import wget
 import matplotlib.pyplot as plt
-from utils import describe_one_dataset
+from ..utils import describe_one_dataset
 
 if __name__ == "__main__":
     print(os.getcwd())
 
-from utils import ESWR
+from ..utils import ESWR
 
 def five_cycle_worker(g):
     """

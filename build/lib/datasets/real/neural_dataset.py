@@ -7,11 +7,11 @@ from torch_geometric.utils.convert import to_networkx
 from tqdm import tqdm
 import os
 
-from utils import describe_one_dataset, vis_grid
+from ..utils import describe_one_dataset, vis_grid
 
 from torch_geometric.data import InMemoryDataset, Data
 import inspect
-from utils import ESWR
+from ..utils import ESWR
 from littleballoffur.exploration_sampling import *
 import littleballoffur.exploration_sampling as samplers
 import sys

@@ -8,12 +8,12 @@ import pickle
 import zipfile
 import wget
 import numpy as np
-from utils import ESWR
+from ..utils import ESWR
 import json
 
 from littleballoffur.exploration_sampling import *
 
-from utils import describe_one_dataset, vis_grid
+from ..utils import describe_one_dataset, vis_grid
 
 
 def download_facebook(visualise = False):

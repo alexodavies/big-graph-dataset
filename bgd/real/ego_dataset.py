@@ -8,7 +8,7 @@ import torch_geometric as pyg
 from torch_geometric.data import InMemoryDataset
 import wget
 from tqdm import tqdm
-from utils import describe_one_dataset
+from ..utils import describe_one_dataset
 import zipfile
 
 def get_twitch(num = 49152, include_targets = False):
