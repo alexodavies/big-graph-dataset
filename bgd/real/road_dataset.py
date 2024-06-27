@@ -90,8 +90,6 @@ def download_roads(visualise = False):
     with open("road_graph.npz", "wb") as f:
         pickle.dump(graph, f)
 
-    print(os.getcwd(), start_dir)
-    quit()
     os.chdir(start_dir)
     return graph
 
