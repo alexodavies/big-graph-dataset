@@ -7,6 +7,7 @@ import numpy as np
 from torch_geometric.data import InMemoryDataset, Data
 from tqdm import tqdm
 from ..utils import describe_one_dataset
+import random
 
 from torch_geometric.datasets import TUDataset
 
@@ -50,7 +51,7 @@ class FromTUDataset(InMemoryDataset):
     Args:
         root (str): Root directory where the dataset should be saved.
         ogb_dataset (list): a TUDataset to be converted back to `InMemoryDataset`.
-        stage (str): The stage of the dataset to load. One of "train", "val", "test", "None". If None, returns the whole original dataset. Otherwise returns one of a (80,10,10) train/val/test split. (default: :obj:`None`)
+        stage (str): The stage of the dataset to load. One of "train", "val", "test", "None". If None, returns the whole original dataset. Otherwise returns one of a (80,10,10) train/val/test split. This split is shuffled on each new production of the torch geometric data objects. (default: :obj:`None`)
         transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before every access. (default: :obj:`None`)
         pre_transform (callable, optional): A function/transform that takes in an :obj:`torch_geometric.data.Data` object and returns a transformed version. The data object will be transformed before being saved to disk. (default: :obj:`None`)
         pre_filter (callable, optional): A function that takes in an :obj:`torch_geometric.data.Data` object and returns a boolean value, indicating whether the data object should be included in the final dataset. (default: :obj:`None`)
@@ -140,9 +141,11 @@ class FromTUDataset(InMemoryDataset):
         if os.path.isfile(self.processed_paths[self.stage_to_index[self.stage]]):
             print(f"\nTU files exist at {self.processed_paths[self.stage_to_index[self.stage]]}")
             return
-        data_list = self.ogb_dataset
 
+        data_list = self.ogb_dataset
         num_classes = data_list.num_classes
+        data_list = [data for data in data_list]
+        random.Random(4).shuffle(data_list)
 
         num_samples = len(data_list)
         if self.stage is None:
