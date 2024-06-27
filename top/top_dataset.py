@@ -30,10 +30,12 @@ class ToPDataset(InMemoryDataset):
 
     """
 
-    def __init__(self, original_dataset, root = None,  num = -1, transform=None, pre_transform=None, pre_filter=None):
+    def __init__(self, original_dataset, stage = "train", root = None,  num = -1, transform=None, pre_transform=None, pre_filter=None):
         self.original_dataset = original_dataset
-        self.stage = "train"
-        self.stage_to_index = {"train":0}
+        self.stage = stage
+        self.stage_to_index = {"train":0,
+                               "val":1,
+                               "test":2}
         self.num = num
         root = root if root is not None else original_dataset.root
         print(f"\n\nConverting original dataset {original_dataset} at {root}")
@@ -46,7 +48,9 @@ class ToPDataset(InMemoryDataset):
 
     @property
     def processed_file_names(self):
-        return ['train-top.pt']
+        return ['train-top.pt',
+                'val-top.pt',
+                'test-top.pt']
 
 
     def process(self):
