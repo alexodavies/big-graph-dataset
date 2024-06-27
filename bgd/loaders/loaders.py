@@ -173,7 +173,7 @@ def get_graph_regression_datasets(transforms, num=5000, stage="train"):
                                 "COLLAB", "IMDB-BINARY", "REDDIT-BINARY"]
     return get_datasets(transforms, num, stage, exclude=non_graph_level_excludes)
 
-def get_test_datasets(transforms, num=2000, mol_only=False):
+def get_test_datasets(transforms, num=2000, mol_only=False, exclude=["community", "trees", "random"], include=None):
     """
     Get the test split of each dataset.
 
@@ -188,11 +188,11 @@ def get_test_datasets(transforms, num=2000, mol_only=False):
             - names (list): List of dataset names.
     """
 
-    datasets, names = get_datasets(transforms, num, stage="test")
+    datasets, names = get_datasets(transforms, num, stage="test", include=include, exclude=exclude)
     return datasets, names
 
 
-def get_val_datasets(transforms, num=2000, mol_only=False):
+def get_val_datasets(transforms, num=2000, mol_only=False, exclude=["community", "trees", "random"], include=None):
     """
     Get validation splits for each dataset.
 
@@ -207,10 +207,10 @@ def get_val_datasets(transforms, num=2000, mol_only=False):
             - names (list): List of dataset names.
     """
 
-    datasets, names = get_datasets(transforms, num, stage="val")
+    datasets, names = get_datasets(transforms, num, stage="val", include=include, exclude=exclude)
     return datasets, names
 
-def get_train_datasets(transforms, num=2000, mol_only=False):
+def get_train_datasets(transforms, num=2000, mol_only=False, exclude=["ogbg-molpcba"], include=None):
     """
     Get the training splits of each dataset.
 
@@ -225,7 +225,7 @@ def get_train_datasets(transforms, num=2000, mol_only=False):
             - all_names (list): A list of names corresponding to each dataset.
     """
 
-    datasets, names = get_datasets(transforms, num, stage= "train", exclude = ["community", "trees", "random"])
+    datasets, names = get_datasets(transforms, num, stage= "train", exclude = exclude, include = include)
     return datasets, names
 
 def remove_duplicates_in_place(list1, list2):
