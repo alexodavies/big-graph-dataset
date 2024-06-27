@@ -28,8 +28,33 @@ def four_cycles(g):
 
 def load_fly(return_tensor = False):
     start_dir = os.getcwd()
+    print(start_dir)
+    os.chdir("bgd_files")
+    # os.chdir("fruit_fly")
+    # os.chdir("Supplementary-Data-S1")
+    if "fruit_fly" not in os.listdir():
+        os.mkdir("fruit_fly")
     os.chdir("fruit_fly")
-    os.chdir("Supplementary-Data-S1")
+
+    data_url = "https://raw.githubusercontent.com/neutralpronoun/general-gcl/main/fruit_fly/Supplementary-Data-S1/all-all_connectivity_matrix.csv"
+
+    if "fly_graph.npz" in os.listdir():
+        print("fly dataset already exists")
+        with open("fly_graph.npz", "rb") as f:
+            graph = pickle.load(f)
+        os.chdir(start_dir)
+        return graph
+    else:
+        print("Downloading fly brain graph")
+        # os.chdir("roads")
+
+        _ = wget.download(data_url)
+
+        # with gzip.open('roadNet-PA.txt.gz', 'rb') as f_in:
+        #     with open('roadNet-PA.txt', 'wb') as f_out:
+        #         shutil.copyfileobj(f_in, f_out)
+
+        # os.remove("roadNet-PA.txt.gz")
 
     data_path = os.path.join(os.getcwd(), "all-all_connectivity_matrix.csv")
     fly_mat = pd.read_csv(
@@ -37,12 +62,10 @@ def load_fly(return_tensor = False):
         columns=['Unnamed: 0'])
     fly_mat = fly_mat.to_numpy()
 
-    os.chdir(start_dir)
-    os.chdir("bgd_files")
+    # os.chdir(start_dir)
+    # os.chdir("bgd_files")
 
-    if "fruit_fly" not in os.listdir():
-        os.mkdir("fruit_fly")
-        os.chdir("fruit_fly")
+
 
     # Could be fun to trim only to multiple-synapse connections?
     # fly_mat[fly_mat <= 2] = 0
@@ -57,6 +80,12 @@ def load_fly(return_tensor = False):
     nx_graph = CGs[0]
     nx_graph = nx.convert_node_labels_to_integers(nx_graph)
     nx_graph.remove_edges_from(nx.selfloop_edges(nx_graph))
+
+    with open("fly_graph.npz", "wb") as f:
+        pickle.dump(nx_graph, f)
+
+    # print(os.getcwd(), start_dir)
+    # quit()
     os.chdir(start_dir)
 
     return nx_graph

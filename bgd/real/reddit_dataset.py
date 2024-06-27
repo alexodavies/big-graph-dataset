@@ -20,7 +20,7 @@ def download_reddit():
     print("Getting reddit networkx graph")
     start_dir = os.getcwd()
     print(start_dir)
-    os.chdir("bgd_files/reddit")
+    os.chdir("reddit")
     print(os.getcwd())
 
     graph_url = "https://snap.stanford.edu/data/soc-redditHyperlinks-title.tsv"
@@ -43,8 +43,7 @@ def download_reddit():
     graph_data = pd.read_csv("soc-redditHyperlinks-title.tsv", sep = "\t")
 
 
-    # Avoids weird directory problems
-    os.chdir(start_dir)
+
 
     embeddings.columns = embeddings.iloc[0]
     embeddings = embeddings.drop(["COMPONENT"], axis = 0)
@@ -80,6 +79,9 @@ def download_reddit():
     # Save the graph!
     with open("bgd_files/reddit/reddit-graph.npz", "wb") as f:
         pickle.dump(graph, f)
+
+        # Avoids weird directory problems
+    os.chdir(start_dir)
 
     return graph
 

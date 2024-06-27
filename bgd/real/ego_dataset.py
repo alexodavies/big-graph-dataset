@@ -58,9 +58,7 @@ def get_twitch(num = 49152, include_targets = False):
     data_objects = [pyg.utils.from_networkx(g) for g in graphs]
 
     for id, data in enumerate(data_objects):
-        print(id_to_target[id])
         data.y = torch.Tensor([id_to_target[id]])
-        print(data.y)
 
     return  data_objects
 

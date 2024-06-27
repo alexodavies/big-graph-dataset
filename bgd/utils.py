@@ -282,7 +282,7 @@ def ESWR(graph, n_graphs, size):
     possible_samplers = [MetropolisHastingsRandomWalkSampler, DiffusionSampler, ForestFireSampler]
     sampler_list = [sampler(i) for sampler in possible_samplers for i in range(24, size)]
 
-    max_workers = os.cpu_count() // 4  # Use half the available CPU cores
+    max_workers = min(os.cpu_count() // 2, 8)  # Use a reasonable number of threads
 
     # Chunk the tasks to reduce the overhead
     chunk_size = n_graphs // max_workers or 1
@@ -290,7 +290,7 @@ def ESWR(graph, n_graphs, size):
     graph_chunks = list(chunked_iterable(range(n_graphs), chunk_size))
 
     graphs = []
-    with concurrent.futures.ProcessPoolExecutor(max_workers=max_workers) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = [executor.submit(process_chunk, chunk, sampler_list, graph) for chunk in graph_chunks]
         for future in tqdm(concurrent.futures.as_completed(futures), total=len(futures), desc="Sampling from large graph"):
             graphs.extend(future.result())

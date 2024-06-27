@@ -53,7 +53,7 @@ def get_community_dataset(num = 1000):
     nx_graph_list = [item[0] for item in nx_graph_list_rhos]
     rhos= [item[1] for item in nx_graph_list_rhos]
 
-    datalist = [pyg.utils.from_networkx(g, group_node_attrs=all, group_edge_attrs=all) for g in tqdm(nx_graph_list)]
+    datalist = [pyg.utils.from_networkx(g) for g in tqdm(nx_graph_list)]
 
     for idata, data in enumerate(datalist):
         data.y = torch.Tensor([rhos[idata]])
@@ -109,7 +109,7 @@ class CommunityDataset(InMemoryDataset):
             print("Facebook files exist")
             return
 
-        data_list = get_community_dataset(num=self.num, keep_target=self.stage != "train")
+        data_list = get_community_dataset(num=self.num)
 
         if self.pre_filter is not None:
             data_list = [data for data in data_list if self.pre_filter(data)]

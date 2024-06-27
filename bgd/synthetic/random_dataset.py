@@ -46,7 +46,7 @@ def get_random_graph():
 
     edge_index = erdos_renyi_graph(size, rho)
 
-    G = Data(edge_index)
+    G = Data(edge_index = edge_index)
 
     return G, rho
 
@@ -124,6 +124,9 @@ class RandomDataset(InMemoryDataset):
         # if self.stage != "train":
         #     for i, data in enumerate(data_list):
         #         vis_from_pyg(data, filename=self.root + f'/processed/{self.stage}-{i}.png')
+
+        for data in data_list:
+            print(data)
 
         data, slices = self.collate(data_list)
         torch.save((data, slices), self.processed_paths[self.stage_to_index[self.stage]])

@@ -32,9 +32,21 @@ def download_roads(visualise = False):
 
 
     if "roads" not in os.listdir():
-        print("Downloading roads graph")
         os.mkdir("roads")
-        os.chdir("roads")
+
+    os.chdir("roads")
+    # print(os.listdir())
+    # quit()
+    if "road_graph.npz" in os.listdir():
+        with open("road_graph.npz", "rb") as f:
+            graph = pickle.load(f)
+        os.chdir(start_dir)
+        return graph
+    else:
+
+
+        print("Downloading roads graph")
+        # os.chdir("roads")
 
         _ = wget.download(zip_url)
 
@@ -43,14 +55,14 @@ def download_roads(visualise = False):
                 shutil.copyfileobj(f_in, f_out)
 
         os.remove("roadNet-PA.txt.gz")
-    else:
-        os.chdir("roads")
+    # else:
+    #     os.chdir("roads")
 
-        if "road-graph.npz" in os.listdir():
-            with open("road-graph.npz", "rb") as f:
-                graph = pickle.load(f)
-            os.chdir('../')
-            return graph
+    #     if "road-graph.npz" in os.listdir():
+    #         with open("road-graph.npz", "rb") as f:
+    #             graph = pickle.load(f)
+    #         os.chdir('../')
+    #         return graph
 
 
     edgelist = pd.read_csv("roadNet-PA.txt", delimiter = "\t", header=3)
@@ -78,6 +90,8 @@ def download_roads(visualise = False):
     with open("road_graph.npz", "wb") as f:
         pickle.dump(graph, f)
 
+    print(os.getcwd(), start_dir)
+    quit()
     os.chdir(start_dir)
     return graph
 
