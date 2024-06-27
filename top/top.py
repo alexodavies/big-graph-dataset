@@ -341,7 +341,7 @@ def compute_top_scores(datasets, names):
     args = wandb_cfg
 
     # Get datasets
-    train_loaders = [DataLoader(data, batch_size=128) for data in datasets]
+    train_loaders = [DataLoader(data, batch_size=64) for data in datasets]
     
     model = GInfoMinMax(
         Encoder(emb_dim=args["emb_dim"]["value"],

@@ -19,9 +19,10 @@ def fix_property_string(input_string):
 def download_reddit():
     print("Getting reddit networkx graph")
     start_dir = os.getcwd()
-    print(start_dir)
+    os.chdir("bgd_files")
+    if "reddit" not in os.listdir():
+        os.mkdir("reddit")
     os.chdir("reddit")
-    print(os.getcwd())
 
     graph_url = "https://snap.stanford.edu/data/soc-redditHyperlinks-title.tsv"
     embedding_url = "http://snap.stanford.edu/data/web-redditEmbeddings-subreddits.csv"
@@ -77,7 +78,7 @@ def download_reddit():
     graph = nx.convert_node_labels_to_integers(graph)
 
     # Save the graph!
-    with open("bgd_files/reddit/reddit-graph.npz", "wb") as f:
+    with open("reddit-graph.npz", "wb") as f:
         pickle.dump(graph, f)
 
         # Avoids weird directory problems

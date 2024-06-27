@@ -50,12 +50,12 @@ def get_datasets(transforms, num, stage="train", exclude=None, include=None):
         os.mkdir("bgd_files")
         
     all_datasets = {
+        "reddit": RedditDataset,
         "facebook_large": FacebookDataset,
         "twitch_egos": EgoDataset,
         "cora": CoraDataset,
         "roads": RoadDataset,
         "fruit_fly": NeuralDataset,
-        "reddit": RedditDataset,
         "trees": TreeDataset,
         "random": RandomDataset,
         "community": CommunityDataset
