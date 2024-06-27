@@ -88,7 +88,7 @@ class ToPDataset(InMemoryDataset):
             data = Data(x = torch.ones(n_nodes).to(torch.int).reshape((-1, 1)),
                         edge_index=item.edge_index,
                         edge_attr=torch.ones(n_edges).to(torch.int).reshape((-1,1)),
-                        y = None)
+                        y = None if self.stage == "train" else item.y)
 
             new_data_list.append(data)
         data_list = new_data_list
