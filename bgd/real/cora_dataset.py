@@ -200,18 +200,18 @@ class CoraDataset(InMemoryDataset):
 
         data_list = get_cora_dataset(num=self.num, targets=self.stage != "train")
 
-        new_data_list = []
-        for i, item in enumerate(data_list):
-            n_nodes, n_edges = item.x.shape[0], item.edge_index.shape[1]
+        # new_data_list = []
+        # for i, item in enumerate(data_list):
+        #     n_nodes, n_edges = item.x.shape[0], item.edge_index.shape[1]
 
 
-            data = Data(x = item.x,
-                        edge_index=item.edge_index,
-                        edge_attr=None,
-                        y = item.y)
+        #     data = Data(x = item.x,
+        #                 edge_index=item.edge_index,
+        #                 edge_attr=None,
+        #                 y = item.y)
 
-            new_data_list.append(data)
-        data_list = new_data_list
+        #     new_data_list.append(data)
+        # data_list = new_data_list
 
         if self.pre_filter is not None:
             data_list = [data for data in data_list if self.pre_filter(data)]
