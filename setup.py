@@ -9,7 +9,7 @@ def parse_requirements(filename):
 
 setup(
     name="big-graph-dataset",
-    version="0.0.8-3",
+    version="0.0.8-4",
     author="Alex O. Davies",
     author_email="alexander.davies@bristol.ac.uk",
     description="A collection of graph datasets in torch_geometric format.",

@@ -1,6 +1,7 @@
 import os
 import networkx as nx
 import torch
+import numpy as np
 from tqdm import tqdm
 from torch_geometric.data import InMemoryDataset, Data
 from torch_geometric.utils.convert import to_networkx
@@ -9,6 +10,7 @@ from torch.nn.functional import one_hot
 import wget
 import matplotlib.pyplot as plt
 from ..utils import describe_one_dataset
+from sklearn.decomposition import PCA
 
 if __name__ == "__main__":
     print(os.getcwd())
@@ -78,6 +80,7 @@ def specific_from_networkx(graph):
 
 def download_cora(visualise = False):
     # Ideally we'd save and reload graphs - but cora has massive feature dims
+    # Slight workaround to make storage more reasonable - use PCA on CORA node features first
     zip_url = "https://github.com/abojchevski/graph2gauss/raw/master/data/cora_ml.npz"
 
     start_dir = os.getcwd()
@@ -100,6 +103,8 @@ def download_cora(visualise = False):
 
     node_classes = {n: int(edges.y[i].item()) for i, n in enumerate(list(G.nodes()))}
     node_attrs = {n: edges.x[i] for i, n in enumerate(list(G.nodes()))}
+    all_node_attrs = np.array([edges.x[i].numpy() for i in range(len(edges.x))])
+    pca_projector = PCA(n_components=256).fit(all_node_attrs)
     # print(node_classes)
 
     # base_tensor = torch.Tensor([0])
@@ -111,7 +116,7 @@ def download_cora(visualise = False):
 
         # print(class_tensor, node_classes[node])
 
-        G.nodes[node]["attrs"] = node_attr
+        G.nodes[node]["attrs"] = torch.tensor(pca_projector.transform(node_attr.reshape(1,-1))).flatten()
         G.nodes[node]["label"] = class_tensor
 
     # for edge in list(G.edges()):
