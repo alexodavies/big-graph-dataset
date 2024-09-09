@@ -142,19 +142,15 @@ def run(args):
 
 def arg_parse():
     parser = argparse.ArgumentParser(description='AD-GCL ogbg-mol*')
-
-    parser.add_argument('--dataset', type=str, default='ogbg-molesol',
-                        help='Dataset')
-
     parser.add_argument('--seed', type=int, default=0)
 
-    parser.add_argument('--num_train', type=int, default=5000,
+    parser.add_argument('--num_train', type=int, default=500,
                         help='Number of points included in the train datasets')
     
-    parser.add_argument('--num_val', type=int, default=1000,
+    parser.add_argument('--num_val', type=int, default=100,
                     help='Number of points included in the validation datasets')
 
-    parser.add_argument('--num_test', type=int, default=1000,
+    parser.add_argument('--num_test', type=int, default=100,
                     help='Number of points included in the test datasets')
     
     parser.add_argument(

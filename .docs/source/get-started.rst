@@ -93,6 +93,27 @@ Summary of Git Commands
     # Push your branch to GitHub
     git push origin your-name
 
+
+Python Environments
+===================
+
+My environment is under `requirements.txt`, use `pip install -r requirements. txt` within a virtual (Conda etc.) environment to get everything installed.
+
+If this doesn't work, create and activate a new environment (here with Conda):
+
+'''
+    conda create -n big-graph-dataset python=3.11
+    conda activate big-graph-dataset
+'''
+
+then these commands should install (most of) the relevant libraries:
+
+'''
+   pip install torch torchvision torchaudio 
+   pip install torch_geometric torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-2.4.0+cpu.html
+   pip install matplotlib pandas wget umap-learn
+'''
+
 Testing Code
 ============
 

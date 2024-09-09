@@ -11,7 +11,7 @@
 Big Graph Dataset
 ===============================================
 
-This is a collaboration project to build a large, multi-domain set of graph bgd.
+This is a collaboration project to build a large, multi-domain set of graph datasets.
 Each dataset comprises many small graphs.
 
 The aim of this project is to provide a large set of graph datasets for use in machine learning research.
@@ -62,8 +62,8 @@ A few rules, demonstrated in `bgd/real/example_dataset.py`:
  - Datasets should be many small (less than 400 node) graphs
  - Ideally the number of graphs in each dataset should be controllable
  - Data should be downloaded in-code to keep the repo small. If this isn't possible let me know.
- - Please cite your sources for data in documentation - see the existing datasets for example documentation
- - Where possible start from existing datasets that have been used in-literature, or if using generators, use generators that are well-understood (for example Erdos-Renyi graphs)
+ - Please cite your sources for data in documentation - see the existing datasets for example documentation.
+ - Where possible start from existing datasets that have been used in-literature, or if using generators, use generators that are well-understood (for example Erdos-Renyi graphs).
 
 Please document your dataset files with your name and contact information at the top, I'll check code and merge your branches all at once at the end of the project.
 

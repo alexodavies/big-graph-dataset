@@ -87,6 +87,10 @@ def download_roads(visualise = False):
     graph = nx.convert_node_labels_to_integers(graph)
     graph.remove_edges_from(nx.selfloop_edges(graph))
 
+
+    sampler = MetropolisHastingsRandomWalkSampler(number_of_nodes=100000, seed=42)
+    graph = sampler.sample(graph)
+
     with open("road_graph.npz", "wb") as f:
         pickle.dump(graph, f)
 
@@ -121,13 +125,14 @@ def get_road_dataset(num = 2000, targets = False):
 
     return data_objects# loader
 
-class RoadDataset(InMemoryDataset):
+class PennsylvaniaRoadDataset(InMemoryDataset):
     r"""
     Contributor: Alex O. Davies
     
     Contributor email: `alexander.davies@bristol.ac.uk`
     
-
+    NOTE: This is a big graph (1M nodes) so subsampling many small graphs from it can be very slow. To alleviate this we pre-sample a graph of 100k nodes from the original.
+    
     Road graphs from Pennsylvania, sampled from a large original graph using ESWR.
     The original graph is sourced from:
 
@@ -221,5 +226,5 @@ class RoadDataset(InMemoryDataset):
         del data_list
 
 if __name__ == "__main__":
-    dataset = RoadDataset(os.getcwd()+'/bgd_files/'+'roads', stage = "train")
+    dataset = PennsylvaniaRoadDataset(os.getcwd()+'/bgd_files/'+'roads', stage = "train")
     describe_one_dataset(dataset)

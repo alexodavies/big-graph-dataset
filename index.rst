@@ -40,6 +40,8 @@
 .. _get_train_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/datasets/loaders.html#bgd.loaders.get_train_datasets
 .. |get_val_datasets()| replace:: ``get_val_datasets()``
 .. _get_val_datasets(): https://big-graph-dataset.readthedocs.io/en/latest/datasets/loaders.html#bgd.loaders.get_val_datasets
+.. |LivejournalDataset| replace:: ``LivejournalDataset``
+.. _LivejournalDataset: https://big-graph-dataset.readthedocs.io/en/latest/datasets/real.html#bgd.real.LivejournalDataset
 .. |.modindex| replace:: Module Index
 .. _.modindex: https://big-graph-dataset.readthedocs.io/en/latest/py-modindex.html
 .. |NeuralDataset| replace:: ``NeuralDataset``
@@ -174,6 +176,9 @@ Documentation for the datsets currently in the Big Graph Dataset project.
 
 
     * |FromTUDataset|_
+
+
+    * |LivejournalDataset|_
 
 
     * |NeuralDataset|_

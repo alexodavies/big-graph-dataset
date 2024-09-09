@@ -90,7 +90,7 @@ def get_reddit_dataset(num = 2000):
     graph = download_reddit()
 
     # Sample 1000 graphs of max 96 nodes from the big reddit graph
-    nx_graph_list = ESWR(graph, 1000, 96)
+    nx_graph_list = ESWR(graph, num, 96)
 
     pyg_graph_list = [specific_from_networkx(g) for g in nx_graph_list]
 

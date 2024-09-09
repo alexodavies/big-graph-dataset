@@ -3,10 +3,10 @@ from torch_geometric.data import DataLoader
 
 from ogb.graphproppred import PygGraphPropPredDataset
 from bgd.real.facebook_dataset import FacebookDataset
-from bgd.real.ego_dataset import EgoDataset
+from bgd.real.twitch_ego_dataset import TwitchEgoDataset
 from bgd.real.cora_dataset import CoraDataset
 from bgd.real.neural_dataset import NeuralDataset
-from bgd.real.road_dataset import RoadDataset
+from bgd.real.pennsylvania_road_dataset import PennsylvaniaRoadDataset
 from bgd.real.reddit_dataset import RedditDataset
 from bgd.real.from_ogb_dataset import FromOGBDataset, from_ogb_dataset
 from bgd.real.from_tu_dataset import from_tu_dataset
@@ -23,9 +23,9 @@ def get_datasets(transforms, num, stage="train", exclude=None):
         
     all_datasets = {
         "facebook_large": FacebookDataset,
-        "twitch_egos": EgoDataset,
+        "twitch_egos": TwitchEgoDataset,
         "cora": CoraDataset,
-        "roads": RoadDataset,
+        "roads": PennsylvaniaRoadDataset,
         "fruit_fly": NeuralDataset,
         "reddit": RedditDataset,
         "trees": TreeDataset,

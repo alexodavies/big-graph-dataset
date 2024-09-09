@@ -63,6 +63,7 @@ class FromOGBDataset(InMemoryDataset):
                                "test":2,
                                "train-adgcl":3}
         self.num = num
+        self.dataset_name = root.split('/')[-1]
         print(f"Converting OGB stage {self.stage}")
         super().__init__(root, transform, pre_transform, pre_filter)
         self.data, self.slices = torch.load(self.processed_paths[self.stage_to_index[self.stage]])
@@ -81,7 +82,7 @@ class FromOGBDataset(InMemoryDataset):
     def process(self):
         # Read data into huge `Data` list.
         if os.path.isfile(self.processed_paths[self.stage_to_index[self.stage]]):
-            print(f"\nTU files exist at {self.processed_paths[self.stage_to_index[self.stage]]}")
+            print(f"\nOGB files exist at {self.processed_paths[self.stage_to_index[self.stage]]}")
             return
         data_list = self.ogb_dataset
 
@@ -93,12 +94,16 @@ class FromOGBDataset(InMemoryDataset):
 
         new_data_list = []
         for i, item in enumerate(data_list[:keep_n]):
-
-
-            data = Data(x = to_onehot_atoms(item.x), 
-                        edge_index=item.edge_index,
-                        edge_attr= to_onehot_bonds(item.edge_attr), 
-                        y = item.y)
+            if "mol" in self.dataset_name:
+                data = Data(x = to_onehot_atoms(item.x), 
+                            edge_index=item.edge_index,
+                            edge_attr= to_onehot_bonds(item.edge_attr), 
+                            y = item.y)
+            else:
+                data = Data(x = None,
+                            edge_index=item.edge_index,
+                            edge_attr= item.edge_attr, 
+                            y = item.y)
             
             new_data_list.append(data)
         data_list = new_data_list
@@ -118,18 +123,22 @@ def from_ogb_dataset(root,  stage="train", num=-1):
     Load a dataset from the Open Graph Benchmark (OGB) and convert it to the Big Graph Dataset format.
 
     Args:
-        name (str): The name of the OGB dataset. (Classification: "ogbg-molpcba", "ogbg-molhiv", "ogbg-moltox21", "ogbg-molbace", "ogbg-molbbbp", "ogbg-molclintox", "ogbg-molmuv", "ogbg-molsider", "ogbg-moltoxcast") (Regression: "ogbg-molesol", "ogbg-molfreesolv", "ogbg-mollipo")
+        name (str): The name of the OGB dataset. (Classification: "ogbg-molpcba", "ogbg-molhiv", "ogbg-moltox21", "ogbg-molbace", "ogbg-molbbbp", "ogbg-molclintox", "ogbg-molmuv", "ogbg-molsider", "ogbg-moltoxcast", "ogbg-ppa") (Regression: "ogbg-molesol", "ogbg-molfreesolv", "ogbg-mollipo")
         stage (str, optional): The stage of the dataset to load (e.g., "train", "valid", "test"). Defaults to "train".
         num (int, optional): The number of samples to load. Set to -1 to load all samples. Defaults to -1.
 
     Returns:
         FromOGBDataset: The converted dataset in the Big Graph Dataset format.
     """
-    dataset = PygGraphPropPredDataset(root.split('/')[-1], root = root)
+    
+    name = root.split('/')[-1]
+    root = root[:-len(name)]
+    print(name, root)
+    dataset = PygGraphPropPredDataset(name = name, root = root)
     split_idx = dataset.get_idx_split()
     dataset = dataset[split_idx["valid" if stage == "val" else stage]]
-    return FromOGBDataset(root, dataset, stage = stage, num = num)
+    return FromOGBDataset(root + name, dataset, stage = stage, num = num)
 
 if __name__ == "__main__":
-    molpcba = from_ogb_dataset("ogbg-molpcba", stage = "train")
-    describe_one_dataset(molpcba)
+    molesol = from_ogb_dataset("ogbg-molesol", stage = "train")
+    describe_one_dataset(molesol)

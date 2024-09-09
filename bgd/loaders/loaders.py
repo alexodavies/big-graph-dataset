@@ -3,13 +3,14 @@ from torch_geometric.data import DataLoader
 
 from ogb.graphproppred import PygGraphPropPredDataset
 from bgd.real.facebook_dataset import FacebookDataset
-from bgd.real.ego_dataset import EgoDataset
+from bgd.real.twitch_ego_dataset import TwitchEgoDataset
 from bgd.real.cora_dataset import CoraDataset
 from bgd.real.neural_dataset import NeuralDataset
-from bgd.real.road_dataset import RoadDataset
+from bgd.real.pennsylvania_road_dataset import PennsylvaniaRoadDataset
 from bgd.real.reddit_dataset import RedditDataset
 from bgd.real.from_ogb_dataset import FromOGBDataset, from_ogb_dataset
 from bgd.real.from_tu_dataset import from_tu_dataset
+from bgd.real.livejournal_dataset import LivejournalDataset
 
 from bgd.synthetic.random_dataset import RandomDataset
 from bgd.synthetic.tree_dataset import TreeDataset
@@ -50,12 +51,13 @@ def get_datasets(transforms, num, stage="train", exclude=None, include=None):
         os.mkdir("bgd_files")
         
     all_datasets = {
-        "reddit": RedditDataset,
         "facebook_large": FacebookDataset,
-        "twitch_egos": EgoDataset,
+        "reddit": RedditDataset,
+        "roads": PennsylvaniaRoadDataset,
+        "twitch_egos": TwitchEgoDataset,
         "cora": CoraDataset,
-        "roads": RoadDataset,
         "fruit_fly": NeuralDataset,
+        "livejournal":LivejournalDataset,
         "trees": TreeDataset,
         "random": RandomDataset,
         "community": CommunityDataset
@@ -63,7 +65,7 @@ def get_datasets(transforms, num, stage="train", exclude=None, include=None):
 
     ogb_names = ["ogbg-molpcba", "ogbg-molesol", "ogbg-molclintox",
                  "ogbg-molfreesolv", "ogbg-mollipo", "ogbg-molhiv",
-                 "ogbg-molbbbp", "ogbg-molbace"]
+                 "ogbg-molbbbp", "ogbg-molbace", "ogbg-ppa"]
     all_datasets.update({name: from_ogb_dataset for name in ogb_names})
 
     tu_names = ["MUTAG", "ENZYMES", "PROTEINS", "COLLAB", "IMDB-BINARY", "REDDIT-BINARY"]

@@ -15,6 +15,13 @@ import numpy as np
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 from torch.utils.data.dataset import ConcatDataset
+from collections import deque
+from typing import Union
+
+import networkit as nk
+
+NKGraph = type(nk.graph.Graph())
+NXGraph = nx.classes.graph.Graph
 
 
 def get_metric_values(dataset):
@@ -261,7 +268,159 @@ def wandb_cfg_to_actual_cfg(original_cfg, wandb_cfg):
 
     return original_cfg
 
+
+# Please note: this is a workaround for littleballoffur with Python>=3.11
+# Error thrown without:
+# TypeError: Population must be a sequence.  For dicts or sets, use sorted(d).
+
+class CustomDiffusionSampler(DiffusionSampler):
+    def _create_initial_node_set(self, graph, start_node):
+        """
+        Choosing an initial node.
+        """
+        self._sampled_edges = []
+        if start_node is not None:
+            if start_node >= 0 and start_node < self.backend.get_number_of_nodes(graph):
+                self._sampled_nodes = list(set([start_node]))
+            else:
+                raise ValueError("Starting node index is out of range.")
+        else:
+            node = random.choice(range(self.backend.get_number_of_nodes(graph)))
+            self._sampled_nodes = list(set([node]))
+
+    def _do_a_step(self, graph):
+        """
+        Doing a single random walk step.
+        """
+        source_node = random.sample(self._sampled_nodes, 1)[0]
+        neighbor = self.backend.get_random_neighbor(graph, source_node)
+        if neighbor not in self._sampled_nodes:
+            self._sampled_nodes.append(neighbor)
+            self._sampled_edges.append([source_node, neighbor])
+            self._sampled_edges.append([neighbor, source_node])
+
+    def sample(
+        self, graph: Union[NXGraph, NKGraph], start_node: int = None
+    ) -> Union[NXGraph, NKGraph]:
+        """
+        Sampling nodes with a diffusion process.
+
+        Arg types:
+            * **graph** *(NetworkX or NetworKit graph)* - The graph to be sampled from.
+            * **start_node** *(int, optional)* - The start node.
+
+        Return types:
+            * **new_graph** *(NetworkX or NetworKit graph)* - The graph of sampled nodes.
+        """
+        self._deploy_backend(graph)
+        self._check_number_of_nodes(graph)
+        self._create_initial_node_set(graph, start_node)
+        while len(self._sampled_nodes) < self.number_of_nodes:
+            self._do_a_step(graph)
+        new_graph = self.backend.get_subgraph(graph, list(self._sampled_nodes))
+        return new_graph
+
+class CustomForestFireSampler(ForestFireSampler):
+
+    def _create_node_sets(self, graph):
+        """
+        Create a starting set of nodes.
+        """
+        self._sampled_nodes = set()
+        self._set_of_nodes = set(range(self.backend.get_number_of_nodes(graph)))
+        self._visited_nodes = deque(maxlen=self.max_visited_nodes_backlog)
+
+    def _start_a_fire(self, graph):
+        """
+        Starting a forest fire from a single node.
+        """
+        if not self._sampled_nodes:
+            # If this is the first fire, select a random seed node
+            seed_node = random.choice(tuple(self._set_of_nodes))
+            node_queue = deque([seed_node])
+        else:
+            # Use unvisited nodes as candidates for the next fire
+            remaining_nodes = list(self._set_of_nodes - self._sampled_nodes)
+            if not remaining_nodes:
+                print("Warning: No remaining nodes to sample.")
+                return
+            seed_node = random.choice(remaining_nodes)
+            node_queue = deque([seed_node])
+
+        self._sampled_nodes.add(seed_node)
+
+        while len(self._sampled_nodes) < self.number_of_nodes:
+            if not node_queue:
+                # Restart the fire if needed
+                if not self._visited_nodes:
+                    print(
+                        "Warning: could not collect the required number of nodes. The fire could not find enough nodes to burn."
+                    )
+                    break
+                node_queue.extend(
+                    self._visited_nodes.popleft()
+                    for _ in range(min(self.restart_hop_size, len(self._visited_nodes)))
+                )
+                continue
+
+            top_node = node_queue.popleft()
+            neighbors = self.backend.get_neighbors(graph, top_node)
+            unvisited_neighbors = [n for n in neighbors if n not in self._sampled_nodes]
+
+            if unvisited_neighbors:
+                score = np.random.geometric(self.p)
+                count = min(len(unvisited_neighbors), score)
+                burned_neighbors = random.sample(unvisited_neighbors, count)
+
+                self._sampled_nodes.update(burned_neighbors)
+                self._visited_nodes.extendleft(
+                    n for n in unvisited_neighbors if n not in burned_neighbors
+                )
+
+                node_queue.extend(burned_neighbors)
+
+    def sample(self, graph: Union[NXGraph, NKGraph]) -> Union[NXGraph, NKGraph]:
+        """
+        Sampling nodes iteratively with a forest fire sampler.
+
+        Arg types:
+            * **graph** *(NetworkX or NetworKit graph)* - The graph to be sampled from.
+
+        Return types:
+            * **new_graph** *(NetworkX or NetworKit graph)* - The graph of sampled nodes.
+        """
+        self._deploy_backend(graph)
+        self._check_number_of_nodes(graph)
+        self._create_node_sets(graph)
+        while len(self._sampled_nodes) < self.number_of_nodes:
+            self._start_a_fire(graph)
+        new_graph = self.backend.get_subgraph(graph, self._sampled_nodes)
+        return new_graph
+
+
+class CustomMetropolisHastingsRandomWalkSampler(MetropolisHastingsRandomWalkSampler):
+    # def _do_a_step(self, graph):
+    #     # Ensure that self._sampled_nodes is a list before sampling
+    #     if isinstance(self._sampled_nodes, (set, dict)):
+    #         self._sampled_nodes = list(self._sampled_nodes)
+    #     super()._do_a_step(graph)
+
+    def _do_a_step(self, graph):
+        """
+        Doing a single random walk step.
+        """
+        score = random.uniform(0, 1)
+        new_node = self.backend.get_random_neighbor(graph, self._current_node)
+        ratio = float(self.backend.get_degree(graph, self._current_node)) / float(
+            self.backend.get_degree(graph, new_node)
+        )
+        ratio = ratio ** self.alpha
+        if score < ratio:
+            self._current_node = new_node
+            self._sampled_nodes.add(self._current_node)
+
 def sample_graph(sampler, graph):
+    graph = nx.convert_node_labels_to_integers(graph)
     return nx.convert_node_labels_to_integers(sampler.sample(graph))
 
 def chunked_iterable(iterable, size):
@@ -272,14 +431,14 @@ def chunked_iterable(iterable, size):
 
 def process_chunk(chunk, sampler_list, graph):
     chunk_graphs = []
-    for _ in chunk:
+    for _ in tqdm(chunk, leave = False, colour="MAGENTA"):
         sampler = np.random.choice(sampler_list)
         g = sample_graph(sampler, graph)
         chunk_graphs.append(g)
     return chunk_graphs
 
 def ESWR(graph, n_graphs, size):
-    possible_samplers = [MetropolisHastingsRandomWalkSampler, DiffusionSampler, ForestFireSampler]
+    possible_samplers = [CustomMetropolisHastingsRandomWalkSampler, CustomDiffusionSampler, CustomForestFireSampler]
     sampler_list = [sampler(i) for sampler in possible_samplers for i in range(24, size)]
 
     max_workers = min(os.cpu_count() // 2, 8)  # Use a reasonable number of threads
@@ -296,6 +455,9 @@ def ESWR(graph, n_graphs, size):
             graphs.extend(future.result())
     print("Done sampling!\n")
     return graphs
+
+
+
 
 def describe_one_dataset(dataset):
     print(r"Stage  &  Num  &  X shape  &  E shape  &  Y shape  &  Num. Nodes  &  Num. Edges  &  Diameter  &  Clustering \\")
