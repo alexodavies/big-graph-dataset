@@ -38,8 +38,11 @@ sphinx:
 # Use conda environment to install dependencies
 
 
-# python:
-#   version: "3.11"  # Specify Python version for Conda environment
+python:
+   version: 3.11
+   install:
+      - method: pip
+        path: .
 
 
 formats:
