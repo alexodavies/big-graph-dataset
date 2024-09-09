@@ -9,6 +9,7 @@ def parse_requirements(filename):
 
 setup(
     name="big-graph-dataset",
+    version="0.0.8-4",
     version="0.0.8-5",
     author="Alex O. Davies",
     author_email="alexander.davies@bristol.ac.uk",
