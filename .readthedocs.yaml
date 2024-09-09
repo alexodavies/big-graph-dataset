@@ -34,8 +34,8 @@ sphinx:
 conda:
   environment: environment.yml  # Specify the path to your Conda environment file
 
-python:
-  version: "3.11"  # Specify Python version for Conda environment
+# python:
+#   version: "3.11"  # Specify Python version for Conda environment
 
 
 formats:
