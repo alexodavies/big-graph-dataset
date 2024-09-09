@@ -7,4 +7,4 @@ pip freeze | grep '@ file://' | cut -d ' ' -f 1 | while read package; do
     pip install $package
 done
 pip freeze > requirements.txt
-
+conda env export > environment.yml
