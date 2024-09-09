@@ -32,11 +32,6 @@ from typing import (
 
 
 class GINEConv(MessagePassing):
-    """
-    Graph Isomorphism Network (GIN) convolutional layer.
-    Originally from the AD-GCL implementation, with an older propagation version from pytorch geometric to allow edge weights.
-    """
-    
     def __init__(self, nn: Callable, eps: float = 0., train_eps: bool = False,
                  **kwargs):
         kwargs.setdefault('aggr', 'add')
