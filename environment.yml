@@ -1,6 +1,9 @@
 name: pyg-bgd
 channels:
   - defaults
+  - conda-forge
+  - pytorch
+  - nvidia
 dependencies:
   - defaults/osx-arm64::blas==1.0=openblas
   - defaults/osx-arm64::bzip2==1.0.8=h80987f9_6
