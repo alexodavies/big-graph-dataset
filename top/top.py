@@ -16,10 +16,97 @@ from umap import UMAP
 from sklearn.decomposition import PCA
 import matplotlib
 import matplotlib.pyplot as plt
-from sklearn.preprocessing import normalize, StandardScaler
+from sklearn.preprocessing import StandardScaler, normalize
 
 from tqdm import tqdm
 
+class L1Normalizer:
+    def __init__(self):
+        self.norms = None
+
+    def fit(self, embeddings):
+        """
+        Compute the L1 norms of the embeddings.
+        
+        Args:
+        - embeddings: A numpy array of shape (num_samples, embedding_dim) with data embeddings.
+        
+        Returns:
+        - self: The fitted L1Normalizer instance.
+        """
+        self.norms = np.linalg.norm(embeddings, ord=1, axis=1, keepdims=True)
+        return self
+
+    def transform(self, embeddings):
+        """
+        Apply L1 normalization to the embeddings using the computed norms.
+        
+        Args:
+        - embeddings: A numpy array of shape (num_samples, embedding_dim) with data embeddings.
+        
+        Returns:
+        - A numpy array of L1 normalized embeddings.
+        """
+        if self.norms is None:
+            raise ValueError("The model has not been fitted yet. Please call 'fit' with appropriate data before using 'transform'.")
+        return embeddings / self.norms
+
+    def fit_transform(self, embeddings):
+        """
+        Compute the L1 norms and apply L1 normalization to the embeddings.
+        
+        Args:
+        - embeddings: A numpy array of shape (num_samples, embedding_dim) with data embeddings.
+        
+        Returns:
+        - A numpy array of L1 normalized embeddings.
+        """
+        self.fit(embeddings)
+        return self.transform(embeddings)
+
+class L2Normalizer:
+    def __init__(self):
+        self.norms = None
+
+    def fit(self, embeddings):
+        """
+        Compute the L2 norms of the embeddings.
+        
+        Args:
+        - embeddings: A numpy array of shape (num_samples, embedding_dim) with data embeddings.
+        
+        Returns:
+        - self: The fitted L2Normalizer instance.
+        """
+        self.norms = np.linalg.norm(embeddings, axis=1, keepdims=True)
+        return self
+
+    def transform(self, embeddings):
+        """
+        Apply L2 normalization to the embeddings using the computed norms.
+        
+        Args:
+        - embeddings: A numpy array of shape (num_samples, embedding_dim) with data embeddings.
+        
+        Returns:
+        - A numpy array of L2 normalized embeddings.
+        """
+        if self.norms is None:
+            raise ValueError("The model has not been fitted yet. Please call 'fit' with appropriate data before using 'transform'.")
+        return embeddings / self.norms
+
+    def fit_transform(self, embeddings):
+        """
+        Compute the L2 norms and apply L2 normalization to the embeddings.
+        
+        Args:
+        - embeddings: A numpy array of shape (num_samples, embedding_dim) with data embeddings.
+        
+        Returns:
+        - A numpy array of L2 normalized embeddings.
+        """
+        self.fit(embeddings)
+        return self.transform(embeddings)
 
 def setup_seed(seed):
     torch.manual_seed(seed)
@@ -37,6 +124,8 @@ def get_emb_y(loader, encoder, device, dtype='numpy', is_rand_label=False, every
         return torch.from_numpy(x).to(device), torch.from_numpy(y).to(device)
     else:
         raise NotImplementedError
+
+
 
 def annotate_heatmap(im, data=None, valfmt="{x:.2f}",
                      textcolors=("black", "white"),
