@@ -114,6 +114,11 @@ then these commands should install (most of) the relevant libraries:
    pip install matplotlib pandas wget umap-learn
 '''
 
+**Enviroment Issues**
+
+ - The packaged enviroment uses CPU versions of PyTorch and PyTorch Geometric. If you have a GPU, you can install the GPU versions by changing the `torch` and `torch_geometric` lines in `requirements.txt` to the GPU versions from the PyTorch website.
+ - Some packages don't play well with others. If you have significant issues, please get in touch.
+
 Testing Code
 ============
 
