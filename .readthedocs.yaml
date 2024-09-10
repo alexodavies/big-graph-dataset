@@ -37,7 +37,6 @@ sphinx:
 python:
   install:
     - method: pip
-    - path: .
     - requirements: requirements.txt
     - pip: 
         - torch==2.4.1
