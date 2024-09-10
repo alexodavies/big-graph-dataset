@@ -9,7 +9,7 @@ def parse_requirements(filename):
 
 setup(
     name="big-graph-dataset",
-    version="0.0.8-4",
+    version="0.0.8-5",
     author="Alex O. Davies",
     author_email="alexander.davies@bristol.ac.uk",
     description="A collection of graph datasets in torch_geometric format.",
@@ -23,7 +23,7 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.8',
+    python_requires='>=3.11',
     install_requires=[parse_requirements('requirements.txt')
         # List your project's dependencies
     ],

@@ -82,7 +82,10 @@ class ToPDataset(InMemoryDataset):
             if item.x is not None:
                 n_nodes = item.x.shape[0]
             else:
-                n_nodes = torch.max(item.edge_index) + 1
+                n_nodes = item.num_nodes # Alternative: torch.max(item.edge_index) + 1
+
+            if n_nodes <= 2:
+                continue
 
             n_edges =  item.edge_index.shape[1]
             data = Data(x = torch.ones(n_nodes).to(torch.int).reshape((-1, 1)),

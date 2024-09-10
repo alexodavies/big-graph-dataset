@@ -19,6 +19,7 @@ from .synthetic import *
 
 _real_datasets = ['CoraDataset', 'RoadDataset', 'NeuralDataset',
                 'FacebookDataset', 'RedditDataset', 'EgoDataset',
+                'LivejournalDataset',
                 'FromOGBDataset', 'from_ogb_dataset',
                 'FromTUDataset', 'from_tu_dataset']
 

@@ -62,7 +62,7 @@ def get_twitch(num = 49152, include_targets = False):
 
     return  data_objects
 
-class EgoDataset(InMemoryDataset):
+class TwitchEgoDataset(InMemoryDataset):
     r"""
     Contributor: Alex O. Davies
     
@@ -135,5 +135,5 @@ class EgoDataset(InMemoryDataset):
 
 
 if __name__ == "__main__":
-    dataset = EgoDataset(os.getcwd()+'/bgd_files/'+'twitch_egos', stage = "train")
+    dataset = TwitchEgoDataset(os.getcwd()+'/bgd_files/'+'twitch_egos', stage = "train")
     describe_one_dataset(dataset)

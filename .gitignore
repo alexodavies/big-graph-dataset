@@ -6,6 +6,7 @@
 *.tsv
 *.txt
 *.json
+*.tmp
 /.docs/build
 /__pycache__
 /bgd/__pycache__

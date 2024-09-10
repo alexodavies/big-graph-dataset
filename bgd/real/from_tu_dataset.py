@@ -196,9 +196,12 @@ def from_tu_dataset(root,  stage="train", num=-1):
     Returns:
         FromOGBDataset: The converted dataset in the Big Graph Dataset format.
     """
-    dataset = TUDataset(root, root.split('/')[-1])
-    return FromTUDataset(root, dataset, stage = stage, num = num)
+    name = root.split('/')[-1]
+    root = root[:-len(name)]
+    print(root, name)
+    dataset = TUDataset(root + name, name)
+    return FromTUDataset(root + name, dataset, stage = stage, num = num)
 
 if __name__ == "__main__":
-    mutag = from_tu_dataset("PROTEINS", stage = "train")
+    mutag = from_tu_dataset("bgd_files/PROTEINS", stage = "train")
     describe_one_dataset(mutag)
