@@ -5,7 +5,10 @@ import torch.nn.functional as F
 from torch import Tensor
 from torch_geometric.nn.conv import MessagePassing
 from torch_geometric.typing import OptPairTensor, Adj, OptTensor, Size
-from torch_sparse import SparseTensor
+try:
+    from torch_sparse import SparseTensor
+except ImportError:
+    print("SparseTensor not found, presumably docs build")
 
 from unsupervised.convs.inits import reset
 
