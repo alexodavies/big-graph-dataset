@@ -90,7 +90,7 @@ soupsieve
 Sphinx
 sphinx-autodoc-typehints
 sphinx-readme
-sphinx-rtd-theme
+sphinx-rtd-theme==2.0.0
 sphinxcontrib-applehelp
 sphinxcontrib-bibtex
 sphinxcontrib-devhelp
