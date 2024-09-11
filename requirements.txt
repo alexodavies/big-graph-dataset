@@ -53,7 +53,7 @@ nbsphinx
 networkit
 networkx
 numba
-numpy
+numpy==1.26.4
 ogb
 outdated
 packaging
