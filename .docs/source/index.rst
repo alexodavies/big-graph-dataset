@@ -73,6 +73,7 @@ Getting Started
 Check out the Reddit dataset example notebook for a quick start guide, then have a look at the source code for the bgd.
 
 My environment is under `requirements.txt`, use `pip install -r requirements. txt` within a virtual (Conda etc.) environment to get everything installed.
+You could also run a conda install using `environment.yml`.
 
 .. toctree::
    :maxdepth: 2

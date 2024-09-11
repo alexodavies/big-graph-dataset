@@ -97,7 +97,13 @@ Summary of Git Commands
 Python Environments
 ===================
 
-My environment is under `requirements.txt`, use `pip install -r requirements. txt` within a virtual (Conda etc.) environment to get everything installed.
+**Please use Python 3.11.X**
+
+A *generic* environment is under `requirements.txt`, use `pip install -r requirements. txt` within a virtual (Conda etc.) environment to get everything installed.
+
+Alternatively my MacOS environment, with specific versioning, is under `requirements_macos.txt`, install with `pip install -r requirements_macos. txt`.
+
+There is also a packaged conda environment in `environment.yml` - you can run `conda env create -f enviroment.yml` to try this instead of the pip installs.
 
 If this doesn't work, create and activate a new environment (here with Conda):
 
@@ -118,6 +124,7 @@ then these commands should install (most of) the relevant libraries:
 
  - The packaged enviroment uses CPU versions of PyTorch and PyTorch Geometric. If you have a GPU, you can install the GPU versions by changing the `torch` and `torch_geometric` lines in `requirements.txt` to the GPU versions from the PyTorch website.
  - Some packages don't play well with others. If you have significant issues, please get in touch.
+ - **If your code requires new package installs please tell me** (email, but this can also be detailed in the pull request)
 
 Testing Code
 ============
