@@ -287,8 +287,8 @@ class GeneralEmbeddingEvaluation:
         plt.savefig("outputs/pairwise-similarity.png")
 
 def get_top_model():
-    checkpoint_url = "https://github.com/neutralpronoun/general-gcl/raw/main/outputs/all-100.pt"
-    config_url = "https://github.com/neutralpronoun/general-gcl/raw/main/outputs/all-100.yaml"
+    checkpoint_url = "https://github.com/alexodavies/general-gcl/raw/main/outputs/all-100.pt"
+    config_url = "https://github.com/alexodavies/general-gcl/raw/main/outputs/all-100.yaml"
 
     if "bgd_models" not in os.listdir():
         os.mkdir("bgd_models")

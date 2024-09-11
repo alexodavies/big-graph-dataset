@@ -15,7 +15,7 @@ setup(
     description="A collection of graph datasets in torch_geometric format.",
     long_description=long_description,
     long_description_content_type="text/x-rst",
-    url="https://github.com/neutralpronoun/big-graph-dataset",
+    url="https://github.com/alexodavies/big-graph-dataset",
     packages=find_packages(),
     py_modules=['utils', 'describe_datasets'],  # Include utils.py
     classifiers=[

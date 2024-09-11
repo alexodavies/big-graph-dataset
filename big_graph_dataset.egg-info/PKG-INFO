@@ -2,7 +2,7 @@ Metadata-Version: 2.1
 Name: big-graph-dataset
 Version: 0.0.1
 Summary: A collection of graph datasets in torch_geometric format.
-Home-page: https://github.com/neutralpronoun/big-graph-dataset
+Home-page: https://github.com/alexodavies/big-graph-dataset
 Author: Alex O. Davies
 Author-email: alexander.davies@bristol.ac.uk
 Classifier: Programming Language :: Python :: 3
@@ -266,7 +266,7 @@ In the examples I've provided datasets are mostly sampled from one large graph -
 Contributing
 ============
 
-The source can be found in the `Github repository<https://github.com/neutralpronoun/big-graph-dataset>`, and documentation on the `readthedocs page<https://big-graph-dataset.readthedocs.io/en/latest/>`.
+The source can be found in the `Github repository<https://github.com/alexodavies/big-graph-dataset>`, and documentation on the `readthedocs page<https://big-graph-dataset.readthedocs.io/en/latest/>`.
 
 The basics:
  - Create your own git branch

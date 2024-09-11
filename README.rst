@@ -81,7 +81,7 @@ In the examples I've provided datasets are mostly sampled from one large graph -
 Contributing
 ============
 
-The source can be found in the `Github repository<https://github.com/neutralpronoun/big-graph-dataset>`, and documentation on the `readthedocs page<https://big-graph-dataset.readthedocs.io/en/latest/>`.
+The source can be found in the `Github repository<https://github.com/alexodavies/big-graph-dataset>`, and documentation on the `readthedocs page<https://big-graph-dataset.readthedocs.io/en/latest/>`.
 
 The basics:
  - Create your own git branch

@@ -21,7 +21,7 @@ Set Up & Contributing
 
 Open your terminal and run the following command to clone the main repository::
 
-    git clone https://github.com/neutralpronoun/big-graph-dataset.git
+    git clone https://github.com/alexodavies/big-graph-dataset.git
 
 2. Navigate to the repository directory:
 ------------------------------------------
@@ -64,7 +64,7 @@ Push your branch to the main repository on GitHub::
 
 7. Create a Pull Request
 ------------------------
-   - Go to the repository on `GitHub <https://github.com/neutralpronoun/big-graph-dataset.git>`. 
+   - Go to the repository on `GitHub <https://github.com/alexodavies/big-graph-dataset.git>`. 
    - Click on the "Pull Requests" tab.
    - Click the "New pull request" button.
    - Select the branch you just pushed from the "compare" drop-down menu.
@@ -80,7 +80,7 @@ Summary of Git Commands
 ::
 
     # Clone the repository
-    git clone https://github.com/neutralpronoun/big-graph-dataset.git
+    git clone https://github.com/alexodavies/big-graph-dataset.git
     cd big-graph-dataset
 
     # Create a new branch

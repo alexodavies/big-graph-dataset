@@ -36,7 +36,7 @@ def load_fly(return_tensor = False):
         os.mkdir("fruit_fly")
     os.chdir("fruit_fly")
 
-    data_url = "https://raw.githubusercontent.com/neutralpronoun/general-gcl/main/fruit_fly/Supplementary-Data-S1/all-all_connectivity_matrix.csv"
+    data_url = "https://raw.githubusercontent.com/alexodavies/general-gcl/main/fruit_fly/Supplementary-Data-S1/all-all_connectivity_matrix.csv"
 
     if "fly_graph.npz" in os.listdir():
         print("fly dataset already exists")
