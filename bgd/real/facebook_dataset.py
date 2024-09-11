@@ -136,12 +136,12 @@ class FacebookDataset(InMemoryDataset):
 
     The task is node classification for the category of each Facebook page in a given graph, one-hot encoded for four categories.
 
-     - Task: Node classification
-     - Num node features: None
-     - Num edge features: None
-     - Num target values: 4
-     - Target shape: N Nodes
-     - Num graphs: Parameterised by `num`
+    - Task: Node classification
+    - Num node features: None
+    - Num edge features: None
+    - Num target values: 4
+    - Target shape: N Nodes
+    - Num graphs: Parameterised by `num`
 
     Args:
         root (str): Root directory where the dataset should be saved.

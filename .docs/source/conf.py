@@ -27,7 +27,7 @@ extensions = [
     'sphinx.ext.napoleon',  # For Google and NumPy style docstrings
     'sphinx_autodoc_typehints',  # For type hints support
     'nbsphinx',
-    'sphinx_readme'
+    # 'sphinx_readme'
 ]
 
 # Optional: Configure autodoc
@@ -87,4 +87,5 @@ html_baseurl = 'https://big-graph-dataset.readthedocs.io/en/latest/'
 readme_src_files = 'index.rst'
 readme_docs_url_type = 'code'
 
-exclude_patterns = ['./bgd/top/unsupervised/*']
+# exclude_patterns = ['top/unsupervised/*']
+# autoapi_keep_files = True

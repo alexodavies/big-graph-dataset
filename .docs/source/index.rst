@@ -90,17 +90,17 @@ Documentation for the datsets currently in the Big Graph Dataset project.
 
    datasets
 
-ToP (Topology Only Pre-Training)
-================================
+.. ToP (Topology Only Pre-Training)
+.. ================================
 
-Documentation for the Topology Only Pre-Training component of the project.
-We are using a pre-trained model to generate embeddings of the graphs in the datasets, hopefully to get some measure of how diverse the datasets are.
-Very much a work-in-progress!
+.. Documentation for the Topology Only Pre-Training component of the project.
+.. We are using a pre-trained model to generate embeddings of the graphs in the datasets, hopefully to get some measure of how diverse the datasets are.
+.. Very much a work-in-progress!
 
-.. toctree::
-   :maxdepth: 2
+.. .. toctree::
+..    :maxdepth: 0
 
-   top
+..    top
 
 Credits
 =======

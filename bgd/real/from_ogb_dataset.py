@@ -43,8 +43,8 @@ class FromOGBDataset(InMemoryDataset):
 
     We convert atom and bond features into one-hot encodings.
     The resulting shapes are:
-     - node (atom features): (174, N Atoms)
-     - edge (bond features) features: (13, N Bonds)
+    - node (atom features): (174, N Atoms)
+    - edge (bond features) features: (13, N Bonds)
 
     Args:
         root (str): Root directory where the dataset should be saved.
