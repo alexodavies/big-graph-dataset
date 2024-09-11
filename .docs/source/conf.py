@@ -86,3 +86,5 @@ html_context = {
 html_baseurl = 'https://big-graph-dataset.readthedocs.io/en/latest/'
 readme_src_files = 'index.rst'
 readme_docs_url_type = 'code'
+
+exclude_patterns = ['./bgd/top/unsupervised/*']
