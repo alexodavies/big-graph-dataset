@@ -141,11 +141,12 @@ class FromTUDataset(InMemoryDataset):
         if os.path.isfile(self.processed_paths[self.stage_to_index[self.stage]]):
             print(f"\nTU files exist at {self.processed_paths[self.stage_to_index[self.stage]]}")
             return
-
+        print("Got to pyg process")
         data_list = self.ogb_dataset
         num_classes = data_list.num_classes
         data_list = [data for data in data_list]
         random.Random(4).shuffle(data_list)
+        print("Shuffled")
 
         num_samples = len(data_list)
         if self.stage is None:
@@ -163,7 +164,7 @@ class FromTUDataset(InMemoryDataset):
 
             keep_n = len(data_list)
 
-        new_data_list = []
+        print(f"Converting {keep_n} samples")
         for i, item in enumerate(data_list[:keep_n]):
 
             data = Data(x = item.x, 
@@ -171,8 +172,7 @@ class FromTUDataset(InMemoryDataset):
                         edge_attr= item.edge_attr, 
                         y = one_hot(item.y, num_classes = num_classes))
             
-            new_data_list.append(data)
-        data_list = new_data_list
+            data_list[i] = data
 
         if self.pre_filter is not None:
             data_list = [data for data in data_list if self.pre_filter(data)]
@@ -199,6 +199,9 @@ def from_tu_dataset(root,  stage="train", num=-1):
     name = root.split('/')[-1]
     root = root[:-len(name)]
     print(root, name)
+
+    
+
     dataset = TUDataset(root + name, name)
     return FromTUDataset(root + name, dataset, stage = stage, num = num)
 

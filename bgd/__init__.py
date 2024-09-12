@@ -17,6 +17,13 @@ from .loaders import *
 from .real import *
 from .synthetic import *
 
+import sys
+
+if not sys.warnoptions:
+    import warnings
+    warnings.simplefilter("ignore")
+
+
 _real_datasets = ['CoraDataset', 'RoadDataset', 'NeuralDataset',
                 'FacebookDataset', 'RedditDataset', 'EgoDataset',
                 'LivejournalDataset',

@@ -65,7 +65,7 @@ def get_datasets(transforms, num, stage="train", exclude=None, include=None):
 
     ogb_names = ["ogbg-molpcba", "ogbg-molesol", "ogbg-molclintox",
                  "ogbg-molfreesolv", "ogbg-mollipo", "ogbg-molhiv",
-                 "ogbg-molbbbp", "ogbg-molbace", "ogbg-ppa"]
+                 "ogbg-molbbbp", "ogbg-molbace"]
     all_datasets.update({name: from_ogb_dataset for name in ogb_names})
 
     tu_names = ["MUTAG", "ENZYMES", "PROTEINS", "COLLAB", "IMDB-BINARY", "REDDIT-BINARY"]

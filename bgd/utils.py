@@ -20,6 +20,12 @@ from typing import Union
 
 import networkit as nk
 
+import sys
+
+if not sys.warnoptions:
+    import warnings
+    warnings.simplefilter("ignore")
+
 NKGraph = type(nk.graph.Graph())
 NXGraph = nx.classes.graph.Graph
 
@@ -445,13 +451,13 @@ def ESWR(graph, n_graphs, size):
 
     # Chunk the tasks to reduce the overhead
     chunk_size = n_graphs // max_workers or 1
-    print(f"\nSampling {n_graphs} in {max_workers} chunks with size {chunk_size}")
+    print(f"\nSampling {n_graphs} in {max_workers} chunks with size {chunk_size} from {graph}")
     graph_chunks = list(chunked_iterable(range(n_graphs), chunk_size))
 
     graphs = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = [executor.submit(process_chunk, chunk, sampler_list, graph) for chunk in graph_chunks]
-        for future in tqdm(concurrent.futures.as_completed(futures), total=len(futures), desc="Sampling from large graph"):
+        for future in tqdm(concurrent.futures.as_completed(futures), total=len(futures), desc="Sampling from {graph}"):
             graphs.extend(future.result())
     print("Done sampling!\n")
     return graphs

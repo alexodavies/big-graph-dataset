@@ -87,8 +87,8 @@ def download_roads(visualise = False):
     graph = nx.convert_node_labels_to_integers(graph)
     graph.remove_edges_from(nx.selfloop_edges(graph))
 
-
-    sampler = MetropolisHastingsRandomWalkSampler(number_of_nodes=100000, seed=42)
+    print("Sub-sampling road graph")
+    sampler = MetropolisHastingsRandomWalkSampler(number_of_nodes=50000, seed=42)
     graph = sampler.sample(graph)
 
     with open("road_graph.npz", "wb") as f:

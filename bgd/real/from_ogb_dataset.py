@@ -5,6 +5,7 @@ from ..utils import describe_one_dataset
 
 from ogb.utils.features import get_atom_feature_dims, get_bond_feature_dims
 from ogb.graphproppred import PygGraphPropPredDataset
+from tqdm import tqdm
 
 
 full_atom_feature_dims = get_atom_feature_dims()
@@ -92,8 +93,8 @@ class FromOGBDataset(InMemoryDataset):
         else:
             keep_n = self.num
 
-        new_data_list = []
-        for i, item in enumerate(data_list[:keep_n]):
+        print("Converting OGB dataset to Big Graph Dataset format")
+        for i, item in enumerate(tqdm(data_list[:keep_n], leave  = False)):
             if "mol" in self.dataset_name:
                 data = Data(x = to_onehot_atoms(item.x), 
                             edge_index=item.edge_index,
@@ -105,8 +106,8 @@ class FromOGBDataset(InMemoryDataset):
                             edge_attr= item.edge_attr, 
                             y = item.y)
             
-            new_data_list.append(data)
-        data_list = new_data_list
+            data_list[i] = data
+        
 
         if self.pre_filter is not None:
             data_list = [data for data in data_list if self.pre_filter(data)]
