@@ -116,7 +116,7 @@ Getting Started
 
 Check out the Reddit dataset example notebook for a quick start guide, then have a look at the source code for the bgd.
 
-My environment is under `docs/requirements.txt`, use `pip install -r requirements. txt` within a virtual (Conda etc.) environment to get everything installed.
+My environment is under `docs/requirements_dev.txt`, use `pip install -r requirements_dev. txt` within a virtual (Conda etc.) environment to get everything installed.
 
 * `Reddit Example Dataset <https://big-graph-dataset.readthedocs.io/en/latest/reddit-dataset-example.html>`_
 
