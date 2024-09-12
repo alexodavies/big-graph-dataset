@@ -8,7 +8,7 @@ pandas==1.5.3
 PyYAML==6.0.2
 scikit_learn==1.5.2
 setuptools==73.0.1
-torch==2.4.1+cpu
+torch==2.4.1
 torch_geometric==2.5.3
 torch_sparse==0.6.18
 tqdm==4.66.5
