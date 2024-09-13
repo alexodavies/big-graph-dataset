@@ -85,21 +85,24 @@ class FromOGBDataset(InMemoryDataset):
         if os.path.isfile(self.processed_paths[self.stage_to_index[self.stage]]):
             print(f"\nOGB files exist at {self.processed_paths[self.stage_to_index[self.stage]]}")
             return
-        data_list = self.ogb_dataset
+        data_list = list(self.ogb_dataset)
 
-        num_samples = len(data_list)
+        num_samples = len(self.ogb_dataset)
         if num_samples < self.num:
             keep_n = num_samples
         else:
             keep_n = self.num
-
-        print("Converting OGB dataset to Big Graph Dataset format")
+        data_list = data_list[:keep_n]
+        print(f"Converting OGB dataset to Big Graph Dataset format, keeping {keep_n} samples out of {num_samples}")
         for i, item in enumerate(tqdm(data_list[:keep_n], leave  = False)):
             if "mol" in self.dataset_name:
+                print("mol in name")
+                print(item)
                 data = Data(x = to_onehot_atoms(item.x), 
                             edge_index=item.edge_index,
                             edge_attr= to_onehot_bonds(item.edge_attr), 
                             y = item.y)
+                print(data)
             else:
                 data = Data(x = None,
                             edge_index=item.edge_index,
@@ -114,7 +117,7 @@ class FromOGBDataset(InMemoryDataset):
 
         if self.pre_transform is not None:
             data_list = [self.pre_transform(data) for data in data_list]
-
+        print(self.dataset_name, data_list)
         data, slices = self.collate(data_list)
         torch.save((data, slices), self.processed_paths[self.stage_to_index[self.stage]])
 

@@ -17,6 +17,8 @@ import wget
 import matplotlib.pyplot as plt
 from ..utils import describe_one_dataset, vis_grid, ESWR
 from ..utils import ESWR, CustomForestFireSampler
+from littleballoffur.exploration_sampling import *
+
 
 def download_livejournal():
     # This function should download the data and process it into one big networkx graph
@@ -82,6 +84,10 @@ def download_livejournal():
     graph = CGs[0]
     graph = nx.convert_node_labels_to_integers(graph)
     graph.remove_edges_from(nx.selfloop_edges(graph))
+
+    print("Sub-sampling LiveJournal graph")
+    sampler = MetropolisHastingsRandomWalkSampler(number_of_nodes=50000, seed=42)
+    graph = sampler.sample(graph)
 
     print("Saving livejournal graph")
     # sampler = MettFireSampler(number_of_nodes=50000)

@@ -10,6 +10,9 @@ from ..utils import describe_one_dataset
 import random
 
 from torch_geometric.datasets import TUDataset
+from torch_geometric.io import fs, read_tu_data
+import os.path as osp
+import fsspec
 
 # from ogb.utils.features import get_atom_feature_dims, get_bond_feature_dims
 # from ogb.graphproppred import PygGraphPropPredDataset
@@ -34,6 +37,54 @@ from torch_geometric.datasets import TUDataset
 #         one_hot_tensors.append(one_hot)
 
 #     return torch.cat(one_hot_tensors, dim=1)
+
+
+# Having this and mv defined here seems to fix issues that were present using the originals from TorchGeometric. I do not know why - aod.
+def get_fs(path: str) -> fsspec.AbstractFileSystem:
+    r"""Get filesystem backend given a path URI to the resource.
+
+    Here are some common example paths and dispatch result:
+
+    * :obj:`"/home/file"` ->
+      :class:`fsspec.implementations.local.LocalFileSystem`
+    * :obj:`"memory://home/file"` ->
+      :class:`fsspec.implementations.memory.MemoryFileSystem`
+    * :obj:`"https://home/file"` ->
+      :class:`fsspec.implementations.http.HTTPFileSystem`
+    * :obj:`"gs://home/file"` -> :class:`gcsfs.GCSFileSystem`
+    * :obj:`"s3://home/file"` -> :class:`s3fs.S3FileSystem`
+
+    A full list of supported backend implementations of :class:`fsspec` can be
+    found `here <https://github.com/fsspec/filesystem_spec/blob/master/fsspec/
+    registry.py#L62>`_.
+
+    The backend dispatch logic can be updated with custom backends following
+    `this tutorial <https://filesystem-spec.readthedocs.io/en/latest/
+    developer.html#implementing-a-backend>`_.
+
+    Args:
+        path (str): The URI to the filesystem location, *e.g.*,
+            :obj:`"gs://home/me/file"`, :obj:`"s3://..."`.
+    """
+    return fsspec.core.url_to_fs(path)[0]
+
+
+def mv(path1: str, path2: str) -> None:
+    fs1 = get_fs(path1)
+    fs2 = get_fs(path2)
+    assert fs1.protocol == fs2.protocol
+    fs1.mv(path1, path2)
+
+# Redefine download to use above definitions for mv and get_fs
+class CustomTUDataset(TUDataset):
+    def download(self) -> None:
+        url = self.cleaned_url if self.cleaned else self.url
+        fs.cp(f'{url}/{self.name}.zip', self.raw_dir, extract=True)
+        for filename in fs.ls(osp.join(self.raw_dir, self.name)):
+            print(filename == osp.join(self.raw_dir, osp.basename(filename)))
+            print(filename, "\n", osp.join(self.raw_dir, osp.basename(filename)))
+            mv(filename, osp.join(self.raw_dir, osp.basename(filename)))
+        fs.rm(osp.join(self.raw_dir, self.name))
 
 class FromTUDataset(InMemoryDataset):
     r"""
@@ -147,25 +198,32 @@ class FromTUDataset(InMemoryDataset):
         data_list = [data for data in data_list]
         random.Random(4).shuffle(data_list)
         print("Shuffled")
+        num_samples = len(data_list)
+        if self.stage == "train":
+            data_list = data_list[:int(0.8 * num_samples)]
+        elif self.stage == "val":
+            data_list = data_list[int(0.8 * num_samples):int(0.9 * num_samples)]
+        elif self.stage == "test":
+            data_list = data_list[int(0.9 * num_samples):]
 
         num_samples = len(data_list)
-        if self.stage is None:
-            if num_samples < self.num:
-                keep_n = num_samples
-            else:
-                keep_n = self.num
+        keep_n = len(data_list)
+
+        
+        if num_samples < self.num:
+            keep_n = num_samples
         else:
-            if self.stage == "train":
-                data_list = data_list[:int(0.8 * num_samples)]
-            elif self.stage == "val":
-                data_list = data_list[int(0.8 * num_samples):int(0.9 * num_samples)]
-            elif self.stage == "test":
-                data_list = data_list[int(0.9 * num_samples):]
+            keep_n = self.num
+        # if self.stage is None:
+        #     if num_samples < self.num:
+        #         keep_n = num_samples
+        #     else:
+        #         keep_n = self.num
+        # else:
 
-            keep_n = len(data_list)
-
+        data_list = data_list[:keep_n]
         print(f"Converting {keep_n} samples")
-        for i, item in enumerate(data_list[:keep_n]):
+        for i, item in enumerate(data_list):
 
             data = Data(x = item.x, 
                         edge_index=item.edge_index,
@@ -180,6 +238,7 @@ class FromTUDataset(InMemoryDataset):
         if self.pre_transform is not None:
             data_list = [self.pre_transform(data) for data in data_list]
 
+        print(data_list)
         data, slices = self.collate(data_list)
         torch.save((data, slices), self.processed_paths[self.stage_to_index[self.stage]])
 
@@ -200,9 +259,9 @@ def from_tu_dataset(root,  stage="train", num=-1):
     root = root[:-len(name)]
     print(root, name)
 
-    
 
-    dataset = TUDataset(root + name, name)
+
+    dataset = CustomTUDataset(root + name, name)
     return FromTUDataset(root + name, dataset, stage = stage, num = num)
 
 if __name__ == "__main__":

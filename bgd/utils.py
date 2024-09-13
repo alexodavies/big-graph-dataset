@@ -437,7 +437,7 @@ def chunked_iterable(iterable, size):
 
 def process_chunk(chunk, sampler_list, graph):
     chunk_graphs = []
-    for _ in tqdm(chunk, leave = False, colour="MAGENTA"):
+    for _ in chunk:
         sampler = np.random.choice(sampler_list)
         g = sample_graph(sampler, graph)
         chunk_graphs.append(g)
@@ -457,7 +457,8 @@ def ESWR(graph, n_graphs, size):
     graphs = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = [executor.submit(process_chunk, chunk, sampler_list, graph) for chunk in graph_chunks]
-        for future in tqdm(concurrent.futures.as_completed(futures), total=len(futures), desc="Sampling from {graph}"):
+        # for future in tqdm(concurrent.futures.as_completed(futures), total=len(futures), desc="Sampling from {graph}"):
+        for future in concurrent.futures.as_completed(futures):
             graphs.extend(future.result())
     print("Done sampling!\n")
     return graphs
