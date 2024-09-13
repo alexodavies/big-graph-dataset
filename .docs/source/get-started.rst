@@ -99,31 +99,40 @@ Python Environments
 
 **Please use Python 3.11.X**
 
-A *generic* environment is under `requirements_dev.txt`, use `pip install -r requirements_dev. txt` within a virtual (Conda etc.) environment to get everything installed.
+A *generic* environment is under `requirements_dev.txt`, use `pip install -r requirements_dev. txt` within a virtual (Conda etc.) environment to get everything installed::
 
-Alternatively my MacOS environment, with specific versioning, is under `requirements_macos.txt`, install with `pip install -r requirements_macos. txt`.
+
+    conda create -n big-graph-dataset python=3.11 numpy=1.26.4 pytorch=2.4.1 -c pytorch
+    conda activate big-graph-dataset
+    pip install -r requirements_dev.txt
+
+
+.. Alternatively my MacOS environment, with specific versioning, is under `requirements_macos.txt`, install with `pip install -r requirements_macos. txt`.
 
 There is also a packaged conda environment in `environment.yml` - you can run `conda env create -f enviroment.yml` to try this instead of the pip installs.
 
-If this doesn't work, create and activate a new environment (here with Conda):
+If this doesn't work, create and activate a new environment (here with Conda)::
 
-'''
-conda create -n big-graph-dataset python=3.11
-conda activate big-graph-dataset
-'''
 
-then these commands should install (most of) the relevant libraries:
+    conda create -n big-graph-dataset python=3.11 numpy=1.26.4 pytorch=2.4.1
+    conda activate big-graph-dataset
 
-'''
-pip install torch torchvision torchaudio 
-pip install torch_geometric torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-2.4.0+cpu.html
-pip install matplotlib pandas wget umap-learn
-'''
+
+then these commands should install (most of) the relevant libraries::
+
+
+    pip install torch torchvision torchaudio 
+    pip install torch_geometric torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-2.4.0+cpu.html
+    pip install matplotlib pandas wget umap-learn
+
+
 
 **Enviroment Issues**
 
  - The packaged enviroment uses CPU versions of PyTorch and PyTorch Geometric. If you have a GPU, you can install the GPU versions by changing the `torch` and `torch_geometric` lines in `requirements_dev.txt` to the GPU versions from the PyTorch website.
  - Some packages don't play well with others. If you have significant issues, please get in touch.
+ - I sometimes run into a `OSError: [Errno 66] Directory not empty` error during `pip install -r requirements_dev. txt` from littleballoffur - this is a `numpy` versioning issue, try `pip install numpy==1.26.4`.
+ - `torch_sparse` can take a long time to install
  - **If your code requires new package installs please tell me** (email, but this can also be detailed in the pull request)
 
 Testing Code

@@ -100,26 +100,26 @@ def run(args):
     # Get datasets
     my_transforms = Compose([initialize_edge_weight])
 
-    train_datasets, train_names = get_train_datasets(my_transforms, num = args.num_train)
-    top_datasets = [ToPDataset(dataset) for i, dataset in enumerate(train_datasets)]
-    compute_top_scores(top_datasets, train_names)
+    # train_datasets, train_names = get_train_datasets(my_transforms, num = args.num_train)
+    # top_datasets = [ToPDataset(dataset) for i, dataset in enumerate(train_datasets)]
+    # compute_top_scores(top_datasets, train_names)
 
-    roots = []
-    for idataset, dataset in enumerate(train_datasets):
-        try:
-            roots.append(dataset.root)
-        except AttributeError:
-            train_datasets[idataset] = dataset.datasets[0]
-            roots.append(train_datasets[idataset].root)
-            # roots.append(dataset.datasets[0].root)
+    train_datasets, train_names = get_train_datasets(my_transforms, num = args.num_train)   
 
-    for i, dataset in enumerate(train_datasets):
-        print(dataset, train_names[i], roots[i])
-        vis_grid(dataset[:25], f"{roots[i]}/{train_names[i]}.png")
+    if args.vis:
+        print("\nVisualising datasets")
+        roots = []
+        for idataset, dataset in enumerate(train_datasets):
+            try:
+                roots.append(dataset.root)
+            except AttributeError:
+                train_datasets[idataset] = dataset.datasets[0]
+                roots.append(train_datasets[idataset].root)
 
-        
-
-    train_datasets, train_names = get_train_datasets(my_transforms, num = args.num_train)
+        pbar = tqdm(train_datasets, leave = False)
+        for i, dataset in enumerate():
+            pbar.set_description(f"Visualising {train_names[i]}")
+            vis_grid(dataset[:25], f"{roots[i]}/{train_names[i]}.png")
 
     val_datasets, val_names = get_val_datasets(my_transforms, num = args.num_val)
     test_datasets, test_names = get_test_datasets(my_transforms, num = args.num_test)
@@ -130,8 +130,8 @@ def run(args):
     print_strings += desc_datasets(val_datasets, "Val", val_names)
     print_strings += desc_datasets(test_datasets, "Test", test_names)
 
-    md_string = latex_to_markdown(print_strings)
-    update_readme_table("README.md", md_string)
+    # md_string = latex_to_markdown(print_strings)
+    # update_readme_table("README.md", md_string)
 
 
 
@@ -158,6 +158,14 @@ def arg_parse():
         '--score',
         action='store_true',
         help='Whether to compute similarity score against other datasets',
+        default = False
+    )
+
+    parser.add_argument(
+        '-v',
+        '--vis',
+        action='store_true',
+        help='Whether to produce visualisations for each dataset',
         default = False
     )
 

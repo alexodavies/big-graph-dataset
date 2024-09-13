@@ -188,8 +188,10 @@ def prettify_metric_name(metric):
                    "transitivity": "Trans.",
                    "three_cycles": "Num. 3-Cycles",
                    "four_cycles":"Num. 4-Cycles"}
-
-    return pretty_dict[metric_name]
+    try:
+        return pretty_dict[metric_name]
+    except:
+        print(f"Couldn't find {metric} to make pretty!\n Valid options are:\n{pretty_dict}")
 
 def clean_graph(g):
     Gcc = sorted(nx.connected_components(g), key=len, reverse=True)
