@@ -102,7 +102,7 @@ Python Environments
 A *generic* environment is under `requirements_dev.txt`, use `pip install -r requirements_dev. txt` within a virtual (Conda etc.) environment to get everything installed::
 
 
-    conda create -n big-graph-dataset python=3.11 numpy=1.26.4 pytorch=2.4.1 -c pytorch
+    conda create -n big-graph-dataset python=3.11 numpy<=2.0.0 pytorch<=2.4.1 -c pytorch
     conda activate big-graph-dataset
     pip install -r requirements_dev.txt
 
